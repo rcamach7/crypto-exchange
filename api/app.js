@@ -11,6 +11,13 @@ const bcrypt = require("bcryptjs");
 // Initiate our application
 const app = express();
 
+// Models
+const User = require("./models/User");
+
+// Routes
+const userRoutes = require("./routes/userRoutes");
+const loginRoute = require("./routes/loginRoute");
+
 // Enable all origins to connect to our app
 app.use(cors());
 
@@ -50,6 +57,9 @@ passport.use(
     });
   })
 );
+
+app.use("/user", userRoutes);
+app.use("/login", loginRoute);
 
 app.get("/", (req, res, next) => {
   res.json({ msg: "hello world" });
