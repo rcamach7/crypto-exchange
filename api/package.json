@@ -1,0 +1,20 @@
+{
+  "name": "crypto-wallet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rcamach7/crypto-wallet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rcamach7/crypto-wallet/issues"
+  },
+  "homepage": "https://github.com/rcamach7/crypto-wallet#readme"
+}
