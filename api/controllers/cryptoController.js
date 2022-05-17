@@ -1,8 +1,10 @@
 const { verifyTokenAndStoreCredentials } = require("../assets/middleware");
+const CoinGecko = require("coingecko-api");
+const CoinGeckoClient = new CoinGecko();
 
 exports.getCryptos = [
   verifyTokenAndStoreCredentials,
-  (req, res, next) => {
+  async (req, res, next) => {
     res.json({ msg: "Hello World" });
   },
 ];
