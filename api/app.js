@@ -17,6 +17,7 @@ const User = require("./models/User");
 // Routes
 const userRoutes = require("./routes/userRoutes");
 const loginRoute = require("./routes/loginRoute");
+const cryptoRoutes = require("./routes/cryptoRoutes");
 
 // Enable all origins to connect to our app
 app.use(cors());
@@ -59,10 +60,11 @@ passport.use(
 );
 
 app.use("/user", userRoutes);
+app.use("/cryptos", cryptoRoutes);
 app.use("/login", loginRoute);
 
 app.get("/", (req, res, next) => {
-  res.json({ msg: "hello world" });
+  res.json({ msg: "welcome to my crypto API" });
 });
 
 module.exports = app;
