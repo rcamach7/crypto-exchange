@@ -18,6 +18,7 @@ const User = require("./models/User");
 const userRoutes = require("./routes/userRoutes");
 const loginRoute = require("./routes/loginRoute");
 const cryptoRoutes = require("./routes/cryptoRoutes");
+const transactionRoutes = require("./routes/transactionRoutes");
 
 // Enable all origins to connect to our app
 app.use(cors());
@@ -60,6 +61,7 @@ passport.use(
 );
 
 app.use("/user", userRoutes);
+app.use("/transactions", transactionRoutes);
 app.use("/cryptos", cryptoRoutes);
 app.use("/login", loginRoute);
 
