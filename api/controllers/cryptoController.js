@@ -1,5 +1,5 @@
 const { verifyTokenAndStoreCredentials } = require("../assets/middleware");
-const { updateCryptos } = require("../assets/api");
+const { updateCryptos, updateOneCrypto } = require("../assets/api");
 const Crypto = require("../models/Crypto");
 
 exports.getCryptos = [
@@ -40,7 +40,7 @@ exports.getCryptos = [
     }
   },
   // Return cryptos
-  async (req, res, next) => {
+  async (req, res) => {
     try {
       const cryptos = await Crypto.find();
       res.json({ cryptos });
@@ -49,6 +49,25 @@ exports.getCryptos = [
         message: "Error retrieving cryptos",
         error,
       });
+    }
+  },
+];
+
+exports.updateCrypto = [
+  verifyTokenAndStoreCredentials,
+  async (req, res, next) => {
+    const cryptoName = req.params.name;
+    if (typeof cryptoName === undefined)
+      return res.status(400).json({ message: "Crypto name not provided" });
+
+    try {
+      const updatedCrypto = await updateOneCrypto(cryptoName);
+      return res.json({
+        message: "Crypto information updated",
+        crypto: updatedCrypto,
+      });
+    } catch (error) {
+      return res.status(500).json({ error });
     }
   },
 ];

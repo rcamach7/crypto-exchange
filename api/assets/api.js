@@ -43,14 +43,10 @@ exports.updateCryptos = async (cryptos) => {
   }
 };
 
-const fetchOne = async () => {
+exports.updateOneCrypto = async (cryptoName) => {
   try {
     let {
       data: {
-        id,
-        symbol,
-        description,
-        image,
         market_data: {
           current_price,
           price_change_percentage_24h,
@@ -58,23 +54,29 @@ const fetchOne = async () => {
           price_change_percentage_14d,
         },
       },
-    } = await CoinGeckoClient.coins.fetch("bitcoin", {
+    } = await CoinGeckoClient.coins.fetch(cryptoName, {
       developer_data: false,
       localization: false,
       sparkline: false,
       community_data: false,
     });
-    console.log({
-      id,
-      symbol,
-      description,
-      image,
-      current_price,
-      price_change_percentage_7d,
-      price_change_percentage_14d,
-      price_change_percentage_24h,
-    });
+
+    const result = await Crypto.findOneAndUpdate(
+      { name: cryptoName },
+      {
+        price: current_price.usd,
+        lastUpdated: new Date(),
+        marketHistory: {
+          price_change_percentage_24h,
+          price_change_percentage_7d,
+          price_change_percentage_14d,
+        },
+      },
+      { new: true }
+    );
+
+    return Promise.resolve(result);
   } catch (error) {
-    console.log(error);
+    return Promise.reject(error);
   }
 };
