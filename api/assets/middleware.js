@@ -20,3 +20,5 @@ exports.verifyTokenAndStoreCredentials = function (req, res, next) {
     });
   }
 };
+
+exports.updateCryptoInformation = function (req, res, next) {};
