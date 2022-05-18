@@ -2,9 +2,8 @@ const CoinGecko = require("coingecko-api");
 const CoinGeckoClient = new CoinGecko();
 const Crypto = require("../models/Crypto");
 
-exports.updateCryptos = async () => {
+exports.updateCryptos = async (cryptos) => {
   try {
-    const cryptos = await Crypto.find();
     const { data } = await CoinGeckoClient.coins.all({
       order: CoinGecko.ORDER.MARKET_CAP_DESC,
     });
@@ -24,12 +23,12 @@ exports.updateCryptos = async () => {
       });
     }
 
-    cryptos.forEach(async (crypto) => {
-      const data = tickerMap.get(crypto.name);
+    cryptos.forEach(async (cryptoName) => {
+      const data = tickerMap.get(cryptoName);
       if (data === undefined) return;
 
       await Crypto.findOneAndUpdate(
-        { name: crypto.name },
+        { name: cryptoName },
         {
           price: data.price,
           lastUpdated: new Date(),
@@ -75,63 +74,6 @@ const fetchOne = async () => {
       price_change_percentage_14d,
       price_change_percentage_24h,
     });
-  } catch (error) {
-    console.log(error);
-  }
-};
-// fetchOne();
-
-const fetchMultiple = async () => {
-  try {
-    let { data } = await CoinGeckoClient.coins.all({
-      order: CoinGecko.ORDER.MARKET_CAP_DESC,
-    });
-
-    const test = [];
-    for (let index = 0; index < 30; index++) {
-      test.push({
-        name: data[index].id,
-        ticker: data[index].symbol,
-        image: data[index].image.small,
-        price: data[index].market_data.current_price.usd,
-        lastUpdated: new Date(),
-        marketHistory: {
-          priceChangePercentage24h:
-            data[index].market_data.price_change_percentage_24h,
-          priceChangePercentage7d:
-            data[index].market_data.price_change_percentage_7d,
-          priceChangePercentage14d:
-            data[index].market_data.price_change_percentage_14d,
-        },
-      });
-    }
-    console.log(test);
-
-    // const tickers = data.map((ticker) => {
-    //   const {
-    //     id,
-    //     symbol,
-    //     image,
-    //     market_data: {
-    //       current_price,
-    //       price_change_percentage_24h,
-    //       price_change_percentage_7d,
-    //       price_change_percentage_14d,
-    //     },
-    //   } = ticker;
-    //   return {
-    //     id,
-    //     symbol,
-    //     image,
-    //     market_data: {
-    //       current_price,
-    //       price_change_percentage_24h,
-    //       price_change_percentage_7d,
-    //       price_change_percentage_14d,
-    //     },
-    //   };
-    // });
-    // console.log(tickers);
   } catch (error) {
     console.log(error);
   }
