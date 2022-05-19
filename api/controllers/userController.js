@@ -84,7 +84,7 @@ exports.getUser = [
   async (req, res) => {
     try {
       const user = await User.findById(res.locals.userId).select(
-        "username fullName wallet balance"
+        "username fullName portfolio balance"
       );
 
       return res.json({ user });
