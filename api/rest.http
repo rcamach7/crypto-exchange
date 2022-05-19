@@ -31,5 +31,5 @@ PUT http://localhost:2000/cryptos/bitcoin
 authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiX2lkIjoiNjI4MzE2YWI0OGZlZTExOWQ3MjRjMTBjIiwiaWF0IjoxNjUyODI2MTE1fQ.LXyBlWeGkwsPyUH2uF6kIvM-rRk6F_o1vi89FU-yERM
 
 ### PURCHASE CRYPTO
-POST http://localhost:2000/transactions/buy/bitcoin&2
+POST http://localhost:2000/transactions/buy/fff&1
 authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiX2lkIjoiNjI4MzE2YWI0OGZlZTExOWQ3MjRjMTBjIiwiaWF0IjoxNjUyODI2MTE1fQ.LXyBlWeGkwsPyUH2uF6kIvM-rRk6F_o1vi89FU-yERM
