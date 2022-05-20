@@ -27,7 +27,7 @@ exports.processPortfolioPurchase = (currentPortfolio, transaction) => {
 };
 
 // Validation checks before confirm user has enough coins to sell the requested quantity.
-processPortfolioSell = (currentPortfolio, transaction) => {
+exports.processPortfolioSell = (currentPortfolio, transaction) => {
   // We know for certain the index will exist.
   const indexOfPortfolioHolding = currentPortfolio
     .map(({ crypto }) => crypto)

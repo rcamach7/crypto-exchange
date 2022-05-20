@@ -91,7 +91,7 @@ exports.sellCryptos = [
       } else {
         // Valid request, save data and move on.
         res.locals.user = user;
-        res.locals.crypto = crypto;
+        res.locals.crypto = cryptoToSell;
         next();
       }
     } catch (error) {
