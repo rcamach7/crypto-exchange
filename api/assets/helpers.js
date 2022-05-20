@@ -25,3 +25,12 @@ exports.processPortfolioPurchase = (currentPortfolio, transaction) => {
     return newPortfolio;
   }
 };
+
+exports.processPortfolioSell = (currentPortfolio, transaction) => {
+  // We know for certain the index will exist.
+  const indexOfPortfolioHolding = currentPortfolio
+    .map(({ crypto }) => crypto)
+    .indexOf(transaction.crypto.name);
+
+  const updatedHolding = currentPortfolio[indexOfPortfolioHolding];
+};

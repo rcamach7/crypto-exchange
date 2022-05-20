@@ -2,7 +2,10 @@ const {
   verifyTokenAndStoreCredentials,
   verifyTransactionParameters,
 } = require("../assets/middleware");
-const { processPortfolioPurchase } = require("../assets/helpers");
+const {
+  processPortfolioPurchase,
+  processPortfolioSell,
+} = require("../assets/helpers");
 const { updateOneCrypto } = require("../assets/api");
 const User = require("../models/User");
 
@@ -42,7 +45,10 @@ exports.buyCryptos = [
           { new: true }
         ).select("username fullName portfolio balance");
 
-        return res.json({ message: "Purchase processed", user: updatedUser });
+        return res.json({
+          message: "Purchase transaction approved",
+          user: updatedUser,
+        });
       } else {
         return res.status(400).json({ message: "Insufficient balance" });
       }
@@ -83,6 +89,7 @@ exports.sellCryptos = [
           .status(400)
           .json({ message: "User does not own this crypto coin" });
       } else {
+        // Valid request, save data and move on.
         res.locals.user = user;
         res.locals.crypto = crypto;
         next();
@@ -93,7 +100,38 @@ exports.sellCryptos = [
         .json({ message: "Crypto attempting to sell does not exist", error });
     }
   },
+  // Process selling request
   async (req, res, next) => {
-    res.json({ message: "passed" });
+    try {
+      // Amount user will receive based on current selling price
+      const totalSellingPrice =
+        res.locals.crypto.price * Number.parseInt(req.params.quantity);
+
+      // Updated user information to reflect all changes in sell transaction
+      const newBalance = res.locals.user.balance + totalSellingPrice;
+      const updatedPortfolio = processPortfolioSell(res.locals.user.portfolio, {
+        crypto: res.locals.crypto,
+        quantity: Number.parseInt(req.params.quantity),
+      });
+
+      const updatedUser = await User.findByIdAndUpdate(
+        res.locals.userId,
+        {
+          balance: newBalance,
+          portfolio: updatedPortfolio,
+        },
+        { new: true }
+      ).select("username fullName portfolio balance");
+
+      return res.json({
+        message: "Sell transaction approved",
+        user: updatedUser,
+      });
+      // Update user with new information.
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Error processing purchase", error });
+    }
   },
 ];
