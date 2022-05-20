@@ -22,7 +22,11 @@ exports.verifyTokenAndStoreCredentials = function (req, res, next) {
 };
 
 exports.verifyTransactionParameters = function (req, res, next) {
-  if (req.params.name === undefined || req.params.quantity === undefined) {
+  if (
+    req.params.name === undefined ||
+    req.params.quantity === undefined ||
+    isNaN(Number.parseInt(req.params.quantity))
+  ) {
     return res
       .status(400)
       .json({ message: "Please provide correct parameters" });

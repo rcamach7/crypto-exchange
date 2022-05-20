@@ -70,8 +70,11 @@ exports.sellCryptos = [
           ) {
             // Valid Transaction
             validTransaction = true;
+            break;
           } else {
-            return res.status(400).json({ message: "Insufficient quantity" });
+            return res
+              .status(400)
+              .json({ message: "Insufficient quantity to sell" });
           }
         }
       }
@@ -87,7 +90,10 @@ exports.sellCryptos = [
     } catch (error) {
       return res
         .status(500)
-        .json({ message: "Error validating sell request", error });
+        .json({ message: "Crypto attempting to sell does not exist", error });
     }
+  },
+  async (req, res, next) => {
+    res.json({ message: "passed" });
   },
 ];
