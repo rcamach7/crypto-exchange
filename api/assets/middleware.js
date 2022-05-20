@@ -21,4 +21,12 @@ exports.verifyTokenAndStoreCredentials = function (req, res, next) {
   }
 };
 
-exports.updateCryptoInformation = function (req, res, next) {};
+exports.verifyTransactionParameters = function (req, res, next) {
+  if (req.params.name === undefined || req.params.quantity === undefined) {
+    return res
+      .status(400)
+      .json({ message: "Please provide correct parameters" });
+  } else {
+    next();
+  }
+};

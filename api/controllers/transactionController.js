@@ -1,4 +1,7 @@
-const { verifyTokenAndStoreCredentials } = require("../assets/middleware");
+const {
+  verifyTokenAndStoreCredentials,
+  verifyTransactionParameters,
+} = require("../assets/middleware");
 const { processPortfolioPurchase } = require("../assets/helpers");
 const { updateOneCrypto } = require("../assets/api");
 const User = require("../models/User");
@@ -45,6 +48,46 @@ exports.buyCryptos = [
       }
     } catch (error) {
       res.status(400).json({ message: "Invalid crypto name provided", error });
+    }
+  },
+];
+
+exports.sellCryptos = [
+  verifyTokenAndStoreCredentials,
+  verifyTransactionParameters,
+  // Validate user has crypto coin and quantity that they're requesting to sell.
+  async (req, res, next) => {
+    try {
+      const cryptoToSell = await updateOneCrypto(req.params.name);
+      const user = await User.findById(res.locals.userId);
+
+      let = validTransaction = false;
+      for (let index = 0; index < user.portfolio.length; index++) {
+        if (user.portfolio[index].crypto === cryptoToSell.name) {
+          if (
+            user.portfolio[index].quantity >=
+            Number.parseInt(req.params.quantity)
+          ) {
+            // Valid Transaction
+            validTransaction = true;
+          } else {
+            return res.status(400).json({ message: "Insufficient quantity" });
+          }
+        }
+      }
+      if (!validTransaction) {
+        return res
+          .status(400)
+          .json({ message: "User does not own this crypto coin" });
+      } else {
+        res.locals.user = user;
+        res.locals.crypto = crypto;
+        next();
+      }
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Error validating sell request", error });
     }
   },
 ];
