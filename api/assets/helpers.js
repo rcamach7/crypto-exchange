@@ -26,11 +26,32 @@ exports.processPortfolioPurchase = (currentPortfolio, transaction) => {
   }
 };
 
-exports.processPortfolioSell = (currentPortfolio, transaction) => {
+// Validation checks before confirm user has enough coins to sell the requested quantity.
+processPortfolioSell = (currentPortfolio, transaction) => {
   // We know for certain the index will exist.
   const indexOfPortfolioHolding = currentPortfolio
     .map(({ crypto }) => crypto)
     .indexOf(transaction.crypto.name);
 
   const updatedHolding = currentPortfolio[indexOfPortfolioHolding];
+  const updatedPortfolio = [...currentPortfolio];
+  if (updatedHolding.quantity === transaction.quantity) {
+    // Remove the entire holding from user - since he is selling all coins
+    updatedPortfolio.splice(indexOfPortfolioHolding, 1);
+  } else {
+    // Update values in holding since he will have remaining coins
+    updatedHolding.quantity -= transaction.quantity;
+    if (
+      updatedHolding.principle -
+        transaction.crypto.price * transaction.quantity <
+      0
+    ) {
+      // If user has cashed out more than he is invested - default principle to 0 and prevent negative values. It is assumed rest of holdings is not profit.
+      updatedHolding.principle = 0;
+    } else {
+      updatedHolding.principle -=
+        transaction.crypto.price * transaction.quantity;
+    }
+  }
+  return updatedPortfolio;
 };
