@@ -4,7 +4,7 @@ import config from "./config.json";
 
 export const getUser: () => Promise<User> = async () => {
   try {
-    const { data: user } = await axios.get(`${config.api}/users/`);
+    const { data: user } = await axios.get(`${config.api}/user/`);
     return Promise.resolve(user);
   } catch (error) {
     return Promise.reject(error);

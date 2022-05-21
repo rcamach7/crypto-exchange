@@ -1,5 +1,5 @@
 import React from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LandingPage } from "./routes/LandingPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuthentication } from "./hooks/useAuthentication";
@@ -9,7 +9,7 @@ export const RouteSwitch: React.FC = () => {
   const [user, token] = useAuthentication();
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route
@@ -20,7 +20,8 @@ export const RouteSwitch: React.FC = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
