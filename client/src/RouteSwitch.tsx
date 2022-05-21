@@ -3,7 +3,7 @@ import { LandingPage } from "./routes/LandingPage";
 import { ProtectedRoute, OpenRoute } from "./components/UserRouting";
 import { useAuthentication } from "./hooks/useAuthentication";
 import { Home } from "./routes/Home";
-import { UserContext } from "./data/UserContext";
+import { UserContext } from "./hooks/useUserContext";
 
 export const RouteSwitch = () => {
   const [user, setUser, token, setToken] = useAuthentication();
