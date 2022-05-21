@@ -1,13 +1,12 @@
-import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LandingPage } from "./routes/LandingPage";
-import { ProtectedRoute } from "./components/ProtectedRoute";
-import { OpenRoute } from "./components/OpenRoute";
+import { ProtectedRoute, OpenRoute } from "./components/UserRouting";
 import { useAuthentication } from "./hooks/useAuthentication";
 import { Home } from "./routes/Home";
+import { UserContext } from "./data/UserContext";
 
-export const RouteSwitch: React.FC = () => {
-  const [user, token] = useAuthentication();
+export const RouteSwitch = () => {
+  const [user, setUser, token, setToken] = useAuthentication();
 
   return (
     <BrowserRouter>
@@ -24,7 +23,9 @@ export const RouteSwitch: React.FC = () => {
           path="/home"
           element={
             <ProtectedRoute token={token}>
-              <Home />
+              <UserContext.Provider value={{ user, setUser, token, setToken }}>
+                <Home />
+              </UserContext.Provider>
             </ProtectedRoute>
           }
         />

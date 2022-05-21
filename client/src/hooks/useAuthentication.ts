@@ -7,7 +7,7 @@ export const useAuthentication = () => {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token")
   );
-  const [user, setUser] = useState<User | null>();
+  const [user, setUser] = useState<User | null>(null);
 
   // Will update the token that's being sent as a header to validate user.
   useEffect(() => {
@@ -42,5 +42,5 @@ export const useAuthentication = () => {
     }
   }, [token, user]);
 
-  return [user, token] as const;
+  return [user, setUser, token, setToken] as const;
 };
