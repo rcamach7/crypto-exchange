@@ -5,9 +5,9 @@ interface Props {
   children: JSX.Element;
 }
 
-export const ProtectedRoute = ({ token, children }: Props) => {
-  if (!token) {
-    return <Navigate to="/" />;
+export const OpenRoute = ({ token, children }: Props) => {
+  if (token) {
+    return <Navigate to="/home" />;
   }
   return children;
 };
