@@ -2,11 +2,12 @@ import React from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { LandingPage } from "./routes/LandingPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import { useToken } from "./hooks/useToken";
+import { useAuthentication } from "./hooks/useAuthentication";
 import { Home } from "./routes/Home";
 
 export const RouteSwitch: React.FC = () => {
-  const [token, setToken] = useToken();
+  const [user, token] = useAuthentication();
+
   return (
     <HashRouter>
       <Routes>
