@@ -1,11 +1,9 @@
-import { useUserContext } from "../hooks/useUserContext";
+import { Navbar } from "../components/Home/Navbar";
 
 export const Home = () => {
-  const context = useUserContext();
-
   return (
-    <div>
-      <p>Hello Home</p>
+    <div className="Home">
+      <Navbar />
     </div>
   );
 };
