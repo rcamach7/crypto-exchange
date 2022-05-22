@@ -87,7 +87,13 @@ exports.getUser = [
         "username fullName portfolio balance"
       );
 
-      return res.json({ user });
+      if (user == null) {
+        return res
+          .status(401)
+          .json({ message: "Invalid token, no user exists with this token" });
+      } else {
+        return res.json({ user });
+      }
     } catch (errors) {
       return res
         .status(401)
