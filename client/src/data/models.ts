@@ -10,3 +10,13 @@ export interface ContextInterface {
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
 }
+
+export interface SubmissionError {
+  error?: any;
+  helperText?: string;
+}
+
+export interface Account {
+  username: string;
+  password: string;
+}

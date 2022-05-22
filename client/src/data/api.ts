@@ -1,5 +1,5 @@
 import axios from "axios";
-import { User } from "./models";
+import { User, Account } from "./models";
 import config from "./config.json";
 
 export const getUser: () => Promise<User> = async () => {
@@ -12,9 +12,12 @@ export const getUser: () => Promise<User> = async () => {
   }
 };
 
-export const login: () => Promise<string> = async () => {
+export const login: (account: Account) => Promise<string> = async (account) => {
   try {
-    const { data: token } = await axios.get(`${config.api}/login/`);
+    const { data: token } = await axios.post(`${config.api}/login/`, {
+      username: account.username,
+      password: account.password,
+    });
     return Promise.resolve(token);
   } catch (error) {
     return Promise.reject(error);
