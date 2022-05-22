@@ -12,13 +12,28 @@ export const getUser: () => Promise<User> = async () => {
   }
 };
 
+export const createAccount: (account: Account) => Promise<string> = async (
+  account
+) => {
+  try {
+    const { data: token } = await axios.post(`${config.api}/user/`, {
+      username: account.username,
+      password: account.password,
+    });
+
+    return Promise.resolve(token.token);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
 export const login: (account: Account) => Promise<string> = async (account) => {
   try {
     const { data: token } = await axios.post(`${config.api}/login/`, {
       username: account.username,
       password: account.password,
     });
-    return Promise.resolve(token);
+    return Promise.resolve(token.token);
   } catch (error) {
     return Promise.reject(error);
   }

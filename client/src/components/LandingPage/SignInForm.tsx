@@ -27,6 +27,7 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
     try {
       const token: string = await login(account);
       localStorage.setItem("token", token);
+      window.location.reload();
     } catch (error) {
       setPopulateErrors({
         error: true,

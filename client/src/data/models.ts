@@ -19,4 +19,5 @@ export interface SubmissionError {
 export interface Account {
   username: string;
   password: string;
+  confirmedPassword?: string;
 }
