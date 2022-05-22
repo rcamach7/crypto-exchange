@@ -29,7 +29,7 @@ export const CreateAccountForm: React.FC<Props> = ({
       />
       <TextField
         required
-        id="outlined-password-input"
+        id="outlined-password-input2"
         label="Confirm password"
         type="password"
         autoComplete="current-password"
@@ -37,7 +37,10 @@ export const CreateAccountForm: React.FC<Props> = ({
       <Button className="btn" variant="contained">
         Create Account
       </Button>
-      <Button className="btn" variant="outlined">
+      <Button
+        className="btn"
+        onClick={() => setShowCreateAccount((prevState) => !prevState)}
+      >
         Already have an account?
       </Button>
     </Box>

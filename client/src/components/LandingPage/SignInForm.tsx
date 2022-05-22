@@ -25,20 +25,18 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
         label="Password"
         type="password"
         autoComplete="current-password"
+        helperText="Incorrect password or username"
       />
       <Button className="btn" variant="contained">
         Sign In
       </Button>
       <Button
         className="btn"
-        variant="outlined"
         onClick={() => setShowCreateAccount((prevState) => !prevState)}
       >
         Create Account
       </Button>
-      <Button className="btn" variant="outlined">
-        Test Account
-      </Button>
+      <Button className="btn">Test Account</Button>
     </Box>
   );
 };
