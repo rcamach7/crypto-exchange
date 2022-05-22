@@ -60,6 +60,10 @@ export const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Profile</Typography>
+              </MenuItem>
+
               <MenuItem onClick={handleLogout}>
                 <Typography textAlign="center">Log Out</Typography>
               </MenuItem>
