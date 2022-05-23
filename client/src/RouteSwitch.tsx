@@ -24,7 +24,9 @@ export const RouteSwitch = () => {
           path="/home"
           element={
             <ProtectedRoute token={token}>
-              <UserContext.Provider value={{ user, setUser, token, setToken }}>
+              <UserContext.Provider
+                value={{ user, setUser, cryptos, setCryptos, token, setToken }}
+              >
                 <Home />
               </UserContext.Provider>
             </ProtectedRoute>

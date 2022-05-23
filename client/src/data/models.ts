@@ -5,6 +5,8 @@ export interface User {
 }
 
 export interface ContextInterface {
+  cryptos: Crypto[] | undefined;
+  setCryptos: React.Dispatch<React.SetStateAction<Crypto[] | undefined>>;
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   token: string | null;

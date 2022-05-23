@@ -39,7 +39,7 @@ export const login: (account: Account) => Promise<string> = async (account) => {
   }
 };
 
-export const getCryptos: () => Promise<Crypto> = async () => {
+export const getCryptos: () => Promise<Crypto[]> = async () => {
   try {
     const response = await axios.get(`${config.api}/cryptos/`);
 
