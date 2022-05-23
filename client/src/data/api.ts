@@ -1,5 +1,5 @@
 import axios from "axios";
-import { User, Account } from "./models";
+import { User, Account, Crypto } from "./models";
 import config from "./config.json";
 
 export const getUser: () => Promise<User> = async () => {
@@ -34,6 +34,16 @@ export const login: (account: Account) => Promise<string> = async (account) => {
       password: account.password,
     });
     return Promise.resolve(token.token);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+export const getCryptos: () => Promise<Crypto> = async () => {
+  try {
+    const response = await axios.get(`${config.api}/cryptos/`);
+
+    return Promise.resolve(response.data.cryptos);
   } catch (error) {
     return Promise.reject(error);
   }

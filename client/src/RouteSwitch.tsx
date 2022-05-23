@@ -6,7 +6,8 @@ import { Home } from "./routes/Home";
 import { UserContext } from "./hooks/useUserContext";
 
 export const RouteSwitch = () => {
-  const [user, setUser, token, setToken] = useAuthentication();
+  const [user, setUser, cryptos, setCryptos, token, setToken] =
+    useAuthentication();
 
   return (
     <BrowserRouter>

@@ -21,3 +21,20 @@ export interface Account {
   password: string;
   confirmedPassword?: string;
 }
+
+export interface Crypto {
+  name: string;
+  ticker: string;
+  image: string;
+  price: number;
+  lastUpdated: Date;
+  marketHistory: {
+    priceChangePercentage7d: number;
+    priceChangePercentage24h: number;
+    priceChangePercentage14d: number;
+  };
+}
+
+export interface CryptoWrapper {
+  itemList: Crypto[];
+}
