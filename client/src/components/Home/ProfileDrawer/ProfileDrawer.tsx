@@ -56,7 +56,7 @@ export const ProfileDrawer = () => {
             src="./"
           />
 
-          <Typography>
+          <Typography component="div">
             <Chip
               sx={{ marginLeft: "auto" }}
               label={user?.balance}
