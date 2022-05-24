@@ -11,9 +11,10 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useUserContext } from "../../hooks/useUserContext";
 import logo from "../../data/crypto.png";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
-  const { user, setToken } = useUserContext();
+  const { user, setUser, setToken } = useUserContext();
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
@@ -29,6 +30,7 @@ export const Navbar = () => {
   const handleLogout = () => {
     localStorage.clear();
     setToken(null);
+    setUser(null);
   };
 
   return (
@@ -60,13 +62,24 @@ export const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">Profile</Typography>
-              </MenuItem>
+              {user ? (
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">Profile</Typography>
+                </MenuItem>
+              ) : null}
 
-              <MenuItem onClick={handleLogout}>
-                <Typography textAlign="center">Log Out</Typography>
-              </MenuItem>
+              {/* Buttons based on current log in status */}
+              {user ? (
+                <MenuItem onClick={handleLogout}>
+                  <Typography textAlign="center">Log Out</Typography>
+                </MenuItem>
+              ) : (
+                <MenuItem>
+                  <Typography textAlign="center">
+                    {<Link to="/login">Log In</Link>}
+                  </Typography>
+                </MenuItem>
+              )}
             </Menu>
           </Box>
         </Toolbar>

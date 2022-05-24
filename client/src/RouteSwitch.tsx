@@ -14,22 +14,22 @@ export const RouteSwitch = () => {
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
-          element={
-            // Only users who are not yet authenticated can visit this page.
-            <OpenRoute token={token}>
-              <LandingPage />
-            </OpenRoute>
-          }
-        />
-        <Route
-          path="/home"
+          path="home"
           element={
             <UserContext.Provider
               value={{ user, setUser, cryptos, setCryptos, token, setToken }}
             >
               <Home />
             </UserContext.Provider>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            // Only users who are not yet authenticated can visit this page.
+            <OpenRoute token={token}>
+              <LandingPage />
+            </OpenRoute>
           }
         />
         <Route path="*" element={<Navigate to="/home" />} />

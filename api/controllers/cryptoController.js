@@ -3,7 +3,6 @@ const { updateCryptos, updateOneCrypto } = require("../assets/api");
 const Crypto = require("../models/Crypto");
 
 exports.getCryptos = [
-  verifyTokenAndStoreCredentials,
   // Find out if we need to refresh our crypto information (we only refresh after one 30 minutes)
   async (req, res, next) => {
     try {

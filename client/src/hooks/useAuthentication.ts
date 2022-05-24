@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { User, Crypto } from "../data/models";
-import { getUser, getCryptos } from "../data/api";
+import { User } from "../data/models";
+import { getUser } from "../data/api";
 
 export const useAuthentication = () => {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token")
   );
   const [user, setUser] = useState<User | null>(null);
-  // const [cryptos, setCryptos] = useState<Crypto[]>([]);
 
   // Will update the token that's being sent as a header to validate user.
   useEffect(() => {
