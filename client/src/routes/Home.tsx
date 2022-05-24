@@ -1,5 +1,6 @@
 import { Navbar } from "../components/Home/Navbar";
 import { useUserContext } from "../hooks/useUserContext";
+import { CryptoCard } from "../components/Home/CryptoCard";
 
 export const Home = () => {
   const { cryptos } = useUserContext();
@@ -8,8 +9,8 @@ export const Home = () => {
       <Navbar />
 
       <div className="cryptosContainer">
-        {cryptos.map(() => {
-          return <li>Hello World</li>;
+        {cryptos.map((crypto) => {
+          return <CryptoCard key={crypto.ticker} crypto={crypto} />;
         })}
       </div>
     </div>
