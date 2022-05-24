@@ -4,35 +4,35 @@ import { ProtectedRoute, OpenRoute } from "./components/UserRouting";
 import { useAuthentication } from "./hooks/useAuthentication";
 import { Home } from "./routes/Home";
 import { UserContext } from "./hooks/useUserContext";
+import { useFetchPosts } from "./hooks/handleFetchPosts";
 
 export const RouteSwitch = () => {
-  const [user, setUser, cryptos, setCryptos, token, setToken] =
-    useAuthentication();
+  const [user, setUser, token, setToken] = useAuthentication();
+  const [cryptos, setCryptos] = useFetchPosts();
 
   return (
     <BrowserRouter>
       <Routes>
         <Route
-          path="/"
+          path="home"
           element={
+            <UserContext.Provider
+              value={{ user, setUser, cryptos, setCryptos, token, setToken }}
+            >
+              <Home />
+            </UserContext.Provider>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            // Only users who are not yet authenticated can visit this page.
             <OpenRoute token={token}>
               <LandingPage />
             </OpenRoute>
           }
         />
-        <Route
-          path="/home"
-          element={
-            <ProtectedRoute token={token}>
-              <UserContext.Provider
-                value={{ user, setUser, cryptos, setCryptos, token, setToken }}
-              >
-                <Home />
-              </UserContext.Provider>
-            </ProtectedRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/home" />} />
       </Routes>
     </BrowserRouter>
   );

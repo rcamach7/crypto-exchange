@@ -61,6 +61,7 @@ export const CryptoCard: React.FC<Props> = ({
             />
           </Typography>
           <Typography
+            component="div"
             sx={{ marginTop: "5px" }}
             fontSize="small"
             // fontWeight="bold"
