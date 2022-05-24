@@ -12,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useUserContext } from "../../hooks/useUserContext";
 import logo from "../../data/crypto.png";
 import { Link } from "react-router-dom";
-import { ProfileDrawer } from "./ProfileDrawer";
+import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
 
 export const Navbar = () => {
   const { user, setUser, setToken } = useUserContext();
