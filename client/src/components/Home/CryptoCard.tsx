@@ -9,6 +9,8 @@ import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import IconButton from "@mui/material/IconButton";
 
 interface Props {
   crypto: Crypto;
@@ -29,9 +31,9 @@ export const CryptoCard: React.FC<Props> = ({
   },
 }) => {
   return (
-    <Box sx={{ minWidth: 300 }} className="CryptoCard">
+    <Box className="CryptoCard">
       <Card variant="outlined">
-        <CardContent>
+        <CardContent sx={{ padding: "16px 16px 8px 16px" }}>
           <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
             price updated 10 minutes ago
           </Typography>
@@ -39,14 +41,18 @@ export const CryptoCard: React.FC<Props> = ({
           <Typography
             variant="h5"
             component="div"
-            sx={{ display: "flex", alignItems: "center", gap: "5px" }}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "5px",
+            }}
           >
             <Avatar
               sx={{ border: "solid black 1px" }}
               aria-label="recipe"
               src={image}
             />
-            {name}
+            <span className="cryptoName">{name}</span>
             <Chip
               sx={{ marginLeft: "auto" }}
               label={price}
@@ -95,8 +101,13 @@ export const CryptoCard: React.FC<Props> = ({
             </div>
           </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">Purchase {ticker}</Button>
+        <CardActions sx={{}}>
+          <Button size="small" variant="outlined">
+            Purchase {ticker}
+          </Button>
+          <IconButton color="primary" component="span">
+            <BookmarkBorderIcon />
+          </IconButton>
         </CardActions>
       </Card>
     </Box>

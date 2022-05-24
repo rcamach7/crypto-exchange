@@ -32,7 +32,7 @@ export const Navbar = () => {
   };
 
   return (
-    <AppBar position="static" className="Navbar">
+    <AppBar position="sticky" className="Navbar">
       <Container maxWidth="xl" className="navbarContainer">
         <Toolbar disableGutters>
           <Avatar alt="logo" src={logo} sx={{ mr: 2 }} />
