@@ -1,0 +1,10 @@
+.CryptoCard {
+  .priceHistoryChips {
+    padding-top: 5px;
+
+    display: flex;
+    max-width: 300px;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+}

@@ -8,7 +8,7 @@ export const useAuthentication = () => {
     localStorage.getItem("token")
   );
   const [user, setUser] = useState<User | null>(null);
-  const [cryptos, setCryptos] = useState<Crypto>();
+  const [cryptos, setCryptos] = useState<Crypto[]>([]);
 
   // Will update the token that's being sent as a header to validate user.
   useEffect(() => {
