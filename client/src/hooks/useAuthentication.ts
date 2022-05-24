@@ -8,7 +8,7 @@ export const useAuthentication = () => {
     localStorage.getItem("token")
   );
   const [user, setUser] = useState<User | null>(null);
-  const [cryptos, setCryptos] = useState<Crypto[]>([]);
+  // const [cryptos, setCryptos] = useState<Crypto[]>([]);
 
   // Will update the token that's being sent as a header to validate user.
   useEffect(() => {
@@ -28,10 +28,8 @@ export const useAuthentication = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const user: User = await getUser();
-        let [user, cryptos] = await Promise.all([getUser(), getCryptos()]);
+        const user = await getUser();
         setUser(user);
-        setCryptos(cryptos);
       } catch (error) {
         // Token has expired
         localStorage.removeItem("token");
@@ -45,5 +43,5 @@ export const useAuthentication = () => {
     }
   }, [token, user]);
 
-  return [user, setUser, cryptos, setCryptos, token, setToken] as const;
+  return [user, setUser, token, setToken] as const;
 };
