@@ -1,20 +1,16 @@
 import React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { Typography } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import { Avatar, Chip, Typography } from "@mui/material";
+import { useUserContext } from "../../hooks/useUserContext";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export const ProfileDrawer = () => {
+  const { user } = useUserContext();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -38,42 +34,48 @@ export const ProfileDrawer = () => {
 
   const list = (anchor: Anchor) => (
     <Box
-      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
+      className="ProfileBox"
+      sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 300 }}
       role="presentation"
-      onClick={toggleDrawer(anchor, false)}
+      // onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      <Card variant="outlined">
+        <CardContent
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Avatar
+            sx={{ border: "solid black 1px" }}
+            aria-label="recipe"
+            alt={user?.username}
+            src="./"
+          />
+
+          <Typography>
+            <Chip
+              sx={{ marginLeft: "auto" }}
+              label={user?.balance}
+              color="success"
+              icon={<AttachMoneyIcon fontSize="small" />}
+            />
+          </Typography>
+        </CardContent>
+        <CardContent sx={{ padding: "0 16px" }}>
+          Hello, {user?.username}
+        </CardContent>
+      </Card>
     </Box>
   );
+
   return (
     <div className="profileButton">
       <Typography onClick={toggleDrawer("right", true)}>Profile</Typography>
       <Drawer
+        className="ProfileDrawer"
         anchor="right"
         open={state["right"]}
         onClose={toggleDrawer("right", false)}
