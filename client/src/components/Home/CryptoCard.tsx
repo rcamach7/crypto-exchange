@@ -101,7 +101,7 @@ export const CryptoCard: React.FC<Props> = ({
             </div>
           </Typography>
         </CardContent>
-        <CardActions sx={{}}>
+        <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
           <Button size="small" variant="outlined">
             Purchase {ticker}
           </Button>
