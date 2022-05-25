@@ -67,9 +67,9 @@ exports.updateOneCrypto = async (cryptoName) => {
         price: current_price.usd,
         lastUpdated: new Date(),
         marketHistory: {
-          price_change_percentage_24h,
-          price_change_percentage_7d,
-          price_change_percentage_14d,
+          priceChangePercentage24h: price_change_percentage_24h,
+          priceChangePercentage7d: price_change_percentage_7d,
+          priceChangePercentage14d: price_change_percentage_14d,
         },
       },
       { new: true }

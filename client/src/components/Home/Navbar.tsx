@@ -12,6 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useUserContext } from "../../hooks/useUserContext";
 import logo from "../../data/crypto.png";
 import { Link } from "react-router-dom";
+import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
 
 export const Navbar = () => {
   const { user, setUser, setToken } = useUserContext();
@@ -64,7 +65,7 @@ export const Navbar = () => {
             >
               {user ? (
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">Profile</Typography>
+                  <ProfileDrawer />
                 </MenuItem>
               ) : null}
 
@@ -75,9 +76,7 @@ export const Navbar = () => {
                 </MenuItem>
               ) : (
                 <MenuItem>
-                  <Typography textAlign="center">
-                    {<Link to="/login">Log In</Link>}
-                  </Typography>
+                  <Link to="/login">Log In</Link>
                 </MenuItem>
               )}
             </Menu>
