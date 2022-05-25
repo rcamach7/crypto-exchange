@@ -7,6 +7,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Avatar, Chip, Typography } from "@mui/material";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { CryptoWallet } from "./CryptoWallet";
+import { formatPrice } from "../../../assets/helpers";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -59,7 +60,7 @@ export const ProfileDrawer = () => {
           <Typography component="div">
             <Chip
               sx={{ marginLeft: "auto" }}
-              label={user?.balance}
+              label={formatPrice(user?.balance)}
               color="success"
               icon={<AttachMoneyIcon fontSize="small" />}
             />

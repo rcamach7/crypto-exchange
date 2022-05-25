@@ -7,9 +7,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { WalletRow } from "./WalletRow";
+import { getCrypto } from "../../../assets/helpers";
 
 export const CryptoWallet = () => {
-  const { user } = useUserContext();
+  const { user, cryptos } = useUserContext();
+
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -22,7 +24,11 @@ export const CryptoWallet = () => {
         </TableHead>
         <TableBody>
           {user?.portfolio.map((row) => (
-            <WalletRow key={row.crypto} row={row} />
+            <WalletRow
+              key={row.crypto}
+              row={row}
+              cryptoInfo={getCrypto(cryptos, row.crypto)}
+            />
           ))}
         </TableBody>
       </Table>

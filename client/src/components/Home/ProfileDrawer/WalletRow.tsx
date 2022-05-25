@@ -3,17 +3,28 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Box } from "@mui/material";
+import { Box, Table, TableHead, TableBody, Chip } from "@mui/material";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import { Crypto } from "../../../data/models";
+import { formatPrice } from "../../../assets/helpers";
 
 interface RowType {
   row: { crypto: string; quantity: number; principle: number };
+  cryptoInfo: Crypto;
 }
 
-export const WalletRow = ({ row }: RowType) => {
+export const WalletRow = ({ row, cryptoInfo }: RowType) => {
   const [open, setOpen] = React.useState(false);
+  const { quantity, crypto, principle } = row;
+
+  const formattedPrices = {
+    value: formatPrice(quantity * cryptoInfo.price),
+    profit: formatPrice(quantity * cryptoInfo.price - principle),
+    principle: formatPrice(principle),
+  };
+
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
@@ -27,17 +38,62 @@ export const WalletRow = ({ row }: RowType) => {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {row.crypto}
+          {crypto}
         </TableCell>
-        <TableCell align="right">{row.quantity}</TableCell>
+        <TableCell align="right">{quantity}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                Value
-              </Typography>
+              <Table size="small" aria-label="purchases">
+                <TableHead></TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className="tableRowCells"
+                    >
+                      Current Value
+                    </TableCell>
+                    <TableCell>${formattedPrices.value}</TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className="tableRowCells"
+                    >
+                      Principle
+                    </TableCell>
+                    <TableCell>${formattedPrices.principle}</TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className="tableRowCells"
+                    >
+                      Profit
+                    </TableCell>
+                    <TableCell>
+                      <Chip
+                        label={formattedPrices.profit}
+                        size="small"
+                        color={
+                          Number.parseInt(formattedPrices.profit) > 0
+                            ? "success"
+                            : "error"
+                        }
+                        icon={<AttachMoneyIcon fontSize="small" />}
+                      />
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </Box>
           </Collapse>
         </TableCell>
