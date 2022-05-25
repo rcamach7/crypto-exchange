@@ -1,8 +1,6 @@
-import Box from "@mui/material/Box";
 import React from "react";
+import { Box, TextField, Button } from "@mui/material/";
 import { Account } from "../../data/models";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import { createAccount } from "../../data/api";
 
 interface Props {

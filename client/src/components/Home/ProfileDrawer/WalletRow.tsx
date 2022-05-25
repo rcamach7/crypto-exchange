@@ -1,11 +1,17 @@
 import React from "react";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
-import TableCell from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
+import {
+  Collapse,
+  IconButton,
+  TableCell,
+  TableRow,
+  Box,
+  Table,
+  TableHead,
+  TableBody,
+  Chip,
+} from "@mui/material/";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import { Box, Table, TableHead, TableBody, Chip } from "@mui/material";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Crypto } from "../../../data/models";
 import { formatPrice } from "../../../assets/helpers";

@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
+import { Box, TextField, Button } from "@mui/material/";
 import { SubmissionError, Account } from "../../data/models";
 import { login } from "../../data/api";
 

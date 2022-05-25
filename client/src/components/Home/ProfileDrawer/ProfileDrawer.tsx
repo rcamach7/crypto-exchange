@@ -1,10 +1,14 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Drawer from "@mui/material/Drawer";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+import {
+  Box,
+  Drawer,
+  Card,
+  CardContent,
+  Avatar,
+  Chip,
+  Typography,
+} from "@mui/material/";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import { Avatar, Chip, Typography } from "@mui/material";
 import { useUserContext } from "../../../hooks/useUserContext";
 import { CryptoWallet } from "./CryptoWallet";
 import { formatPrice } from "../../../assets/helpers";

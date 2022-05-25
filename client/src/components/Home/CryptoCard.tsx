@@ -1,16 +1,18 @@
 import React from "react";
 import { Crypto } from "../../data/models";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Avatar from "@mui/material/Avatar";
-import Chip from "@mui/material/Chip";
+import {
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Typography,
+  Avatar,
+  Chip,
+  IconButton,
+} from "@mui/material/";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import IconButton from "@mui/material/IconButton";
 
 interface Props {
   crypto: Crypto;
