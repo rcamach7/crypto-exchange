@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { LandingPage } from "./routes/LandingPage";
-import { ProtectedRoute, OpenRoute } from "./components/UserRouting";
+import { OpenRoute } from "./components/UserRouting";
 import { useAuthentication } from "./hooks/useAuthentication";
 import { Home } from "./routes/Home";
 import { UserContext } from "./hooks/useUserContext";
-import { useFetchPosts } from "./hooks/handleFetchPosts";
+import { useFetchPosts } from "./hooks/useFetchPosts";
 
 export const RouteSwitch = () => {
   const [user, setUser, token, setToken] = useAuthentication();
