@@ -5,7 +5,6 @@ import {
   Card,
   CardActions,
   CardContent,
-  Button,
   Typography,
   Avatar,
   Chip,
@@ -14,6 +13,7 @@ import {
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { PurchaseModal } from "./PurchaseModal";
+import moment from "moment";
 
 interface Props {
   crypto: Crypto;
@@ -38,7 +38,7 @@ export const CryptoCard: React.FC<Props> = ({
       <Card variant="outlined">
         <CardContent sx={{ padding: "16px 16px 8px 16px" }}>
           <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-            price updated 10 minutes ago
+            price updated {moment(lastUpdated).fromNow()}
           </Typography>
 
           <Typography
