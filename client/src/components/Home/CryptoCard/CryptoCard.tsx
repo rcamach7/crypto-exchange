@@ -1,5 +1,5 @@
 import React from "react";
-import { Crypto } from "../../../data/models";
+import { Crypto, User } from "../../../data/models";
 import {
   Box,
   Card,
@@ -9,14 +9,17 @@ import {
   Avatar,
   Chip,
   IconButton,
+  Button,
 } from "@mui/material/";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { PurchaseModal } from "./PurchaseModal";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 interface Props {
   crypto: Crypto;
+  user: User | null;
 }
 
 export const CryptoCard: React.FC<Props> = ({
@@ -32,6 +35,7 @@ export const CryptoCard: React.FC<Props> = ({
     price,
     ticker,
   },
+  user,
 }) => {
   return (
     <Box className="CryptoCard">
@@ -106,7 +110,13 @@ export const CryptoCard: React.FC<Props> = ({
           </Typography>
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-          <PurchaseModal ticker={ticker} name={name} />
+          {user ? (
+            <PurchaseModal ticker={ticker} name={name} />
+          ) : (
+            <Button size="small" variant="outlined">
+              <Link to="/login">Login to purchase</Link>
+            </Button>
+          )}
           <IconButton color="primary" component="span">
             <BookmarkBorderIcon />
           </IconButton>
