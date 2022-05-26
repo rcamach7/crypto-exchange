@@ -4,19 +4,34 @@ import { Crypto } from "../../data/models";
 import { useUserContext } from "../../hooks/useUserContext";
 import { formatPrice } from "../../assets/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import { purchaseCrypto } from "../../data/api";
+import { User } from "../../data/models";
 
 interface Props {
   crypto: Crypto;
+  handleClose: () => void;
 }
 
-export const PurchaseCryptoForm: React.FC<Props> = ({ crypto }) => {
-  const { user } = useUserContext();
+export const PurchaseCryptoForm: React.FC<Props> = ({
+  crypto,
+  handleClose,
+}) => {
+  const { user, setUser } = useUserContext();
   const [quantity, setQuantity] = React.useState<number>(0);
 
-  const handlePurchase = (event: React.SyntheticEvent) => {
+  const handlePurchase = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (quantity === 0) {
       alert("Please increase quantity");
+    } else {
+      try {
+        const user: User = await purchaseCrypto(crypto.name, quantity);
+        setUser(user);
+        handleClose();
+      } catch (error) {
+        console.log(error);
+        alert("Error processing purchase");
+      }
     }
   };
 

@@ -47,7 +47,7 @@ export const PurchaseModal: React.FC<Props> = ({ crypto }) => {
           >
             Purchase {capitalizeFirstLetter(crypto.name)}
           </Typography>
-          <PurchaseCryptoForm crypto={crypto} />
+          <PurchaseCryptoForm crypto={crypto} handleClose={handleClose} />
         </Box>
       </Modal>
     </div>
