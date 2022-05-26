@@ -14,3 +14,22 @@
     white-space: nowrap;
   }
 }
+
+// Different Component
+.PurchaseCryptoForm {
+  padding: 10px 0;
+
+  .priceOverview {
+    margin-bottom: 16px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    p {
+      padding: 0 5px;
+    }
+  }
+  .quantityInput {
+    width: 120px;
+  }
+}

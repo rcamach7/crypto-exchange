@@ -1,5 +1,15 @@
 import React from "react";
-import { Box, Button, Typography, Modal } from "@mui/material/";
+import {
+  Box,
+  Button,
+  Typography,
+  Modal,
+  TextField,
+  Avatar,
+} from "@mui/material/";
+import { Crypto } from "../../../data/models";
+import { capitalizeFirstLetter } from "../../../assets/helpers";
+import { formatPrice } from "../../../assets/helpers";
 
 const style = {
   position: "absolute" as "absolute",
@@ -14,11 +24,10 @@ const style = {
 };
 
 interface Props {
-  ticker: string;
-  name: string;
+  crypto: Crypto;
 }
 
-export const PurchaseModal: React.FC<Props> = ({ name, ticker }) => {
+export const PurchaseModal: React.FC<Props> = ({ crypto }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -26,7 +35,7 @@ export const PurchaseModal: React.FC<Props> = ({ name, ticker }) => {
   return (
     <div>
       <Button size="small" variant="outlined" onClick={handleOpen}>
-        Purchase {ticker}
+        Purchase {crypto.ticker}
       </Button>
       <Modal
         open={open}
@@ -36,11 +45,31 @@ export const PurchaseModal: React.FC<Props> = ({ name, ticker }) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            Purchase {capitalizeFirstLetter(crypto.name)}
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <form className="PurchaseCryptoForm">
+            <div className="priceOverview">
+              <Avatar
+                sx={{ border: "solid black 1px" }}
+                aria-label="crypto"
+                src={crypto.image}
+              />
+              <p>${formatPrice(crypto.price)}</p>
+            </div>
+            <TextField
+              className="quantityInput"
+              id="outlined-number"
+              label="Enter Quantity"
+              type="number"
+              size="small"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              InputProps={{
+                inputProps: { min: 0, defaultValue: 0 },
+              }}
+            />
+          </form>
         </Box>
       </Modal>
     </div>

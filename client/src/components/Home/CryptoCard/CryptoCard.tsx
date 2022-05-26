@@ -22,21 +22,19 @@ interface Props {
   user: User | null;
 }
 
-export const CryptoCard: React.FC<Props> = ({
-  crypto: {
+export const CryptoCard: React.FC<Props> = ({ crypto, user }) => {
+  const {
     name,
     image,
     lastUpdated,
+    price,
     marketHistory: {
-      priceChangePercentage14d,
       priceChangePercentage24h,
       priceChangePercentage7d,
+      priceChangePercentage14d,
     },
-    price,
-    ticker,
-  },
-  user,
-}) => {
+  } = crypto;
+
   return (
     <Box className="CryptoCard">
       <Card variant="outlined">
@@ -71,7 +69,6 @@ export const CryptoCard: React.FC<Props> = ({
             component="div"
             sx={{ marginTop: "5px" }}
             fontSize="small"
-            // fontWeight="bold"
           >
             Price History
             <br />
@@ -111,7 +108,7 @@ export const CryptoCard: React.FC<Props> = ({
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
           {user ? (
-            <PurchaseModal ticker={ticker} name={name} />
+            <PurchaseModal crypto={crypto} />
           ) : (
             <Button size="small" variant="outlined">
               <Link to="/login">Login to purchase</Link>
