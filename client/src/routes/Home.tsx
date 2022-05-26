@@ -1,6 +1,6 @@
 import { Navbar } from "../components/Home/Navbar";
 import { useUserContext } from "../hooks/useUserContext";
-import { CryptoCard } from "../components/Home/CryptoCard";
+import { CryptoCard } from "../components/Home/CryptoCard/CryptoCard";
 
 export const Home = () => {
   const { cryptos } = useUserContext();

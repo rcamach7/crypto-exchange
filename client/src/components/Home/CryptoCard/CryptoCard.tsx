@@ -1,5 +1,5 @@
 import React from "react";
-import { Crypto } from "../../data/models";
+import { Crypto } from "../../../data/models";
 import {
   Box,
   Card,
@@ -13,6 +13,7 @@ import {
 } from "@mui/material/";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import { PurchaseModal } from "./PurchaseModal";
 
 interface Props {
   crypto: Crypto;
@@ -105,9 +106,7 @@ export const CryptoCard: React.FC<Props> = ({
           </Typography>
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Button size="small" variant="outlined">
-            Purchase {ticker}
-          </Button>
+          <PurchaseModal ticker={ticker} name={name} />
           <IconButton color="primary" component="span">
             <BookmarkBorderIcon />
           </IconButton>
