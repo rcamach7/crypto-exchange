@@ -9,6 +9,7 @@ import {
   TableHead,
   TableBody,
   Chip,
+  Avatar,
 } from "@mui/material/";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -44,7 +45,20 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {crypto}
+          <div style={{ display: "flex" }}>
+            <Avatar
+              sx={{
+                width: "20px",
+                height: "20px",
+                border: "solid black 1px",
+                marginRight: "5px",
+              }}
+              aria-label="crypto"
+              src={cryptoInfo.image}
+              component="span"
+            />
+            {crypto}
+          </div>
         </TableCell>
         <TableCell align="right">{quantity}</TableCell>
       </TableRow>
