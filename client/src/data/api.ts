@@ -48,3 +48,18 @@ export const getCryptos: () => Promise<Crypto[]> = async () => {
     return Promise.reject(error);
   }
 };
+
+export const purchaseCrypto: (
+  name: string,
+  quantity: number
+) => Promise<User> = async (name, quantity) => {
+  try {
+    const response = await axios.post(
+      `${config.api}/transactions/buy/${name}&${quantity}`
+    );
+
+    return Promise.resolve(response.data.user);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};

@@ -1,32 +1,36 @@
 import React from "react";
 import { Box, Button, Typography, Modal } from "@mui/material/";
+import { Crypto } from "../../../data/models";
+import { capitalizeFirstLetter } from "../../../assets/helpers";
+import { PurchaseCryptoForm } from "../../forms/PurchaseCryptoForm";
 
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "clamp(300px, 100vw, 400px)",
+  width: "clamp(300px, 90vw, 400px)",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  paddingBottom: "5px",
 };
 
 interface Props {
-  ticker: string;
-  name: string;
+  crypto: Crypto;
 }
 
-export const PurchaseModal: React.FC<Props> = ({ name, ticker }) => {
+export const PurchaseModal: React.FC<Props> = ({ crypto }) => {
   const [open, setOpen] = React.useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
       <Button size="small" variant="outlined" onClick={handleOpen}>
-        Purchase {ticker}
+        Purchase {crypto.ticker}
       </Button>
       <Modal
         open={open}
@@ -35,12 +39,15 @@ export const PurchaseModal: React.FC<Props> = ({ name, ticker }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            sx={{ textAlign: "center" }}
+          >
+            Purchase {capitalizeFirstLetter(crypto.name)}
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <PurchaseCryptoForm crypto={crypto} handleClose={handleClose} />
         </Box>
       </Modal>
     </div>

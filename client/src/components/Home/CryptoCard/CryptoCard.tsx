@@ -1,44 +1,46 @@
 import React from "react";
-import { Crypto } from "../../../data/models";
+import { Crypto, User } from "../../../data/models";
 import {
   Box,
   Card,
   CardActions,
   CardContent,
-  Button,
   Typography,
   Avatar,
   Chip,
   IconButton,
+  Button,
 } from "@mui/material/";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { PurchaseModal } from "./PurchaseModal";
+import moment from "moment";
+import { Link } from "react-router-dom";
 
 interface Props {
   crypto: Crypto;
+  user: User | null;
 }
 
-export const CryptoCard: React.FC<Props> = ({
-  crypto: {
+export const CryptoCard: React.FC<Props> = ({ crypto, user }) => {
+  const {
     name,
     image,
     lastUpdated,
+    price,
     marketHistory: {
-      priceChangePercentage14d,
       priceChangePercentage24h,
       priceChangePercentage7d,
+      priceChangePercentage14d,
     },
-    price,
-    ticker,
-  },
-}) => {
+  } = crypto;
+
   return (
     <Box className="CryptoCard">
       <Card variant="outlined">
         <CardContent sx={{ padding: "16px 16px 8px 16px" }}>
           <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
-            price updated 10 minutes ago
+            price updated {moment(lastUpdated).fromNow()}
           </Typography>
 
           <Typography
@@ -67,7 +69,6 @@ export const CryptoCard: React.FC<Props> = ({
             component="div"
             sx={{ marginTop: "5px" }}
             fontSize="small"
-            // fontWeight="bold"
           >
             Price History
             <br />
@@ -106,7 +107,13 @@ export const CryptoCard: React.FC<Props> = ({
           </Typography>
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-          <PurchaseModal ticker={ticker} name={name} />
+          {user ? (
+            <PurchaseModal crypto={crypto} />
+          ) : (
+            <Button size="small" variant="outlined">
+              <Link to="/login">Login to purchase</Link>
+            </Button>
+          )}
           <IconButton color="primary" component="span">
             <BookmarkBorderIcon />
           </IconButton>

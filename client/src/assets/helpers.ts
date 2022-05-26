@@ -18,3 +18,7 @@ export const formatPrice: (value: number | undefined) => string = (value) => {
   }
   return (Math.round(value * 1000) / 1000).toFixed(3);
 };
+
+export const capitalizeFirstLetter: (word: string) => string = (word) => {
+  return word.substring(0, 1).toUpperCase() + word.substring(1);
+};
