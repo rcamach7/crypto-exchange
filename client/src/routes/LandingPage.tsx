@@ -1,5 +1,5 @@
 import { SignInForm } from "../components/LandingPage/SignInForm";
-import { CreateAccountForm } from "../components/LandingPage/CreateAccountForm";
+import { CreateAccountForm } from "../components/forms/CreateAccountForm";
 import { useState } from "react";
 import logo from "../data/logo.png";
 import backdrop from "../data/coinsFalling.gif";
