@@ -11,9 +11,9 @@ import {
   Tooltip,
   MenuItem,
 } from "@mui/material/";
-import { useGlobalContext } from "../../hooks/useGlobalContext";
+import { useGlobalContext } from "../hooks/useGlobalContext";
 import { Link } from "react-router-dom";
-import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
+import { ProfileDrawer } from "./Home/ProfileDrawer/ProfileDrawer";
 
 export const Navbar = () => {
   const { user, setUser, setToken } = useGlobalContext();

@@ -5,6 +5,7 @@ import { useAuthentication } from "./hooks/useAuthentication";
 import { Home } from "./routes/Home";
 import { GlobalContext } from "./hooks/useGlobalContext";
 import { useFetchPosts } from "./hooks/useFetchPosts";
+import { Navbar } from "./components/Navbar";
 
 export const RouteSwitch = () => {
   const [user, setUser, token, setToken] = useAuthentication();
@@ -15,6 +16,7 @@ export const RouteSwitch = () => {
       <GlobalContext.Provider
         value={{ user, setUser, cryptos, setCryptos, token, setToken }}
       >
+        <Navbar />
         <Routes>
           <Route path="home" element={<Home />} />
           <Route
