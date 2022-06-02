@@ -1,4 +1,5 @@
 import {
+  Alert,
   Avatar,
   Button,
   Checkbox,
@@ -10,7 +11,8 @@ import React from "react";
 import { useUserContext } from "../../hooks/useUserContext";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { capitalizeFirstLetter, formatPrice } from "../../assets/helpers";
-import { Crypto } from "../../data/models";
+import { Crypto, Error, User } from "../../data/models";
+import { sellCrypto } from "../../data/api";
 
 interface Props {
   crypto: Crypto;
@@ -23,12 +25,24 @@ export const SellCryptoForm: React.FC<Props> = ({
   handleClose,
   walletQuantity,
 }) => {
-  const { user, setUser } = useUserContext();
+  const { setUser } = useUserContext();
   const [checked, setChecked] = React.useState<boolean>(false);
   const [quantity, setQuantity] = React.useState<number>(0);
+  const [error, setError] = React.useState<Error>({ exists: false });
 
-  const handleSell = (event: React.SyntheticEvent) => {
+  const handleSell = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    if (quantity === 0 || Number.isNaN(quantity)) {
+      setError({ exists: true, message: "Please enter a valid quantity" });
+    } else {
+      try {
+        const user: User = await sellCrypto(crypto.name, quantity);
+        setUser(user);
+        handleClose();
+      } catch (error) {
+        setError({ exists: true, message: error.response.data.message });
+      }
+    }
   };
 
   const handleChecked = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -111,6 +125,12 @@ export const SellCryptoForm: React.FC<Props> = ({
       <Button type="submit" className="purchaseBtn" variant="contained">
         Confirm Sell Order
       </Button>
+      {/* Error Reporting UI */}
+      {error.exists ? (
+        <Alert severity="error" sx={{ marginTop: "10px", padding: "0 5px" }}>
+          {error.message}
+        </Alert>
+      ) : null}
     </form>
   );
 };
