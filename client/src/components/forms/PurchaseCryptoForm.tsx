@@ -1,11 +1,12 @@
 import React from "react";
-import { Button, TextField, Avatar, Alert } from "@mui/material/";
+import { Button, TextField, Avatar, Alert, Typography } from "@mui/material/";
 import { Crypto } from "../../data/models";
 import { useUserContext } from "../../hooks/useUserContext";
-import { formatPrice } from "../../assets/helpers";
+import { capitalizeFirstLetter, formatPrice } from "../../assets/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { purchaseCrypto } from "../../data/api";
 import { User, Error } from "../../data/models";
+import { LoadingUx } from "../LoadingUx";
 
 interface Props {
   crypto: Crypto;
@@ -19,27 +20,44 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
   const { user, setUser } = useUserContext();
   const [quantity, setQuantity] = React.useState<number>(0);
   const [error, setError] = React.useState<Error>({ exists: false });
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const handlePurchase = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    setLoading(true);
     if (quantity === 0) {
       setError({
         exists: true,
         message: "Please enter quantity greater than zero",
       });
+      setLoading(false);
     } else {
       try {
         const user: User = await purchaseCrypto(crypto.name, quantity);
         setUser(user);
+        setLoading(false);
         handleClose();
       } catch (error) {
         setError({ exists: true, message: error.response.data.message });
+        setLoading(false);
       }
     }
   };
 
   return (
-    <form className="PurchaseCryptoForm" onSubmit={handlePurchase}>
+    <form
+      className="PurchaseCryptoForm"
+      onSubmit={handlePurchase}
+      style={{ position: "relative" }}
+    >
+      <Typography
+        id="modal-modal-title"
+        variant="h6"
+        component="h2"
+        sx={{ textAlign: "center" }}
+      >
+        Purchase {capitalizeFirstLetter(crypto.name)}
+      </Typography>
       <div className="priceOverview">
         <div className="cryptoDetails">
           <Avatar
@@ -97,6 +115,7 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
           {error.message}
         </Alert>
       ) : null}
+      {loading ? <LoadingUx /> : null}
     </form>
   );
 };

@@ -1,7 +1,6 @@
 import React from "react";
-import { Box, Button, Typography, Modal } from "@mui/material/";
+import { Box, Button, Modal } from "@mui/material/";
 import { Crypto } from "../../../data/models";
-import { capitalizeFirstLetter } from "../../../assets/helpers";
 import { PurchaseCryptoForm } from "../../forms/PurchaseCryptoForm";
 
 const style = {
@@ -15,6 +14,7 @@ const style = {
   boxShadow: 24,
   p: 4,
   paddingBottom: "5px",
+  paddingTop: "10px",
 };
 
 interface Props {
@@ -39,14 +39,6 @@ export const PurchaseModal: React.FC<Props> = ({ crypto }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography
-            id="modal-modal-title"
-            variant="h6"
-            component="h2"
-            sx={{ textAlign: "center" }}
-          >
-            Purchase {capitalizeFirstLetter(crypto.name)}
-          </Typography>
           <PurchaseCryptoForm crypto={crypto} handleClose={handleClose} />
         </Box>
       </Modal>
