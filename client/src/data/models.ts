@@ -40,3 +40,8 @@ export interface Crypto {
 export interface CryptoWrapper {
   itemList: Crypto[];
 }
+
+export interface Error {
+  exists: Boolean;
+  message?: String;
+}

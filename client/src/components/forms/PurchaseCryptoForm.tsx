@@ -1,11 +1,11 @@
 import React from "react";
-import { Button, TextField, Avatar } from "@mui/material/";
+import { Button, TextField, Avatar, Alert } from "@mui/material/";
 import { Crypto } from "../../data/models";
 import { useUserContext } from "../../hooks/useUserContext";
 import { formatPrice } from "../../assets/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { purchaseCrypto } from "../../data/api";
-import { User } from "../../data/models";
+import { User, Error } from "../../data/models";
 
 interface Props {
   crypto: Crypto;
@@ -18,19 +18,22 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
 }) => {
   const { user, setUser } = useUserContext();
   const [quantity, setQuantity] = React.useState<number>(0);
+  const [error, setError] = React.useState<Error>({ exists: false });
 
   const handlePurchase = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (quantity === 0) {
-      alert("Please increase quantity");
+      setError({
+        exists: true,
+        message: "Please enter quantity greater than zero",
+      });
     } else {
       try {
         const user: User = await purchaseCrypto(crypto.name, quantity);
         setUser(user);
         handleClose();
       } catch (error) {
-        console.log(error);
-        alert("Error processing purchase");
+        setError({ exists: true, message: error.response.data.message });
       }
     }
   };
@@ -88,6 +91,12 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
       <Button type="submit" className="purchaseBtn" variant="contained">
         Confirm Purchase
       </Button>
+      {/* Error feedback */}
+      {error.exists ? (
+        <Alert severity="error" sx={{ marginTop: "10px", padding: "0 5px" }}>
+          {error.message}
+        </Alert>
+      ) : null}
     </form>
   );
 };
