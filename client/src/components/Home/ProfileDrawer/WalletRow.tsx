@@ -10,13 +10,13 @@ import {
   TableBody,
   Chip,
   Avatar,
-  Button,
 } from "@mui/material/";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Crypto } from "../../../data/models";
 import { formatPrice } from "../../../assets/helpers";
+import { SellCryptoModal } from "./SellCryptoModal";
 
 interface RowType {
   row: { crypto: string; quantity: number; principle: number };
@@ -118,7 +118,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
 
                   <TableRow>
                     <TableCell sx={{ padding: "0" }}>
-                      <Button color="error">Sell</Button>
+                      <SellCryptoModal crypto={cryptoInfo} />
                     </TableCell>
                   </TableRow>
                 </TableBody>
