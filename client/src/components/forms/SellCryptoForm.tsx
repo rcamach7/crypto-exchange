@@ -13,6 +13,7 @@ import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { capitalizeFirstLetter, formatPrice } from "../../assets/helpers";
 import { Crypto, Error, User } from "../../data/models";
 import { sellCrypto } from "../../data/api";
+import { LoadingUx } from "../LoadingUx";
 
 interface Props {
   crypto: Crypto;
@@ -29,17 +30,21 @@ export const SellCryptoForm: React.FC<Props> = ({
   const [checked, setChecked] = React.useState<boolean>(false);
   const [quantity, setQuantity] = React.useState<number>(0);
   const [error, setError] = React.useState<Error>({ exists: false });
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const handleSell = async (event: React.SyntheticEvent) => {
     event.preventDefault();
+    setLoading(true);
     if (quantity === 0 || Number.isNaN(quantity)) {
       setError({ exists: true, message: "Please enter a valid quantity" });
     } else {
       try {
         const user: User = await sellCrypto(crypto.name, quantity);
         setUser(user);
+        setLoading(false);
         handleClose();
       } catch (error) {
+        setLoading(false);
         setError({ exists: true, message: error.response.data.message });
       }
     }
@@ -131,6 +136,7 @@ export const SellCryptoForm: React.FC<Props> = ({
           {error.message}
         </Alert>
       ) : null}
+      {loading ? <LoadingUx /> : null}
     </form>
   );
 };
