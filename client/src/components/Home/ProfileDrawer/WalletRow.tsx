@@ -118,7 +118,10 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
 
                   <TableRow>
                     <TableCell sx={{ padding: "0" }}>
-                      <SellCryptoModal crypto={cryptoInfo} />
+                      <SellCryptoModal
+                        crypto={cryptoInfo}
+                        walletQuantity={row.quantity}
+                      />
                     </TableCell>
                   </TableRow>
                 </TableBody>

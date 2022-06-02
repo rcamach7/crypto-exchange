@@ -19,9 +19,13 @@ const style = {
 
 interface Props {
   crypto: Crypto;
+  walletQuantity: number;
 }
 
-export const SellCryptoModal: React.FC<Props> = ({ crypto }) => {
+export const SellCryptoModal: React.FC<Props> = ({
+  crypto,
+  walletQuantity,
+}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -38,7 +42,11 @@ export const SellCryptoModal: React.FC<Props> = ({ crypto }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <SellCryptoForm />
+          <SellCryptoForm
+            crypto={crypto}
+            handleClose={handleClose}
+            walletQuantity={walletQuantity}
+          />
         </Box>
       </Modal>
     </div>
