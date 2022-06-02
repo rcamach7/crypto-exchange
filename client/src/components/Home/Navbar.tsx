@@ -11,13 +11,12 @@ import {
   Tooltip,
   MenuItem,
 } from "@mui/material/";
-import { useUserContext } from "../../hooks/useUserContext";
-import logo from "../../data/crypto.png";
+import { useGlobalContext } from "../../hooks/useGlobalContext";
 import { Link } from "react-router-dom";
 import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
 
 export const Navbar = () => {
-  const { user, setUser, setToken } = useUserContext();
+  const { user, setUser, setToken } = useGlobalContext();
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
@@ -40,7 +39,7 @@ export const Navbar = () => {
     <AppBar position="sticky" className="Navbar">
       <Container maxWidth="xl" className="navbarContainer">
         <Toolbar disableGutters>
-          <Avatar alt="logo" src={logo} sx={{ mr: 2 }} />
+          <Typography className="title">CryptoCoins</Typography>
 
           {/* Profile Icon with sub-menu */}
           <Box sx={{ flexGrow: 0, marginLeft: "auto" }}>

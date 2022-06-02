@@ -7,12 +7,12 @@ import {
   TableRow,
   Paper,
 } from "@mui/material/";
-import { useUserContext } from "../../../hooks/useUserContext";
+import { useGlobalContext } from "../../../hooks/useGlobalContext";
 import { WalletRow } from "./WalletRow";
 import { getCrypto } from "../../../assets/helpers";
 
 export const CryptoWallet = () => {
-  const { user, cryptos } = useUserContext();
+  const { user, cryptos } = useGlobalContext();
 
   return (
     <TableContainer component={Paper}>

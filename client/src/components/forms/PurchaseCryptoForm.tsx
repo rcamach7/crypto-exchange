@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, TextField, Avatar, Alert, Typography } from "@mui/material/";
 import { Crypto } from "../../data/models";
-import { useUserContext } from "../../hooks/useUserContext";
+import { useGlobalContext } from "../../hooks/useGlobalContext";
 import { capitalizeFirstLetter, formatPrice } from "../../assets/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { purchaseCrypto } from "../../data/api";
@@ -17,7 +17,7 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
   crypto,
   handleClose,
 }) => {
-  const { user, setUser } = useUserContext();
+  const { user, setUser } = useGlobalContext();
   const [quantity, setQuantity] = React.useState<number>(0);
   const [error, setError] = React.useState<Error>({ exists: false });
   const [loading, setLoading] = React.useState<boolean>(false);

@@ -9,14 +9,14 @@ import {
   Typography,
 } from "@mui/material/";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import { useUserContext } from "../../../hooks/useUserContext";
+import { useGlobalContext } from "../../../hooks/useGlobalContext";
 import { CryptoWallet } from "./CryptoWallet";
 import { formatPrice } from "../../../assets/helpers";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export const ProfileDrawer = () => {
-  const { user } = useUserContext();
+  const { user } = useGlobalContext();
   const [state, setState] = React.useState({
     top: false,
     left: false,

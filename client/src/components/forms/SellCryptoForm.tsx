@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { useUserContext } from "../../hooks/useUserContext";
+import { useGlobalContext } from "../../hooks/useGlobalContext";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { capitalizeFirstLetter, formatPrice } from "../../assets/helpers";
 import { Crypto, Error, User } from "../../data/models";
@@ -26,7 +26,7 @@ export const SellCryptoForm: React.FC<Props> = ({
   handleClose,
   walletQuantity,
 }) => {
-  const { setUser } = useUserContext();
+  const { setUser } = useGlobalContext();
   const [checked, setChecked] = React.useState<boolean>(false);
   const [quantity, setQuantity] = React.useState<number>(0);
   const [error, setError] = React.useState<Error>({ exists: false });

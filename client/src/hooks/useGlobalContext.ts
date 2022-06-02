@@ -1,10 +1,10 @@
 import { createContext, useContext } from "react";
 import { ContextInterface } from "../data/models";
 
-export const UserContext = createContext<ContextInterface | null>(null);
+export const GlobalContext = createContext<ContextInterface | null>(null);
 
-export const useUserContext = () => {
-  const userContext = useContext(UserContext);
+export const useGlobalContext = () => {
+  const userContext = useContext(GlobalContext);
 
   if (!userContext) throw new Error("No user context found");
 

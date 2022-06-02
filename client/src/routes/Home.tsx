@@ -1,9 +1,9 @@
 import { Navbar } from "../components/Home/Navbar";
-import { useUserContext } from "../hooks/useUserContext";
+import { useGlobalContext } from "../hooks/useGlobalContext";
 import { CryptoCard } from "../components/Home/CryptoCard/CryptoCard";
 
 export const Home = () => {
-  const { cryptos, user } = useUserContext();
+  const { cryptos, user } = useGlobalContext();
   return (
     <div className="Home">
       <Navbar />

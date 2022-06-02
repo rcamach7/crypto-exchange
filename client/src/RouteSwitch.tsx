@@ -3,7 +3,7 @@ import { LandingPage } from "./routes/LandingPage";
 import { OpenRoute } from "./components/UserRouting";
 import { useAuthentication } from "./hooks/useAuthentication";
 import { Home } from "./routes/Home";
-import { UserContext } from "./hooks/useUserContext";
+import { GlobalContext } from "./hooks/useGlobalContext";
 import { useFetchPosts } from "./hooks/useFetchPosts";
 
 export const RouteSwitch = () => {
@@ -12,28 +12,23 @@ export const RouteSwitch = () => {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="home"
-          element={
-            <UserContext.Provider
-              value={{ user, setUser, cryptos, setCryptos, token, setToken }}
-            >
-              <Home />
-            </UserContext.Provider>
-          }
-        />
-        <Route
-          path="login"
-          element={
-            // Only users who are not yet authenticated can visit this page.
-            <OpenRoute token={token}>
-              <LandingPage />
-            </OpenRoute>
-          }
-        />
-        <Route path="*" element={<Navigate to="/home" />} />
-      </Routes>
+      <GlobalContext.Provider
+        value={{ user, setUser, cryptos, setCryptos, token, setToken }}
+      >
+        <Routes>
+          <Route path="home" element={<Home />} />
+          <Route
+            path="login"
+            element={
+              // Only users who are not yet authenticated can visit this page.
+              <OpenRoute token={token}>
+                <LandingPage />
+              </OpenRoute>
+            }
+          />
+          <Route path="*" element={<Navigate to="/home" />} />
+        </Routes>
+      </GlobalContext.Provider>
     </BrowserRouter>
   );
 };
