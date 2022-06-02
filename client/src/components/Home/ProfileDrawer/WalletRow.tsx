@@ -10,6 +10,7 @@ import {
   TableBody,
   Chip,
   Avatar,
+  Button,
 } from "@mui/material/";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
@@ -35,7 +36,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
   return (
     <React.Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-        <TableCell>
+        <TableCell sx={{ padding: "0" }}>
           <IconButton
             aria-label="expand row"
             size="small"
@@ -44,6 +45,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
+
         <TableCell component="th" scope="row">
           <div style={{ display: "flex" }}>
             <Avatar
@@ -60,6 +62,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
             {crypto}
           </div>
         </TableCell>
+
         <TableCell align="right">{quantity}</TableCell>
       </TableRow>
       <TableRow>
@@ -110,6 +113,12 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
                         }
                         icon={<AttachMoneyIcon fontSize="small" />}
                       />
+                    </TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell sx={{ padding: "0" }}>
+                      <Button color="error">Sell</Button>
                     </TableCell>
                   </TableRow>
                 </TableBody>
