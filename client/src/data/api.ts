@@ -63,3 +63,17 @@ export const purchaseCrypto: (
     return Promise.reject(error);
   }
 };
+
+export const sellCrypto: (
+  name: string,
+  quantity: number
+) => Promise<User> = async (name, quantity) => {
+  try {
+    const response = await axios.post(
+      `${config.api}/transactions/sell/${name}&${quantity}`
+    );
+    return Promise.resolve(response.data.user);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
