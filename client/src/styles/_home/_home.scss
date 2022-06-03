@@ -1,10 +1,19 @@
 .Home {
-  .cryptosContainer {
-    padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .filterOptions {
+    width: 100px;
 
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  .cryptosContainer {
+    width: clamp(340px, 1100px, 85vw);
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 10px;
   }
 }
