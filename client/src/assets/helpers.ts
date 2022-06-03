@@ -22,3 +22,35 @@ export const formatPrice: (value: number | undefined) => string = (value) => {
 export const capitalizeFirstLetter: (word: string) => string = (word) => {
   return word.substring(0, 1).toUpperCase() + word.substring(1);
 };
+
+export const sortByPriceAscending: (cryptos: Crypto[]) => Crypto[] = (
+  cryptos
+) => {
+  const sortedByPrice = [...cryptos];
+  sortedByPrice.sort((a, b) => {
+    if (a.price < b.price) {
+      return -1;
+    } else if (a.price > b.price) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  return sortedByPrice;
+};
+
+export const sortByPriceDescending: (cryptos: Crypto[]) => Crypto[] = (
+  cryptos
+) => {
+  const sortedByPrice = [...cryptos];
+  sortedByPrice.sort((a, b) => {
+    if (a.price < b.price) {
+      return 1;
+    } else if (a.price > b.price) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+  return sortedByPrice;
+};
