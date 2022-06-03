@@ -9,31 +9,28 @@ import {
   FormControl,
   FormLabel,
 } from "@mui/material/";
+import { sortByPriceAscending, sortByPriceDescending } from "../assets/helpers";
 
 export const Home = () => {
   const { cryptos, user } = useGlobalContext();
-  const [filteredCryptos, setFilteredCryptos] = React.useState<Crypto[]>([]);
+  const [organizedCryptos, setOrganizedCryptos] = React.useState<Crypto[]>([]);
 
   React.useEffect(() => {
     if (cryptos.length) {
-      setFilteredCryptos(cryptos);
+      setOrganizedCryptos(cryptos);
     }
   }, [cryptos]);
 
-  const handleFilterOption = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSortOption = (event: React.ChangeEvent<HTMLInputElement>) => {
     switch (event.target.value) {
-      case "price":
-        console.log("price selected");
+      case "price+":
+        setOrganizedCryptos((prevState) => sortByPriceDescending(prevState));
         break;
-      case "saved":
-        console.log("saved selected");
-        break;
-      case "owned":
-        console.log("owned selected");
+      case "price-":
+        setOrganizedCryptos((prevState) => sortByPriceAscending(prevState));
         break;
       default:
-        console.log("market cap selected");
-        setFilteredCryptos(cryptos);
+        setOrganizedCryptos(cryptos);
     }
   };
 
@@ -43,42 +40,39 @@ export const Home = () => {
         <FormControl>
           <FormLabel
             id="demo-row-radio-buttons-group-label"
-            sx={{ textAlign: "center" }}
+            sx={{ textAlign: "center", fontSize: "12px" }}
           >
-            Filter By:
+            Sort By:
           </FormLabel>
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
             name="row-radio-buttons-group"
             className="filterSelections"
-            defaultValue="market cap"
-            onChange={handleFilterOption}
+            defaultValue="popularity"
+            onChange={handleSortOption}
           >
             <FormControlLabel
               sx={{ paddingTop: "5px" }}
-              value="market cap"
-              control={<Radio />}
-              label="Market Cap"
-            />
-            <FormControlLabel value="price" control={<Radio />} label="Price" />
-            <FormControlLabel
-              value="saved"
-              control={<Radio />}
-              label="Saved"
-              disabled
+              value="popularity"
+              control={<Radio size="small" />}
+              label="Popularity"
             />
             <FormControlLabel
-              value="owned"
-              disabled
-              control={<Radio />}
-              label="Owned"
+              value="price+"
+              control={<Radio size="small" />}
+              label="Price +"
+            />
+            <FormControlLabel
+              value="price-"
+              control={<Radio size="small" />}
+              label="Price -"
             />
           </RadioGroup>
         </FormControl>
       </div>
       <div className="cryptosContainer">
-        {filteredCryptos.map((crypto) => {
+        {organizedCryptos.map((crypto) => {
           return <CryptoCard key={crypto.ticker} crypto={crypto} user={user} />;
         })}
       </div>
