@@ -1,5 +1,5 @@
 .Home {
-  padding-bottom: 5px;
+  padding-bottom: 10px;
 
   display: flex;
   justify-content: center;
@@ -24,6 +24,10 @@
   .Home {
     .filterOptions {
       width: 100%;
+      .filterSelections {
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 }
