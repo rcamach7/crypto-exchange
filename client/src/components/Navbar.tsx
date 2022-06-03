@@ -33,13 +33,16 @@ export const Navbar = () => {
     localStorage.clear();
     setToken(null);
     setUser(null);
+    handleCloseUserMenu();
   };
 
   return (
     <AppBar position="sticky" className="Navbar">
       <Container maxWidth="xl" className="navbarContainer">
         <Toolbar disableGutters>
-          <Typography className="title">CryptoCoins</Typography>
+          <Link to="/home">
+            <Typography className="title">CryptoCoins</Typography>
+          </Link>
 
           {/* Profile Icon with sub-menu */}
           <Box sx={{ flexGrow: 0, marginLeft: "auto" }}>
@@ -76,7 +79,7 @@ export const Navbar = () => {
                   <Typography textAlign="center">Log Out</Typography>
                 </MenuItem>
               ) : (
-                <MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
                   <Link to="/login">Log In</Link>
                 </MenuItem>
               )}
