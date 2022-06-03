@@ -1,4 +1,6 @@
 .Home {
+  padding-bottom: 5px;
+
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -10,10 +12,31 @@
     justify-content: center;
   }
   .cryptosContainer {
-    width: clamp(340px, 1100px, 85vw);
+    width: clamp(340px, 1100px, 100vw);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 10px;
+  }
+}
+
+@media (max-width: 899px) {
+  .Home {
+    .filterOptions {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .Home {
+    justify-content: flex-start;
+    .filterOptions {
+      width: 120px;
+      padding-left: 2vw;
+    }
+    .cryptosContainer {
+      width: clamp(680px, 80vw, 90vw);
+    }
   }
 }

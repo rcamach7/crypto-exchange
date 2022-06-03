@@ -14,19 +14,33 @@ export const Home = () => {
     <div className="Home">
       <div className="filterOptions">
         <FormControl>
-          <FormLabel id="demo-radio-buttons-group-label">Filter By</FormLabel>
+          <FormLabel id="demo-row-radio-buttons-group-label">
+            Filter By:
+          </FormLabel>
           <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
-            name="radio-buttons-group"
+            row
+            aria-labelledby="demo-row-radio-buttons-group-label"
+            name="row-radio-buttons-group"
           >
             <FormControlLabel
-              value="female"
+              sx={{ paddingTop: "5px" }}
+              value="market cap"
               control={<Radio />}
-              label="Female"
+              label="Market Cap"
             />
-            <FormControlLabel value="male" control={<Radio />} label="Male" />
-            <FormControlLabel value="other" control={<Radio />} label="Other" />
+            <FormControlLabel value="price" control={<Radio />} label="Price" />
+            <FormControlLabel
+              value="saved"
+              control={<Radio />}
+              label="Saved"
+              disabled
+            />
+            <FormControlLabel
+              value="owned"
+              disabled
+              control={<Radio />}
+              label="Owned"
+            />
           </RadioGroup>
         </FormControl>
       </div>
