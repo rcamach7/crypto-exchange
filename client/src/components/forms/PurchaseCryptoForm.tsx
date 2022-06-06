@@ -34,6 +34,7 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
       try {
         const user: User = await purchaseCrypto(crypto.name, quantity);
         setUser(user);
+
         togglePageLoading();
         handleConfirmationMessage(
           `Purchased ${quantity} ${crypto.ticker.toUpperCase()} coin${
@@ -119,7 +120,6 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
           {error.message}
         </Alert>
       ) : null}
-      {/* {loading ? <LoadingUx /> : null} */}
     </form>
   );
 };
