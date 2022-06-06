@@ -3,6 +3,7 @@ import { Box, TextField, Button } from "@mui/material/";
 import { Account } from "../../data/models";
 import { createAccount } from "../../data/api";
 import { useGlobalContext } from "../../hooks/useGlobalContext";
+import { SubmissionError } from "../../data/models";
 
 interface Props {
   setShowCreateAccount: React.Dispatch<React.SetStateAction<Boolean>>;
@@ -19,14 +20,11 @@ export const CreateAccountForm: React.FC<Props> = ({
   });
 
   // Error Handling
-  const [showPasswordError, setShowPasswordError] = React.useState<{
-    helperText?: string;
-    error?: boolean;
-  }>({});
-  const [showTakenUsername, setTakenUsername] = React.useState<{
-    helperText?: string;
-    error?: boolean;
-  }>({});
+  const [showPasswordError, setShowPasswordError] =
+    React.useState<SubmissionError>({});
+  const [showTakenUsername, setTakenUsername] = React.useState<SubmissionError>(
+    {}
+  );
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setAccount((prevState) => {
