@@ -11,6 +11,7 @@ export interface ContextInterface {
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
+  togglePageLoading: () => void;
 }
 
 export interface SubmissionError {

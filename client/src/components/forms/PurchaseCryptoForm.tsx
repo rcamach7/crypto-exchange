@@ -6,7 +6,6 @@ import { capitalizeFirstLetter, formatPrice } from "../../assets/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { purchaseCrypto } from "../../data/api";
 import { User, Error } from "../../data/models";
-import { LoadingUx } from "../LoadingUx";
 
 interface Props {
   crypto: Crypto;
@@ -17,29 +16,28 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
   crypto,
   handleClose,
 }) => {
-  const { user, setUser } = useGlobalContext();
+  const { user, setUser, togglePageLoading } = useGlobalContext();
   const [quantity, setQuantity] = React.useState<number>(0);
   const [error, setError] = React.useState<Error>({ exists: false });
-  const [loading, setLoading] = React.useState<boolean>(false);
 
   const handlePurchase = async (event: React.SyntheticEvent) => {
     event.preventDefault();
-    setLoading(true);
+    togglePageLoading();
     if (quantity === 0) {
       setError({
         exists: true,
         message: "Please enter quantity greater than zero",
       });
-      setLoading(false);
+      togglePageLoading();
     } else {
       try {
         const user: User = await purchaseCrypto(crypto.name, quantity);
         setUser(user);
-        setLoading(false);
+        togglePageLoading();
         handleClose();
       } catch (error) {
         setError({ exists: true, message: error.response.data.message });
-        setLoading(false);
+        togglePageLoading();
       }
     }
   };
@@ -115,7 +113,7 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
           {error.message}
         </Alert>
       ) : null}
-      {loading ? <LoadingUx /> : null}
+      {/* {loading ? <LoadingUx /> : null} */}
     </form>
   );
 };

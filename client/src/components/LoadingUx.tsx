@@ -1,22 +1,24 @@
-import { CircularProgress, Box } from "@mui/material/";
+import { CircularProgress, Modal } from "@mui/material/";
 
 export const LoadingUx = () => {
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        position: "absolute",
-        top: "0",
-        left: "0",
-        borderRadius: "5px",
-        width: "100%",
-        height: "100%",
-        opacity: "5%",
-      }}
+    <Modal
+      open={true}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
     >
-      <CircularProgress sx={{ maxHeight: "100%", color: "black" }} />
-    </Box>
+      <div
+        style={{
+          display: "flex",
+          height: "100%",
+          width: "100%",
+          alignItems: "center",
+          justifyContent: "center",
+          color: "white",
+        }}
+      >
+        <CircularProgress sx={{ maxHeight: "100%", color: "white" }} />
+      </div>
+    </Modal>
   );
 };
