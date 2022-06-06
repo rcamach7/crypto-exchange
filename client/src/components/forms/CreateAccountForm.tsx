@@ -2,6 +2,7 @@ import React from "react";
 import { Box, TextField, Button } from "@mui/material/";
 import { Account } from "../../data/models";
 import { createAccount } from "../../data/api";
+import { useGlobalContext } from "../../hooks/useGlobalContext";
 
 interface Props {
   setShowCreateAccount: React.Dispatch<React.SetStateAction<Boolean>>;
@@ -10,6 +11,7 @@ interface Props {
 export const CreateAccountForm: React.FC<Props> = ({
   setShowCreateAccount,
 }) => {
+  const { togglePageLoading } = useGlobalContext();
   const [account, setAccount] = React.useState<Account>({
     username: "",
     password: "",
@@ -36,18 +38,21 @@ export const CreateAccountForm: React.FC<Props> = ({
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
+    togglePageLoading();
     try {
       if (account.password !== account.confirmedPassword) {
         setShowPasswordError({
           helperText: "Passwords don't match!",
           error: true,
         });
+        togglePageLoading();
       } else {
         const token = await createAccount(account);
         localStorage.setItem("token", token);
         window.location.reload();
       }
     } catch (error) {
+      togglePageLoading();
       setTakenUsername({ helperText: "Username taken already", error: true });
     }
   };

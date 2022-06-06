@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { Box, TextField, Button } from "@mui/material/";
 import { SubmissionError, Account } from "../../data/models";
 import { login } from "../../data/api";
+import { useGlobalContext } from "../../hooks/useGlobalContext";
 
 interface Props {
   setShowCreateAccount: React.Dispatch<React.SetStateAction<Boolean>>;
 }
 
 export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
+  const { togglePageLoading } = useGlobalContext();
   const [account, setAccount] = useState<Account>({
     username: "",
     password: "",
@@ -22,11 +24,13 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
 
   const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    togglePageLoading();
     try {
       const token: string = await login(account);
       localStorage.setItem("token", token);
       window.location.reload();
     } catch (error) {
+      togglePageLoading();
       setPopulateErrors({
         error: true,
         helperText: "Incorrect email or password",
@@ -50,7 +54,6 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
         id="outlined-required"
         label="Username"
         onChange={handleInputChange}
-        {...populateErrors}
       />
       <TextField
         required
