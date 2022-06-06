@@ -35,7 +35,11 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
         const user: User = await purchaseCrypto(crypto.name, quantity);
         setUser(user);
         togglePageLoading();
-        handleConfirmationMessage("Purchase Gone Through");
+        handleConfirmationMessage(
+          `Purchased ${quantity} ${crypto.ticker.toUpperCase()} coin${
+            quantity > 1 ? "s" : null
+          }`
+        );
         handleClose();
       } catch (error) {
         setError({ exists: true, message: error.response.data.message });
