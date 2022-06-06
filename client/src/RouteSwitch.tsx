@@ -8,13 +8,25 @@ import { GlobalContext } from "./hooks/useGlobalContext";
 import { useFetchPosts } from "./hooks/useFetchPosts";
 import { Navbar } from "./components/Navbar";
 import { LoadingUx } from "./components/LoadingUx";
+import { BannerMessage } from "./data/models";
+import { ConfirmationBanner } from "./components/ConfirmationBanner";
 
 export const RouteSwitch = () => {
   const [user, setUser, token, setToken] = useAuthentication();
   const [cryptos, setCryptos] = useFetchPosts();
   const [pageLoading, setPageLoading] = React.useState<boolean>(false);
+  const [showConfirmationBanner, setShowConfirmationBanner] =
+    React.useState<BannerMessage>({ show: false });
 
   const togglePageLoading = () => setPageLoading((prevState) => !prevState);
+
+  const handleConfirmationMessage: (message: string) => void = (message) => {
+    setShowConfirmationBanner({ show: true, message: message });
+
+    setTimeout(function () {
+      setShowConfirmationBanner({ show: false, message: "" });
+    }, 5000);
+  };
 
   return (
     <BrowserRouter>
@@ -27,6 +39,7 @@ export const RouteSwitch = () => {
           token,
           setToken,
           togglePageLoading,
+          handleConfirmationMessage,
         }}
       >
         <Navbar />
@@ -43,7 +56,11 @@ export const RouteSwitch = () => {
           />
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
+
         {pageLoading ? <LoadingUx /> : null}
+        {showConfirmationBanner.show ? (
+          <ConfirmationBanner message={showConfirmationBanner.message} />
+        ) : null}
       </GlobalContext.Provider>
     </BrowserRouter>
   );
