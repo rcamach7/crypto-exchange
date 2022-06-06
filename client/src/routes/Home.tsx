@@ -38,12 +38,6 @@ export const Home = () => {
     <div className="Home">
       <div className="filterOptions">
         <FormControl>
-          <FormLabel
-            id="demo-row-radio-buttons-group-label"
-            sx={{ textAlign: "center", fontSize: "12px" }}
-          >
-            Sort By:
-          </FormLabel>
           <RadioGroup
             row
             aria-labelledby="demo-row-radio-buttons-group-label"
@@ -51,9 +45,10 @@ export const Home = () => {
             className="filterSelections"
             defaultValue="popularity"
             onChange={handleSortOption}
+            sx={{ display: "flex", alignItems: "center" }}
           >
+            <p style={{ fontSize: "10px", paddingRight: "5px" }}>Sort by:</p>
             <FormControlLabel
-              sx={{ paddingTop: "5px" }}
               value="popularity"
               control={<Radio size="small" />}
               label="Popularity"
