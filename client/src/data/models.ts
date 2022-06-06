@@ -12,6 +12,7 @@ export interface ContextInterface {
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
   togglePageLoading: () => void;
+  handleConfirmationMessage: (message: string) => void;
 }
 
 export interface SubmissionError {
@@ -45,4 +46,9 @@ export interface CryptoWrapper {
 export interface Error {
   exists: Boolean;
   message?: String;
+}
+
+export interface BannerMessage {
+  show: boolean;
+  message?: string;
 }

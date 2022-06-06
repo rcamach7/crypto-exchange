@@ -16,7 +16,8 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
   crypto,
   handleClose,
 }) => {
-  const { user, setUser, togglePageLoading } = useGlobalContext();
+  const { user, setUser, togglePageLoading, handleConfirmationMessage } =
+    useGlobalContext();
   const [quantity, setQuantity] = React.useState<number>(0);
   const [error, setError] = React.useState<Error>({ exists: false });
 
@@ -34,6 +35,7 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
         const user: User = await purchaseCrypto(crypto.name, quantity);
         setUser(user);
         togglePageLoading();
+        handleConfirmationMessage("Purchase Gone Through");
         handleClose();
       } catch (error) {
         setError({ exists: true, message: error.response.data.message });
