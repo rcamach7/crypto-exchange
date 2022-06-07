@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "v17.3.0"
+  },
   "name": "crypto-wallet",
   "version": "1.0.0",
   "description": "",
