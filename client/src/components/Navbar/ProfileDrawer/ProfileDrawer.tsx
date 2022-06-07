@@ -14,6 +14,7 @@ import {
   formatPrice,
   capitalizeFirstLetter,
   calculatePortfolioValue,
+  calculateTotalValue,
 } from "../../../assets/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
@@ -69,10 +70,7 @@ export const ProfileDrawer = () => {
           />
 
           <Typography>
-            Hello,{" "}
-            {user?.fullName
-              ? capitalizeFirstLetter(user.fullName)
-              : "loading..."}
+            Hello, {user ? capitalizeFirstLetter(user.fullName) : "loading..."}
           </Typography>
         </CardContent>
 
@@ -88,19 +86,18 @@ export const ProfileDrawer = () => {
               <p className="valueTitle">Total Portfolio Value</p>
               <p>
                 $
-                {user?.portfolio &&
-                  calculatePortfolioValue(user?.portfolio, cryptos)}
+                {user &&
+                  calculateTotalValue(user.portfolio, cryptos, user.balance)}
               </p>
             </div>
           </div>
           <div className="portfolioBreakdown">
             <p>
-              <ArrowRightIcon /> Cash: ${formatPrice(user?.balance)}
+              <ArrowRightIcon /> Cash: ${user && formatPrice(user?.balance)}
             </p>
             <p>
               <ArrowRightIcon /> Crypto: $
-              {user?.portfolio &&
-                calculatePortfolioValue(user?.portfolio, cryptos)}
+              {user && calculatePortfolioValue(user?.portfolio, cryptos)}
             </p>
           </div>
         </CardContent>

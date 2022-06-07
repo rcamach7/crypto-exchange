@@ -12,13 +12,7 @@ export const getCrypto: (cryptos: Crypto[], name: string) => Crypto = (
   return cryptos[indexOfCrypto];
 };
 
-export const formatPrice: (
-  value: number | undefined
-) => number | "undefined" = (value) => {
-  if (value === undefined) {
-    return "undefined";
-  }
-
+export const formatPrice: (value: number) => number = (value) => {
   return Number.parseFloat((Math.round(value * 1000) / 1000).toFixed(3));
 };
 
@@ -61,7 +55,7 @@ export const sortByPriceDescending: (cryptos: Crypto[]) => Crypto[] = (
 export const calculatePortfolioValue: (
   portfolio: [{ crypto: string; quantity: number; principle: number }],
   cryptos: Crypto[]
-) => number | "undefined" = (portfolio, cryptos) => {
+) => number = (portfolio, cryptos) => {
   let totalValue = 0;
 
   portfolio.forEach((investment) => {
@@ -80,5 +74,7 @@ export const calculateTotalValue: (
   cryptos: Crypto[],
   balance: number
 ) => number = (portfolio, cryptos, balance) => {
-  return 0;
+  let portfolioValue = calculatePortfolioValue(portfolio, cryptos);
+
+  return formatPrice(portfolioValue + balance);
 };

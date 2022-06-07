@@ -84,7 +84,7 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
           </Avatar>
           <div className="balance">
             <p className="balance">Balance</p>
-            <p>${formatPrice(user?.balance)}</p>
+            <p>${user?.balance && formatPrice(user?.balance)}</p>
           </div>
         </div>
       </div>
