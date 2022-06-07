@@ -51,6 +51,7 @@ exports.createUser = [
           "https://res.cloudinary.com/de2ymful4/image/upload/v1654559614/crypto-exchange/assets/stock_ehxcl9_idaplu.png",
         password: hashedPassword,
         balance: 1000000,
+        deposits: [{ date: new Date(), amount: 100000 }],
         wallet: [],
       });
       // Save new user, and update my admin account to reflect new friend as well.

@@ -7,6 +7,12 @@ const User = new Schema({
   fullName: { type: String, required: true, minlength: 4 },
   profilePicture: { type: String, required: true },
   balance: { type: Number, required: true, default: 0 },
+  deposits: [
+    {
+      date: { type: Date, required: true },
+      amount: { type: Number, required: true },
+    },
+  ],
   portfolio: [
     {
       crypto: { type: String, require: true },
