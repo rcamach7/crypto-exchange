@@ -10,7 +10,11 @@ import {
 } from "@mui/material/";
 import { useGlobalContext } from "../../../hooks/useGlobalContext";
 import { CryptoWallet } from "./CryptoWallet";
-import { formatPrice, capitalizeFirstLetter } from "../../../assets/helpers";
+import {
+  formatPrice,
+  capitalizeFirstLetter,
+  calculatePortfolioValue,
+} from "../../../assets/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
@@ -18,7 +22,7 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export const ProfileDrawer = () => {
-  const { user } = useGlobalContext();
+  const { user, cryptos } = useGlobalContext();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -82,7 +86,11 @@ export const ProfileDrawer = () => {
             </Avatar>
             <div className="balance">
               <p className="valueTitle">Total Portfolio Value</p>
-              <p>${formatPrice(user?.balance)}</p>
+              <p>
+                $
+                {user?.portfolio &&
+                  calculatePortfolioValue(user?.portfolio, cryptos)}
+              </p>
             </div>
           </div>
           <div className="portfolioBreakdown">
@@ -90,7 +98,9 @@ export const ProfileDrawer = () => {
               <ArrowRightIcon /> Cash: ${formatPrice(user?.balance)}
             </p>
             <p>
-              <ArrowRightIcon /> Crypto: ${formatPrice(user?.balance)}
+              <ArrowRightIcon /> Crypto: $
+              {user?.portfolio &&
+                calculatePortfolioValue(user?.portfolio, cryptos)}
             </p>
           </div>
         </CardContent>

@@ -106,11 +106,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
                       <Chip
                         label={formattedPrices.profit}
                         size="small"
-                        color={
-                          Number.parseInt(formattedPrices.profit) > 0
-                            ? "success"
-                            : "error"
-                        }
+                        color={formattedPrices.profit > 0 ? "success" : "error"}
                         icon={<AttachMoneyIcon fontSize="small" />}
                       />
                     </TableCell>

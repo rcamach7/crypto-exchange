@@ -12,11 +12,14 @@ export const getCrypto: (cryptos: Crypto[], name: string) => Crypto = (
   return cryptos[indexOfCrypto];
 };
 
-export const formatPrice: (value: number | undefined) => string = (value) => {
+export const formatPrice: (
+  value: number | undefined
+) => number | "undefined" = (value) => {
   if (value === undefined) {
     return "undefined";
   }
-  return (Math.round(value * 1000) / 1000).toFixed(3);
+
+  return Number.parseFloat((Math.round(value * 1000) / 1000).toFixed(3));
 };
 
 export const capitalizeFirstLetter: (word: string) => string = (word) => {
@@ -53,4 +56,29 @@ export const sortByPriceDescending: (cryptos: Crypto[]) => Crypto[] = (
     }
   });
   return sortedByPrice;
+};
+
+export const calculatePortfolioValue: (
+  portfolio: [{ crypto: string; quantity: number; principle: number }],
+  cryptos: Crypto[]
+) => number | "undefined" = (portfolio, cryptos) => {
+  let totalValue = 0;
+
+  portfolio.forEach((investment) => {
+    cryptos.forEach((crypto) => {
+      if (investment.crypto === crypto.name) {
+        totalValue += crypto.price;
+      }
+    });
+  });
+
+  return formatPrice(totalValue);
+};
+
+export const calculateTotalValue: (
+  portfolio: [{ crypto: string; quantity: number; principle: number }],
+  cryptos: Crypto[],
+  balance: number
+) => number = (portfolio, cryptos, balance) => {
+  return 0;
 };
