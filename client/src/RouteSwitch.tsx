@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
 import { LandingPage } from "./routes/LandingPage";
 import { OpenRoute } from "./components/UserRouting";
 import { useAuthentication } from "./hooks/useAuthentication";
@@ -29,7 +29,7 @@ export const RouteSwitch = () => {
   };
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <GlobalContext.Provider
         value={{
           user,
@@ -44,9 +44,9 @@ export const RouteSwitch = () => {
       >
         <Navbar />
         <Routes>
-          <Route path="home" element={<Home />} />
+          <Route path="/crypto-exchange/home" element={<Home />} />
           <Route
-            path="login"
+            path="/crypto-exchange/login"
             element={
               // Only users who are not yet authenticated can visit this page.
               <OpenRoute token={token}>
@@ -54,7 +54,7 @@ export const RouteSwitch = () => {
               </OpenRoute>
             }
           />
-          <Route path="*" element={<Navigate to="/home" />} />
+          <Route path="*" element={<Navigate to="/crypto-exchange/home" />} />
         </Routes>
 
         {pageLoading ? <LoadingUx /> : null}
@@ -62,6 +62,6 @@ export const RouteSwitch = () => {
           <ConfirmationBanner message={showConfirmationBanner.message} />
         ) : null}
       </GlobalContext.Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };

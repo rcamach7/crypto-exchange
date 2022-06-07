@@ -84,7 +84,7 @@ export const Navbar = () => {
                 </MenuItem>
               ) : (
                 <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to="/login">Log In</Link>
+                  <Link to="/crypto-exchange/login">Log In</Link>
                 </MenuItem>
               )}
             </Menu>

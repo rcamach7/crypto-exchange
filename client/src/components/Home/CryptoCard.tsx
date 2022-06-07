@@ -111,7 +111,7 @@ export const CryptoCard: React.FC<Props> = ({ crypto, user }) => {
             <PurchaseModal crypto={crypto} />
           ) : (
             <Button size="small" variant="outlined">
-              <Link to="/login">Login to purchase</Link>
+              <Link to="/crypto-exchange/login">Login to purchase</Link>
             </Button>
           )}
           <IconButton color="primary" component="span">

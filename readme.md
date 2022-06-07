@@ -6,7 +6,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 <div align="center">
 
-[Visit Crypto Exchange](https://rcamach7.github.io/messenger/#/messenger)
+[Visit Crypto Exchange](https://rcamach7.github.io/crypto-exchange/#/)
 
 </div>
 
