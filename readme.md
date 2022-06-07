@@ -1,17 +1,48 @@
 # Crypto Exchange
 
-# Todo
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
 
-> api
+![project_demo](crypto-exchange.png)
 
-- Add fullName field + profileImage field to User model
-- Add some type of balance history, so we can let the user how much money they've made overall, compared to their initial investment.
+<div align="center">
 
-**make sure api responds with this updated information on all endpoints**
+[Visit Crypto Exchange](https://rcamach7.github.io/messenger/#/messenger)
 
-> client
+</div>
 
-- Show user image, fullName, and overall balance performance in their profile tab
+## Key Features
+
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+
+#### Built Using:
+
+- react, create-react-app, axios, uuid, react-router-dom, sass, font awesome icon's, socket-io-client, useEffect, useState, useContext, React.Context, axios interceptors, custom hooks, hash router, promise based functions, async/await, custom API, moment etc...
+
+#### How to install and run?
+
+```bash
+ git clone https://github.com/rcamach7/crypto-exchange
+ cd crypto-exchange
+
+#  Run local server
+ cd api
+ npm install
+ npm run serverstart
+
+#  Run client
+cd ../client
+npm install
+npm start
+```
+
+API server would need the following environment variables provided to run successfully:
+
+- MONGO_DB, SECRET_STRING, PORT
+
+#### To-Do's
+
 - Add filter section in homepage, where users can only view crypto cards that they're currently invested into.
   - Add a greyed out filtered option of "bookmarked", so in the future we can implement bookmarking crypto cards.
   - have these filters work together with our sorting to provide these two effects together.
