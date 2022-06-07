@@ -25,6 +25,12 @@ exports.createUser = [
     .trim()
     .isLength({ min: 4 })
     .withMessage("Password must be at least 4 characters"),
+  check("password")
+    .exists()
+    .trim()
+    .isLength({ min: 4 })
+    .withMessage("Name must be at least 4 characters")
+    .toLowerCase(),
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -40,6 +46,9 @@ exports.createUser = [
 
       const user = new User({
         username: req.body.username,
+        fullName: req.body.fullName,
+        profilePicture:
+          "https://res.cloudinary.com/de2ymful4/image/upload/v1654559614/crypto-exchange/assets/stock_ehxcl9_idaplu.png",
         password: hashedPassword,
         balance: 1000000,
         wallet: [],
@@ -83,9 +92,7 @@ exports.getUser = [
   // Verify token is valid, and retrieve user.
   async (req, res) => {
     try {
-      const user = await User.findById(res.locals.userId).select(
-        "username fullName portfolio balance"
-      );
+      const user = await User.findById(res.locals.userId).select("-password");
 
       if (user == null) {
         return res
