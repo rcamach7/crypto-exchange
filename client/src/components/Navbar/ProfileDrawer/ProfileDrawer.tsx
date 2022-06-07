@@ -57,8 +57,8 @@ export const ProfileDrawer = () => {
           <Avatar
             sx={{ border: "solid black 1px" }}
             aria-label="recipe"
-            alt={user?.username}
-            src="./"
+            alt={user?.profilePicture}
+            src={user?.profilePicture}
           />
 
           <Typography component="div">
@@ -71,7 +71,7 @@ export const ProfileDrawer = () => {
           </Typography>
         </CardContent>
         <CardContent sx={{ padding: "0 16px" }}>
-          Hello, {user?.username}
+          Hello, {user?.fullName}
         </CardContent>
         <CryptoWallet />
       </Card>

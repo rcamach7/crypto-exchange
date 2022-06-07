@@ -48,7 +48,11 @@ export const Navbar = () => {
           <Box sx={{ flexGrow: 0, marginLeft: "auto" }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={user?.username} src="./" className="userAvatar" />
+                <Avatar
+                  alt={user?.username}
+                  src={user?.profilePicture}
+                  className="userAvatar"
+                />
               </IconButton>
             </Tooltip>
             <Menu
