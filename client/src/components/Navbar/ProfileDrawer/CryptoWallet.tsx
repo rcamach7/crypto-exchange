@@ -20,8 +20,10 @@ export const CryptoWallet = () => {
         <TableHead>
           <TableRow>
             <TableCell />
-            <TableCell>Crypto Wallet</TableCell>
-            <TableCell align="right">Amount</TableCell>
+            <TableCell className="tableHeaders">Crypto Coin</TableCell>
+            <TableCell className="tableHeaders" align="right">
+              Amount
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

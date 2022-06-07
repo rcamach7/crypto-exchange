@@ -6,7 +6,7 @@ import { useAuthentication } from "./hooks/useAuthentication";
 import { Home } from "./routes/Home";
 import { GlobalContext } from "./hooks/useGlobalContext";
 import { useFetchPosts } from "./hooks/useFetchPosts";
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "./components/Navbar/Navbar";
 import { LoadingUx } from "./components/LoadingUx";
 import { BannerMessage } from "./data/models";
 import { ConfirmationBanner } from "./components/ConfirmationBanner";

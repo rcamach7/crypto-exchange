@@ -1,4 +1,11 @@
 .ProfileDrawer {
-  .tableRowCells {
+  .walletIcon {
+    padding-top: 20px;
+
+    display: flex;
+    justify-content: center;
+  }
+  .tableHeaders {
+    padding-top: 5px;
   }
 }

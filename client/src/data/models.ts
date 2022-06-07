@@ -1,7 +1,10 @@
 export interface User {
   username: string;
   balance: number;
+  deposits: [{ date: Date; amount: number }];
   portfolio: [{ crypto: string; quantity: number; principle: number }];
+  fullName: string;
+  profilePicture: string;
 }
 
 export interface ContextInterface {
@@ -23,6 +26,7 @@ export interface SubmissionError {
 export interface Account {
   username: string;
   password: string;
+  fullName?: string;
   confirmedPassword?: string;
 }
 

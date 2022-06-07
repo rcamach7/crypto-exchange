@@ -1,13 +1,12 @@
 import React from "react";
 import { useGlobalContext } from "../hooks/useGlobalContext";
-import { CryptoCard } from "../components/Home/CryptoCard/CryptoCard";
+import { CryptoCard } from "../components/Home/CryptoCard";
 import { Crypto } from "../data/models";
 import {
   Radio,
   RadioGroup,
   FormControlLabel,
   FormControl,
-  FormLabel,
 } from "@mui/material/";
 import { sortByPriceAscending, sortByPriceDescending } from "../assets/helpers";
 

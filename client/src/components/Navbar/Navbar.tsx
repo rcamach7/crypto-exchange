@@ -11,9 +11,9 @@ import {
   Tooltip,
   MenuItem,
 } from "@mui/material/";
-import { useGlobalContext } from "../hooks/useGlobalContext";
+import { useGlobalContext } from "../../hooks/useGlobalContext";
 import { Link } from "react-router-dom";
-import { ProfileDrawer } from "./Home/ProfileDrawer/ProfileDrawer";
+import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
 
 export const Navbar = () => {
   const { user, setUser, setToken } = useGlobalContext();
@@ -48,7 +48,11 @@ export const Navbar = () => {
           <Box sx={{ flexGrow: 0, marginLeft: "auto" }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt={user?.username} src="./" className="userAvatar" />
+                <Avatar
+                  alt={user?.username}
+                  src={user?.profilePicture}
+                  className="userAvatar"
+                />
               </IconButton>
             </Tooltip>
             <Menu

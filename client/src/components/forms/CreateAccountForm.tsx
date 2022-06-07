@@ -16,6 +16,7 @@ export const CreateAccountForm: React.FC<Props> = ({
   const [account, setAccount] = React.useState<Account>({
     username: "",
     password: "",
+    fullName: "",
     confirmedPassword: "",
   });
 
@@ -51,6 +52,7 @@ export const CreateAccountForm: React.FC<Props> = ({
       }
     } catch (error) {
       togglePageLoading();
+      console.log(error);
       setTakenUsername({ helperText: "Username taken already", error: true });
     }
   };
@@ -68,6 +70,13 @@ export const CreateAccountForm: React.FC<Props> = ({
       <TextField
         required
         id="outlined-required"
+        label="Name"
+        name="fullName"
+        onChange={handleInputChange}
+      />
+      <TextField
+        required
+        id="outlined-required2"
         label="Username"
         name="username"
         onChange={handleInputChange}
