@@ -8,4 +8,26 @@
   .tableHeaders {
     padding-top: 5px;
   }
+
+  .portfolioSummary {
+    padding-top: 10px;
+
+    // display: flex;
+    gap: 5px;
+    .portfolioDetails {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      .valueTitle {
+        font-size: 12px;
+      }
+    }
+    .portfolioBreakdown {
+      p {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+      }
+    }
+  }
 }

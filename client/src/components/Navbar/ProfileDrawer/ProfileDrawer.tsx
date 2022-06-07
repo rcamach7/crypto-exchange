@@ -8,11 +8,12 @@ import {
   Chip,
   Typography,
 } from "@mui/material/";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { useGlobalContext } from "../../../hooks/useGlobalContext";
 import { CryptoWallet } from "./CryptoWallet";
-import { formatPrice } from "../../../assets/helpers";
+import { formatPrice, capitalizeFirstLetter } from "../../../assets/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -53,6 +54,7 @@ export const ProfileDrawer = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            borderBottom: "solid black 1px",
           }}
         >
           <Avatar
@@ -62,17 +64,35 @@ export const ProfileDrawer = () => {
             src={user?.profilePicture}
           />
 
-          <Typography component="div">
-            <Chip
-              sx={{ marginLeft: "auto" }}
-              label={formatPrice(user?.balance)}
-              color="success"
-              icon={<AttachMoneyIcon fontSize="small" />}
-            />
+          <Typography>
+            Hello,{" "}
+            {user?.fullName
+              ? capitalizeFirstLetter(user.fullName)
+              : "loading..."}
           </Typography>
         </CardContent>
-        <CardContent sx={{ padding: "0 16px" }}>
-          Hello, {user?.fullName}
+
+        <CardContent className="portfolioSummary" sx={{ padding: "0 16px" }}>
+          <div className="portfolioDetails">
+            <Avatar
+              sx={{ border: "solid black 1px", backgroundColor: "black" }}
+              aria-label="balance"
+            >
+              <CurrencyExchangeIcon />
+            </Avatar>
+            <div className="balance">
+              <p className="valueTitle">Total Portfolio Value</p>
+              <p>${formatPrice(user?.balance)}</p>
+            </div>
+          </div>
+          <div className="portfolioBreakdown">
+            <p>
+              <ArrowRightIcon /> Cash: ${formatPrice(user?.balance)}
+            </p>
+            <p>
+              <ArrowRightIcon /> Crypto: ${formatPrice(user?.balance)}
+            </p>
+          </div>
         </CardContent>
 
         <div className="walletIcon">
