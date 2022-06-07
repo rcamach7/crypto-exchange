@@ -43,7 +43,7 @@ exports.buyCryptos = [
             portfolio: updatedWallet,
           },
           { new: true }
-        ).select("username fullName portfolio balance");
+        ).select("-password");
 
         return res.json({
           message: "Purchase transaction approved",
@@ -121,7 +121,7 @@ exports.sellCryptos = [
           portfolio: updatedPortfolio,
         },
         { new: true }
-      ).select("username fullName portfolio balance");
+      ).select("-password");
 
       return res.json({
         message: "Sell transaction approved",

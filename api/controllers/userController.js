@@ -25,11 +25,11 @@ exports.createUser = [
     .trim()
     .isLength({ min: 4 })
     .withMessage("Password must be at least 4 characters"),
-  check("password")
+  check("fullName")
     .exists()
     .trim()
     .isLength({ min: 4 })
-    .withMessage("Name must be at least 4 characters")
+    .withMessage("fullName must be at least 4 characters")
     .toLowerCase(),
   (req, res, next) => {
     const errors = validationResult(req);

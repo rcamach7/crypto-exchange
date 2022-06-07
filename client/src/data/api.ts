@@ -17,6 +17,7 @@ export const createAccount: (account: Account) => Promise<string> = async (
 ) => {
   try {
     const { data: token } = await axios.post(`${config.api}/user/`, {
+      fullName: account.fullName,
       username: account.username,
       password: account.password,
     });

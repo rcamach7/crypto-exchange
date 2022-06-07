@@ -12,6 +12,7 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { useGlobalContext } from "../../../hooks/useGlobalContext";
 import { CryptoWallet } from "./CryptoWallet";
 import { formatPrice } from "../../../assets/helpers";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -73,6 +74,14 @@ export const ProfileDrawer = () => {
         <CardContent sx={{ padding: "0 16px" }}>
           Hello, {user?.fullName}
         </CardContent>
+
+        <div className="walletIcon">
+          <Chip
+            label="My Wallet"
+            icon={<AccountBalanceWalletIcon fontSize="small" />}
+          />
+        </div>
+
         <CryptoWallet />
       </Card>
     </Box>
