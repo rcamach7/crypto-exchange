@@ -50,5 +50,3 @@ API server would need the following environment variables provided to run succes
 - Add loading UI whenever page is first loaded, and client is obtaining cryptos from API.
 - Add padding in bottom of cryptos container. Cuts too abruptly when page finishes.
 - Add test account logic behind button in login in page.
-- Don't allow purchase/sell option to allow empty values. Breaks when we erase the 0 to add a number with our keyboard.
-- Fix crypto helper function that calculates total value of account.

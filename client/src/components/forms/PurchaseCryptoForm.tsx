@@ -102,12 +102,13 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
           InputProps={{
             inputProps: { min: 0 },
           }}
-          value={quantity}
+          value={isNaN(quantity) ? "" : quantity}
           onChange={(e) => setQuantity(Number.parseInt(e.target.value))}
+          required
         />
 
         <p className="totalCalculation">
-          Total: ${formatPrice(quantity * crypto.price)}
+          Total: ${isNaN(quantity) ? 0 : formatPrice(quantity * crypto.price)}
         </p>
       </div>
 

@@ -61,7 +61,7 @@ export const calculatePortfolioValue: (
   portfolio.forEach((investment) => {
     cryptos.forEach((crypto) => {
       if (investment.crypto === crypto.name) {
-        totalValue += crypto.price;
+        totalValue += crypto.price * investment.quantity;
       }
     });
   });

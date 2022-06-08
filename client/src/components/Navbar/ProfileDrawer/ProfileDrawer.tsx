@@ -93,10 +93,12 @@ export const ProfileDrawer = () => {
           </div>
           <div className="portfolioBreakdown">
             <p>
-              <ArrowRightIcon /> Cash: ${user && formatPrice(user?.balance)}
+              <ArrowRightIcon />
+              Cash: ${user && formatPrice(user?.balance)}
             </p>
             <p>
-              <ArrowRightIcon /> Crypto: $
+              <ArrowRightIcon />
+              Crypto: $
               {user && calculatePortfolioValue(user?.portfolio, cryptos)}
             </p>
           </div>
