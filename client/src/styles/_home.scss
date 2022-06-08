@@ -13,6 +13,8 @@
   }
   .cryptosContainer {
     width: clamp(340px, 1100px, 100vw);
+    padding-bottom: 25px;
+
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;

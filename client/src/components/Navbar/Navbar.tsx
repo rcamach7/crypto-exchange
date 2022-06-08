@@ -40,7 +40,7 @@ export const Navbar = () => {
     <AppBar position="sticky" className="Navbar">
       <Container maxWidth="xl" className="navbarContainer">
         <Toolbar disableGutters>
-          <Link to="/home">
+          <Link to="crypto-exchange/home">
             <Typography className="title">CryptoCoins</Typography>
           </Link>
 

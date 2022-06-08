@@ -22,11 +22,18 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
     });
   };
 
-  const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSignIn = async (
+    event:
+      | React.FormEvent<HTMLFormElement>
+      | React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    test?: boolean
+  ) => {
     event.preventDefault();
     togglePageLoading();
     try {
-      const token: string = await login(account);
+      const token: string = await login(
+        test ? { username: "odin", password: "odin" } : account
+      );
       localStorage.setItem("token", token);
       window.location.reload();
     } catch (error) {
@@ -74,7 +81,9 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
       >
         Create Account
       </Button>
-      <Button className="btn">Test Account</Button>
+      <Button className="btn" onClick={(e) => handleSignIn(e, true)}>
+        Test Account
+      </Button>
     </Box>
   );
 };
