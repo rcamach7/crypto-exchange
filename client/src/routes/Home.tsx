@@ -9,6 +9,12 @@ import {
   FormControl,
 } from "@mui/material/";
 import { sortByPriceAscending, sortByPriceDescending } from "../assets/helpers";
+import styled from "styled-components";
+
+const Title = styled.p`
+  font-size: 10px;
+  padding-right: 5px;
+`;
 
 export const Home = () => {
   const { cryptos, user } = useGlobalContext();
@@ -46,7 +52,9 @@ export const Home = () => {
             onChange={handleSortOption}
             sx={{ display: "flex", alignItems: "center" }}
           >
-            <p style={{ fontSize: "10px", paddingRight: "5px" }}>Sort by:</p>
+            <Title style={{ fontSize: "10px", paddingRight: "5px" }}>
+              Sort by:
+            </Title>
             <FormControlLabel
               value="popularity"
               control={<Radio size="small" />}
