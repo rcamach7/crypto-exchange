@@ -10,6 +10,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { LoadingUx } from "./components/LoadingUx";
 import { BannerMessage } from "./data/models";
 import { ConfirmationBanner } from "./components/ConfirmationBanner";
+import { Welcome } from "./routes/Welcome";
 
 export const RouteSwitch = () => {
   const [user, setUser, token, setToken] = useAuthentication();
@@ -44,6 +45,7 @@ export const RouteSwitch = () => {
       >
         <Navbar />
         <Routes>
+          <Route path="/crypto-exchange/" element={<Welcome />} />
           <Route path="/crypto-exchange/home" element={<Home />} />
           <Route
             path="/crypto-exchange/login"
