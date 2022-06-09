@@ -15,9 +15,12 @@ import {
   capitalizeFirstLetter,
   calculatePortfolioValue,
   calculateTotalValue,
+  calculateTotalInvestmentReturn,
 } from "../../../assets/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
+import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 type Anchor = "top" | "left" | "bottom" | "right";
@@ -54,6 +57,7 @@ export const ProfileDrawer = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <Card variant="outlined">
+        {/* Section: User profile image and name. */}
         <CardContent
           sx={{
             display: "flex",
@@ -74,6 +78,7 @@ export const ProfileDrawer = () => {
           </Typography>
         </CardContent>
 
+        {/* Section: Information on users account value and performance, cash balance, and crypto balance.*/}
         <CardContent className="portfolioSummary" sx={{ padding: "0 16px" }}>
           <div className="portfolioDetails">
             <Avatar
@@ -90,7 +95,16 @@ export const ProfileDrawer = () => {
                   calculateTotalValue(user.portfolio, cryptos, user.balance)}
               </p>
             </div>
+            <Chip
+              sx={{ paddingLeft: "2px" }}
+              color={5 > 0 ? "success" : "error"}
+              variant="outlined"
+              size="small"
+              label={`5%`}
+              icon={5 >= 0 ? <ArrowCircleUpIcon /> : <ArrowCircleDownIcon />}
+            />
           </div>
+
           <div className="portfolioBreakdown">
             <p>
               <ArrowRightIcon />
@@ -104,13 +118,13 @@ export const ProfileDrawer = () => {
           </div>
         </CardContent>
 
+        {/* Section: Breakdown of users investments - with option to sell when expanded. */}
         <div className="walletIcon">
           <Chip
             label="My Wallet"
             icon={<AccountBalanceWalletIcon fontSize="small" />}
           />
         </div>
-
         <CryptoWallet />
       </Card>
     </Box>

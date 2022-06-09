@@ -46,7 +46,6 @@ API server would need the following environment variables provided to run succes
 - Add filter section in homepage, where users can only view crypto cards that they're currently invested into.
   - Add a greyed out filtered option of "bookmarked", so in the future we can implement bookmarking crypto cards.
   - have these filters work together with our sorting to provide these two effects together.
-- Add loading UI whenever page is first loaded, and client is obtaining cryptos from API.
 - Add ability for user to update:
   - profile picture
   - full name

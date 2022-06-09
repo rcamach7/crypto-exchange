@@ -17,13 +17,21 @@ const Title = styled.p`
 `;
 
 export const Home = () => {
-  const { cryptos, user } = useGlobalContext();
+  const { cryptos, user, togglePageLoading } = useGlobalContext();
   const [organizedCryptos, setOrganizedCryptos] = React.useState<Crypto[]>([]);
 
   React.useEffect(() => {
+    togglePageLoading();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  React.useEffect(() => {
     if (cryptos.length) {
       setOrganizedCryptos(cryptos);
+      togglePageLoading();
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cryptos]);
 
   const handleSortOption = (event: React.ChangeEvent<HTMLInputElement>) => {

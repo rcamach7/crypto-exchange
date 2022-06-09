@@ -78,3 +78,18 @@ export const calculateTotalValue: (
 
   return formatPrice(portfolioValue + balance);
 };
+
+export const calculateTotalInvestmentReturn: (
+  accountValue: number,
+  deposits: [{ date: Date; amount: number }]
+) => string = (accountValue, deposits) => {
+  let totalDepositValue = 0;
+  deposits.forEach((deposit) => {
+    totalDepositValue += deposit.amount;
+  });
+
+  let accountReturn =
+    (100 * (accountValue - totalDepositValue)) / totalDepositValue;
+
+  return `${accountReturn}%`;
+};
