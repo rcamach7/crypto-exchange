@@ -87,7 +87,6 @@ export const calculateTotalInvestmentReturn: (
   deposits.forEach((deposit) => {
     totalDepositValue += deposit.amount;
   });
-  console.log(accountValue, totalDepositValue);
 
   let accountReturn =
     (100 * (accountValue - totalDepositValue)) / totalDepositValue;
