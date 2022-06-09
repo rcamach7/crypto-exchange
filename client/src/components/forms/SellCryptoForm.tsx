@@ -36,6 +36,7 @@ export const SellCryptoForm: React.FC<Props> = ({
     togglePageLoading();
     if (quantity === 0 || Number.isNaN(quantity)) {
       setError({ exists: true, message: "Please enter a valid quantity" });
+      togglePageLoading();
     } else {
       try {
         const user: User = await sellCrypto(crypto.name, quantity);
