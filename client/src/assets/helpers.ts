@@ -81,15 +81,16 @@ export const calculateTotalValue: (
 
 export const calculateTotalInvestmentReturn: (
   accountValue: number,
-  deposits: [{ date: Date; amount: number }]
-) => string = (accountValue, deposits) => {
+  deposits: [{ date: Date; amount: number }] | []
+) => number = (accountValue, deposits) => {
   let totalDepositValue = 0;
   deposits.forEach((deposit) => {
     totalDepositValue += deposit.amount;
   });
+  console.log(accountValue, totalDepositValue);
 
   let accountReturn =
     (100 * (accountValue - totalDepositValue)) / totalDepositValue;
 
-  return `${accountReturn}%`;
+  return formatPrice(accountReturn);
 };

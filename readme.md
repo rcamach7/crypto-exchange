@@ -49,3 +49,4 @@ API server would need the following environment variables provided to run succes
 - Add ability for user to update:
   - profile picture
   - full name
+- Upgrade formatPrice helper function, to take an extra argument, where we can specify up to how many decimal points to format a number to. This will help use it to better serve use-cases across our application.

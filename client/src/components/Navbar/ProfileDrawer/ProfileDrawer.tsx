@@ -33,6 +33,13 @@ export const ProfileDrawer = () => {
     bottom: false,
     right: false,
   });
+  let accountTotalValue = user
+    ? calculateTotalValue(user.portfolio, cryptos, user.balance)
+    : 0;
+  let totalInvestmentReturn = calculateTotalInvestmentReturn(
+    accountTotalValue,
+    user ? user.deposits : []
+  );
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
@@ -89,19 +96,21 @@ export const ProfileDrawer = () => {
             </Avatar>
             <div className="balance">
               <p className="valueTitle">Total Portfolio Value</p>
-              <p>
-                $
-                {user &&
-                  calculateTotalValue(user.portfolio, cryptos, user.balance)}
-              </p>
+              <p>${accountTotalValue}</p>
             </div>
             <Chip
               sx={{ paddingLeft: "2px" }}
-              color={5 > 0 ? "success" : "error"}
+              color={totalInvestmentReturn >= 0 ? "success" : "error"}
               variant="outlined"
               size="small"
-              label={`5%`}
-              icon={5 >= 0 ? <ArrowCircleUpIcon /> : <ArrowCircleDownIcon />}
+              label={`${totalInvestmentReturn}%`}
+              icon={
+                totalInvestmentReturn >= 0 ? (
+                  <ArrowCircleUpIcon />
+                ) : (
+                  <ArrowCircleDownIcon />
+                )
+              }
             />
           </div>
 
