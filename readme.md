@@ -53,5 +53,3 @@ API server would need the following environment variables provided to run succes
 - Create simple welcome page - just breaking down our application. How the site works:
   - when buying we always use the most current price
   - cryptos get auto updated when 30 minutes elapsed since they were individually last updated, or if users have recently purchased or sold a specific crypto - that gets updated individually.
-  - All purchase price, sell price, and account overview values are estimates, since cryptos constantly fluctuate in price.
-  - All accounts get started with 1M USD of cash deposited to them to start investing.

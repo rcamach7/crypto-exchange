@@ -37,7 +37,11 @@ export const Navbar = () => {
   };
 
   return (
-    <AppBar position="sticky" className="Navbar">
+    <AppBar
+      position="sticky"
+      className="Navbar"
+      sx={{ height: "60px !important", backgroundColor: "black" }}
+    >
       <Container maxWidth="xl" className="navbarContainer">
         <Toolbar disableGutters>
           <Link to="crypto-exchange/">
