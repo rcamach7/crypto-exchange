@@ -37,11 +37,15 @@ export const Navbar = () => {
   };
 
   return (
-    <AppBar position="sticky" className="Navbar">
+    <AppBar
+      position="sticky"
+      className="Navbar"
+      sx={{ height: "60px !important", backgroundColor: "black" }}
+    >
       <Container maxWidth="xl" className="navbarContainer">
         <Toolbar disableGutters>
-          <Link to="crypto-exchange/home">
-            <Typography className="title">CryptoCoins</Typography>
+          <Link to="crypto-exchange/">
+            <Typography className="title">CryptoExchange</Typography>
           </Link>
 
           {/* Profile Icon with sub-menu */}
@@ -71,11 +75,18 @@ export const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Link to="/crypto-exchange/home">Browse Cryptos</Link>
+              </MenuItem>
               {user ? (
                 <MenuItem onClick={handleCloseUserMenu}>
                   <ProfileDrawer />
                 </MenuItem>
               ) : null}
+
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Link to="/crypto-exchange/">About</Link>
+              </MenuItem>
 
               {/* Buttons based on current log in status */}
               {user ? (
