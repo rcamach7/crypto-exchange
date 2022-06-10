@@ -12,8 +12,13 @@ export const getCrypto: (cryptos: Crypto[], name: string) => Crypto = (
   return cryptos[indexOfCrypto];
 };
 
-export const formatPrice: (value: number) => number = (value) => {
-  return Number.parseFloat((Math.round(value * 1000) / 1000).toFixed(3));
+export const formatPrice: (value: number, decimalPlaces?: number) => number = (
+  value,
+  decimalPlaces
+) => {
+  return Number.parseFloat(
+    (Math.round(value * 1000) / 1000).toFixed(decimalPlaces ? decimalPlaces : 3)
+  );
 };
 
 export const capitalizeFirstLetter: (word: string) => string = (word) => {
@@ -92,4 +97,10 @@ export const calculateTotalInvestmentReturn: (
     (100 * (accountValue - totalDepositValue)) / totalDepositValue;
 
   return formatPrice(accountReturn);
+};
+
+export const numberWithCommas: (number: number) => string = (number) => {
+  var parts = number.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
 };

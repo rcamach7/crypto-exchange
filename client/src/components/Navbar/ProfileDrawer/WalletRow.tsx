@@ -15,7 +15,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Crypto } from "../../../data/models";
-import { formatPrice } from "../../../assets/helpers";
+import { formatPrice, numberWithCommas } from "../../../assets/helpers";
 import { SellCryptoModal } from "./SellCryptoModal";
 
 interface RowType {
@@ -28,9 +28,9 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
   const { quantity, crypto, principle } = row;
 
   const formattedPrices = {
-    value: formatPrice(quantity * cryptoInfo.price),
+    value: numberWithCommas(formatPrice(quantity * cryptoInfo.price)),
     profit: formatPrice(quantity * cryptoInfo.price - principle),
-    principle: formatPrice(principle),
+    principle: numberWithCommas(formatPrice(principle)),
   };
 
   return (
@@ -104,7 +104,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
                     </TableCell>
                     <TableCell>
                       <Chip
-                        label={formattedPrices.profit}
+                        label={numberWithCommas(formattedPrices.profit)}
                         size="small"
                         color={formattedPrices.profit > 0 ? "success" : "error"}
                         icon={<AttachMoneyIcon fontSize="small" />}

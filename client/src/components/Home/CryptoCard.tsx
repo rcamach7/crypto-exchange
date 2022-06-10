@@ -16,6 +16,7 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { PurchaseModal } from "./PurchaseModal";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { numberWithCommas } from "../../assets/helpers";
 
 interface Props {
   crypto: Crypto;
@@ -60,7 +61,7 @@ export const CryptoCard: React.FC<Props> = ({ crypto, user }) => {
             <span className="cryptoName">{name}</span>
             <Chip
               sx={{ marginLeft: "auto" }}
-              label={price}
+              label={numberWithCommas(price)}
               color={priceChangePercentage24h > 0 ? "success" : "error"}
               icon={<AttachMoneyIcon fontSize="small" />}
             />

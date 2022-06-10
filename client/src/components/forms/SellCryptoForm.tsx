@@ -10,7 +10,11 @@ import {
 import React from "react";
 import { useGlobalContext } from "../../hooks/useGlobalContext";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import { capitalizeFirstLetter, formatPrice } from "../../assets/helpers";
+import {
+  capitalizeFirstLetter,
+  formatPrice,
+  numberWithCommas,
+} from "../../assets/helpers";
 import { Crypto, Error, User } from "../../data/models";
 import { sellCrypto } from "../../data/api";
 
@@ -88,7 +92,7 @@ export const SellCryptoForm: React.FC<Props> = ({
           />
           <div className="buyPrice">
             <p className="buyPrice">Current Price</p>
-            <p>${formatPrice(crypto.price)}</p>
+            <p>${numberWithCommas(formatPrice(crypto.price))}</p>
           </div>
         </div>
 
@@ -130,7 +134,7 @@ export const SellCryptoForm: React.FC<Props> = ({
         </div>
 
         <p className="totalCalculation">
-          Total: ${formatPrice(quantity * crypto.price)}
+          Total: ${numberWithCommas(formatPrice(quantity * crypto.price))}
         </p>
       </div>
       <Button type="submit" className="purchaseBtn" variant="contained">

@@ -16,6 +16,7 @@ import {
   calculatePortfolioValue,
   calculateTotalValue,
   calculateTotalInvestmentReturn,
+  numberWithCommas,
 } from "../../../assets/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
@@ -96,7 +97,7 @@ export const ProfileDrawer = () => {
             </Avatar>
             <div className="balance">
               <p className="valueTitle">Total Portfolio Value</p>
-              <p>${accountTotalValue}</p>
+              <p>${numberWithCommas(accountTotalValue)}</p>
             </div>
             <Chip
               sx={{ paddingLeft: "2px" }}
@@ -117,12 +118,15 @@ export const ProfileDrawer = () => {
           <div className="portfolioBreakdown">
             <p>
               <ArrowRightIcon />
-              Cash: ${user && formatPrice(user?.balance)}
+              Cash: ${user && numberWithCommas(formatPrice(user?.balance))}
             </p>
             <p>
               <ArrowRightIcon />
               Crypto: $
-              {user && calculatePortfolioValue(user?.portfolio, cryptos)}
+              {user &&
+                numberWithCommas(
+                  calculatePortfolioValue(user?.portfolio, cryptos)
+                )}
             </p>
           </div>
         </CardContent>

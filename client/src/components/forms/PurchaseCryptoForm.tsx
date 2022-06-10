@@ -2,7 +2,11 @@ import React from "react";
 import { Button, TextField, Avatar, Alert, Typography } from "@mui/material/";
 import { Crypto } from "../../data/models";
 import { useGlobalContext } from "../../hooks/useGlobalContext";
-import { capitalizeFirstLetter, formatPrice } from "../../assets/helpers";
+import {
+  capitalizeFirstLetter,
+  formatPrice,
+  numberWithCommas,
+} from "../../assets/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { purchaseCrypto } from "../../data/api";
 import { User, Error } from "../../data/models";
@@ -72,7 +76,7 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
           />
           <div className="buyPrice">
             <p className="buyPrice">Buy Price</p>
-            <p>${formatPrice(crypto.price)}</p>
+            <p>${numberWithCommas(formatPrice(crypto.price))}</p>
           </div>
         </div>
         <div className="balanceDetails">
@@ -84,7 +88,9 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
           </Avatar>
           <div className="balance">
             <p className="balance">Balance</p>
-            <p>${user?.balance && formatPrice(user?.balance)}</p>
+            <p>
+              ${user?.balance && numberWithCommas(formatPrice(user?.balance))}
+            </p>
           </div>
         </div>
       </div>
@@ -108,7 +114,10 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
         />
 
         <p className="totalCalculation">
-          Total: ${isNaN(quantity) ? 0 : formatPrice(quantity * crypto.price)}
+          Total: $
+          {isNaN(quantity)
+            ? 0
+            : numberWithCommas(formatPrice(quantity * crypto.price))}
         </p>
       </div>
 
