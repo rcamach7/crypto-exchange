@@ -5,6 +5,7 @@ import GrainIcon from "@mui/icons-material/Grain";
 import bk from "../assets/bk.jpeg";
 
 const IntroCardWrapper = styled.div`
+  flex: 1.5;
   background-image: url(${bk});
   background-size: cover;
   padding: clamp(20px, 3vw, 50px);
@@ -12,6 +13,7 @@ const IntroCardWrapper = styled.div`
   color: white;
 
   display: flex;
+  justify-content: center;
   flex-direction: column;
   .subIntroText {
     font-size: clamp(15px, 1.5vw, 30px);
@@ -32,6 +34,10 @@ const IntroCardWrapper = styled.div`
     background-color: rgb(25, 119, 242);
     border-radius: 10px;
   }
+
+  /* @media (min-width: 900px) {
+    flex: 1.5;
+  } */
 `;
 
 const FeaturesWrapper = styled.ul`
@@ -39,19 +45,21 @@ const FeaturesWrapper = styled.ul`
   padding: clamp(20px, 3vw, 50px);
 
   list-style: none;
-  background-color: rgb(59, 72, 89);
-  color: white;
+  background-color: white;
+  color: black;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-around;
   gap: 10px;
   li {
     display: flex;
     align-items: center;
-    font-size: clamp(15px, 2.25vw, 25px);
+    font-size: clamp(15px, 2.25vw, 20px);
+    max-width: 800px;
     .icon {
-      border-right: solid 1px black;
+      border-right: solid 1px white;
       font-size: clamp(25px, 2.5vw, 50px);
       margin-right: 10px;
     }
@@ -63,10 +71,7 @@ export const Welcome: React.FC = () => {
     <div className="Welcome">
       <IntroCardWrapper>
         <p className="subIntroText">Are you a first time crypto investor?</p>
-        <h1>
-          Practice cryptocurrency trading with virtual money! How far can you
-          go?
-        </h1>
+        <h1>Practice cryptocurrency trading with virtual money!</h1>
         <Link className="actionButton" to="/home">
           <p>Start Browsing</p>
         </Link>
@@ -81,6 +86,7 @@ export const Welcome: React.FC = () => {
         <li>
           <GrainIcon className="icon" />
           Get started with $1,000,000 USD to start making big money moves!
+          Registration is free!
         </li>
         <li>
           <GrainIcon className="icon" /> All transactions are made at real time

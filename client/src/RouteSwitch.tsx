@@ -56,7 +56,7 @@ export const RouteSwitch = () => {
               </OpenRoute>
             }
           />
-          <Route path="*" element={<Navigate to="/crypto-exchange/home" />} />
+          <Route path="*" element={<Navigate to="/crypto-exchange/" />} />
         </Routes>
 
         {pageLoading ? <LoadingUx /> : null}

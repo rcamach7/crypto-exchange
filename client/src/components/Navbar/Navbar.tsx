@@ -75,11 +75,18 @@ export const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Link to="/crypto-exchange/home">Browse Cryptos</Link>
+              </MenuItem>
               {user ? (
                 <MenuItem onClick={handleCloseUserMenu}>
                   <ProfileDrawer />
                 </MenuItem>
               ) : null}
+
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Link to="/crypto-exchange/">About</Link>
+              </MenuItem>
 
               {/* Buttons based on current log in status */}
               {user ? (
