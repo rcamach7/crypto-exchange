@@ -3,17 +3,20 @@ import { Box, TextField, Button } from "@mui/material/";
 import { SubmissionError, Account } from "../../data/models";
 import { login } from "../../data/api";
 import { useGlobalContext } from "../../hooks/useGlobalContext";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   setShowCreateAccount: React.Dispatch<React.SetStateAction<Boolean>>;
 }
 
 export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
-  const { togglePageLoading } = useGlobalContext();
+  const { togglePageLoading, setToken } = useGlobalContext();
   const [account, setAccount] = useState<Account>({
     username: "",
     password: "",
   });
+  let navigate = useNavigate();
+
   const [populateErrors, setPopulateErrors] = useState<SubmissionError>({});
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,7 +38,9 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
         test ? { username: "odin", password: "odin" } : account
       );
       localStorage.setItem("token", token);
-      window.location.reload();
+      setToken(token);
+      navigate("/crypto-exchange/home");
+      togglePageLoading();
     } catch (error) {
       togglePageLoading();
       setPopulateErrors({

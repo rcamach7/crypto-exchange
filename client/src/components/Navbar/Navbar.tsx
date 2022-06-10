@@ -15,12 +15,19 @@ import { useGlobalContext } from "../../hooks/useGlobalContext";
 import { Link } from "react-router-dom";
 import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
 import logo from "../../assets/logo.gif";
+import { useLocation } from "react-router-dom";
 
 export const Navbar = () => {
   const { user, setUser, setToken } = useGlobalContext();
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const { pathname } = useLocation();
+  const [curLocation, setCurLocation] = React.useState<string>("");
+
+  React.useEffect(() => {
+    setCurLocation(pathname.replace("/crypto-exchange/", ""));
+  }, [pathname]);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -81,23 +88,28 @@ export const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <Link to="/crypto-exchange/home">
-                <MenuItem onClick={handleCloseUserMenu}>
-                  Browse Cryptos
-                </MenuItem>
-              </Link>
+              {curLocation === "home" ? null : (
+                <Link to="/crypto-exchange/home">
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    Browse Cryptos
+                  </MenuItem>
+                </Link>
+              )}
+
               {user ? (
                 <MenuItem onClick={handleCloseUserMenu} sx={{ padding: 0 }}>
                   <ProfileDrawer />
                 </MenuItem>
               ) : null}
 
-              <Link to="/crypto-exchange/">
-                <MenuItem onClick={handleCloseUserMenu}>About</MenuItem>
-              </Link>
+              {curLocation === "" ? null : (
+                <Link to="/crypto-exchange/">
+                  <MenuItem onClick={handleCloseUserMenu}>About</MenuItem>
+                </Link>
+              )}
 
               {/* Buttons based on current log in status */}
-              {user ? (
+              {curLocation === "login" ? null : user ? (
                 <MenuItem onClick={handleLogout}>
                   <Typography textAlign="center">Log Out</Typography>
                 </MenuItem>
