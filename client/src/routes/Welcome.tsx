@@ -72,7 +72,7 @@ export const Welcome: React.FC = () => {
       <IntroCardWrapper>
         <p className="subIntroText">Are you a first time crypto investor?</p>
         <h1>Practice cryptocurrency trading with virtual money!</h1>
-        <Link className="actionButton" to="/home">
+        <Link className="actionButton" to="home">
           <p>Start Browsing</p>
         </Link>
       </IntroCardWrapper>
