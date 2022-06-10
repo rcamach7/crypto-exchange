@@ -81,18 +81,20 @@ export const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Link to="/crypto-exchange/home">Browse Cryptos</Link>
-              </MenuItem>
-              {user ? (
+              <Link to="/crypto-exchange/home">
                 <MenuItem onClick={handleCloseUserMenu}>
+                  Browse Cryptos
+                </MenuItem>
+              </Link>
+              {user ? (
+                <MenuItem onClick={handleCloseUserMenu} sx={{ padding: 0 }}>
                   <ProfileDrawer />
                 </MenuItem>
               ) : null}
 
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Link to="/crypto-exchange/">About</Link>
-              </MenuItem>
+              <Link to="/crypto-exchange/">
+                <MenuItem onClick={handleCloseUserMenu}>About</MenuItem>
+              </Link>
 
               {/* Buttons based on current log in status */}
               {user ? (
@@ -100,9 +102,9 @@ export const Navbar = () => {
                   <Typography textAlign="center">Log Out</Typography>
                 </MenuItem>
               ) : (
-                <MenuItem onClick={handleCloseUserMenu}>
-                  <Link to="/crypto-exchange/login">Log In</Link>
-                </MenuItem>
+                <Link to="/crypto-exchange/login">
+                  <MenuItem onClick={handleCloseUserMenu}>Log In</MenuItem>
+                </Link>
               )}
             </Menu>
           </Box>

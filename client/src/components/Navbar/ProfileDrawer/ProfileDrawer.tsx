@@ -144,8 +144,13 @@ export const ProfileDrawer = () => {
   );
 
   return (
-    <div className="profileButton">
-      <Typography onClick={toggleDrawer("right", true)}>Profile</Typography>
+    <div className="profileButton" style={{ width: "100%" }}>
+      <Typography
+        onClick={toggleDrawer("right", true)}
+        sx={{ padding: "6px 16px" }}
+      >
+        Profile
+      </Typography>
       <Drawer
         className="ProfileDrawer"
         anchor="right"
