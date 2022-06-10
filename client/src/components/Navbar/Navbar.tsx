@@ -14,6 +14,7 @@ import {
 import { useGlobalContext } from "../../hooks/useGlobalContext";
 import { Link } from "react-router-dom";
 import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
+import logo from "../../assets/logo.gif";
 
 export const Navbar = () => {
   const { user, setUser, setToken } = useGlobalContext();
@@ -44,18 +45,23 @@ export const Navbar = () => {
     >
       <Container maxWidth="xl" className="navbarContainer">
         <Toolbar disableGutters>
-          <Link to="crypto-exchange/">
+          <Link to="crypto-exchange/" className="logoContainer">
+            <img src={logo} alt="logo" className="logoImg" />
             <Typography className="title">CryptoExchange</Typography>
           </Link>
 
           {/* Profile Icon with sub-menu */}
           <Box sx={{ flexGrow: 0, marginLeft: "auto" }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu}>
                 <Avatar
                   alt={user?.username}
                   src={user?.profilePicture}
                   className="userAvatar"
+                  sx={{
+                    width: "35px",
+                    height: "35px",
+                  }}
                 />
               </IconButton>
             </Tooltip>

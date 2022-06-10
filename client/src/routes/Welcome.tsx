@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import GrainIcon from "@mui/icons-material/Grain";
-import bk from "../assets/bk.jpeg";
+import an from "../assets/ans.webp";
+import "animate.css";
 
 const IntroCardWrapper = styled.div`
   flex: 1.5;
-  background-image: url(${bk});
+  background-image: url(${an});
   background-size: cover;
   padding: clamp(20px, 3vw, 50px);
 
@@ -72,7 +73,13 @@ export const Welcome: React.FC = () => {
       <IntroCardWrapper>
         <p className="subIntroText">Are you a first time crypto investor?</p>
         <h1>Practice cryptocurrency trading with virtual money!</h1>
-        <Link className="actionButton" to="home">
+        <p className="subIntroText" style={{ marginTop: "10px" }}>
+          How far can you go!
+        </p>
+        <Link
+          className="actionButton animate__animated animate__bounceInLeft animate__slow"
+          to="home"
+        >
           <p>Start Browsing</p>
         </Link>
       </IntroCardWrapper>
