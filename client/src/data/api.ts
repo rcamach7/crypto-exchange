@@ -89,3 +89,13 @@ export const sellCrypto: (
     return Promise.reject(error);
   }
 };
+
+export const bookmarkCrypto: (name: string) => Promise<User> = async (name) => {
+  try {
+    const response = await axios.get(`${config.api}/user/bookmark/${name}`);
+
+    return Promise.resolve(response.data.user);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};

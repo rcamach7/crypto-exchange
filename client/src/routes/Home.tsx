@@ -7,7 +7,7 @@ import { SortFilterBar } from "../components/Home/SortFilterBar";
 import { updateSingleCrypto } from "../data/api";
 
 export const Home = () => {
-  const { cryptos, user, togglePageLoading } = useGlobalContext();
+  const { cryptos, user, togglePageLoading, setUser } = useGlobalContext();
   const [organizedCryptos, setOrganizedCryptos] = React.useState<Crypto[]>([]);
   const [sortFilterOptions, setSortFilterOptions] =
     React.useState<SortFilterOptions>({ sort: "popular", filter: "none" });
@@ -36,7 +36,7 @@ export const Home = () => {
     );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortFilterOptions]);
+  }, [sortFilterOptions, user?.bookmarks]);
 
   const handleUpdateSingleCrypto = async (name: string) => {
     togglePageLoading();
@@ -77,6 +77,7 @@ export const Home = () => {
               crypto={crypto}
               user={user}
               handleUpdateSingleCrypto={handleUpdateSingleCrypto}
+              setUser={setUser}
             />
           );
         })}

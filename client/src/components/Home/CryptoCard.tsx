@@ -18,18 +18,23 @@ import { PurchaseModal } from "./PurchaseModal";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { numberWithCommas } from "../../assets/helpers";
+import { bookmarkCrypto } from "../../data/api";
 import "animate.css";
 
 interface Props {
   crypto: Crypto;
   user: User | null;
   handleUpdateSingleCrypto: (name: string) => void;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  togglePageLoading: () => void;
 }
 
 export const CryptoCard: React.FC<Props> = ({
   crypto,
   user,
   handleUpdateSingleCrypto,
+  setUser,
+  togglePageLoading,
 }) => {
   const {
     name,
@@ -42,6 +47,18 @@ export const CryptoCard: React.FC<Props> = ({
       priceChangePercentage14d,
     },
   } = crypto;
+
+  const handleBookmark: (name: string) => void = async (name) => {
+    togglePageLoading();
+    try {
+      const user = await bookmarkCrypto(name);
+      setUser(user);
+      togglePageLoading();
+    } catch (error) {
+      alert("Error bookmarking crypto");
+      togglePageLoading();
+    }
+  };
 
   return (
     <Box className="CryptoCard animate__animated animate__zoomIn">
