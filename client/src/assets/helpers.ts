@@ -1,4 +1,4 @@
-import { Crypto } from "../data/models";
+import { Crypto, SortFilterOptions } from "../data/models";
 
 // Will return a specific crypto when given a collection of cryptos and a name parameter
 export const getCrypto: (cryptos: Crypto[], name: string) => Crypto = (
@@ -55,6 +55,37 @@ export const sortByPriceDescending: (cryptos: Crypto[]) => Crypto[] = (
     }
   });
   return sortedByPrice;
+};
+
+export const processFilterSortOptions: (
+  cryptos: Crypto[],
+  settings: SortFilterOptions
+) => Crypto[] = (cryptos, settings) => {
+  let result: Crypto[] = [...cryptos];
+
+  // First Apply Filter
+  switch (settings.filter) {
+    case "owned":
+      break;
+    case "bookmarked":
+      break;
+    default:
+      break;
+  }
+
+  // Then Apply Sort
+  switch (settings.sort) {
+    case "price-ascending":
+      result = sortByPriceAscending(result);
+      break;
+    case "price-descending":
+      result = sortByPriceDescending(result);
+      break;
+    default:
+      break;
+  }
+
+  return result;
 };
 
 export const calculatePortfolioValue: (
