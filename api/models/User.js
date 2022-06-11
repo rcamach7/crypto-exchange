@@ -20,6 +20,7 @@ const User = new Schema({
       principle: { type: Number, required: true },
     },
   ],
+  bookmarks: [{ name: { type: String, required: true } }],
 });
 
 module.exports = mongoose.model("User", User);

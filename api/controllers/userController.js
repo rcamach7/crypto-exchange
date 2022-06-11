@@ -52,6 +52,7 @@ exports.createUser = [
         password: hashedPassword,
         balance: 1000000,
         deposits: [{ date: new Date(), amount: 1000000 }],
+        bookmarks: [],
         wallet: [],
       });
       // Save new user, and update my admin account to reflect new friend as well.
@@ -119,3 +120,5 @@ exports.updateUser = [
 exports.deleteUser = (req, res, next) => {
   res.json({ msg: "Get User Endpoint" });
 };
+
+exports.updateBookmarked = [middleware.verifyTokenAndStoreCredentials];

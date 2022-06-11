@@ -7,4 +7,6 @@ router.get("/", userController.getUser);
 
 router.put("/", userController.updateUser);
 
+router.put("/bookmark/:name", userController.updateBookmarked);
+
 module.exports = router;

@@ -130,7 +130,11 @@ export const CryptoCard: React.FC<Props> = ({
           >
             <RefreshIcon />
           </IconButton>
-          <IconButton color="primary" component="span">
+          <IconButton
+            color="primary"
+            component="span"
+            sx={{ marginLeft: "0 !important" }}
+          >
             <BookmarkBorderIcon />
           </IconButton>
         </CardActions>
