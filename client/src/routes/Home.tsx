@@ -1,7 +1,7 @@
 import React from "react";
 import { useGlobalContext } from "../hooks/useGlobalContext";
 import { CryptoCard } from "../components/Home/CryptoCard";
-import { Crypto } from "../data/models";
+import { Crypto, SortFilterOptions } from "../data/models";
 import {
   Radio,
   RadioGroup,
@@ -20,6 +20,8 @@ const Title = styled.p`
 export const Home = () => {
   const { cryptos, user, togglePageLoading } = useGlobalContext();
   const [organizedCryptos, setOrganizedCryptos] = React.useState<Crypto[]>([]);
+  const [sortFilterOptions, setSortFilterOptions] =
+    React.useState<SortFilterOptions>({ sort: "popular", filter: "none" });
 
   React.useEffect(() => {
     togglePageLoading();
@@ -50,10 +52,8 @@ export const Home = () => {
 
   return (
     <div className="Home">
-      <div className="sortFilerBar">
-        <SortFilterBar />
-      </div>
-      <div className="filterOptions">
+      <SortFilterBar setSortFilterOptions={setSortFilterOptions} />
+      {/* <div className="filterOptions">
         <FormControl>
           <RadioGroup
             row
@@ -84,7 +84,7 @@ export const Home = () => {
             />
           </RadioGroup>
         </FormControl>
-      </div>
+      </div> */}
       <div className="cryptosContainer">
         {organizedCryptos.map((crypto) => {
           return <CryptoCard key={crypto.ticker} crypto={crypto} user={user} />;
