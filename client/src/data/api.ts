@@ -92,10 +92,11 @@ export const sellCrypto: (
 
 export const bookmarkCrypto: (name: string) => Promise<User> = async (name) => {
   try {
-    const response = await axios.get(`${config.api}/user/bookmark/${name}`);
+    const response = await axios.put(`${config.api}/user/bookmark/${name}`);
 
     return Promise.resolve(response.data.user);
   } catch (error) {
+    console.log(error);
     return Promise.reject(error);
   }
 };

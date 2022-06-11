@@ -142,7 +142,7 @@ exports.updateBookmarked = [
       if (indexOfBookmark > -1) {
         updatedBookmarks.splice(indexOfBookmark, 1);
       } else {
-        updatedBookmarks.push(cryptoName);
+        updatedBookmarks.push({ name: cryptoName });
       }
 
       const updatedUser = await User.findByIdAndUpdate(
@@ -159,7 +159,7 @@ exports.updateBookmarked = [
       });
     } catch (errors) {
       return res
-        .status(401)
+        .status(500)
         .json({ message: "Error updating bookmarks", errors });
     }
   },

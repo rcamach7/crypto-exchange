@@ -78,6 +78,7 @@ export const Home = () => {
               user={user}
               handleUpdateSingleCrypto={handleUpdateSingleCrypto}
               setUser={setUser}
+              togglePageLoading={togglePageLoading}
             />
           );
         })}

@@ -151,6 +151,7 @@ export const CryptoCard: React.FC<Props> = ({
             color="primary"
             component="span"
             sx={{ marginLeft: "0 !important" }}
+            onClick={() => handleBookmark(name)}
           >
             <BookmarkBorderIcon />
           </IconButton>
