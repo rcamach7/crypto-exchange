@@ -14,7 +14,7 @@ import {
 import { useGlobalContext } from "../../hooks/useGlobalContext";
 import { Link } from "react-router-dom";
 import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
-import logo from "../../assets/logo.gif";
+import logo from "../../assets/logo.png";
 import { useLocation } from "react-router-dom";
 
 export const Navbar = () => {
