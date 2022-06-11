@@ -118,15 +118,15 @@ export const ProfileDrawer = () => {
           <div className="portfolioBreakdown">
             <p>
               <ArrowRightIcon />
-              Cash: ${user && numberWithCommas(formatPrice(user?.balance))}
-            </p>
-            <p>
-              <ArrowRightIcon />
               Crypto: $
               {user &&
                 numberWithCommas(
                   calculatePortfolioValue(user?.portfolio, cryptos)
                 )}
+            </p>
+            <p>
+              <ArrowRightIcon />
+              Cash: ${user && numberWithCommas(formatPrice(user?.balance))}
             </p>
           </div>
         </CardContent>

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap");
 .Welcome {
   height: calc(100vh - 60px);
+  max-height: -webkit-fill-available;
 
   display: flex;
   flex-direction: column;

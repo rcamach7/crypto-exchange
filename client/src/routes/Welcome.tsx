@@ -9,7 +9,7 @@ const IntroCardWrapper = styled.div`
   flex: 1.5;
   background-image: url(${an});
   background-size: cover;
-  padding: clamp(20px, 3vw, 50px);
+  padding: 0 clamp(20px, 3vw, 50px);
 
   color: white;
 
@@ -35,10 +35,6 @@ const IntroCardWrapper = styled.div`
     background-color: rgb(25, 119, 242);
     border-radius: 10px;
   }
-
-  /* @media (min-width: 900px) {
-    flex: 1.5;
-  } */
 `;
 
 const FeaturesWrapper = styled.ul`
@@ -77,7 +73,7 @@ export const Welcome: React.FC = () => {
           See how far can you go!
         </p>
         <Link
-          className="actionButton animate__animated animate__bounceInLeft animate__slow"
+          className="actionButton animate__animated animate__swing animate__slow"
           to="home"
         >
           <p>Start Browsing</p>

@@ -17,6 +17,7 @@ import { PurchaseModal } from "./PurchaseModal";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { numberWithCommas } from "../../assets/helpers";
+import "animate.css";
 
 interface Props {
   crypto: Crypto;
@@ -37,7 +38,7 @@ export const CryptoCard: React.FC<Props> = ({ crypto, user }) => {
   } = crypto;
 
   return (
-    <Box className="CryptoCard">
+    <Box className="CryptoCard animate__animated animate__zoomIn">
       <Card variant="outlined">
         <CardContent sx={{ padding: "16px 16px 8px 16px" }}>
           <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
