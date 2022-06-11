@@ -10,6 +10,7 @@ import {
 } from "@mui/material/";
 import { sortByPriceAscending, sortByPriceDescending } from "../assets/helpers";
 import styled from "styled-components";
+import { SortFilterBar } from "../components/Home/SortFilterBar";
 
 const Title = styled.p`
   font-size: 10px;
@@ -49,6 +50,9 @@ export const Home = () => {
 
   return (
     <div className="Home">
+      <div className="sortFilerBar">
+        <SortFilterBar />
+      </div>
       <div className="filterOptions">
         <FormControl>
           <RadioGroup
