@@ -121,4 +121,46 @@ exports.deleteUser = (req, res, next) => {
   res.json({ msg: "Get User Endpoint" });
 };
 
-exports.updateBookmarked = [middleware.verifyTokenAndStoreCredentials];
+exports.updateBookmarked = [
+  middleware.verifyTokenAndStoreCredentials,
+  async (req, res, next) => {
+    const cryptoName = req.params.name;
+    if (typeof cryptoName === undefined)
+      return res.status(400).json({ message: "Crypto name not provided" });
+
+    try {
+      const user = await User.findById(res.locals.userId).select("-password");
+      const updatedBookmarks = [...user.bookmarks];
+
+      let indexOfBookmark = -1;
+      updatedBookmarks.forEach((bookmark, i) => {
+        if (bookmark.name === cryptoName) {
+          indexOfBookmark = i;
+        }
+      });
+
+      if (indexOfBookmark > -1) {
+        updatedBookmarks.splice(indexOfBookmark, 1);
+      } else {
+        updatedBookmarks.push(cryptoName);
+      }
+
+      const updatedUser = await User.findByIdAndUpdate(
+        res.locals.userId,
+        {
+          bookmarks: updatedBookmarks,
+        },
+        { new: true }
+      ).select("-password");
+
+      return res.json({
+        message: "Bookmarked request done",
+        user: updatedUser,
+      });
+    } catch (errors) {
+      return res
+        .status(401)
+        .json({ message: "Error updating bookmarks", errors });
+    }
+  },
+];
