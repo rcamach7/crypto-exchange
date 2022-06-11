@@ -53,13 +53,13 @@ exports.getCryptos = [
 ];
 
 exports.updateCrypto = [
-  verifyTokenAndStoreCredentials,
   async (req, res, next) => {
     const cryptoName = req.params.name;
     if (typeof cryptoName === undefined)
       return res.status(400).json({ message: "Crypto name not provided" });
 
     try {
+      // Will return updated information on the crypto requested, AND update our database as well.
       const updatedCrypto = await updateOneCrypto(cryptoName);
       return res.json({
         message: "Crypto information updated",

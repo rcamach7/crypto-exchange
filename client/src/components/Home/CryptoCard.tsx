@@ -13,6 +13,7 @@ import {
 } from "@mui/material/";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import RefreshIcon from "@mui/icons-material/Refresh";
 import { PurchaseModal } from "./PurchaseModal";
 import moment from "moment";
 import { Link } from "react-router-dom";
@@ -22,9 +23,14 @@ import "animate.css";
 interface Props {
   crypto: Crypto;
   user: User | null;
+  handleUpdateSingleCrypto: (name: string) => void;
 }
 
-export const CryptoCard: React.FC<Props> = ({ crypto, user }) => {
+export const CryptoCard: React.FC<Props> = ({
+  crypto,
+  user,
+  handleUpdateSingleCrypto,
+}) => {
   const {
     name,
     image,
@@ -108,7 +114,7 @@ export const CryptoCard: React.FC<Props> = ({ crypto, user }) => {
             </div>
           </Typography>
         </CardContent>
-        <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
+        <CardActions sx={{ display: "flex" }}>
           {user ? (
             <PurchaseModal crypto={crypto} />
           ) : (
@@ -116,6 +122,14 @@ export const CryptoCard: React.FC<Props> = ({ crypto, user }) => {
               <Link to="/crypto-exchange/login">Login to purchase</Link>
             </Button>
           )}
+          <IconButton
+            color="primary"
+            component="span"
+            sx={{ marginLeft: "auto" }}
+            onClick={() => handleUpdateSingleCrypto(name)}
+          >
+            <RefreshIcon />
+          </IconButton>
           <IconButton color="primary" component="span">
             <BookmarkBorderIcon />
           </IconButton>

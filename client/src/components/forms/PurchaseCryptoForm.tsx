@@ -120,10 +120,13 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
             : numberWithCommas(formatPrice(quantity * crypto.price))}
         </p>
       </div>
-
       <Button type="submit" className="purchaseBtn" variant="contained">
         Confirm Purchase
       </Button>
+      <p style={{ fontSize: "10px", paddingTop: "2.5px" }}>
+        transactions are made with real-time prices, above values are estimated
+      </p>
+
       {/* Error feedback */}
       {error.exists ? (
         <Alert severity="error" sx={{ marginTop: "10px", padding: "0 5px" }}>

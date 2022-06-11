@@ -50,6 +50,17 @@ export const getCryptos: () => Promise<Crypto[]> = async () => {
   }
 };
 
+export const updateSingleCrypto: (name: string) => Promise<Crypto> = async (
+  name: string
+) => {
+  try {
+    const response = await axios.get(`${config.api}/cryptos/${name}`);
+    return Promise.resolve(response.data.crypto);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
 export const purchaseCrypto: (
   name: string,
   quantity: number

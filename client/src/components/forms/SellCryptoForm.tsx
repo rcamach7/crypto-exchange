@@ -140,6 +140,9 @@ export const SellCryptoForm: React.FC<Props> = ({
       <Button type="submit" className="purchaseBtn" variant="contained">
         Confirm Sell Order
       </Button>
+      <p style={{ fontSize: "10px", paddingTop: "2.5px" }}>
+        transactions are made with real-time prices, above values are estimated
+      </p>
       {/* Error Reporting UI */}
       {error.exists ? (
         <Alert severity="error" sx={{ marginTop: "10px", padding: "0 5px" }}>

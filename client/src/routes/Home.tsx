@@ -4,6 +4,7 @@ import { CryptoCard } from "../components/Home/CryptoCard";
 import { Crypto, SortFilterOptions } from "../data/models";
 import { processFilterSortOptions } from "../assets/helpers";
 import { SortFilterBar } from "../components/Home/SortFilterBar";
+import { updateSingleCrypto } from "../data/api";
 
 export const Home = () => {
   const { cryptos, user, togglePageLoading } = useGlobalContext();
@@ -37,6 +38,31 @@ export const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortFilterOptions]);
 
+  const handleUpdateSingleCrypto = async (name: string) => {
+    togglePageLoading();
+    try {
+      const updatedCrypto = await updateSingleCrypto(name);
+      setOrganizedCryptos((prevState) => {
+        const cryptosCopy = [...prevState];
+        let indexOfOldCrypto = -1;
+        cryptosCopy.forEach((crypto, i) => {
+          if (crypto.name === updatedCrypto.name) {
+            indexOfOldCrypto = i;
+          }
+        });
+        if (indexOfOldCrypto > -1) {
+          cryptosCopy[indexOfOldCrypto] = updatedCrypto;
+        }
+
+        return cryptosCopy;
+      });
+      togglePageLoading();
+    } catch (error) {
+      togglePageLoading();
+      alert("Error updating crypto");
+    }
+  };
+
   return (
     <div className="Home">
       <SortFilterBar
@@ -45,7 +71,14 @@ export const Home = () => {
       />
       <div className="cryptosContainer">
         {organizedCryptos.map((crypto) => {
-          return <CryptoCard key={crypto.ticker} crypto={crypto} user={user} />;
+          return (
+            <CryptoCard
+              key={crypto.ticker}
+              crypto={crypto}
+              user={user}
+              handleUpdateSingleCrypto={handleUpdateSingleCrypto}
+            />
+          );
         })}
       </div>
     </div>
