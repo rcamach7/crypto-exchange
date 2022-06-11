@@ -26,14 +26,23 @@ export const Home = () => {
   }, [cryptos]);
 
   React.useEffect(() => {
-    setOrganizedCryptos(processFilterSortOptions(cryptos, sortFilterOptions));
+    setOrganizedCryptos(
+      processFilterSortOptions(
+        cryptos,
+        sortFilterOptions,
+        user ? user.portfolio : []
+      )
+    );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortFilterOptions]);
 
   return (
     <div className="Home">
-      <SortFilterBar setSortFilterOptions={setSortFilterOptions} />
+      <SortFilterBar
+        setSortFilterOptions={setSortFilterOptions}
+        loggedIn={user ? true : false}
+      />
       <div className="cryptosContainer">
         {organizedCryptos.map((crypto) => {
           return <CryptoCard key={crypto.ticker} crypto={crypto} user={user} />;

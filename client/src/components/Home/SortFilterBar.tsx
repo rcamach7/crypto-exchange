@@ -14,9 +14,15 @@ const FilterWrapper = styled.div`
 
 interface Props {
   setSortFilterOptions: React.Dispatch<React.SetStateAction<SortFilterOptions>>;
+  loggedIn: boolean;
 }
 
-export const SortFilterBar: React.FC<Props> = ({ setSortFilterOptions }) => {
+export const SortFilterBar: React.FC<Props> = ({
+  setSortFilterOptions,
+  loggedIn,
+}) => {
+  let disableIfNotLoggedIn = loggedIn ? {} : { disabled: true };
+
   const handleSettingChange = (event: SelectChangeEvent<string>) => {
     if (event.target.name === "sort") {
       switch (event.target.value) {
@@ -71,7 +77,7 @@ export const SortFilterBar: React.FC<Props> = ({ setSortFilterOptions }) => {
           <option aria-label="popular" value="None">
             None
           </option>
-          <option value="owned" disabled>
+          <option value="owned" {...disableIfNotLoggedIn}>
             Owned
           </option>
           <option value="bookmarked" disabled>
