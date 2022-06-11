@@ -1,4 +1,4 @@
-import { Crypto } from "../data/models";
+import { Crypto, SortFilterOptions } from "../data/models";
 
 // Will return a specific crypto when given a collection of cryptos and a name parameter
 export const getCrypto: (cryptos: Crypto[], name: string) => Crypto = (
@@ -55,6 +55,76 @@ export const sortByPriceDescending: (cryptos: Crypto[]) => Crypto[] = (
     }
   });
   return sortedByPrice;
+};
+
+export const filterByOwned: (
+  cryptos: Crypto[],
+  owned:
+    | [
+        {
+          crypto: string;
+          quantity: number;
+          principle: number;
+        }
+      ]
+    | []
+) => Crypto[] = (cryptos, owned) => {
+  // Get collection of just the names to simplify operations later.
+  const ownedNames = owned.map(({ crypto }) => crypto);
+  const result = cryptos.filter((curCrypto) => {
+    // We assume we don't own it, unless proven otherwise by the check below.
+    let currentlyOwned = false;
+    ownedNames.forEach((name) => {
+      if (name === curCrypto.name) {
+        currentlyOwned = true;
+      }
+    });
+    // True = keep, false = filter out.
+    return currentlyOwned;
+  });
+
+  return result;
+};
+
+export const processFilterSortOptions: (
+  cryptos: Crypto[],
+  settings: SortFilterOptions,
+  owned:
+    | [
+        {
+          crypto: string;
+          quantity: number;
+          principle: number;
+        }
+      ]
+    | []
+) => Crypto[] = (cryptos, settings, owned) => {
+  let result: Crypto[] = [...cryptos];
+
+  // First Apply Filter
+  switch (settings.filter) {
+    case "owned":
+      result = filterByOwned(cryptos, owned);
+      break;
+    case "bookmarked":
+      break;
+    default:
+      break;
+  }
+
+  // Then Apply Sort
+  switch (settings.sort) {
+    case "price-ascending":
+      result = sortByPriceAscending(result);
+      break;
+    case "price-descending":
+      result = sortByPriceDescending(result);
+      break;
+    default:
+      break;
+  }
+
+  return result;
 };
 
 export const calculatePortfolioValue: (

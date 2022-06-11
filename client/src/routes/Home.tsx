@@ -1,24 +1,15 @@
 import React from "react";
 import { useGlobalContext } from "../hooks/useGlobalContext";
 import { CryptoCard } from "../components/Home/CryptoCard";
-import { Crypto } from "../data/models";
-import {
-  Radio,
-  RadioGroup,
-  FormControlLabel,
-  FormControl,
-} from "@mui/material/";
-import { sortByPriceAscending, sortByPriceDescending } from "../assets/helpers";
-import styled from "styled-components";
-
-const Title = styled.p`
-  font-size: 10px;
-  padding-right: 5px;
-`;
+import { Crypto, SortFilterOptions } from "../data/models";
+import { processFilterSortOptions } from "../assets/helpers";
+import { SortFilterBar } from "../components/Home/SortFilterBar";
 
 export const Home = () => {
   const { cryptos, user, togglePageLoading } = useGlobalContext();
   const [organizedCryptos, setOrganizedCryptos] = React.useState<Crypto[]>([]);
+  const [sortFilterOptions, setSortFilterOptions] =
+    React.useState<SortFilterOptions>({ sort: "popular", filter: "none" });
 
   React.useEffect(() => {
     togglePageLoading();
@@ -27,60 +18,31 @@ export const Home = () => {
   }, []);
   React.useEffect(() => {
     if (cryptos.length) {
-      setOrganizedCryptos(cryptos);
       togglePageLoading();
+      setOrganizedCryptos(cryptos);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cryptos]);
 
-  const handleSortOption = (event: React.ChangeEvent<HTMLInputElement>) => {
-    switch (event.target.value) {
-      case "price+":
-        setOrganizedCryptos((prevState) => sortByPriceDescending(prevState));
-        break;
-      case "price-":
-        setOrganizedCryptos((prevState) => sortByPriceAscending(prevState));
-        break;
-      default:
-        setOrganizedCryptos(cryptos);
-    }
-  };
+  React.useEffect(() => {
+    setOrganizedCryptos(
+      processFilterSortOptions(
+        cryptos,
+        sortFilterOptions,
+        user ? user.portfolio : []
+      )
+    );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sortFilterOptions]);
 
   return (
     <div className="Home">
-      <div className="filterOptions">
-        <FormControl>
-          <RadioGroup
-            row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
-            className="filterSelections"
-            defaultValue="popularity"
-            onChange={handleSortOption}
-            sx={{ display: "flex", alignItems: "center" }}
-          >
-            <Title style={{ fontSize: "10px", paddingRight: "5px" }}>
-              Sort by:
-            </Title>
-            <FormControlLabel
-              value="popularity"
-              control={<Radio size="small" />}
-              label="Popularity"
-            />
-            <FormControlLabel
-              value="price+"
-              control={<Radio size="small" />}
-              label="Price +"
-            />
-            <FormControlLabel
-              value="price-"
-              control={<Radio size="small" />}
-              label="Price -"
-            />
-          </RadioGroup>
-        </FormControl>
-      </div>
+      <SortFilterBar
+        setSortFilterOptions={setSortFilterOptions}
+        loggedIn={user ? true : false}
+      />
       <div className="cryptosContainer">
         {organizedCryptos.map((crypto) => {
           return <CryptoCard key={crypto.ticker} crypto={crypto} user={user} />;

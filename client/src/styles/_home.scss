@@ -4,13 +4,6 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  .filterOptions {
-    width: 100px;
-
-    padding-top: 10px;
-    display: flex;
-    justify-content: center;
-  }
   .cryptosContainer {
     width: clamp(340px, 1100px, 100vw);
     padding-bottom: 25px;
@@ -88,30 +81,5 @@
   }
   .purchaseBtn {
     margin-top: 15px;
-  }
-}
-
-@media (max-width: 899px) {
-  .Home {
-    .filterOptions {
-      width: 100%;
-      .filterSelections {
-        display: flex;
-        justify-content: center;
-      }
-    }
-  }
-}
-
-@media (min-width: 900px) {
-  .Home {
-    justify-content: flex-start;
-    .filterOptions {
-      width: 120px;
-      padding-left: 2vw;
-    }
-    .cryptosContainer {
-      width: clamp(680px, 80vw, 90vw);
-    }
   }
 }

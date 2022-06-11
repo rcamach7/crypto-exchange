@@ -56,3 +56,8 @@ export interface BannerMessage {
   show: boolean;
   message?: string;
 }
+
+export interface SortFilterOptions {
+  sort: "popular" | "price-ascending" | "price-descending";
+  filter: "none" | "owned" | "bookmarked";
+}
