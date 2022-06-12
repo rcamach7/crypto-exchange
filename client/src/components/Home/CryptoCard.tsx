@@ -19,6 +19,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import { numberWithCommas } from "../../assets/helpers";
 import { bookmarkCrypto } from "../../data/api";
+import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import "animate.css";
 
 interface Props {
@@ -27,6 +28,7 @@ interface Props {
   handleUpdateSingleCrypto: (name: string) => void;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   togglePageLoading: () => void;
+  bookmarks: [];
 }
 
 export const CryptoCard: React.FC<Props> = ({
@@ -35,6 +37,7 @@ export const CryptoCard: React.FC<Props> = ({
   handleUpdateSingleCrypto,
   setUser,
   togglePageLoading,
+  bookmarks,
 }) => {
   const {
     name,
@@ -47,6 +50,16 @@ export const CryptoCard: React.FC<Props> = ({
       priceChangePercentage14d,
     },
   } = crypto;
+
+  const amBookmarked: () => boolean = () => {
+    const bookmarked: string[] = bookmarks.map(({ name }) => name);
+    let foundIndex = bookmarked.indexOf(name);
+    if (foundIndex > -1) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const handleBookmark: (name: string) => void = async (name) => {
     togglePageLoading();
@@ -153,7 +166,7 @@ export const CryptoCard: React.FC<Props> = ({
             sx={{ marginLeft: "0 !important" }}
             onClick={() => handleBookmark(name)}
           >
-            <BookmarkBorderIcon />
+            {amBookmarked() ? <BookmarkAddedIcon /> : <BookmarkBorderIcon />}
           </IconButton>
         </CardActions>
       </Card>

@@ -79,6 +79,7 @@ export const Home = () => {
               handleUpdateSingleCrypto={handleUpdateSingleCrypto}
               setUser={setUser}
               togglePageLoading={togglePageLoading}
+              bookmarks={user ? user.bookmarks : []}
             />
           );
         })}
