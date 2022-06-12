@@ -31,7 +31,8 @@ export const Home = () => {
       processFilterSortOptions(
         cryptos,
         sortFilterOptions,
-        user ? user.portfolio : []
+        user ? user.portfolio : [],
+        user ? user.bookmarks : []
       )
     );
 
