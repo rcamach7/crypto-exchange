@@ -5,6 +5,7 @@ export interface User {
   portfolio: [{ crypto: string; quantity: number; principle: number }];
   fullName: string;
   profilePicture: string;
+  bookmarks: [];
 }
 
 export interface ContextInterface {

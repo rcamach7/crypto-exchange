@@ -49,3 +49,4 @@ API server would need the following environment variables provided to run succes
 - Add ability for user to update:
   - profile picture
   - full name
+- Catch any network issues and give that information to user for better User experience.

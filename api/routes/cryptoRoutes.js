@@ -5,6 +5,6 @@ const cryptoController = require("../controllers/cryptoController");
 router.get("/", cryptoController.getCryptos);
 
 // Update a single crypto and return it.
-router.put("/:name", cryptoController.updateCrypto);
+router.get("/:name", cryptoController.updateCrypto);
 
 module.exports = router;

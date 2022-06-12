@@ -86,6 +86,34 @@ export const filterByOwned: (
   return result;
 };
 
+export const filterByBookmarked: (
+  cryptos: Crypto[],
+  bookmarks:
+    | [
+        {
+          name: string;
+        }
+      ]
+    | []
+) => Crypto[] = (cryptos, bookmarks) => {
+  // Get collection of just the names to simplify operations later.
+  const bookmarkedNames = bookmarks.map(({ name }) => name);
+
+  const result = cryptos.filter((curCrypto) => {
+    // We assume we don't own it, unless proven otherwise by the check below.
+    let currentlyBookmarked = false;
+    bookmarkedNames.forEach((name) => {
+      if (name === curCrypto.name) {
+        currentlyBookmarked = true;
+      }
+    });
+    // True = keep, false = filter out.
+    return currentlyBookmarked;
+  });
+
+  return result;
+};
+
 export const processFilterSortOptions: (
   cryptos: Crypto[],
   settings: SortFilterOptions,
@@ -97,8 +125,9 @@ export const processFilterSortOptions: (
           principle: number;
         }
       ]
-    | []
-) => Crypto[] = (cryptos, settings, owned) => {
+    | [],
+  bookmarks: [{ name: string }] | []
+) => Crypto[] = (cryptos, settings, owned, bookmarks) => {
   let result: Crypto[] = [...cryptos];
 
   // First Apply Filter
@@ -107,6 +136,7 @@ export const processFilterSortOptions: (
       result = filterByOwned(cryptos, owned);
       break;
     case "bookmarked":
+      result = filterByBookmarked(cryptos, bookmarks);
       break;
     default:
       break;

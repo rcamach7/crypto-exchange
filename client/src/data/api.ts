@@ -50,6 +50,17 @@ export const getCryptos: () => Promise<Crypto[]> = async () => {
   }
 };
 
+export const updateSingleCrypto: (name: string) => Promise<Crypto> = async (
+  name: string
+) => {
+  try {
+    const response = await axios.get(`${config.api}/cryptos/${name}`);
+    return Promise.resolve(response.data.crypto);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
 export const purchaseCrypto: (
   name: string,
   quantity: number
@@ -75,6 +86,17 @@ export const sellCrypto: (
     );
     return Promise.resolve(response.data.user);
   } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+export const bookmarkCrypto: (name: string) => Promise<User> = async (name) => {
+  try {
+    const response = await axios.put(`${config.api}/user/bookmark/${name}`);
+
+    return Promise.resolve(response.data.user);
+  } catch (error) {
+    console.log(error);
     return Promise.reject(error);
   }
 };
