@@ -1,6 +1,6 @@
 # Crypto Exchange
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.
+Full stack web application that lets you practice cryptocurrency trading with fake money!
 
 ![project_demo](crypto-exchange.png)
 
@@ -12,13 +12,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Key Features
 
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+- Users can view, purchase and sell crypto coins at real-time prices. They can also filter and sort through crypto coins. Profile overview showcases users total investments performances, along with a breakdown of their investment wallet.
+- Front end built using Typescript with React. Utilized MUI Components, styled components, and SCSS for a responsive UX. Back end server built with Node, Express, and MongoDB, using a 3rd party API for real-time crypto prices.
+- Implemented user authentication, data validation/sanitation on client and server, custom React hooks, lifecycle hooks, error handling on API calls, and much more.
 
 #### Built Using:
 
-- react, create-react-app, axios, uuid, react-router-dom, sass, font awesome icon's, socket-io-client, useEffect, useState, useContext, React.Context, axios interceptors, custom hooks, hash router, promise based functions, async/await, custom API, moment etc...
+- react, typescript, mongoose, MUI components, styled-components, animate.css, axios interceptors, react-router-dom, sass, useEffect, useState, Context API, custom hooks, hash router, promise based functions, async/await, custom API, moment etc...
 
 #### How to install and run?
 
@@ -43,10 +43,8 @@ API server would need the following environment variables provided to run succes
 
 #### To-Do's
 
-- Add filter section in homepage, where users can only view crypto cards that they're currently invested into.
-  - Add a greyed out filtered option of "bookmarked", so in the future we can implement bookmarking crypto cards.
-  - have these filters work together with our sorting to provide these two effects together.
 - Add ability for user to update:
   - profile picture
   - full name
 - Catch any network issues and give that information to user for better User experience.
+- Have server calculate average price per coin, on any investment a user makes. We can have that number reflect on client UI, for better user experience.
