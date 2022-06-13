@@ -80,7 +80,9 @@ export const SortFilterBar: React.FC<Props> = ({
           <option value="owned" {...disableIfNotLoggedIn}>
             Owned
           </option>
-          <option value="bookmarked">Bookmarked</option>
+          <option value="bookmarked" {...disableIfNotLoggedIn}>
+            Bookmarked
+          </option>
         </Select>
       </FormControl>
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
