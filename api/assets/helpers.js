@@ -10,14 +10,28 @@ exports.processPortfolioPurchase = (currentPortfolio, transaction) => {
       crypto: transaction.crypto.name,
       quantity: transaction.quantity,
       principle: transaction.crypto.price * transaction.quantity,
+      transactions: [
+        {
+          quantity: transaction.quantity,
+          purchasePrice: transaction.crypto.price,
+        },
+      ],
     };
     return [...currentPortfolio, newCryptoHolding];
   } else {
     // User owns this coin already, add to his portfolio
     const currentHoldings = currentPortfolio[indexOfPortfolioHolding];
+
     currentHoldings.quantity += transaction.quantity;
     currentHoldings.principle +=
       transaction.crypto.price * transaction.quantity;
+    currentHoldings.transactions = [
+      ...currentHoldings.transactions,
+      {
+        quantity: transaction.quantity,
+        purchasePrice: transaction.crypto.price,
+      },
+    ];
 
     const newPortfolio = [...currentPortfolio];
     newPortfolio[indexOfPortfolioHolding] = currentHoldings;

@@ -224,3 +224,17 @@ export const calculateTotalInvestmentReturn: (
 
   return formatPrice(accountReturn);
 };
+
+export const calculateAveragePurchasePrice: (
+  transactions: [{ quantity: number; purchasePrice: number }]
+) => number = (transactions) => {
+  let totalPrice = 0;
+  let totalQuantity = 0;
+
+  transactions.forEach((transaction) => {
+    totalPrice += transaction.purchasePrice * transaction.quantity;
+    totalQuantity += transaction.quantity;
+  });
+  // Will reduce these two fields to total amount invested / spend, divided by the total amount of coins bought
+  return totalPrice / totalQuantity;
+};

@@ -17,18 +17,18 @@ const IntroCardWrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   .subIntroText {
-    font-size: clamp(15px, 1.5vw, 20px);
+    font-size: clamp(15px, 1.5vw, 18px);
     margin-bottom: clamp(10px, 1vw, 30px);
   }
   h1 {
-    font-size: clamp(30px, 4vw, 50px);
+    font-size: clamp(30px, 4vw, 40px);
   }
   .actionButton {
     width: clamp(150px, 15vw, 190px);
     padding: 10px;
     margin-top: clamp(25px, 10vw, 80px);
 
-    font-size: clamp(15px, 1.5vw, 20px);
+    font-size: clamp(15px, 1.5vw, 18px);
     text-align: center;
 
     color: white;

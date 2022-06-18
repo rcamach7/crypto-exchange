@@ -2,7 +2,14 @@ export interface User {
   username: string;
   balance: number;
   deposits: [{ date: Date; amount: number }];
-  portfolio: [{ crypto: string; quantity: number; principle: number }];
+  portfolio: [
+    {
+      crypto: string;
+      quantity: number;
+      principle: number;
+      transactions: [{ quantity: number; purchasePrice: number }];
+    }
+  ];
   fullName: string;
   profilePicture: string;
   bookmarks: [];

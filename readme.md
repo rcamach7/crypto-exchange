@@ -55,3 +55,4 @@ API server would need the following environment variables provided to run succes
   - profile picture
   - full name
 - Have server calculate average price per coin, on any investment a user makes. We can have that number reflect on client UI, for better user experience.
+- Add a info button next to the refresh and bookmark option, with a pop up modal that provides description of the crypto.

@@ -15,22 +15,34 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import { Crypto } from "../../../data/models";
-import { formatPrice, numberWithCommas } from "../../../assets/helpers";
+import {
+  formatPrice,
+  numberWithCommas,
+  calculateAveragePurchasePrice,
+} from "../../../assets/helpers";
 import { SellCryptoModal } from "./SellCryptoModal";
 
 interface RowType {
-  row: { crypto: string; quantity: number; principle: number };
+  row: {
+    crypto: string;
+    quantity: number;
+    principle: number;
+    transactions: [{ quantity: number; purchasePrice: number }];
+  };
   cryptoInfo: Crypto;
 }
 
 export const WalletRow = ({ row, cryptoInfo }: RowType) => {
   const [open, setOpen] = React.useState(false);
-  const { quantity, crypto, principle } = row;
+  const { quantity, crypto, principle, transactions } = row;
 
   const formattedPrices = {
     value: numberWithCommas(formatPrice(quantity * cryptoInfo.price)),
     profit: formatPrice(quantity * cryptoInfo.price - principle),
     principle: numberWithCommas(formatPrice(principle)),
+    averagePurchasePrice: numberWithCommas(
+      formatPrice(calculateAveragePurchasePrice(transactions))
+    ),
   };
 
   return (
@@ -92,6 +104,19 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
                       Principle
                     </TableCell>
                     <TableCell>${formattedPrices.principle}</TableCell>
+                  </TableRow>
+
+                  <TableRow>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      className="tableRowCells"
+                    >
+                      Average Purchase Price
+                    </TableCell>
+                    <TableCell>
+                      ${formattedPrices.averagePurchasePrice}
+                    </TableCell>
                   </TableRow>
 
                   <TableRow>

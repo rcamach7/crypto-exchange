@@ -18,6 +18,12 @@ const User = new Schema({
       crypto: { type: String, require: true },
       quantity: { type: Number, required: true, default: 0 },
       principle: { type: Number, required: true },
+      transactions: [
+        {
+          quantity: { type: Number, required: true },
+          purchasePrice: { type: Number, required: true },
+        },
+      ],
     },
   ],
   bookmarks: [{ name: { type: String, required: true } }],

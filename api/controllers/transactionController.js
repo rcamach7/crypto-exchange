@@ -29,7 +29,7 @@ exports.buyCryptos = [
       const totalPurchasePrice =
         cryptoToPurchase.price * Number.parseInt(req.params.quantity);
 
-      if (user.balance > totalPurchasePrice) {
+      if (user.balance >= totalPurchasePrice) {
         const newBalance = user.balance - totalPurchasePrice;
         const updatedWallet = processPortfolioPurchase(user.portfolio, {
           crypto: cryptoToPurchase,
