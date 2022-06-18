@@ -22,7 +22,17 @@ export const formatPrice: (value: number, decimalPlaces?: number) => number = (
 };
 
 export const capitalizeFirstLetter: (word: string) => string = (word) => {
-  return word.substring(0, 1).toUpperCase() + word.substring(1);
+  let capitalized = "";
+  const words = word.split(" ");
+  words.forEach((singleWord, i) => {
+    if (i > 0) {
+      capitalized += " ";
+    }
+    capitalized +=
+      singleWord.substring(0, 1).toUpperCase() + singleWord.substring(1);
+  });
+
+  return capitalized;
 };
 
 export const sortByPriceAscending: (cryptos: Crypto[]) => Crypto[] = (

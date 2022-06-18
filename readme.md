@@ -56,4 +56,3 @@ API server would need the following environment variables provided to run succes
   - full name
 - Catch any network issues and give that information to user for better User experience.
 - Have server calculate average price per coin, on any investment a user makes. We can have that number reflect on client UI, for better user experience.
-- Capitalize name function should work with one word names, AND two word names.
