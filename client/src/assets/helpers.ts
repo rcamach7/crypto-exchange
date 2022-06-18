@@ -1,6 +1,9 @@
 import { Crypto, SortFilterOptions } from "../data/models";
 
-// Will return a specific crypto when given a collection of cryptos and a name parameter
+/**
+ *  Miscellaneous helper functions
+ */
+
 export const getCrypto: (cryptos: Crypto[], name: string) => Crypto = (
   cryptos,
   name
@@ -10,6 +13,12 @@ export const getCrypto: (cryptos: Crypto[], name: string) => Crypto = (
     .indexOf(name);
 
   return cryptos[indexOfCrypto];
+};
+
+export const numberWithCommas: (number: number) => string = (number) => {
+  var parts = number.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
 };
 
 export const formatPrice: (value: number, decimalPlaces?: number) => number = (
@@ -35,6 +44,9 @@ export const capitalizeFirstLetter: (word: string) => string = (word) => {
   return capitalized;
 };
 
+/**
+ * SORTING / FILTERING HELPER FUNCTIONS
+ */
 export const sortByPriceAscending: (cryptos: Crypto[]) => Crypto[] = (
   cryptos
 ) => {
@@ -167,6 +179,10 @@ export const processFilterSortOptions: (
   return result;
 };
 
+/**
+ *  PORTFOLIO CALCULATIONS
+ */
+
 export const calculatePortfolioValue: (
   portfolio: [{ crypto: string; quantity: number; principle: number }],
   cryptos: Crypto[]
@@ -207,10 +223,4 @@ export const calculateTotalInvestmentReturn: (
     (100 * (accountValue - totalDepositValue)) / totalDepositValue;
 
   return formatPrice(accountReturn);
-};
-
-export const numberWithCommas: (number: number) => string = (number) => {
-  var parts = number.toString().split(".");
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  return parts.join(".");
 };

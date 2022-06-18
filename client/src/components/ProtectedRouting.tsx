@@ -12,7 +12,7 @@ export const ProtectedRoute = ({ token, children }: Props) => {
   return children;
 };
 
-export const OpenRoute = ({ token, children }: Props) => {
+export const OnlyUnauthenticated = ({ token, children }: Props) => {
   if (token) {
     return <Navigate to="/home" />;
   }

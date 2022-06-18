@@ -73,7 +73,7 @@ export const Welcome: React.FC = () => {
           See how far can you go!
         </p>
         <Link
-          className="actionButton animate__animated animate__swing animate__slow"
+          className="actionButton animate__animated animate__bounce animate__slow"
           to="home"
         >
           <p>Start Browsing</p>

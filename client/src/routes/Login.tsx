@@ -3,11 +3,11 @@ import { CreateAccountForm } from "../components/forms/CreateAccountForm";
 import { useState } from "react";
 import logo from "../assets/logo.png";
 
-export const LandingPage = () => {
+export const Login = () => {
   const [showCreateAccount, setShowCreateAccount] = useState<Boolean>(false);
 
   return (
-    <div className="LandingPage">
+    <div className="Login">
       <img
         src={logo}
         alt=""

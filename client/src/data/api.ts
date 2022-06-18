@@ -1,5 +1,5 @@
-import axios from "axios";
 import { User, Account, Crypto } from "./models";
+import axios from "axios";
 import config from "./config.json";
 
 export const getUser: () => Promise<User> = async () => {
@@ -17,8 +17,8 @@ export const createAccount: (account: Account) => Promise<string> = async (
 ) => {
   try {
     const { data: token } = await axios.post(`${config.api}/user/`, {
-      fullName: account.fullName,
-      username: account.username,
+      fullName: account.fullName?.toLowerCase(),
+      username: account.username.toLowerCase(),
       password: account.password,
     });
 
@@ -31,7 +31,7 @@ export const createAccount: (account: Account) => Promise<string> = async (
 export const login: (account: Account) => Promise<string> = async (account) => {
   try {
     const { data: token } = await axios.post(`${config.api}/login/`, {
-      username: account.username,
+      username: account.username.toLowerCase(),
       password: account.password,
     });
     return Promise.resolve(token.token);

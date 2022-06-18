@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
-import { LandingPage } from "./routes/LandingPage";
-import { OpenRoute } from "./components/UserRouting";
+import { Login } from "./routes/Login";
+import { OnlyUnauthenticated } from "./components/ProtectedRouting";
 import { useAuthentication } from "./hooks/useAuthentication";
 import { Home } from "./routes/Home";
 import { GlobalContext } from "./hooks/useGlobalContext";
@@ -51,9 +51,9 @@ export const RouteSwitch = () => {
             path="/crypto-exchange/login"
             element={
               // Only users who are not yet authenticated can visit this page.
-              <OpenRoute token={token}>
-                <LandingPage />
-              </OpenRoute>
+              <OnlyUnauthenticated token={token}>
+                <Login />
+              </OnlyUnauthenticated>
             }
           />
           <Route path="*" element={<Navigate to="/crypto-exchange/" />} />
