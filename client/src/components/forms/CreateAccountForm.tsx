@@ -51,9 +51,19 @@ export const CreateAccountForm: React.FC<Props> = ({
         window.location.reload();
       }
     } catch (error) {
+      if (error instanceof Error) {
+        if (error.message.includes("404")) {
+          alert(
+            "Error communicating with server! If error persists, please reach out at contact@ricardo-camacho.dev"
+          );
+        } else {
+          setTakenUsername({
+            helperText: "Username taken already",
+            error: true,
+          });
+        }
+      }
       togglePageLoading();
-      console.log(error);
-      setTakenUsername({ helperText: "Username taken already", error: true });
     }
   };
 

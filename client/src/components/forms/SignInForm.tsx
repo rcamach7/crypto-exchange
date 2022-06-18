@@ -41,12 +41,21 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
       setToken(token);
       navigate("/crypto-exchange/home");
       togglePageLoading();
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        if (error.message.includes("404")) {
+          setPopulateErrors({
+            error: true,
+            helperText: "Error communicating with server",
+          });
+        } else {
+          setPopulateErrors({
+            error: true,
+            helperText: "Incorrect email or password",
+          });
+        }
+      }
       togglePageLoading();
-      setPopulateErrors({
-        error: true,
-        helperText: "Incorrect email or password",
-      });
     }
   };
 

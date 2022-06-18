@@ -11,6 +11,9 @@ export const useFetchPosts = () => {
         const cryptos = await getCryptos();
         setCryptos(cryptos);
       } catch (error) {
+        alert(
+          "Error communicating with server! If error persists, please reach out at contact@ricardo-camacho.dev"
+        );
         console.log(error);
       }
     };
