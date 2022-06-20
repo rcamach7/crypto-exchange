@@ -42,6 +42,7 @@ export const Navbar = () => {
     setToken(null);
     setUser(null);
     handleCloseUserMenu();
+    window.location.reload();
   };
 
   return (
