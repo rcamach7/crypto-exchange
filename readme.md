@@ -2,13 +2,13 @@
 
 Full stack Crypto Exchange that lets you practice cryptocurrency trading with fake money!
 
-![project_demo](crypto_demo.gif)
-
 <div align="center">
 
 [Visit Crypto Exchange](https://rcamach7.github.io/crypto-exchange/#/)
 
 </div>
+
+![project_demo](crypto_demo.gif)
 
 ## Key Features
 
@@ -54,5 +54,4 @@ API server would need the following environment variables provided to run succes
 - Add ability for user to update:
   - profile picture
   - full name
-- Have server calculate average price per coin, on any investment a user makes. We can have that number reflect on client UI, for better user experience.
 - Add a info button next to the refresh and bookmark option, with a pop up modal that provides description of the crypto.
