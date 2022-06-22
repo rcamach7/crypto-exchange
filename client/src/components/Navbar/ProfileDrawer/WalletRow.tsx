@@ -19,7 +19,7 @@ import {
   formatPrice,
   numberWithCommas,
   calculateAveragePurchasePrice,
-} from "../../../assets/helpers";
+} from "../../../data/helpers";
 import { SellCryptoModal } from "./SellCryptoModal";
 
 interface RowType {

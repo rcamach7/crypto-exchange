@@ -14,7 +14,7 @@ import {
   capitalizeFirstLetter,
   formatPrice,
   numberWithCommas,
-} from "../../assets/helpers";
+} from "../../data/helpers";
 import { Crypto, Error, User } from "../../data/models";
 import { sellCrypto } from "../../data/api";
 

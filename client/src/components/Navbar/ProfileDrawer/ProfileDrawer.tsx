@@ -17,7 +17,7 @@ import {
   calculateTotalValue,
   calculateTotalInvestmentReturn,
   numberWithCommas,
-} from "../../../assets/helpers";
+} from "../../../data/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";

@@ -2,7 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../hooks/useGlobalContext";
 import { CryptoCard } from "../components/Home/CryptoCard";
 import { Crypto, SortFilterOptions } from "../data/models";
-import { processFilterSortOptions } from "../assets/helpers";
+import { processFilterSortOptions } from "../data/helpers";
 import { SortFilterBar } from "../components/Home/SortFilterBar";
 import { updateSingleCrypto } from "../data/api";
 

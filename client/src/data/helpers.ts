@@ -1,4 +1,4 @@
-import { Crypto, SortFilterOptions } from "../data/models";
+import { Crypto, SortFilterOptions } from "./models";
 
 /**
  *  Miscellaneous helper functions
