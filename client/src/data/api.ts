@@ -1,8 +1,15 @@
-import { User, Account, Crypto } from "./models";
+import {
+  UserPromiseFunction,
+  AccessAccountFunction,
+  UpdateCryptoFunction,
+  ModifyCryptoFunction,
+  bookmarkCryptoFunction,
+  GetCryptoFunction,
+} from "./api.models";
 import axios from "axios";
 import config from "./config.json";
 
-export const getUser: () => Promise<User> = async () => {
+export const getUser: UserPromiseFunction = async () => {
   try {
     const response = await axios.get(`${config.api}/user/`);
 
@@ -12,9 +19,7 @@ export const getUser: () => Promise<User> = async () => {
   }
 };
 
-export const createAccount: (account: Account) => Promise<string> = async (
-  account
-) => {
+export const createAccount: AccessAccountFunction = async (account) => {
   try {
     const { data: token } = await axios.post(`${config.api}/user/`, {
       fullName: account.fullName?.toLowerCase(),
@@ -28,7 +33,7 @@ export const createAccount: (account: Account) => Promise<string> = async (
   }
 };
 
-export const login: (account: Account) => Promise<string> = async (account) => {
+export const login: AccessAccountFunction = async (account) => {
   try {
     const { data: token } = await axios.post(`${config.api}/login/`, {
       username: account.username.toLowerCase(),
@@ -40,7 +45,7 @@ export const login: (account: Account) => Promise<string> = async (account) => {
   }
 };
 
-export const getCryptos: () => Promise<Crypto[]> = async () => {
+export const getCryptos: GetCryptoFunction = async () => {
   try {
     const response = await axios.get(`${config.api}/cryptos/`);
 
@@ -50,9 +55,7 @@ export const getCryptos: () => Promise<Crypto[]> = async () => {
   }
 };
 
-export const updateSingleCrypto: (name: string) => Promise<Crypto> = async (
-  name: string
-) => {
+export const updateSingleCrypto: UpdateCryptoFunction = async (name) => {
   try {
     const response = await axios.get(`${config.api}/cryptos/${name}`);
     return Promise.resolve(response.data.crypto);
@@ -61,10 +64,7 @@ export const updateSingleCrypto: (name: string) => Promise<Crypto> = async (
   }
 };
 
-export const purchaseCrypto: (
-  name: string,
-  quantity: number
-) => Promise<User> = async (name, quantity) => {
+export const purchaseCrypto: ModifyCryptoFunction = async (name, quantity) => {
   try {
     const response = await axios.post(
       `${config.api}/transactions/buy/${name}&${quantity}`
@@ -76,10 +76,7 @@ export const purchaseCrypto: (
   }
 };
 
-export const sellCrypto: (
-  name: string,
-  quantity: number
-) => Promise<User> = async (name, quantity) => {
+export const sellCrypto: ModifyCryptoFunction = async (name, quantity) => {
   try {
     const response = await axios.post(
       `${config.api}/transactions/sell/${name}&${quantity}`
@@ -90,7 +87,7 @@ export const sellCrypto: (
   }
 };
 
-export const bookmarkCrypto: (name: string) => Promise<User> = async (name) => {
+export const bookmarkCrypto: bookmarkCryptoFunction = async (name) => {
   try {
     const response = await axios.put(`${config.api}/user/bookmark/${name}`);
 
