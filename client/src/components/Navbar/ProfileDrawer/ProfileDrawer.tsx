@@ -8,7 +8,7 @@ import {
   Chip,
   Typography,
 } from "@mui/material/";
-import { useGlobalContext } from "../../../hooks/useGlobalContext";
+import { useGlobalContext } from "../../../context/GlobalCryptoContext";
 import { CryptoWallet } from "./CryptoWallet";
 import {
   formatPrice,

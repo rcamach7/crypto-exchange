@@ -2,7 +2,7 @@ import React from "react";
 import { Box, TextField, Button } from "@mui/material/";
 import { Account } from "../../data/models";
 import { createAccount } from "../../data/api";
-import { useGlobalContext } from "../../hooks/useGlobalContext";
+import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import { SubmissionError } from "../../data/models";
 
 interface Props {

@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
-import { useGlobalContext } from "../../hooks/useGlobalContext";
+import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import {
   capitalizeFirstLetter,

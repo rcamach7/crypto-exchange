@@ -7,7 +7,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material/";
-import { useGlobalContext } from "../../../hooks/useGlobalContext";
+import { useGlobalContext } from "../../../context/GlobalCryptoContext";
 import { WalletRow } from "./WalletRow";
 import { getCrypto } from "../../../data/helpers";
 

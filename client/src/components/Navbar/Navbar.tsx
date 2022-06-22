@@ -11,7 +11,7 @@ import {
   Tooltip,
   MenuItem,
 } from "@mui/material/";
-import { useGlobalContext } from "../../hooks/useGlobalContext";
+import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import { Link } from "react-router-dom";
 import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
 import logo from "../../assets/logo.png";

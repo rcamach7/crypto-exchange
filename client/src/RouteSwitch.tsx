@@ -1,4 +1,3 @@
-import React from "react";
 import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
 import { Login } from "./routes/Login";
 import { OnlyUnauthenticated } from "./components/ProtectedRouting";
