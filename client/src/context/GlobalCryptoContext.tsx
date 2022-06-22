@@ -1,11 +1,17 @@
-import { useContext, createContext, useState, ReactNode } from "react";
+import { useContext, createContext, useState } from "react";
 import { ConfirmationBanner } from "../components/ConfirmationBanner";
 import { LoadingUx } from "../components/LoadingUx";
-import { ContextInterface, BannerMessage } from "../data/models";
+import {
+  ContextInterface,
+  BannerMessage,
+  ConfirmationMessageFunction,
+  ContextProviderComponent,
+} from "./GlobalCryptoContext.models";
 import { useAuthentication } from "../hooks/useAuthentication";
 import { useFetchPosts } from "../hooks/useFetchPosts";
 
-export const CryptoContext = createContext<ContextInterface | null>(null);
+// Create context, and export custom hook that can extract our context values in different components.
+const CryptoContext = createContext<ContextInterface | null>(null);
 export const useGlobalContext = () => {
   const userContext = useContext(CryptoContext);
 
@@ -14,7 +20,10 @@ export const useGlobalContext = () => {
   return userContext;
 };
 
-export const GlobalCryptoProvider = ({ children }: { children: ReactNode }) => {
+// Define our context provider, and all then values it will provide.
+export const GlobalCryptoProvider: ContextProviderComponent = ({
+  children,
+}) => {
   const [user, setUser, token, setToken] = useAuthentication();
   const [cryptos, setCryptos] = useFetchPosts();
   const [pageLoading, setPageLoading] = useState<boolean>(false);
@@ -23,8 +32,8 @@ export const GlobalCryptoProvider = ({ children }: { children: ReactNode }) => {
 
   const togglePageLoading = () => setPageLoading((prevState) => !prevState);
 
-  const handleConfirmationMessage: (message: string) => void = (message) => {
-    setShowConfirmationBanner({ show: true, message: message });
+  const handleConfirmationMessage: ConfirmationMessageFunction = (message) => {
+    setShowConfirmationBanner({ show: true, message });
 
     setTimeout(function () {
       setShowConfirmationBanner({ show: false, message: "" });
@@ -44,11 +53,13 @@ export const GlobalCryptoProvider = ({ children }: { children: ReactNode }) => {
         handleConfirmationMessage,
       }}
     >
+      {/* Will populate all nested children components */}
       {children}
-      {pageLoading ? <LoadingUx /> : null}
-      {showConfirmationBanner.show ? (
+      {/* Used to overlay site with a loading UI, or a confirmation banner.*/}
+      {pageLoading && <LoadingUx />}
+      {showConfirmationBanner.show && (
         <ConfirmationBanner message={showConfirmationBanner.message} />
-      ) : null}
+      )}
     </CryptoContext.Provider>
   );
 };

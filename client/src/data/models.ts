@@ -15,29 +15,6 @@ export interface User {
   bookmarks: [];
 }
 
-export interface ContextInterface {
-  cryptos: Crypto[];
-  setCryptos: React.Dispatch<React.SetStateAction<Crypto[]>>;
-  user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
-  token: string | null;
-  setToken: React.Dispatch<React.SetStateAction<string | null>>;
-  togglePageLoading: () => void;
-  handleConfirmationMessage: (message: string) => void;
-}
-
-export interface SubmissionError {
-  error?: any;
-  helperText?: string;
-}
-
-export interface Account {
-  username: string;
-  password: string;
-  fullName?: string;
-  confirmedPassword?: string;
-}
-
 export interface Crypto {
   name: string;
   ticker: string;
@@ -51,21 +28,29 @@ export interface Crypto {
   };
 }
 
+export interface Account {
+  username: string;
+  password: string;
+  fullName?: string;
+  confirmedPassword?: string;
+}
+
 export interface CryptoWrapper {
   itemList: Crypto[];
-}
-
-export interface Error {
-  exists: Boolean;
-  message?: String;
-}
-
-export interface BannerMessage {
-  show: boolean;
-  message?: string;
 }
 
 export interface SortFilterOptions {
   sort: "popular" | "price-ascending" | "price-descending";
   filter: "none" | "owned" | "bookmarked";
+}
+
+// Error Handling
+export interface Error {
+  exists: Boolean;
+  message?: String;
+}
+
+export interface SubmissionError {
+  error?: any;
+  helperText?: string;
 }
