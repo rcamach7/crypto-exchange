@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, TextField, Avatar, Alert, Typography } from "@mui/material/";
 import { Crypto } from "../../data/models";
-import { useGlobalContext } from "../../hooks/useGlobalContext";
+import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import {
   capitalizeFirstLetter,
   formatPrice,

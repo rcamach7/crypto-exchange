@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, TextField, Button } from "@mui/material/";
 import { SubmissionError, Account } from "../../data/models";
 import { login } from "../../data/api";
-import { useGlobalContext } from "../../hooks/useGlobalContext";
+import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import { useNavigate } from "react-router-dom";
 
 interface Props {
