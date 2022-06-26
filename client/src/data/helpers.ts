@@ -179,6 +179,25 @@ export const processFilterSortOptions: (
   return result;
 };
 
+export const replaceUpdatedCrypto: (
+  cryptos: Crypto[],
+  crypto: Crypto
+) => Crypto[] = (cryptos, crypto) => {
+  const cryptosCopy = [...cryptos];
+  let indexOfOldCrypto = -1;
+
+  cryptosCopy.forEach((curCrypto, i) => {
+    if (curCrypto.name === crypto.name) {
+      indexOfOldCrypto = i;
+    }
+  });
+  if (indexOfOldCrypto > -1) {
+    cryptosCopy[indexOfOldCrypto] = crypto;
+  }
+
+  return cryptosCopy;
+};
+
 /**
  *  PORTFOLIO CALCULATIONS
  */

@@ -2,7 +2,10 @@ import React from "react";
 import { useGlobalContext } from "../context/GlobalCryptoContext";
 import { CryptoCard } from "../components/Home/CryptoCard";
 import { Crypto, SortFilterOptions } from "../data/models";
-import { processFilterSortOptions } from "../data/helpers";
+import {
+  processFilterSortOptions,
+  replaceUpdatedCrypto,
+} from "../data/helpers";
 import { SortFilterBar } from "../components/Home/SortFilterBar";
 import { updateSingleCrypto } from "../data/api";
 
@@ -44,18 +47,7 @@ export const Home = () => {
     try {
       const updatedCrypto = await updateSingleCrypto(name);
       setOrganizedCryptos((prevState) => {
-        const cryptosCopy = [...prevState];
-        let indexOfOldCrypto = -1;
-        cryptosCopy.forEach((crypto, i) => {
-          if (crypto.name === updatedCrypto.name) {
-            indexOfOldCrypto = i;
-          }
-        });
-        if (indexOfOldCrypto > -1) {
-          cryptosCopy[indexOfOldCrypto] = updatedCrypto;
-        }
-
-        return cryptosCopy;
+        return replaceUpdatedCrypto(prevState, updatedCrypto);
       });
       togglePageLoading();
     } catch (error) {

@@ -12,7 +12,7 @@ export const useFetchPosts = () => {
         setCryptos(cryptos);
       } catch (error) {
         alert(
-          "Error communicating with server! If error persists, please reach out at contact@ricardo-camacho.dev"
+          "Error communicating with server! If error persists, please reach out to contact@ricardo-camacho.dev"
         );
         console.log(error);
       }

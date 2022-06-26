@@ -3,7 +3,7 @@ import axios from "axios";
 import { User } from "../data/models";
 import { getUser } from "../data/api";
 
-export const useAuthentication = () => {
+export const useUserAuth = () => {
   const [token, setToken] = useState<string | null>(
     localStorage.getItem("token")
   );

@@ -7,7 +7,7 @@ import {
   ConfirmationMessageFunction,
   ContextProviderComponent,
 } from "./GlobalCryptoContext.models";
-import { useAuthentication } from "../hooks/useAuthentication";
+import { useUserAuth } from "../hooks/useUserAuth";
 import { useFetchPosts } from "../hooks/useFetchPosts";
 
 // Create context, and export custom hook that can extract our context values in different components.
@@ -24,7 +24,7 @@ export const useGlobalContext = () => {
 export const GlobalCryptoProvider: ContextProviderComponent = ({
   children,
 }) => {
-  const [user, setUser, token, setToken] = useAuthentication();
+  const [user, setUser, token, setToken] = useUserAuth();
   const [cryptos, setCryptos] = useFetchPosts();
   const [pageLoading, setPageLoading] = useState<boolean>(false);
   const [showConfirmationBanner, setShowConfirmationBanner] =
