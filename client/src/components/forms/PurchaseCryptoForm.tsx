@@ -42,7 +42,7 @@ export const PurchaseCryptoForm: React.FC<Props> = ({
         togglePageLoading();
         handleConfirmationMessage(
           `Purchased ${quantity} ${crypto.ticker.toUpperCase()} coin${
-            quantity > 1 ? "s" : null
+            quantity > 1 ? "s" : ""
           }`
         );
         handleClose();

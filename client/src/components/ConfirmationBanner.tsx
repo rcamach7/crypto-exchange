@@ -17,7 +17,7 @@ export const ConfirmationBanner: React.FC<Props> = ({ message }) => {
   return (
     <Snackbar open={true}>
       <Alert severity="success" sx={{ width: "100%" }}>
-        {message ? message : "Request Precessed Successfully"}
+        {message ? message : "Request Processed Successfully"}
       </Alert>
     </Snackbar>
   );
