@@ -1,13 +1,25 @@
-import { Crypto, SortFilterOptions } from "./models";
+import { Crypto } from "./models";
+import {
+  GetCrypto,
+  NumberWithCommas,
+  FormatPrice,
+  CapitalizeFirstLetter,
+  SortFunction,
+  FilterByOwned,
+  FilterByBookmarked,
+  ProcessFilterSortOptions,
+  ReplaceUpdatedCrypto,
+  CalculatePortfolioValue,
+  CalculateTotalValue,
+  CalculateTotalInvestmentReturn,
+  CalculateAveragePurchasePrice,
+} from "./helpers.models";
 
 /**
  *  Miscellaneous helper functions
  */
 
-export const getCrypto: (cryptos: Crypto[], name: string) => Crypto = (
-  cryptos,
-  name
-) => {
+export const getCrypto: GetCrypto = (cryptos, name) => {
   const indexOfCrypto: number = cryptos
     .map((crypto) => crypto.name)
     .indexOf(name);
@@ -15,22 +27,19 @@ export const getCrypto: (cryptos: Crypto[], name: string) => Crypto = (
   return cryptos[indexOfCrypto];
 };
 
-export const numberWithCommas: (number: number) => string = (number) => {
-  var parts = number.toString().split(".");
+export const numberWithCommas: NumberWithCommas = (number) => {
+  const parts = number.toString().split(".");
   parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return parts.join(".");
 };
 
-export const formatPrice: (value: number, decimalPlaces?: number) => number = (
-  value,
-  decimalPlaces
-) => {
+export const formatPrice: FormatPrice = (value, decimalPlaces) => {
   return Number.parseFloat(
     (Math.round(value * 1000) / 1000).toFixed(decimalPlaces ? decimalPlaces : 3)
   );
 };
 
-export const capitalizeFirstLetter: (word: string) => string = (word) => {
+export const capitalizeFirstLetter: CapitalizeFirstLetter = (word) => {
   let capitalized = "";
   const words = word.split(" ");
   words.forEach((singleWord, i) => {
@@ -47,9 +56,7 @@ export const capitalizeFirstLetter: (word: string) => string = (word) => {
 /**
  * SORTING / FILTERING HELPER FUNCTIONS
  */
-export const sortByPriceAscending: (cryptos: Crypto[]) => Crypto[] = (
-  cryptos
-) => {
+export const sortByPriceAscending: SortFunction = (cryptos) => {
   const sortedByPrice = [...cryptos];
   sortedByPrice.sort((a, b) => {
     if (a.price < b.price) {
@@ -63,9 +70,7 @@ export const sortByPriceAscending: (cryptos: Crypto[]) => Crypto[] = (
   return sortedByPrice;
 };
 
-export const sortByPriceDescending: (cryptos: Crypto[]) => Crypto[] = (
-  cryptos
-) => {
+export const sortByPriceDescending: SortFunction = (cryptos) => {
   const sortedByPrice = [...cryptos];
   sortedByPrice.sort((a, b) => {
     if (a.price < b.price) {
@@ -79,18 +84,7 @@ export const sortByPriceDescending: (cryptos: Crypto[]) => Crypto[] = (
   return sortedByPrice;
 };
 
-export const filterByOwned: (
-  cryptos: Crypto[],
-  owned:
-    | [
-        {
-          crypto: string;
-          quantity: number;
-          principle: number;
-        }
-      ]
-    | []
-) => Crypto[] = (cryptos, owned) => {
+export const filterByOwned: FilterByOwned = (cryptos, owned) => {
   // Get collection of just the names to simplify operations later.
   const ownedNames = owned.map(({ crypto }) => crypto);
   const result = cryptos.filter((curCrypto) => {
@@ -108,16 +102,7 @@ export const filterByOwned: (
   return result;
 };
 
-export const filterByBookmarked: (
-  cryptos: Crypto[],
-  bookmarks:
-    | [
-        {
-          name: string;
-        }
-      ]
-    | []
-) => Crypto[] = (cryptos, bookmarks) => {
+export const filterByBookmarked: FilterByBookmarked = (cryptos, bookmarks) => {
   // Get collection of just the names to simplify operations later.
   const bookmarkedNames = bookmarks.map(({ name }) => name);
 
@@ -136,20 +121,12 @@ export const filterByBookmarked: (
   return result;
 };
 
-export const processFilterSortOptions: (
-  cryptos: Crypto[],
-  settings: SortFilterOptions,
-  owned:
-    | [
-        {
-          crypto: string;
-          quantity: number;
-          principle: number;
-        }
-      ]
-    | [],
-  bookmarks: [{ name: string }] | []
-) => Crypto[] = (cryptos, settings, owned, bookmarks) => {
+export const processFilterSortOptions: ProcessFilterSortOptions = (
+  cryptos,
+  settings,
+  owned,
+  bookmarks
+) => {
   let result: Crypto[] = [...cryptos];
 
   // First Apply Filter
@@ -179,10 +156,7 @@ export const processFilterSortOptions: (
   return result;
 };
 
-export const replaceUpdatedCrypto: (
-  cryptos: Crypto[],
-  crypto: Crypto
-) => Crypto[] = (cryptos, crypto) => {
+export const replaceUpdatedCrypto: ReplaceUpdatedCrypto = (cryptos, crypto) => {
   const cryptosCopy = [...cryptos];
   let indexOfOldCrypto = -1;
 
@@ -202,10 +176,10 @@ export const replaceUpdatedCrypto: (
  *  PORTFOLIO CALCULATIONS
  */
 
-export const calculatePortfolioValue: (
-  portfolio: [{ crypto: string; quantity: number; principle: number }],
-  cryptos: Crypto[]
-) => number = (portfolio, cryptos) => {
+export const calculatePortfolioValue: CalculatePortfolioValue = (
+  portfolio,
+  cryptos
+) => {
   let totalValue = 0;
 
   portfolio.forEach((investment) => {
@@ -219,20 +193,20 @@ export const calculatePortfolioValue: (
   return formatPrice(totalValue);
 };
 
-export const calculateTotalValue: (
-  portfolio: [{ crypto: string; quantity: number; principle: number }],
-  cryptos: Crypto[],
-  balance: number
-) => number = (portfolio, cryptos, balance) => {
+export const calculateTotalValue: CalculateTotalValue = (
+  portfolio,
+  cryptos,
+  balance
+) => {
   let portfolioValue = calculatePortfolioValue(portfolio, cryptos);
 
   return formatPrice(portfolioValue + balance);
 };
 
-export const calculateTotalInvestmentReturn: (
-  accountValue: number,
-  deposits: [{ date: Date; amount: number }] | []
-) => number = (accountValue, deposits) => {
+export const calculateTotalInvestmentReturn: CalculateTotalInvestmentReturn = (
+  accountValue,
+  deposits
+) => {
   let totalDepositValue = 0;
   deposits.forEach((deposit) => {
     totalDepositValue += deposit.amount;
@@ -244,9 +218,9 @@ export const calculateTotalInvestmentReturn: (
   return formatPrice(accountReturn);
 };
 
-export const calculateAveragePurchasePrice: (
-  transactions: [{ quantity: number; purchasePrice: number }]
-) => number = (transactions) => {
+export const calculateAveragePurchasePrice: CalculateAveragePurchasePrice = (
+  transactions
+) => {
   let totalPrice = 0;
   let totalQuantity = 0;
 

@@ -2,6 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../context/GlobalCryptoContext";
 import { CryptoCard } from "../components/Home/CryptoCard";
 import { Crypto, SortFilterOptions } from "../data/models";
+import { useState, useEffect } from "react";
 import {
   processFilterSortOptions,
   replaceUpdatedCrypto,
@@ -11,16 +12,17 @@ import { updateSingleCrypto } from "../data/api";
 
 export const Home = () => {
   const { cryptos, user, togglePageLoading, setUser } = useGlobalContext();
-  const [organizedCryptos, setOrganizedCryptos] = React.useState<Crypto[]>([]);
-  const [sortFilterOptions, setSortFilterOptions] =
-    React.useState<SortFilterOptions>({ sort: "popular", filter: "none" });
+  const [organizedCryptos, setOrganizedCryptos] = useState<Crypto[]>([]);
+  const [sortFilterOptions, setSortFilterOptions] = useState<SortFilterOptions>(
+    { sort: "popular", filter: "none" }
+  );
 
-  React.useEffect(() => {
+  useEffect(() => {
     togglePageLoading();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  React.useEffect(() => {
+  useEffect(() => {
     if (cryptos.length) {
       togglePageLoading();
       setOrganizedCryptos(cryptos);
@@ -29,7 +31,7 @@ export const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cryptos]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setOrganizedCryptos(
       processFilterSortOptions(
         cryptos,
