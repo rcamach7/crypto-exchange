@@ -1,4 +1,3 @@
-import React from "react";
 import { useGlobalContext } from "../context/GlobalCryptoContext";
 import { CryptoCard } from "../components/Home/CryptoCard";
 import { Crypto, SortFilterOptions } from "../data/global.models";
@@ -27,7 +26,6 @@ export const Home = () => {
       togglePageLoading();
       setOrganizedCryptos(cryptos);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cryptos]);
 

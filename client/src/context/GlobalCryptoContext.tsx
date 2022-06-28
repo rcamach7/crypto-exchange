@@ -25,7 +25,7 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
   children,
 }) => {
   const [user, setUser, token, setToken] = useUserAuth();
-  const [cryptos, setCryptos] = useFetchPosts();
+  const [cryptos, setCryptos, serverOffline] = useFetchPosts();
   const [pageLoading, setPageLoading] = useState<boolean>(false);
   const [showPopupBanner, setShowPopupBanner] = useState<BannerMessage>({
     show: false,
@@ -62,6 +62,12 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
         <PopupBanner
           message={showPopupBanner.message}
           type={showPopupBanner.type}
+        />
+      )}
+      {serverOffline && (
+        <PopupBanner
+          message={"Unable to connect to server - try again later."}
+          type={"error"}
         />
       )}
     </CryptoContext.Provider>

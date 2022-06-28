@@ -30,8 +30,6 @@ export const useUserAuth = () => {
         const user = await getUser();
         setUser(user);
       } catch (error) {
-        // Token has expired;
-        console.log("token expired or invalid");
         localStorage.removeItem("token");
         setUser(null);
         setToken(null);

@@ -12,7 +12,7 @@ interface Props {
 export const CreateAccountForm: React.FC<Props> = ({
   setShowCreateAccount,
 }) => {
-  const { togglePageLoading } = useGlobalContext();
+  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
   const [account, setAccount] = React.useState<Account>({
     username: "",
     password: "",
@@ -53,9 +53,7 @@ export const CreateAccountForm: React.FC<Props> = ({
     } catch (error) {
       if (error instanceof Error) {
         if (error.message.includes("404")) {
-          alert(
-            "Error communicating with server! If error persists, please reach out at contact@ricardo-camacho.dev"
-          );
+          handleBannerMessage("error", "Error communicating with server!");
         } else {
           setTakenUsername({
             helperText: "Username taken already",

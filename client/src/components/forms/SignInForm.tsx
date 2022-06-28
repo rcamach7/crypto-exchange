@@ -10,7 +10,8 @@ interface Props {
 }
 
 export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
-  const { togglePageLoading, setToken } = useGlobalContext();
+  const { togglePageLoading, setToken, handleBannerMessage } =
+    useGlobalContext();
   const [account, setAccount] = useState<Account>({
     username: "",
     password: "",
@@ -33,6 +34,7 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
   ) => {
     event.preventDefault();
     togglePageLoading();
+
     try {
       const token: string = await login(
         test ? { username: "odin", password: "odin" } : account
@@ -44,10 +46,7 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
     } catch (error: unknown) {
       if (error instanceof Error) {
         if (error.message.includes("404")) {
-          setPopulateErrors({
-            error: true,
-            helperText: "Error communicating with server",
-          });
+          handleBannerMessage("error", "Error communicating with server");
         } else {
           setPopulateErrors({
             error: true,
