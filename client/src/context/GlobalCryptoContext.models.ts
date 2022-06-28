@@ -9,15 +9,19 @@ export interface ContextInterface {
   token: string | null;
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
   togglePageLoading: () => void;
-  handleConfirmationMessage: (message: string) => void;
+  handleBannerMessage: (type: "success" | "error", message: string) => void;
 }
 
 export interface BannerMessage {
+  type?: "success" | "error";
   show: boolean;
   message?: string;
 }
 
-export type ConfirmationMessageFunction = (message: string) => void;
+export type BannerMessageFunction = (
+  type: "success" | "error",
+  message: string
+) => void;
 
 export type ContextProviderComponent = ({
   children,

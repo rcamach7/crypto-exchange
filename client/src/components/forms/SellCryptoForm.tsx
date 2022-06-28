@@ -29,7 +29,7 @@ export const SellCryptoForm: React.FC<Props> = ({
   handleClose,
   walletQuantity,
 }) => {
-  const { setUser, togglePageLoading, handleConfirmationMessage } =
+  const { setUser, togglePageLoading, handleBannerMessage } =
     useGlobalContext();
   const [checked, setChecked] = React.useState<boolean>(false);
   const [quantity, setQuantity] = React.useState<number>(0);
@@ -48,7 +48,8 @@ export const SellCryptoForm: React.FC<Props> = ({
         setUser(user);
 
         togglePageLoading();
-        handleConfirmationMessage(
+        handleBannerMessage(
+          "success",
           `Sold ${quantity} ${crypto.ticker.toUpperCase()} coin${
             quantity > 1 ? "s" : null
           }`

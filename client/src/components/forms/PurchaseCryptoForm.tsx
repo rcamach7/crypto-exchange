@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
-  const { user, setUser, togglePageLoading, handleConfirmationMessage } =
+  const { user, setUser, togglePageLoading, handleBannerMessage } =
     useGlobalContext();
   const [quantity, setQuantity] = useState<number>(0);
   const [error, setError] = useState<Error>({ exists: false });
@@ -37,7 +37,8 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
         setUser(user);
 
         togglePageLoading();
-        handleConfirmationMessage(
+        handleBannerMessage(
+          "success",
           `Purchased ${quantity} ${crypto.ticker.toUpperCase()} coin${
             quantity > 1 ? "s" : ""
           }`

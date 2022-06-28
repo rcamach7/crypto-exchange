@@ -1,10 +1,10 @@
 import { useContext, createContext, useState } from "react";
-import { ConfirmationBanner } from "../components/ConfirmationBanner";
+import { PopupBanner } from "../components/PopupBanner";
 import { LoadingUx } from "../components/LoadingUx";
 import {
   ContextInterface,
   BannerMessage,
-  ConfirmationMessageFunction,
+  BannerMessageFunction,
   ContextProviderComponent,
 } from "./GlobalCryptoContext.models";
 import { useUserAuth } from "../hooks/useUserAuth";
@@ -27,16 +27,17 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
   const [user, setUser, token, setToken] = useUserAuth();
   const [cryptos, setCryptos] = useFetchPosts();
   const [pageLoading, setPageLoading] = useState<boolean>(false);
-  const [showConfirmationBanner, setShowConfirmationBanner] =
-    useState<BannerMessage>({ show: false });
+  const [showPopupBanner, setShowPopupBanner] = useState<BannerMessage>({
+    show: false,
+  });
 
   const togglePageLoading = () => setPageLoading((prevState) => !prevState);
 
-  const handleConfirmationMessage: ConfirmationMessageFunction = (message) => {
-    setShowConfirmationBanner({ show: true, message });
+  const handleBannerMessage: BannerMessageFunction = (type, message) => {
+    setShowPopupBanner({ show: true, message, type });
 
     setTimeout(function () {
-      setShowConfirmationBanner({ show: false, message: "" });
+      setShowPopupBanner({ show: false, message: "" });
     }, 5000);
   };
 
@@ -50,15 +51,18 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
         token,
         setToken,
         togglePageLoading,
-        handleConfirmationMessage,
+        handleBannerMessage,
       }}
     >
       {/* Will populate all nested children components */}
       {children}
       {/* Used to overlay site with a loading UI, or a confirmation banner.*/}
       {pageLoading && <LoadingUx />}
-      {showConfirmationBanner.show && (
-        <ConfirmationBanner message={showConfirmationBanner.message} />
+      {showPopupBanner.show && (
+        <PopupBanner
+          message={showPopupBanner.message}
+          type={showPopupBanner.type}
+        />
       )}
     </CryptoContext.Provider>
   );
