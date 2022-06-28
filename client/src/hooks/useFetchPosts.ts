@@ -1,6 +1,6 @@
 import React from "react";
 import { getCryptos } from "../data/api";
-import { Crypto } from "../data/models";
+import { Crypto } from "../data/global.models";
 
 export const useFetchPosts = () => {
   const [cryptos, setCryptos] = React.useState<Crypto[]>([]);

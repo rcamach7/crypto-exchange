@@ -1,6 +1,6 @@
-import React from "react";
+import { useState, SyntheticEvent, FC } from "react";
 import { Button, TextField, Avatar, Alert, Typography } from "@mui/material/";
-import { Crypto } from "../../data/models";
+import { Crypto } from "../../data/global.models";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import {
   capitalizeFirstLetter,
@@ -9,23 +9,20 @@ import {
 } from "../../data/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { purchaseCrypto } from "../../data/api";
-import { User, Error } from "../../data/models";
+import { User, Error } from "../../data/global.models";
 
 interface Props {
   crypto: Crypto;
   handleClose: () => void;
 }
 
-export const PurchaseCryptoForm: React.FC<Props> = ({
-  crypto,
-  handleClose,
-}) => {
+export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
   const { user, setUser, togglePageLoading, handleConfirmationMessage } =
     useGlobalContext();
-  const [quantity, setQuantity] = React.useState<number>(0);
-  const [error, setError] = React.useState<Error>({ exists: false });
+  const [quantity, setQuantity] = useState<number>(0);
+  const [error, setError] = useState<Error>({ exists: false });
 
-  const handlePurchase = async (event: React.SyntheticEvent) => {
+  const handlePurchase = async (event: SyntheticEvent) => {
     event.preventDefault();
     togglePageLoading();
     if (quantity === 0) {

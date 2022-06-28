@@ -2,7 +2,7 @@ import React from "react";
 import { FormControl, InputLabel } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import styled from "styled-components";
-import { SortFilterOptions } from "../../data/models";
+import { SortFilterOptions } from "../../data/global.models";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const FilterWrapper = styled.div`

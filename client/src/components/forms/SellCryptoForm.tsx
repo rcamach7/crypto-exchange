@@ -15,7 +15,7 @@ import {
   formatPrice,
   numberWithCommas,
 } from "../../data/helpers";
-import { Crypto, Error, User } from "../../data/models";
+import { Crypto, Error, User } from "../../data/global.models";
 import { sellCrypto } from "../../data/api";
 
 interface Props {

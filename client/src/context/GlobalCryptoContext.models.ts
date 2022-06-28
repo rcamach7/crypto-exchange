@@ -1,4 +1,4 @@
-import { Crypto, User } from "../data/models";
+import { Crypto, User } from "../data/global.models";
 import { ReactNode } from "react";
 
 export interface ContextInterface {

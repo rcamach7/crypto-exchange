@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, TextField, Button } from "@mui/material/";
-import { SubmissionError, Account } from "../../data/models";
+import { SubmissionError, Account } from "../../data/global.models";
 import { login } from "../../data/api";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import { useNavigate } from "react-router-dom";

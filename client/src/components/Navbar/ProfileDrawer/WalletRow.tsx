@@ -14,7 +14,7 @@ import {
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import { Crypto } from "../../../data/models";
+import { Crypto } from "../../../data/global.models";
 import {
   formatPrice,
   numberWithCommas,

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { User } from "../data/models";
+import { User } from "../data/global.models";
 import { getUser } from "../data/api";
 
 export const useUserAuth = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Crypto, User } from "../../data/models";
+import { Crypto, User } from "../../data/global.models";
 import {
   Box,
   Card,

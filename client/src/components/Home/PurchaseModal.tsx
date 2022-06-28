@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Button, Modal } from "@mui/material/";
-import { Crypto } from "../../data/models";
+import { Crypto } from "../../data/global.models";
 import { PurchaseCryptoForm } from "../forms/PurchaseCryptoForm";
 
 const style = {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useGlobalContext } from "../context/GlobalCryptoContext";
 import { CryptoCard } from "../components/Home/CryptoCard";
-import { Crypto, SortFilterOptions } from "../data/models";
+import { Crypto, SortFilterOptions } from "../data/global.models";
 import { useState, useEffect } from "react";
 import {
   processFilterSortOptions,
