@@ -54,9 +54,5 @@ API server would need the following environment variables provided to run succes
 - Add ability for user to update:
   - profile picture
   - full name
-- Add a info button next to the refresh and bookmark option, with a pop up modal that provides description of the crypto.
-- Whenever a user clicks on purchase button of a crypto - make a API request and update crypto before showing purchase model to user, giving the user real time purchase info, instead of just doing it in the background.
-- Turn confirmation banner into a banner - and allow to populate is as a success banner or error banner for better UX support throughout the website.
 - Implement website dark theme toggle through our context.
 - Possibly implement individual crypto pages, displaying much more information on them.
-- Split handle function or SortFilterBar to handle sorting and filtering actions in their own functions, instead of grouping them all together.

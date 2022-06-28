@@ -19,17 +19,26 @@ const style = {
 
 interface Props {
   crypto: Crypto;
+  handleUpdateSingleCrypto: (name: string) => void;
 }
 
-export const PurchaseModal: React.FC<Props> = ({ crypto }) => {
+export const PurchaseModal: React.FC<Props> = ({
+  crypto,
+  handleUpdateSingleCrypto,
+}) => {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const handleOpenModal = async () => {
+    await handleUpdateSingleCrypto(crypto.name);
+    handleOpen();
+  };
+
   return (
     <div>
-      <Button size="small" variant="outlined" onClick={handleOpen}>
+      <Button size="small" variant="outlined" onClick={handleOpenModal}>
         Purchase {crypto.ticker}
       </Button>
       <Modal

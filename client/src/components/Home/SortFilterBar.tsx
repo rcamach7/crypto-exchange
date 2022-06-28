@@ -23,42 +23,41 @@ export const SortFilterBar: React.FC<Props> = ({
 }) => {
   let disableIfNotLoggedIn = loggedIn ? {} : { disabled: true };
 
-  // Handles actions/clicks on our sorting or filtering buttons.
-  const handleSettingChange = (event: SelectChangeEvent<string>) => {
-    if (event.target.name === "sort") {
-      switch (event.target.value) {
-        case "price-ascending":
-          setSortFilterOptions((prevState) => {
-            return { ...prevState, sort: "price-ascending" };
-          });
-          break;
-        case "price-descending":
-          setSortFilterOptions((prevState) => {
-            return { ...prevState, sort: "price-descending" };
-          });
-          break;
-        default:
-          setSortFilterOptions((prevState) => {
-            return { ...prevState, sort: "popular" };
-          });
-      }
-    } else if (event.target.name === "filter") {
-      switch (event.target.value) {
-        case "owned":
-          setSortFilterOptions((prevState) => {
-            return { ...prevState, filter: "owned" };
-          });
-          break;
-        case "bookmarked":
-          setSortFilterOptions((prevState) => {
-            return { ...prevState, filter: "bookmarked" };
-          });
-          break;
-        default:
-          setSortFilterOptions((prevState) => {
-            return { ...prevState, filter: "none" };
-          });
-      }
+  const handleFilterOption = (event: SelectChangeEvent<string>) => {
+    switch (event.target.value) {
+      case "owned":
+        setSortFilterOptions((prevState) => {
+          return { ...prevState, filter: "owned" };
+        });
+        break;
+      case "bookmarked":
+        setSortFilterOptions((prevState) => {
+          return { ...prevState, filter: "bookmarked" };
+        });
+        break;
+      default:
+        setSortFilterOptions((prevState) => {
+          return { ...prevState, filter: "none" };
+        });
+    }
+  };
+
+  const handleSortOption = (event: SelectChangeEvent<string>) => {
+    switch (event.target.value) {
+      case "price-ascending":
+        setSortFilterOptions((prevState) => {
+          return { ...prevState, sort: "price-ascending" };
+        });
+        break;
+      case "price-descending":
+        setSortFilterOptions((prevState) => {
+          return { ...prevState, sort: "price-descending" };
+        });
+        break;
+      default:
+        setSortFilterOptions((prevState) => {
+          return { ...prevState, sort: "popular" };
+        });
     }
   };
 
@@ -73,7 +72,7 @@ export const SortFilterBar: React.FC<Props> = ({
           id="grouped-native-select"
           label="Grouping"
           name="filter"
-          onChange={handleSettingChange}
+          onChange={handleFilterOption}
         >
           <option aria-label="popular" value="None">
             None
@@ -93,7 +92,7 @@ export const SortFilterBar: React.FC<Props> = ({
           defaultValue="Popular"
           id="grouped-native-select"
           label="Grouping"
-          onChange={handleSettingChange}
+          onChange={handleSortOption}
           name="sort"
         >
           <option aria-label="Popular" value="Popular">

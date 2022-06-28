@@ -151,7 +151,10 @@ export const CryptoCard: React.FC<Props> = ({
         <CardActions sx={{ display: "flex" }}>
           {/* Dynamically render purchase button */}
           {user ? (
-            <PurchaseModal crypto={crypto} />
+            <PurchaseModal
+              crypto={crypto}
+              handleUpdateSingleCrypto={handleUpdateSingleCrypto}
+            />
           ) : (
             <Button size="small" variant="outlined">
               <Link to="/crypto-exchange/login">Login to purchase</Link>
