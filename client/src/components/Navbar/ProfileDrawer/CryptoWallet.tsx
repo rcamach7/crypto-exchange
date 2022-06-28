@@ -27,6 +27,7 @@ export const CryptoWallet = () => {
           </TableRow>
         </TableHead>
         <TableBody>
+          {/* Renders every individual portfolio investment */}
           {user?.portfolio.map((row) => (
             <WalletRow
               key={row.crypto}

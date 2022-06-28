@@ -36,6 +36,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
   const [open, setOpen] = React.useState(false);
   const { quantity, crypto, principle, transactions } = row;
 
+  // Placeholder for formatted values
   const formattedPrices = {
     value: numberWithCommas(formatPrice(quantity * cryptoInfo.price)),
     profit: formatPrice(quantity * cryptoInfo.price - principle),

@@ -35,6 +35,8 @@ export const SellCryptoModal: React.FC<Props> = ({
       <Button size="small" variant="outlined" onClick={handleOpen}>
         Sell {crypto.ticker}
       </Button>
+
+      {/* Modal will render once action is triggered */}
       <Modal
         open={open}
         onClose={handleClose}

@@ -23,6 +23,7 @@ export const SortFilterBar: React.FC<Props> = ({
 }) => {
   let disableIfNotLoggedIn = loggedIn ? {} : { disabled: true };
 
+  // Handles actions/clicks on our sorting or filtering buttons.
   const handleSettingChange = (event: SelectChangeEvent<string>) => {
     if (event.target.name === "sort") {
       switch (event.target.value) {

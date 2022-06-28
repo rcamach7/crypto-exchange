@@ -39,6 +39,7 @@ export const CryptoCard: React.FC<Props> = ({
   togglePageLoading,
   bookmarks,
 }) => {
+  // Destructure values for cleaner access
   const {
     name,
     image,
@@ -76,6 +77,7 @@ export const CryptoCard: React.FC<Props> = ({
   return (
     <Box className="CryptoCard animate__animated animate__zoomIn">
       <Card variant="outlined">
+        {/* Crypto Content */}
         <CardContent sx={{ padding: "16px 16px 8px 16px" }}>
           <Typography sx={{ fontSize: 12 }} color="text.secondary" gutterBottom>
             price updated {moment(lastUpdated).fromNow()}
@@ -144,7 +146,10 @@ export const CryptoCard: React.FC<Props> = ({
             </div>
           </Typography>
         </CardContent>
+
+        {/* Crypto Actions */}
         <CardActions sx={{ display: "flex" }}>
+          {/* Dynamically render purchase button */}
           {user ? (
             <PurchaseModal crypto={crypto} />
           ) : (
@@ -152,6 +157,7 @@ export const CryptoCard: React.FC<Props> = ({
               <Link to="/crypto-exchange/login">Login to purchase</Link>
             </Button>
           )}
+
           <IconButton
             color="primary"
             component="span"
@@ -160,6 +166,7 @@ export const CryptoCard: React.FC<Props> = ({
           >
             <RefreshIcon />
           </IconButton>
+
           <IconButton
             color="primary"
             component="span"

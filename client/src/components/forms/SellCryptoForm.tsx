@@ -38,6 +38,7 @@ export const SellCryptoForm: React.FC<Props> = ({
   const handleSell = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     togglePageLoading();
+
     if (quantity === 0 || Number.isNaN(quantity)) {
       setError({ exists: true, message: "Please enter a valid quantity" });
       togglePageLoading();
@@ -65,11 +66,7 @@ export const SellCryptoForm: React.FC<Props> = ({
   };
 
   React.useEffect(() => {
-    if (checked) {
-      setQuantity(walletQuantity);
-    } else {
-      setQuantity(0);
-    }
+    checked ? setQuantity(walletQuantity) : setQuantity(0);
   }, [checked, walletQuantity]);
 
   return (
@@ -144,11 +141,11 @@ export const SellCryptoForm: React.FC<Props> = ({
         transactions are made with real-time prices, above values are estimated
       </p>
       {/* Error Reporting UI */}
-      {error.exists ? (
+      {error.exists && (
         <Alert severity="error" sx={{ marginTop: "10px", padding: "0 5px" }}>
           {error.message}
         </Alert>
-      ) : null}
+      )}
     </form>
   );
 };

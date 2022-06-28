@@ -125,11 +125,11 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
       </p>
 
       {/* Error feedback */}
-      {error.exists ? (
+      {error.exists && (
         <Alert severity="error" sx={{ marginTop: "10px", padding: "0 5px" }}>
           {error.message}
         </Alert>
-      ) : null}
+      )}
     </form>
   );
 };

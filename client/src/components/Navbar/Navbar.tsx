@@ -22,6 +22,8 @@ export const Navbar = () => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+
+  // Will manage which navigation options to show user based on current page.
   const { pathname } = useLocation();
   const [curLocation, setCurLocation] = React.useState<string>("");
 
@@ -89,6 +91,7 @@ export const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              {/* Dynamically Rendered Navbar Options */}
               {curLocation === "home" ? null : (
                 <Link to="/crypto-exchange/home">
                   <MenuItem onClick={handleCloseUserMenu}>
