@@ -1,4 +1,11 @@
-import { useContext, createContext, ReactNode, useMemo, useState } from "react";
+import {
+  useContext,
+  createContext,
+  ReactNode,
+  useMemo,
+  useState,
+  useEffect,
+} from "react";
 import { ThemeProvider as Provider, createTheme } from "@mui/material/styles";
 
 export type ThemeProviderInterface = ({
@@ -39,7 +46,17 @@ const getDesignTokens = (mode: PaletteMode) => ({
 });
 
 export const ThemeContext: ThemeProviderInterface = ({ children }) => {
-  const [mode, setMode] = useState<PaletteMode>("dark");
+  const determineTheme = () => {
+    let savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light" || savedTheme === "dark") {
+      return savedTheme;
+    } else {
+      localStorage.setItem("theme", "light");
+      return "light";
+    }
+  };
+
+  const [mode, setMode] = useState<PaletteMode>(determineTheme());
   const setTheme = useMemo(
     () => ({
       toggleSiteTheme: () => {
@@ -48,6 +65,10 @@ export const ThemeContext: ThemeProviderInterface = ({ children }) => {
     }),
     []
   );
+
+  useEffect(() => {
+    localStorage.setItem("theme", mode);
+  }, [mode]);
 
   const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 

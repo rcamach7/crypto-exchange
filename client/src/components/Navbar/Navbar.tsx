@@ -17,6 +17,13 @@ import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
 import logo from "../../assets/logo.png";
 import { useLocation } from "react-router-dom";
 import { useThemeContext } from "../../context/ThemeContext";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import { useTheme } from "@mui/material/styles";
+
+const style = {
+  justifyContent: "center",
+};
 
 export const Navbar = () => {
   const { user, setUser, setToken } = useGlobalContext();
@@ -24,6 +31,7 @@ export const Navbar = () => {
     null
   );
   const setTheme = useThemeContext();
+  const theme = useTheme();
 
   // Will manage which navigation options to show user based on current page.
   const { pathname } = useLocation();
@@ -101,37 +109,49 @@ export const Navbar = () => {
               {/* Dynamically Rendered Navbar Options */}
               {curLocation === "home" ? null : (
                 <Link to="/crypto-exchange/home">
-                  <MenuItem onClick={handleCloseUserMenu}>
+                  <MenuItem onClick={handleCloseUserMenu} sx={style}>
                     Browse Cryptos
                   </MenuItem>
                 </Link>
               )}
 
               {user ? (
-                <MenuItem onClick={handleCloseUserMenu} sx={{ padding: 0 }}>
+                <MenuItem onClick={handleCloseUserMenu} sx={style}>
                   <ProfileDrawer />
                 </MenuItem>
               ) : null}
 
               {curLocation === "" ? null : (
                 <Link to="/crypto-exchange/">
-                  <MenuItem onClick={handleCloseUserMenu}>About</MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu} sx={style}>
+                    About
+                  </MenuItem>
                 </Link>
               )}
 
               {/* Buttons based on current log in status */}
               {curLocation === "login" ? null : user ? (
-                <MenuItem onClick={handleLogout}>
+                <MenuItem onClick={handleLogout} sx={style}>
                   <Typography textAlign="center">Log Out</Typography>
                 </MenuItem>
               ) : (
                 <Link to="/crypto-exchange/login">
-                  <MenuItem onClick={handleCloseUserMenu}>Log In</MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu} sx={style}>
+                    Log In
+                  </MenuItem>
                 </Link>
               )}
 
               {/* Theme Toggle */}
-              <MenuItem onClick={toggleTheme}>Toggle Theme</MenuItem>
+              <MenuItem onClick={toggleTheme} sx={style}>
+                <IconButton sx={{ ml: 1 }} color="inherit">
+                  {theme.palette.mode === "dark" ? (
+                    <Brightness7Icon />
+                  ) : (
+                    <Brightness4Icon />
+                  )}
+                </IconButton>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
