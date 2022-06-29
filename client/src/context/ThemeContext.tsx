@@ -1,38 +1,6 @@
 import { useContext, createContext, ReactNode, useMemo, useState } from "react";
 import { ThemeProvider as Provider, createTheme } from "@mui/material/styles";
 
-// function MyApp() {
-//   const theme = useTheme();
-//   const SiteTheme = React.useContext(SiteThemeContext);
-//   return (
-//     <Box
-//       sx={{
-//         display: "flex",
-//         width: "100%",
-//         alignItems: "center",
-//         justifyContent: "center",
-//         bgcolor: "background.default",
-//         color: "text.primary",
-//         borderRadius: 1,
-//         p: 3,
-//       }}
-//     >
-//       {theme.palette.mode} mode
-//       <IconButton
-//         sx={{ ml: 1 }}
-//         onClick={SiteTheme.toggleSiteTheme}
-//         color="inherit"
-//       >
-//         {theme.palette.mode === "dark" ? (
-//           <Brightness7Icon />
-//         ) : (
-//           <Brightness4Icon />
-//         )}
-//       </IconButton>
-//     </Box>
-//   );
-// }
-
 export type ThemeProviderInterface = ({
   children,
 }: {
@@ -48,8 +16,29 @@ export const useThemeContext = () => {
   return themeContext;
 };
 
+type PaletteMode = "light" | "dark";
+
+const getDesignTokens = (mode: PaletteMode) => ({
+  palette: {
+    mode,
+    ...(mode === "light"
+      ? {
+          // palette values for light mode
+        }
+      : {
+          // palette values for dark mode
+          background: {
+            default: "#010101",
+          },
+          text: {
+            primary: "#ffffff",
+          },
+        }),
+  },
+});
+
 export const ThemeContext: ThemeProviderInterface = ({ children }) => {
-  const [mode, setMode] = useState<"light" | "dark">("light");
+  const [mode, setMode] = useState<PaletteMode>("dark");
   const setTheme = useMemo(
     () => ({
       toggleSiteTheme: () => {
@@ -59,15 +48,7 @@ export const ThemeContext: ThemeProviderInterface = ({ children }) => {
     []
   );
 
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode]
-  );
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
     <SiteThemeContext.Provider value={setTheme}>

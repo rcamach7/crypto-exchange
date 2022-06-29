@@ -16,12 +16,14 @@ import { Link } from "react-router-dom";
 import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
 import logo from "../../assets/logo.png";
 import { useLocation } from "react-router-dom";
+import { useThemeContext } from "../../context/ThemeContext";
 
 export const Navbar = () => {
   const { user, setUser, setToken } = useGlobalContext();
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
+  const setTheme = useThemeContext();
 
   // Will manage which navigation options to show user based on current page.
   const { pathname } = useLocation();
@@ -37,6 +39,11 @@ export const Navbar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const toggleTheme = () => {
+    setTheme.toggleSiteTheme();
+    handleCloseUserMenu();
   };
 
   const handleLogout = () => {
@@ -122,6 +129,9 @@ export const Navbar = () => {
                   <MenuItem onClick={handleCloseUserMenu}>Log In</MenuItem>
                 </Link>
               )}
+
+              {/* Theme Toggle */}
+              <MenuItem onClick={toggleTheme}>Toggle Theme</MenuItem>
             </Menu>
           </Box>
         </Toolbar>

@@ -5,9 +5,11 @@ import { useState, useEffect } from "react";
 import {
   processFilterSortOptions,
   replaceUpdatedCrypto,
+  determineThemeBackground,
 } from "../data/helpers";
 import { SortFilterBar } from "../components/Home/SortFilterBar";
 import { updateSingleCrypto } from "../data/api";
+import { useTheme } from "@mui/material/styles";
 
 export const Home = () => {
   const { cryptos, user, togglePageLoading, setUser } = useGlobalContext();
@@ -15,6 +17,7 @@ export const Home = () => {
   const [sortFilterOptions, setSortFilterOptions] = useState<SortFilterOptions>(
     { sort: "popular", filter: "none" }
   );
+  const theme = useTheme();
 
   useEffect(() => {
     togglePageLoading();
@@ -61,8 +64,14 @@ export const Home = () => {
       <SortFilterBar
         setSortFilterOptions={setSortFilterOptions}
         loggedIn={user ? true : false}
+        theme={theme.palette.mode}
       />
-      <div className="cryptosContainer">
+      <div
+        className="cryptosContainer"
+        style={{
+          backgroundColor: `${determineThemeBackground(theme.palette.mode)}`,
+        }}
+      >
         {organizedCryptos.map((crypto) => {
           return (
             <CryptoCard
