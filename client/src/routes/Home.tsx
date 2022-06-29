@@ -60,18 +60,18 @@ export const Home = () => {
   };
 
   return (
-    <div className="Home">
+    <div
+      className="Home"
+      style={{
+        backgroundColor: `${determineThemeBackground(theme.palette.mode)}`,
+      }}
+    >
       <SortFilterBar
         setSortFilterOptions={setSortFilterOptions}
         loggedIn={user ? true : false}
         theme={theme.palette.mode}
       />
-      <div
-        className="cryptosContainer"
-        style={{
-          backgroundColor: `${determineThemeBackground(theme.palette.mode)}`,
-        }}
-      >
+      <div className="cryptosContainer">
         {organizedCryptos.map((crypto) => {
           return (
             <CryptoCard

@@ -1,4 +1,4 @@
-import * as React from "react";
+import { useState, useEffect } from "react";
 import {
   AppBar,
   Box,
@@ -27,17 +27,15 @@ const style = {
 
 export const Navbar = () => {
   const { user, setUser, setToken } = useGlobalContext();
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const setTheme = useThemeContext();
   const theme = useTheme();
 
   // Will manage which navigation options to show user based on current page.
   const { pathname } = useLocation();
-  const [curLocation, setCurLocation] = React.useState<string>("");
+  const [curLocation, setCurLocation] = useState<string>("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     setCurLocation(pathname.replace("/crypto-exchange/", ""));
   }, [pathname]);
 
@@ -55,7 +53,7 @@ export const Navbar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.clear();
+    localStorage.removeItem("token");
     setToken(null);
     setUser(null);
     handleCloseUserMenu();
@@ -66,7 +64,7 @@ export const Navbar = () => {
     <AppBar
       position="sticky"
       className="Navbar"
-      sx={{ height: "60px !important", backgroundColor: "black" }}
+      sx={{ height: "60px !important", backgroundColor: "rgb(0,0,0)" }}
     >
       <Container maxWidth="xl" className="navbarContainer">
         <Toolbar disableGutters>
@@ -115,11 +113,11 @@ export const Navbar = () => {
                 </Link>
               )}
 
-              {user ? (
+              {user && (
                 <MenuItem onClick={handleCloseUserMenu} sx={style}>
                   <ProfileDrawer />
                 </MenuItem>
-              ) : null}
+              )}
 
               {curLocation === "" ? null : (
                 <Link to="/crypto-exchange/">
