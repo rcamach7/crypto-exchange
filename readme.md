@@ -56,7 +56,6 @@ API server would need the following environment variables provided to run succes
 - Add ability for user to update:
   - profile picture
   - full name
-- Implement website dark theme toggle through our context.
 - Possibly implement individual crypto pages, displaying much more information on them.
 - Add number of owned cryptos whenever selling or buying more of the same kind.
 - Decrease time that server will refresh crypto prices from 30m to 15m.

@@ -6,7 +6,7 @@ import {
   BannerMessage,
   BannerMessageFunction,
   ContextProviderComponent,
-} from "./GlobalCryptoContext.models";
+} from "./context.models";
 import { useUserAuth } from "../hooks/useUserAuth";
 import { useFetchPosts } from "../hooks/useFetchPosts";
 

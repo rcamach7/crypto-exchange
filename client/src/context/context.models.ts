@@ -1,6 +1,16 @@
-import { Crypto, User } from "../data/global.models";
 import { ReactNode } from "react";
+import { Crypto, User } from "../data/global.models";
 
+// Theme Context
+export type ThemeProviderInterface = ({
+  children,
+}: {
+  children: ReactNode;
+}) => JSX.Element;
+
+export type PaletteMode = "light" | "dark";
+
+// Global Context
 export interface ContextInterface {
   cryptos: Crypto[];
   setCryptos: React.Dispatch<React.SetStateAction<Crypto[]>>;

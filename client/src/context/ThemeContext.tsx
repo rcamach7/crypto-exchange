@@ -1,18 +1,6 @@
-import {
-  useContext,
-  createContext,
-  ReactNode,
-  useMemo,
-  useState,
-  useEffect,
-} from "react";
+import { useContext, createContext, useMemo, useState, useEffect } from "react";
 import { ThemeProvider as Provider, createTheme } from "@mui/material/styles";
-
-export type ThemeProviderInterface = ({
-  children,
-}: {
-  children: ReactNode;
-}) => JSX.Element;
+import { ThemeProviderInterface, PaletteMode } from "./context.models";
 
 const SiteThemeContext = createContext({ toggleSiteTheme: () => {} });
 export const useThemeContext = () => {
@@ -22,8 +10,6 @@ export const useThemeContext = () => {
 
   return themeContext;
 };
-
-type PaletteMode = "light" | "dark";
 
 const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
