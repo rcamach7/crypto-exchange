@@ -232,3 +232,9 @@ export const calculateAveragePurchasePrice: CalculateAveragePurchasePrice = (
   // Will reduce these two fields to total amount invested / spend, divided by the total amount of coins bought
   return totalPrice / totalQuantity;
 };
+
+// Miscellaneous Helpers
+
+export const determineThemeBackground = (mode: "light" | "dark") => {
+  return mode === "light" ? "white" : "black";
+};

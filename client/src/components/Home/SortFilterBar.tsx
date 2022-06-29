@@ -6,20 +6,24 @@ import { SortFilterOptions } from "../../data/global.models";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const FilterWrapper = styled.div`
+  height: 70px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${({ theme }) => (theme === "light" ? "white" : "black")};
 `;
 
 interface Props {
   setSortFilterOptions: React.Dispatch<React.SetStateAction<SortFilterOptions>>;
   loggedIn: boolean;
+  theme: "light" | "dark";
 }
 
 export const SortFilterBar: React.FC<Props> = ({
   setSortFilterOptions,
   loggedIn,
+  theme,
 }) => {
   let disableIfNotLoggedIn = loggedIn ? {} : { disabled: true };
 
@@ -62,7 +66,7 @@ export const SortFilterBar: React.FC<Props> = ({
   };
 
   return (
-    <FilterWrapper>
+    <FilterWrapper theme={theme}>
       <FilterListIcon sx={{ fontSize: "35px" }} />
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
         <InputLabel htmlFor="grouped-native-select">Filter By:</InputLabel>

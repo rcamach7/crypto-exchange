@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap");
 .Navbar {
+  // Fixes/removes gradient that comes with MUI styling
+  background-image: none !important;
   .logoContainer {
     display: flex;
     align-items: center;

@@ -1,10 +1,9 @@
 .Home {
-  padding-top: 10px;
-
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   .cryptosContainer {
+    min-height: calc(100vh - 130px);
     width: clamp(340px, 1100px, 100vw);
     padding-bottom: 25px;
 

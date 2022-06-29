@@ -132,7 +132,7 @@ export const ProfileDrawer = () => {
         </CardContent>
 
         {/* Section: Breakdown of users investments - with option to sell when expanded. */}
-        <div className="walletIcon">
+        <div className="walletIcon" style={{ marginBottom: "10px" }}>
           <Chip
             label="My Wallet"
             icon={<AccountBalanceWalletIcon fontSize="small" />}
@@ -147,7 +147,7 @@ export const ProfileDrawer = () => {
     <div className="profileButton" style={{ width: "100%" }}>
       <Typography
         onClick={toggleDrawer("right", true)}
-        sx={{ padding: "6px 16px" }}
+        sx={{ padding: "6px 16px", textAlign: "center" }}
       >
         Profile
       </Typography>
