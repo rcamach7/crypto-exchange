@@ -19,7 +19,7 @@ import {
   formatPrice,
   numberWithCommas,
   calculateAveragePurchasePrice,
-} from "../../../data/helpers";
+} from "../../../utilities/helpers";
 import { SellCryptoModal } from "./SellCryptoModal";
 import styled from "styled-components";
 

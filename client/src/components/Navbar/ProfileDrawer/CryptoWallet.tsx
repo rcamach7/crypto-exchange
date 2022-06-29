@@ -9,7 +9,7 @@ import {
 } from "@mui/material/";
 import { useGlobalContext } from "../../../context/GlobalCryptoContext";
 import { WalletRow } from "./WalletRow";
-import { getCrypto } from "../../../data/helpers";
+import { getCrypto } from "../../../utilities/helpers";
 
 export const CryptoWallet = () => {
   const { user, cryptos } = useGlobalContext();

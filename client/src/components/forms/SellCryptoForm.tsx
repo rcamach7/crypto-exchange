@@ -10,7 +10,10 @@ import {
 import React from "react";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import { capitalizeFirstLetter, numberWithCommas } from "../../data/helpers";
+import {
+  capitalizeFirstLetter,
+  numberWithCommas,
+} from "../../utilities/helpers";
 import { Crypto, Error, User } from "../../data/global.models";
 import { sellCrypto } from "../../data/api";
 import { useTheme } from "@mui/material/styles";

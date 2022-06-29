@@ -1,4 +1,4 @@
-import { Crypto } from "./global.models";
+import { Crypto } from "../data/global.models";
 import {
   GetCrypto,
   NumberWithCommas,

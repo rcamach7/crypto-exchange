@@ -1,5 +1,5 @@
-import { Crypto } from "./global.models";
-import { SortFilterOptions } from "./global.models";
+import { Crypto } from "../data/global.models";
+import { SortFilterOptions } from "../data/global.models";
 
 export type GetCrypto = (cryptos: Crypto[], name: string) => Crypto;
 

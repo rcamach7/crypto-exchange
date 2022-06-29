@@ -17,7 +17,7 @@ import RefreshIcon from "@mui/icons-material/Refresh";
 import { PurchaseModal } from "./PurchaseModal";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import { numberWithCommas } from "../../data/helpers";
+import { numberWithCommas } from "../../utilities/helpers";
 import { bookmarkCrypto } from "../../data/api";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import "animate.css";

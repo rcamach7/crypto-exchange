@@ -6,7 +6,7 @@ import {
   capitalizeFirstLetter,
   formatPrice,
   numberWithCommas,
-} from "../../data/helpers";
+} from "../../utilities/helpers";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { purchaseCrypto } from "../../data/api";
 import { User, Error } from "../../data/global.models";

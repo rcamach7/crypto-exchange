@@ -6,7 +6,7 @@ import {
   processFilterSortOptions,
   replaceUpdatedCrypto,
   determineThemeBackground,
-} from "../data/helpers";
+} from "../utilities/helpers";
 import { SortFilterBar } from "../components/Home/SortFilterBar";
 import { updateSingleCrypto } from "../data/api";
 import { useTheme } from "@mui/material/styles";
