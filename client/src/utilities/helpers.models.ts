@@ -74,3 +74,8 @@ export type CalculateTotalInvestmentReturn = (
 export type CalculateAveragePurchasePrice = (
   transactions: [{ quantity: number; purchasePrice: number }]
 ) => number;
+
+export type GetUserQuantityOwned = (
+  portfolio: [{ crypto: string; quantity: number; principle: number }] | [],
+  cryptoName: string
+) => number;

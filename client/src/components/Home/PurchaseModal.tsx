@@ -1,4 +1,4 @@
-import React from "react";
+import { FC, useState } from "react";
 import { Box, Button, Modal } from "@mui/material/";
 import { Crypto } from "../../data/global.models";
 import { PurchaseCryptoForm } from "../forms/PurchaseCryptoForm";
@@ -22,11 +22,11 @@ interface Props {
   handleUpdateSingleCrypto: (name: string) => void;
 }
 
-export const PurchaseModal: React.FC<Props> = ({
+export const PurchaseModal: FC<Props> = ({
   crypto,
   handleUpdateSingleCrypto,
 }) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

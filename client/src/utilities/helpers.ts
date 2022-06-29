@@ -13,6 +13,7 @@ import {
   CalculateTotalValue,
   CalculateTotalInvestmentReturn,
   CalculateAveragePurchasePrice,
+  GetUserQuantityOwned,
 } from "./helpers.models";
 
 /**
@@ -237,4 +238,17 @@ export const calculateAveragePurchasePrice: CalculateAveragePurchasePrice = (
 
 export const determineThemeBackground = (mode: "light" | "dark") => {
   return mode === "light" ? "white" : "black";
+};
+
+export const getUserQuantityOwned: GetUserQuantityOwned = (
+  portfolio,
+  cryptoName
+) => {
+  let quantity = 0;
+  portfolio.forEach((investment) => {
+    if (investment.crypto === cryptoName) {
+      quantity = investment.quantity;
+    }
+  });
+  return quantity;
 };

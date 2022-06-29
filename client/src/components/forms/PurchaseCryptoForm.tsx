@@ -6,12 +6,12 @@ import {
   capitalizeFirstLetter,
   formatPrice,
   numberWithCommas,
+  getUserQuantityOwned,
 } from "../../utilities/helpers";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { purchaseCrypto } from "../../data/api";
 import { User, Error } from "../../data/global.models";
 import { useTheme } from "@mui/material/styles";
-
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 interface Props {
   crypto: Crypto;
   handleClose: () => void;
@@ -23,6 +23,10 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
   const [quantity, setQuantity] = useState<number>(0);
   const [error, setError] = useState<Error>({ exists: false });
   const theme = useTheme();
+  let ownedQuantity = getUserQuantityOwned(
+    user ? user.portfolio : [],
+    crypto.name
+  );
 
   const handlePurchase = async (event: SyntheticEvent) => {
     event.preventDefault();
@@ -91,15 +95,28 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
             }}
             aria-label="balance"
           >
-            <AccountBalanceWalletIcon />
+            <AccountBalanceIcon />
           </Avatar>
           <div className="balance">
-            <p className="balance">Balance</p>
+            <p className="balance">Cash Balance</p>
             <p>
               ${user?.balance && numberWithCommas(formatPrice(user?.balance))}
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="currentlyOwnedInfo">
+        {ownedQuantity > 0 ? (
+          <p>
+            You currently own
+            {` ${ownedQuantity} ${crypto.name}${
+              ownedQuantity > 1 ? "s" : ""
+            } coin${ownedQuantity > 1 ? "s" : ""}.`}
+          </p>
+        ) : (
+          <p>You don't currently own any {crypto.name}</p>
+        )}
       </div>
 
       <div className="checkoutDetails">
@@ -130,6 +147,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
       </Button>
       <p style={{ fontSize: "10px", paddingTop: "2.5px" }}>
         transactions are made with real-time prices, above values are estimated
+        and not final
       </p>
 
       {/* Error feedback */}
