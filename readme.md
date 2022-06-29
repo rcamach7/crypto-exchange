@@ -57,6 +57,5 @@ API server would need the following environment variables provided to run succes
   - profile picture
   - full name
 - Possibly implement individual crypto pages, displaying much more information on them.
-- Add number of owned cryptos whenever selling or buying more of the same kind.
 - Decrease time that server will refresh crypto prices from 30m to 15m.
 - Add fourth statistic on price history on crypto card.

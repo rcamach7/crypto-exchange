@@ -151,6 +151,7 @@ export const SellCryptoForm: React.FC<Props> = ({
       </Button>
       <p style={{ fontSize: "10px", paddingTop: "2.5px" }}>
         transactions are made with real-time prices, above values are estimated
+        and not final
       </p>
       {/* Error Reporting UI */}
       {error.exists && (
