@@ -32,6 +32,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
           },
           text: {
             primary: "#ffffff",
+            secondary: "#ffffff",
           },
         }),
   },

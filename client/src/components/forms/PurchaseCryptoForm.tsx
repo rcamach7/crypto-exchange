@@ -10,6 +10,7 @@ import {
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { purchaseCrypto } from "../../data/api";
 import { User, Error } from "../../data/global.models";
+import { useTheme } from "@mui/material/styles";
 
 interface Props {
   crypto: Crypto;
@@ -21,6 +22,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
     useGlobalContext();
   const [quantity, setQuantity] = useState<number>(0);
   const [error, setError] = useState<Error>({ exists: false });
+  const theme = useTheme();
 
   const handlePurchase = async (event: SyntheticEvent) => {
     event.preventDefault();
@@ -55,7 +57,10 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
     <form
       className="PurchaseCryptoForm"
       onSubmit={handlePurchase}
-      style={{ position: "relative" }}
+      style={{
+        color: theme.palette.mode === "light" ? "black" : "white",
+        position: "relative",
+      }}
     >
       <Typography
         id="modal-modal-title"
@@ -79,7 +84,11 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
         </div>
         <div className="balanceDetails">
           <Avatar
-            sx={{ border: "solid black 1px", backgroundColor: "black" }}
+            sx={{
+              border: "solid black 1px",
+              backgroundColor:
+                theme.palette.mode === "dark" ? "white" : "black",
+            }}
             aria-label="balance"
           >
             <AccountBalanceWalletIcon />

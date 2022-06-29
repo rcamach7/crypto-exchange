@@ -4,6 +4,7 @@ import styled from "styled-components";
 import GrainIcon from "@mui/icons-material/Grain";
 import an from "../assets/ans.webp";
 import "animate.css";
+import { useTheme } from "@mui/material/styles";
 
 const IntroCardWrapper = styled.div`
   flex: 1.5;
@@ -42,8 +43,8 @@ const FeaturesWrapper = styled.ul`
   padding: clamp(20px, 3vw, 50px);
 
   list-style: none;
-  background-color: white;
-  color: black;
+  background-color: ${({ theme }) => (theme === "light" ? "white" : "black")};
+  color: ${({ theme }) => (theme === "light" ? "black" : "white")};
 
   display: flex;
   flex-direction: column;
@@ -64,6 +65,8 @@ const FeaturesWrapper = styled.ul`
 `;
 
 export const Welcome: React.FC = () => {
+  const theme = useTheme();
+
   return (
     <div className="Welcome">
       <IntroCardWrapper>
@@ -80,7 +83,7 @@ export const Welcome: React.FC = () => {
         </Link>
       </IntroCardWrapper>
 
-      <FeaturesWrapper>
+      <FeaturesWrapper theme={theme.palette.mode}>
         <li className="animate__animated animate__zoomInDown animate__fast">
           <GrainIcon className="icon" />
           Crypto Exchange will help you gain confidence before risking your own

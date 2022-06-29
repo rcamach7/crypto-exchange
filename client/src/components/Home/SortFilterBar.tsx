@@ -6,12 +6,12 @@ import { SortFilterOptions } from "../../data/global.models";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const FilterWrapper = styled.div`
+  height: 70px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => (theme === "light" ? "white" : "black")};
-  padding-top: 10px;
 `;
 
 interface Props {

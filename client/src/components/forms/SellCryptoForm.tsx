@@ -13,6 +13,7 @@ import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { capitalizeFirstLetter, numberWithCommas } from "../../data/helpers";
 import { Crypto, Error, User } from "../../data/global.models";
 import { sellCrypto } from "../../data/api";
+import { useTheme } from "@mui/material/styles";
 
 interface Props {
   crypto: Crypto;
@@ -30,6 +31,7 @@ export const SellCryptoForm: React.FC<Props> = ({
   const [checked, setChecked] = React.useState<boolean>(false);
   const [quantity, setQuantity] = React.useState<number>(0);
   const [error, setError] = React.useState<Error>({ exists: false });
+  const theme = useTheme();
 
   const handleSell = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -67,7 +69,13 @@ export const SellCryptoForm: React.FC<Props> = ({
   }, [checked, walletQuantity]);
 
   return (
-    <form onSubmit={handleSell} className="SellCryptoForm">
+    <form
+      onSubmit={handleSell}
+      className="SellCryptoForm"
+      style={{
+        color: theme.palette.mode === "light" ? "black" : "white",
+      }}
+    >
       <Typography
         id="modal-modal-title"
         variant="h6"
@@ -92,7 +100,11 @@ export const SellCryptoForm: React.FC<Props> = ({
 
         <div className="balanceDetails">
           <Avatar
-            sx={{ border: "solid black 1px", backgroundColor: "black" }}
+            sx={{
+              border: "solid black 1px",
+              backgroundColor:
+                theme.palette.mode === "dark" ? "white" : "black",
+            }}
             aria-label="balance"
           >
             <AccountBalanceWalletIcon />
