@@ -39,9 +39,9 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
         togglePageLoading();
         handleBannerMessage(
           "success",
-          `Purchased ${quantity} ${crypto.ticker.toUpperCase()} coin${
-            quantity > 1 ? "s" : ""
-          }`
+          `Purchased ${numberWithCommas(
+            quantity
+          )} ${crypto.ticker.toUpperCase()} coin${quantity > 1 && "s"}`
         );
         handleClose();
       } catch (error) {
@@ -74,7 +74,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
           />
           <div className="buyPrice">
             <p className="buyPrice">Buy Price</p>
-            <p>${numberWithCommas(formatPrice(crypto.price))}</p>
+            <p>${numberWithCommas(crypto.price)}</p>
           </div>
         </div>
         <div className="balanceDetails">
@@ -113,9 +113,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
 
         <p className="totalCalculation">
           Total: $
-          {isNaN(quantity)
-            ? 0
-            : numberWithCommas(formatPrice(quantity * crypto.price))}
+          {isNaN(quantity) ? 0 : numberWithCommas(quantity * crypto.price)}
         </p>
       </div>
       <Button type="submit" className="purchaseBtn" variant="contained">

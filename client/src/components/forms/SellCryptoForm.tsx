@@ -50,9 +50,9 @@ export const SellCryptoForm: React.FC<Props> = ({
         togglePageLoading();
         handleBannerMessage(
           "success",
-          `Sold ${quantity} ${crypto.ticker.toUpperCase()} coin${
-            quantity > 1 ? "s" : null
-          }`
+          `Sold ${numberWithCommas(
+            quantity
+          )} ${crypto.ticker.toUpperCase()} coin${quantity > 1 && "s"}`
         );
         handleClose();
       } catch (error) {
@@ -90,7 +90,7 @@ export const SellCryptoForm: React.FC<Props> = ({
           />
           <div className="buyPrice">
             <p className="buyPrice">Current Price</p>
-            <p>${numberWithCommas(formatPrice(crypto.price))}</p>
+            <p>${numberWithCommas(crypto.price)}</p>
           </div>
         </div>
 
@@ -103,7 +103,7 @@ export const SellCryptoForm: React.FC<Props> = ({
           </Avatar>
           <div className="balance">
             <p className="balance">Coin(s)</p>
-            <p>{walletQuantity}</p>
+            <p>{numberWithCommas(walletQuantity)}</p>
           </div>
         </div>
       </div>
@@ -132,7 +132,7 @@ export const SellCryptoForm: React.FC<Props> = ({
         </div>
 
         <p className="totalCalculation">
-          Total: ${numberWithCommas(formatPrice(quantity * crypto.price))}
+          Total: ${numberWithCommas(quantity * crypto.price)}
         </p>
       </div>
       <Button type="submit" className="purchaseBtn" variant="contained">

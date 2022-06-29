@@ -34,9 +34,10 @@ export const numberWithCommas: NumberWithCommas = (number) => {
 };
 
 export const formatPrice: FormatPrice = (value, decimalPlaces) => {
-  return Number.parseFloat(
-    (Math.round(value * 1000) / 1000).toFixed(decimalPlaces ? decimalPlaces : 3)
-  );
+  if (value < 0.0001) {
+    decimalPlaces = 7;
+  }
+  return Number.parseFloat(value.toFixed(decimalPlaces ? decimalPlaces : 3));
 };
 
 export const capitalizeFirstLetter: CapitalizeFirstLetter = (word) => {

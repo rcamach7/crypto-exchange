@@ -21,6 +21,7 @@ import {
   calculateAveragePurchasePrice,
 } from "../../../data/helpers";
 import { SellCryptoModal } from "./SellCryptoModal";
+import styled from "styled-components";
 
 interface RowType {
   row: {
@@ -32,6 +33,11 @@ interface RowType {
   cryptoInfo: Crypto;
 }
 
+const SubText = styled.span`
+  font-size: 10px;
+  font-weight: bold;
+`;
+
 export const WalletRow = ({ row, cryptoInfo }: RowType) => {
   const [open, setOpen] = React.useState(false);
   const { quantity, crypto, principle, transactions } = row;
@@ -42,7 +48,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
     profit: formatPrice(quantity * cryptoInfo.price - principle),
     principle: numberWithCommas(formatPrice(principle)),
     averagePurchasePrice: numberWithCommas(
-      formatPrice(calculateAveragePurchasePrice(transactions))
+      formatPrice(calculateAveragePurchasePrice(transactions), 4)
     ),
   };
 
@@ -91,7 +97,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
                       scope="row"
                       className="tableRowCells"
                     >
-                      Current Value
+                      Value <SubText>(total)</SubText>
                     </TableCell>
                     <TableCell>${formattedPrices.value}</TableCell>
                   </TableRow>
@@ -102,7 +108,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
                       scope="row"
                       className="tableRowCells"
                     >
-                      Principle
+                      Principle <SubText>(total)</SubText>
                     </TableCell>
                     <TableCell>${formattedPrices.principle}</TableCell>
                   </TableRow>
@@ -113,7 +119,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
                       scope="row"
                       className="tableRowCells"
                     >
-                      Average Purchase Price
+                      Average Purchase Price <SubText>(per coin)</SubText>
                     </TableCell>
                     <TableCell>
                       ${formattedPrices.averagePurchasePrice}
@@ -126,7 +132,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
                       scope="row"
                       className="tableRowCells"
                     >
-                      Profit
+                      Profit <SubText>(total)</SubText>
                     </TableCell>
                     <TableCell>
                       <Chip

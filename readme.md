@@ -10,14 +10,6 @@ Full stack Crypto Exchange that lets you practice cryptocurrency trading with fa
 
 ![project_demo](crypto_demo.gif)
 
-## Key Features
-
-- Users can view, purchase and sell crypto coins at real-time market prices. They mau also view their total investment performances, or a breakdown of their individual coin investment(s). When browsing cryptos, they can filter and sort the data displayed to their liking.
-- UI built with Typescript + React. Utilized MUI Components, styled components, and SCSS for a responsive UX. Back end server built with Node, Express, and MongoDB, using a 3rd party API to obtain real-time crypto prices.
-- Implemented user authentication, data validation/sanitation on client and server, protected routes, custom React hooks, lifecycle hooks, error handling on API calls, and much more.
-
-#### Built Using:
-
 <p align="center">
   <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1652491477/main-portfolio/tech-skills/typescript_v3ztli.png" width="40" height="40" alt="Typescript" />
   <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1648514838/main-portfolio/animated-logos/react-anim_jqtsxo.gif" width="40" height="40" alt="React" />
@@ -25,6 +17,14 @@ Full stack Crypto Exchange that lets you practice cryptocurrency trading with fa
     <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1647634998/main-portfolio/tech-skills/express_ibtfvl.png" width="40" height="40" alt="Express" />
   <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1646101239/main-portfolio/tech-skills/mongodb_r1xhyn.png" width="40" height="40" alt="MongoDB" />
 </p>
+
+## Key Features
+
+- Users can view, purchase and sell crypto coins at real-time market prices. They mau also view their total investment performances, or a breakdown of their individual coin investment(s). When browsing cryptos, they can filter and sort the data displayed to their liking.
+- UI built with Typescript + React. Utilized MUI Components, styled components, and SCSS for a responsive UX. Back end server built with Node, Express, and MongoDB, using a 3rd party API to obtain real-time crypto prices.
+- Implemented user authentication, data validation/sanitation on client and server, protected routes, custom React hooks, lifecycle hooks, error handling on API calls, and much more.
+
+#### Built Using:
 
 - react, typescript, mongoose, MUI components, styled-components, animate.css, axios interceptors, react-router-dom, sass, useEffect, useState, Context API, custom hooks, hash router, promise based functions, async/await, custom API, moment etc...
 
@@ -51,8 +51,13 @@ API server would need the following environment variables provided to run succes
 
 #### To-Do's
 
+> Features
+
 - Add ability for user to update:
   - profile picture
   - full name
 - Implement website dark theme toggle through our context.
 - Possibly implement individual crypto pages, displaying much more information on them.
+- Add number of owned cryptos whenever selling or buying more of the same kind.
+- Decrease time that server will refresh crypto prices from 30m to 15m.
+- Add fourth statistic on price history on crypto card.
