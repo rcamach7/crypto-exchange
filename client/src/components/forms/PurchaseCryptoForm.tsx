@@ -47,7 +47,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
           "success",
           `Purchased ${numberWithCommas(
             quantity
-          )} ${crypto.ticker.toUpperCase()} coin${quantity > 1 && "s"}`
+          )} ${crypto.ticker.toUpperCase()} coin${quantity > 1 ? "s" : ""}`
         );
         handleClose();
       } catch (error) {

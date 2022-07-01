@@ -43,18 +43,17 @@ const FeaturesWrapper = styled.ul`
   padding: clamp(20px, 3vw, 50px);
 
   list-style: none;
-  background-color: ${({ theme }) => (theme === "light" ? "white" : "black")};
-  color: ${({ theme }) => (theme === "light" ? "black" : "white")};
+  background-color: white;
+  color: black;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-around;
   gap: 10px;
   li {
     display: flex;
     align-items: center;
-    font-size: clamp(15px, 2.25vw, 20px);
+    font-size: 16px;
     max-width: 800px;
     .icon {
       border-right: solid 1px white;

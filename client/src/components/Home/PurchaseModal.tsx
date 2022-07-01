@@ -1,5 +1,5 @@
 import { FC, useState } from "react";
-import { Box, Button, Modal } from "@mui/material/";
+import { Box, Button, Modal, useTheme } from "@mui/material/";
 import { Crypto } from "../../data/global.models";
 import { PurchaseCryptoForm } from "../forms/PurchaseCryptoForm";
 
@@ -27,6 +27,7 @@ export const PurchaseModal: FC<Props> = ({
   handleUpdateSingleCrypto,
 }) => {
   const [open, setOpen] = useState(false);
+  const theme = useTheme();
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,7 +48,15 @@ export const PurchaseModal: FC<Props> = ({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box
+          sx={{
+            ...style,
+            border:
+              theme.palette.mode === "dark"
+                ? "solid white 1px"
+                : "solid black 1px",
+          }}
+        >
           <PurchaseCryptoForm crypto={crypto} handleClose={handleClose} />
         </Box>
       </Modal>

@@ -64,7 +64,13 @@ export const Navbar = () => {
     <AppBar
       position="sticky"
       className="Navbar"
-      sx={{ height: "60px !important", backgroundColor: "rgb(0,0,0)" }}
+      id="Navbar"
+      sx={{
+        maxHeight: "60px !important",
+        overflow: "hidden",
+        backgroundColor: "rgb(0,0,0)",
+        borderBottom: theme.palette.mode === "dark" ? "solid white 1px" : "",
+      }}
     >
       <Container maxWidth="xl" className="navbarContainer">
         <Toolbar disableGutters>

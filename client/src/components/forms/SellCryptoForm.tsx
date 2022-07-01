@@ -53,7 +53,7 @@ export const SellCryptoForm: React.FC<Props> = ({
           "success",
           `Sold ${numberWithCommas(
             quantity
-          )} ${crypto.ticker.toUpperCase()} coin${quantity > 1 && "s"}`
+          )} ${crypto.ticker.toUpperCase()} coin${quantity > 1 ? "s" : ""}`
         );
         handleClose();
       } catch (error) {
