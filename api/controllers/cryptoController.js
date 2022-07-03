@@ -1,4 +1,3 @@
-const { verifyTokenAndStoreCredentials } = require("../assets/middleware");
 const { updateCryptos, updateOneCrypto } = require("../assets/api");
 const Crypto = require("../models/Crypto");
 
@@ -6,7 +5,6 @@ exports.getCryptos = [
   // Find out if we need to refresh our crypto information (we only refresh after one 30 minutes)
   async (req, res, next) => {
     try {
-      // All crypto objects will have the same lastUpdated value. We update them together.
       const cryptos = await Crypto.find();
 
       // Create a collection of cryptos that have gone too long without being updated.
@@ -15,25 +13,27 @@ exports.getCryptos = [
         const minutesElapsed =
           (new Date() - new Date(crypto.lastUpdated)) / 1000 / 60;
 
-        if (minutesElapsed > 30) {
+        if (minutesElapsed >= 15) {
           cryptosToUpdate.push(crypto.name);
         }
       });
 
-      // Update cryptos who haven't been updated in longer than 30 minutes.
+      // Update cryptos who haven't been updated in longer than 15 minutes.
       if (cryptosToUpdate.length) {
         try {
-          console.log("updating cryptos");
           await updateCryptos(cryptosToUpdate);
         } catch (error) {
-          res.json({ message: "Error updating crypto information" }, error);
+          res.json(
+            { message: "Error performing automatic updates on cryptos" },
+            error
+          );
         }
       }
 
       next();
     } catch (error) {
       res.json({
-        message: "Error populating cryptos",
+        message: "Error retrieving cryptos from database",
         error,
       });
     }
@@ -45,7 +45,7 @@ exports.getCryptos = [
       res.json({ cryptos });
     } catch (error) {
       res.json({
-        message: "Error retrieving cryptos",
+        message: "Error retrieving cryptos from database",
         error,
       });
     }
