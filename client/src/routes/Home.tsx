@@ -12,7 +12,8 @@ import { updateSingleCrypto } from "../data/api";
 import { useTheme } from "@mui/material/styles";
 
 export const Home = () => {
-  const { cryptos, user, togglePageLoading, setUser } = useGlobalContext();
+  const { cryptos, user, togglePageLoading, setUser, handleBannerMessage } =
+    useGlobalContext();
   const [organizedCryptos, setOrganizedCryptos] = useState<Crypto[]>([]);
   const [sortFilterOptions, setSortFilterOptions] = useState<SortFilterOptions>(
     { sort: "popular", filter: "none" }
@@ -55,7 +56,7 @@ export const Home = () => {
       togglePageLoading();
     } catch (error) {
       togglePageLoading();
-      alert("Error updating crypto");
+      handleBannerMessage("error", "Error updating crypto information");
     }
   };
 
