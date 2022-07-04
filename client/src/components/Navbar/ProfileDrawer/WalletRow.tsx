@@ -82,7 +82,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
           </div>
         </TableCell>
 
-        <TableCell align="right">{quantity}</TableCell>
+        <TableCell align="right">{numberWithCommas(quantity)}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
