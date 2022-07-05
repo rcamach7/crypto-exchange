@@ -1,7 +1,7 @@
 import { useGlobalContext } from "../context/GlobalCryptoContext";
 import { CryptoCard } from "../components/Home/CryptoCard";
 import { Crypto, SortFilterOptions } from "../data/global.models";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   processFilterSortOptions,
   replaceUpdatedCrypto,
@@ -33,6 +33,19 @@ export const Home = () => {
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
+  };
+
+  const handleSearch = (
+    e: React.SyntheticEvent<Element, Event>,
+    value: string | null
+  ) => {
+    if (value) {
+      setOrganizedCryptos(
+        organizedCryptos.filter((curCrypto) => curCrypto.name.includes(value))
+      );
+    } else {
+      setOrganizedCryptos(cryptos);
+    }
   };
 
   useEffect(() => {
@@ -94,6 +107,7 @@ export const Home = () => {
           renderInput={(params) => <TextField {...params} label="Search..." />}
           sx={{ minWidth: "200px" }}
           size="small"
+          onChange={(e, value) => handleSearch(e, value)}
         />
       </div>
       <div className="cryptosContainer">
