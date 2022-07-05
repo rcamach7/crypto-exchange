@@ -22,9 +22,9 @@ export const Home = () => {
   const [page, setPage] = useState(1);
   let ranges = [
     [0, 9],
-    [10, 19],
-    [20, 29],
-    [30, 39],
+    [9, 18],
+    [18, 27],
+    [27, 36],
   ];
 
   const theme = useTheme();
@@ -85,19 +85,6 @@ export const Home = () => {
         theme={theme.palette.mode}
       />
       <div className="cryptosContainer">
-        {/* {organizedCryptos.map((crypto) => {
-          return (
-            <CryptoCard
-              key={crypto.ticker}
-              crypto={crypto}
-              user={user}
-              handleUpdateSingleCrypto={handleUpdateSingleCrypto}
-              setUser={setUser}
-              togglePageLoading={togglePageLoading}
-              bookmarks={user ? user.bookmarks : []}
-            />
-          );
-        })} */}
         {organizedCryptos
           .slice(ranges[page - 1][0], ranges[page - 1][1])
           .map((crypto) => {
