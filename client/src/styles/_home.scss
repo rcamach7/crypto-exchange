@@ -4,6 +4,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .toolBar {
+    padding: 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
   .cryptosContainer {
     min-height: calc(100vh - 130px);
     width: clamp(340px, 1100px, 100vw);

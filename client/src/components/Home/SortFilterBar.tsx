@@ -7,7 +7,6 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const FilterWrapper = styled.div`
   height: 70px;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -11,6 +11,8 @@ import { SortFilterBar } from "../components/Home/SortFilterBar";
 import { updateSingleCrypto } from "../data/api";
 import { useTheme } from "@mui/material/styles";
 import Pagination from "@mui/material/Pagination";
+import Autocomplete from "@mui/material/Autocomplete";
+import { TextField } from "@mui/material";
 
 export const Home = () => {
   const { cryptos, user, togglePageLoading, setUser, handleBannerMessage } =
@@ -79,11 +81,21 @@ export const Home = () => {
         backgroundColor: `${determineThemeBackground(theme.palette.mode)}`,
       }}
     >
-      <SortFilterBar
-        setSortFilterOptions={setSortFilterOptions}
-        loggedIn={user ? true : false}
-        theme={theme.palette.mode}
-      />
+      <div className="toolBar">
+        <SortFilterBar
+          setSortFilterOptions={setSortFilterOptions}
+          loggedIn={user ? true : false}
+          theme={theme.palette.mode}
+        />
+        <Autocomplete
+          id="free-solo-demo"
+          freeSolo
+          options={organizedCryptos.map((crypto) => crypto.name)}
+          renderInput={(params) => <TextField {...params} label="Search..." />}
+          sx={{ minWidth: "200px" }}
+          size="small"
+        />
+      </div>
       <div className="cryptosContainer">
         {organizedCryptos
           .slice(ranges[page - 1][0], ranges[page - 1][1])
