@@ -1,24 +1,21 @@
 import { useGlobalContext } from "../context/GlobalCryptoContext";
 import { CryptoCard } from "../components/Home/CryptoCard";
-import { Crypto, SortFilterOptions } from "../data/global.models";
+import { Crypto } from "../data/global.models";
 import { useState, useEffect } from "react";
 import {
-  processFilterSortOptions,
   replaceUpdatedCrypto,
   determineThemeBackground,
 } from "../utilities/helpers";
-import { SortFilterBar } from "../components/Home/SortFilterBar";
 import { updateSingleCrypto } from "../data/api";
 import { useTheme } from "@mui/material/styles";
 import Pagination from "@mui/material/Pagination";
+import { ToolBar } from "../components/Home/ToolBar/ToolBar";
 
 export const Home = () => {
   const { cryptos, user, togglePageLoading, setUser, handleBannerMessage } =
     useGlobalContext();
   const [organizedCryptos, setOrganizedCryptos] = useState<Crypto[]>([]);
-  const [sortFilterOptions, setSortFilterOptions] = useState<SortFilterOptions>(
-    { sort: "popular", filter: "none" }
-  );
+
   const [page, setPage] = useState(1);
   let ranges = [
     [0, 9],
@@ -26,17 +23,13 @@ export const Home = () => {
     [18, 27],
     [27, 36],
   ];
-
   const theme = useTheme();
-
-  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-    setPage(value);
-  };
 
   useEffect(() => {
     togglePageLoading();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   useEffect(() => {
     if (cryptos.length) {
       togglePageLoading();
@@ -44,19 +37,6 @@ export const Home = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cryptos]);
-
-  useEffect(() => {
-    setOrganizedCryptos(
-      processFilterSortOptions(
-        cryptos,
-        sortFilterOptions,
-        user ? user.portfolio : [],
-        user ? user.bookmarks : []
-      )
-    );
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortFilterOptions, user?.bookmarks]);
 
   const handleUpdateSingleCrypto = async (name: string) => {
     togglePageLoading();
@@ -79,11 +59,13 @@ export const Home = () => {
         backgroundColor: `${determineThemeBackground(theme.palette.mode)}`,
       }}
     >
-      <SortFilterBar
-        setSortFilterOptions={setSortFilterOptions}
-        loggedIn={user ? true : false}
-        theme={theme.palette.mode}
+      <ToolBar
+        user={user}
+        cryptos={cryptos}
+        organizedCryptos={organizedCryptos}
+        setOrganizedCryptos={setOrganizedCryptos}
       />
+
       <div className="cryptosContainer">
         {organizedCryptos
           .slice(ranges[page - 1][0], ranges[page - 1][1])
@@ -104,7 +86,7 @@ export const Home = () => {
       <Pagination
         count={Math.ceil(organizedCryptos.length / 9)}
         page={page}
-        onChange={handleChange}
+        onChange={(e, value) => setPage(value)}
       />
     </div>
   );
