@@ -67,7 +67,9 @@ export const SortFilterBar: React.FC<Props> = ({
 
   return (
     <FilterWrapper theme={theme}>
-      <FilterListIcon sx={{ fontSize: "35px" }} />
+      <FilterListIcon
+        sx={{ fontSize: "35px", color: theme === "light" ? "black" : "white" }}
+      />
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
         <InputLabel htmlFor="grouped-native-select">Filter By:</InputLabel>
         <Select

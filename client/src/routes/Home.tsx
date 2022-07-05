@@ -100,13 +100,12 @@ export const Home = () => {
               />
             );
           })}
-
-        <Pagination
-          count={Math.ceil(organizedCryptos.length / 9)}
-          page={page}
-          onChange={handleChange}
-        />
       </div>
+      <Pagination
+        count={Math.ceil(organizedCryptos.length / 9)}
+        page={page}
+        onChange={handleChange}
+      />
     </div>
   );
 };

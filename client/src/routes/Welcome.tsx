@@ -159,7 +159,7 @@ export const Welcome: React.FC = () => {
           <ul>
             {cryptos.slice(0, 10).map((crypto) => {
               return (
-                <li>
+                <li key={crypto.ticker}>
                   <img
                     src={crypto.image}
                     alt={crypto.name}
