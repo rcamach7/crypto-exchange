@@ -140,22 +140,25 @@ export const Welcome: React.FC = () => {
             Crypto Exchange will help you gain confidence before risking your
             own money!
           </li>
-          <li className="animate__animated animate__fadeIn animate__delay-2s animate__fast">
+          <li className="animate__animated animate__fadeIn animate__delay-1s animate__fast">
             <GrainIcon className="icon" />
             Get started with $1,000,000 USD to start making big money moves!
             Registration is free!
           </li>
-          <li className="animate__animated animate__fadeIn animate__delay-3s animate__fast">
+          <li className="animate__animated animate__fadeIn animate__delay-2s animate__fast">
             <GrainIcon className="icon" />
             All transactions are made at real time prices. Get updated
             information on your investment performances!
           </li>
         </ul>
 
-        <div className="expandedInfo animate__animated animate__fadeIn animate__delay-4s animate__fast">
-          <p className="intro">
-            Invest in some of the worlds most popular cryptos!
-          </p>
+        <div className="expandedInfo animate__animated animate__fadeIn">
+          {/* Only display once cryptos have been retrieved */}
+          {cryptos.length > 0 && (
+            <p className="intro">
+              Invest in some of the worlds most popular cryptos!
+            </p>
+          )}
           <ul>
             {cryptos.slice(0, 10).map((crypto) => {
               return (

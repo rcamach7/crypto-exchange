@@ -16,9 +16,9 @@ export const Login = () => {
     >
       <img
         src={logo}
-        alt=""
+        alt="logo"
         className="logo"
-        style={{ width: "250px", height: "250px", margin: "20px 0" }}
+        style={{ height: showCreateAccount ? "175px" : "200px" }}
       />
       {showCreateAccount ? (
         <CreateAccountForm setShowCreateAccount={setShowCreateAccount} />

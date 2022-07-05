@@ -1,22 +1,14 @@
 .Home {
-  padding-bottom: 15px;
+  min-height: calc(100vh - 64px);
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  .toolBar {
-    padding: 20px;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
   .cryptosContainer {
-    min-height: calc(100vh - 130px);
+    flex: 8;
+    // min-height: calc(90vh - 150px);
     width: clamp(340px, 1100px, 100vw);
-    padding-bottom: 25px;
 
     display: flex;
     flex-wrap: wrap;

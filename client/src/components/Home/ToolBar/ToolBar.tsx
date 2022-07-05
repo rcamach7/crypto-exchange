@@ -7,7 +7,8 @@ import { processFilterSortOptions } from "../../../utilities/helpers";
 import styled from "styled-components";
 
 const ToolBarWrapper = styled.div`
-  padding: 20px;
+  padding: 10px 0;
+  flex: 1;
 
   display: flex;
   flex-wrap: wrap;

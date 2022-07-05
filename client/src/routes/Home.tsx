@@ -87,6 +87,7 @@ export const Home = () => {
         count={Math.ceil(organizedCryptos.length / 9)}
         page={page}
         onChange={(e, value) => setPage(value)}
+        sx={{ flex: 1, padding: "10px 0" }}
       />
     </div>
   );
