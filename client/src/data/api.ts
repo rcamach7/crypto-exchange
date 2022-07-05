@@ -5,6 +5,7 @@ import {
   ModifyCryptoFunction,
   bookmarkCryptoFunction,
   GetCryptoFunction,
+  UpdateNameFunction,
 } from "./api.models";
 import axios from "axios";
 import config from "./config.json";
@@ -12,6 +13,16 @@ import config from "./config.json";
 export const getUser: UserPromiseFunction = async () => {
   try {
     const response = await axios.get(`${config.api}/user/`);
+
+    return Promise.resolve(response.data.user);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+export const updateName: UpdateNameFunction = async (name) => {
+  try {
+    const response = await axios.put(`${config.api}/user/`, { fullName: name });
 
     return Promise.resolve(response.data.user);
   } catch (error) {

@@ -136,24 +136,21 @@ exports.updateUser = [
   upload.single("profilePicture"),
   async (req, res, next) => {
     try {
-      // Pull user details, and start copying over fields
       const currentUser = await User.findById(res.locals.userId);
-      const updatedUser = new User({
-        ...currentUser,
-        fullName: req.body.fullName ? req.body.fullName : currentUser.fullName,
-        profilePicture: req.file ? req.file.path : currentUser.profilePicture,
-        _id: res.locals.userId,
-      });
+      const user = await User.findOneAndUpdate(
+        { _id: res.locals.userId },
+        {
+          fullName: req.body.fullName
+            ? req.body.fullName
+            : currentUser.fullName,
+          profilePicture: req.file ? req.file.path : currentUser.profilePicture,
+        },
+        {
+          new: true,
+        }
+      ).select("-password");
 
-      // const user = await User.findOneAndUpdate(
-      //   { _id: res.locals.userId },
-      //   updatedUser,
-      //   {
-      //     new: true,
-      //   }
-      // ).select("-password");
-
-      return res.json({ message: "User has been updated", user: updatedUser });
+      return res.json({ message: "User has been updated", user });
     } catch (error) {
       return res
         .status(500)
