@@ -10,6 +10,7 @@ import {
 import { SortFilterBar } from "../components/Home/SortFilterBar";
 import { updateSingleCrypto } from "../data/api";
 import { useTheme } from "@mui/material/styles";
+import Pagination from "@mui/material/Pagination";
 
 export const Home = () => {
   const { cryptos, user, togglePageLoading, setUser, handleBannerMessage } =
@@ -18,11 +19,22 @@ export const Home = () => {
   const [sortFilterOptions, setSortFilterOptions] = useState<SortFilterOptions>(
     { sort: "popular", filter: "none" }
   );
+  const [page, setPage] = useState(1);
+  let ranges = [
+    [0, 9],
+    [9, 18],
+    [18, 27],
+    [27, 36],
+  ];
+
   const theme = useTheme();
+
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
 
   useEffect(() => {
     togglePageLoading();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
@@ -73,20 +85,27 @@ export const Home = () => {
         theme={theme.palette.mode}
       />
       <div className="cryptosContainer">
-        {organizedCryptos.map((crypto) => {
-          return (
-            <CryptoCard
-              key={crypto.ticker}
-              crypto={crypto}
-              user={user}
-              handleUpdateSingleCrypto={handleUpdateSingleCrypto}
-              setUser={setUser}
-              togglePageLoading={togglePageLoading}
-              bookmarks={user ? user.bookmarks : []}
-            />
-          );
-        })}
+        {organizedCryptos
+          .slice(ranges[page - 1][0], ranges[page - 1][1])
+          .map((crypto) => {
+            return (
+              <CryptoCard
+                key={crypto.ticker}
+                crypto={crypto}
+                user={user}
+                handleUpdateSingleCrypto={handleUpdateSingleCrypto}
+                setUser={setUser}
+                togglePageLoading={togglePageLoading}
+                bookmarks={user ? user.bookmarks : []}
+              />
+            );
+          })}
       </div>
+      <Pagination
+        count={Math.ceil(organizedCryptos.length / 9)}
+        page={page}
+        onChange={handleChange}
+      />
     </div>
   );
 };
