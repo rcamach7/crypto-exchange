@@ -1,4 +1,4 @@
 {
-  "api": "https://crypto-exchange-api.herokuapp.com",
-  "dev": "http://localhost:2000"
+  "api": "http://localhost:2000",
+  "dev": "https://crypto-exchange-api.herokuapp.com"
 }
