@@ -53,11 +53,9 @@ API server would need the following environment variables provided to run succes
 
 > Features
 
-- Add ability for user to update:
-  - profile picture
-  - full name
-- Possibly implement individual crypto pages, displaying much more information on them.
 - Add fourth statistic on price history on crypto card.
 - Incorporate some type of news bar on the home page whenever the screen is large enough.
 
 > Bugs
+
+- Fix open spacing on bottom of page when cryptos are loading.
