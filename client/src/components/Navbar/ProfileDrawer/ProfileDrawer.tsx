@@ -12,7 +12,6 @@ import { useGlobalContext } from "../../../context/GlobalCryptoContext";
 import { CryptoWallet } from "./CryptoWallet";
 import {
   formatPrice,
-  capitalizeFirstLetter,
   calculatePortfolioValue,
   calculateTotalValue,
   calculateTotalInvestmentReturn,
@@ -23,6 +22,8 @@ import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import { UpdateNameForm } from "../../forms/UpdateNameForm";
+import { UpdateProfileImageForm } from "../../forms/UpdateProfileImageForm";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -61,8 +62,6 @@ export const ProfileDrawer = () => {
       className="ProfileBox"
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 300 }}
       role="presentation"
-      // onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
     >
       <Card variant="outlined">
         {/* Section: User profile image and name. */}
@@ -74,16 +73,13 @@ export const ProfileDrawer = () => {
             borderBottom: "solid black 1px",
           }}
         >
-          <Avatar
-            sx={{ border: "solid black 1px" }}
-            aria-label="recipe"
-            alt={user?.profilePicture}
-            src={user?.profilePicture}
+          <UpdateProfileImageForm
+            currentProfilePicture={user ? user.profilePicture : ""}
           />
 
-          <Typography>
-            Hello, {user ? capitalizeFirstLetter(user.fullName) : "loading..."}
-          </Typography>
+          <div>
+            Hello, <UpdateNameForm name={user ? user.fullName : ""} />
+          </div>
         </CardContent>
 
         {/* Section: Information on users account value and performance, cash balance, and crypto balance.*/}

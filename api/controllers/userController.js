@@ -4,6 +4,23 @@ const config = require("../config.json");
 const axios = require("axios");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
+const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+
+// Configure Cloudinary and set some settings.
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD,
+  api_key: process.env.CLOUDINARY_API,
+  api_secret: process.env.CLOUDINARY_SECRET,
+});
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "crypto-exchange/profilePictures",
+  },
+});
+const upload = multer({ storage });
 
 exports.createUser = [
   // Data Validation and sanitation.
@@ -115,6 +132,31 @@ exports.getUser = [
 exports.updateUser = [
   // Verify token exists - if so, pull and save user id in res.locals.userId for next middleware.
   middleware.verifyTokenAndStoreCredentials,
+  // Process multi part form data and upload image is it exists
+  upload.single("profilePicture"),
+  async (req, res, next) => {
+    try {
+      const currentUser = await User.findById(res.locals.userId);
+      const user = await User.findOneAndUpdate(
+        { _id: res.locals.userId },
+        {
+          fullName: req.body.fullName
+            ? req.body.fullName
+            : currentUser.fullName,
+          profilePicture: req.file ? req.file.path : currentUser.profilePicture,
+        },
+        {
+          new: true,
+        }
+      ).select("-password");
+
+      return res.json({ message: "User has been updated", user });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Error occurred while updating user!", error });
+    }
+  },
 ];
 
 exports.deleteUser = (req, res, next) => {
