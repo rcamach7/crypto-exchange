@@ -6,6 +6,7 @@ import {
   bookmarkCryptoFunction,
   GetCryptoFunction,
   UpdateNameFunction,
+  UpdateUserImageFunction,
 } from "./api.models";
 import axios from "axios";
 import config from "./config.json";
@@ -23,6 +24,29 @@ export const getUser: UserPromiseFunction = async () => {
 export const updateName: UpdateNameFunction = async (name) => {
   try {
     const response = await axios.put(`${config.api}/user/`, { fullName: name });
+
+    return Promise.resolve(response.data.user);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+export const updateUserImage: UpdateUserImageFunction = async (
+  profilePicture
+) => {
+  if (!profilePicture) return Promise.reject("No image found");
+
+  try {
+    // Create a formData instance so we can send multipart/form-data outside of form control
+    const formData = new FormData();
+    formData.append("profilePicture", profilePicture);
+
+    const response = await axios({
+      method: "put",
+      url: `${config.api}/user/`,
+      data: formData,
+      headers: { "Content-Type": "multipart/form-data" },
+    });
 
     return Promise.resolve(response.data.user);
   } catch (error) {

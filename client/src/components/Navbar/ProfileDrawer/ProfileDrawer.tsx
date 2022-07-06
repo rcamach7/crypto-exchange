@@ -23,6 +23,7 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { UpdateNameForm } from "../../forms/UpdateNameForm";
+import { UpdateProfileImageForm } from "../../forms/UpdateProfileImageForm";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
@@ -72,11 +73,8 @@ export const ProfileDrawer = () => {
             borderBottom: "solid black 1px",
           }}
         >
-          <Avatar
-            sx={{ border: "solid black 1px" }}
-            aria-label="recipe"
-            alt={user?.profilePicture}
-            src={user?.profilePicture}
+          <UpdateProfileImageForm
+            currentProfilePicture={user ? user.profilePicture : ""}
           />
 
           <div>

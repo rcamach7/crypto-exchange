@@ -41,6 +41,7 @@ export const UpdateNameForm = ({ name }: Props) => {
 
   const isValidName: (name: string) => boolean = (name) => {
     if (name.length === 0 || name.length < 4) {
+      togglePageLoading();
       handleBannerMessage("error", "Name must be at least 4 characters long!");
       return false;
     } else return true;
