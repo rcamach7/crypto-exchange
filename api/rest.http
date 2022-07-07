@@ -1,4 +1,4 @@
-GET http://localhost:2000
+GET http://localhost:2000/news
 
 ### CREATE ACCOUNT
 POST http://localhost:2000/user/
@@ -12,28 +12,3 @@ Content-Type: application/json
 ### GET USER DATA
 GET http://localhost:2000/user/
 Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiX2lkIjoiNjI4MzE2YWI0OGZlZTExOWQ3MjRjMTBjIiwiaWF0IjoxNjUyOTIxMzEwfQ.draHUy2QuIZSJZhmkPVMmQEwSo1PAtb64Xb6xn-CdbM
-
-### LOG IN
-POST http://localhost:2000/login/
-Content-Type: application/json
-
-{
-  "username": "admin",
-  "password": "admin"
-}
-
-### GET CRYPTO DATA
-GET http://localhost:2000/cryptos/
-authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiX2lkIjoiNjI4MzE2YWI0OGZlZTExOWQ3MjRjMTBjIiwiaWF0IjoxNjUyODI2MTE1fQ.LXyBlWeGkwsPyUH2uF6kIvM-rRk6F_o1vi89FU-yERM
-
-### GET CRYPTO DATA : "2022-05-18T22:11:24.619Z" / 2022-05-18T22:35:50.428Z
-PUT http://localhost:2000/cryptos/bitcoin
-authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiX2lkIjoiNjI4MzE2YWI0OGZlZTExOWQ3MjRjMTBjIiwiaWF0IjoxNjUyODI2MTE1fQ.LXyBlWeGkwsPyUH2uF6kIvM-rRk6F_o1vi89FU-yERM
-
-### PURCHASE CRYPTO
-POST http://localhost:2000/transactions/buy/ethereum&1
-authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiX2lkIjoiNjI4MzE2YWI0OGZlZTExOWQ3MjRjMTBjIiwiaWF0IjoxNjUyODI2MTE1fQ.LXyBlWeGkwsPyUH2uF6kIvM-rRk6F_o1vi89FU-yERM
-
-### SELL CRYPTO
-POST http://localhost:2000/transactions/sell/bitcoin&g
-authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiX2lkIjoiNjI4MzE2YWI0OGZlZTExOWQ3MjRjMTBjIiwiaWF0IjoxNjUyODI2MTE1fQ.LXyBlWeGkwsPyUH2uF6kIvM-rRk6F_o1vi89FU-yERM

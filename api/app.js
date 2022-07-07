@@ -19,6 +19,7 @@ const userRoutes = require("./routes/userRoutes");
 const loginRoute = require("./routes/loginRoute");
 const cryptoRoutes = require("./routes/cryptoRoutes");
 const transactionRoutes = require("./routes/transactionRoutes");
+const newsRoutes = require("./routes/newsRoutes");
 
 // Enable all origins to connect to our app
 app.use(cors());
@@ -64,9 +65,12 @@ app.use("/user", userRoutes);
 app.use("/transactions", transactionRoutes);
 app.use("/cryptos", cryptoRoutes);
 app.use("/login", loginRoute);
+app.use("/news", newsRoutes);
 
 app.get("/", (req, res, next) => {
-  res.json({ msg: "welcome to my crypto API" });
+  res.json({
+    msg: "welcome to my crypto API - designed for specific application needs",
+  });
 });
 
 module.exports = app;
