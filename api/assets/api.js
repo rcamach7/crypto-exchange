@@ -1,6 +1,7 @@
 const CoinGecko = require("coingecko-api");
 const CoinGeckoClient = new CoinGecko();
 const Crypto = require("../models/Crypto");
+const axios = require("axios");
 
 exports.updateCryptos = async (cryptos) => {
   try {
@@ -76,6 +77,18 @@ exports.updateOneCrypto = async (cryptoName) => {
     );
 
     return Promise.resolve(result);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
+
+exports.getNewsArticles = async () => {
+  try {
+    const res = await axios.get(
+      `https://newsdata.io/api/1/news?apikey=${process.env.NEWSDATA_TOKEN}&country=us&category=technology&language=en&q=crypto%20OR%20cryptocurrency%20OR%20bitcoin%20OR%20blockchain`
+    );
+
+    return Promise.resolve(res.data.results);
   } catch (error) {
     return Promise.reject(error);
   }
