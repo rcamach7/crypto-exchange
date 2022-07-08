@@ -13,7 +13,6 @@ import { ToolBar } from "../components/Home/ToolBar/ToolBar";
 import styled from "styled-components";
 import { NewsArticleCard } from "../components/Home/NewsArticleCard";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
-import { Typography } from "@mui/material";
 
 const HomeWrapper = styled.div`
   min-height: calc(100vh - 64px);
