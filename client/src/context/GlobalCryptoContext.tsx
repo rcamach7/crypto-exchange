@@ -25,6 +25,7 @@ export const useGlobalContext = () => {
 export const GlobalCryptoProvider: ContextProviderComponent = ({
   children,
 }) => {
+  // Utilizes our custom hooks that fetch our application data
   const [user, setUser, token, setToken] = useUserAuth();
   const [cryptos, setCryptos, serverOffline] = useFetchPosts();
   const newsArticles = useFetchNews();
@@ -44,10 +45,6 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
     }, 5000);
   };
 
-  useEffect(() => {
-    console.log(newsArticles);
-  }, [newsArticles]);
-
   return (
     <CryptoContext.Provider
       value={{
@@ -59,6 +56,7 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
         setToken,
         togglePageLoading,
         handleBannerMessage,
+        newsArticles,
       }}
     >
       {/* Will populate all nested children components */}
