@@ -26,7 +26,7 @@ Full stack Crypto Exchange that lets you practice cryptocurrency trading with fa
 
 #### Built Using:
 
-- react, typescript, mongoose, MUI components, styled-components, animate.css, axios interceptors, react-router-dom, sass, useEffect, useState, Context API, custom hooks, hash router, promise based functions, async/await, custom API, moment etc...
+- react, typescript, mongoose, MUI components, styled-components, cloudinary, animate.css, axios interceptors, react-router-dom, sass, useEffect, useState, Context API, custom hooks, hash router, promise based functions, async/await, custom API, moment etc...
 
 #### How to install and run?
 
@@ -45,9 +45,9 @@ npm install
 npm start
 ```
 
-API server would need the following environment variables provided to run successfully:
+API server would need the following environments and variables provided to run successfully:
 
-- MONGO_DB, SECRET_STRING, PORT
+- MONGO_DB, SECRET_STRING, CLOUDINARY_CLOUD, CLOUDINARY_API, CLOUDINARY_SECRET
 
 #### To-Do's
 
