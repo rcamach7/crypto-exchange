@@ -1,37 +1,30 @@
 const NewsArticle = require("../models/NewsArticle");
-const { getNewsArticles } = require("../assets/api");
+const { replaceNewsArticles } = require("../assets/api");
 
 exports.getNews = [
+  // Check to see if X time has elapsed, for us to refresh out news articles from a 3P API.
   async (req, res, next) => {
     try {
-      const articles = await NewsArticle.find();
+      const article = await NewsArticle.findOne();
+      const minutesElapsed =
+        (new Date() - new Date(article.dateAdded)) / 1000 / 60;
 
-      if (articles.length === 0) {
-        const newArticles = await getNewsArticles();
-        console.log(newArticles);
-
-        newArticles.forEach(async (data) => {
-          const article = new NewsArticle({
-            title: data.title ? data.title : "No title available...",
-            link: data.link
-              ? data.link
-              : "https://rcamach7.github.io/crypto-exchange/#/crypto-exchange/",
-            creator: data.creator ? data.creator : ["Anonymous"],
-            description: data.description
-              ? data.description
-              : "No description available...",
-            content: data.content ? data.content : "No content available...",
-            pubDate: data.pubDate ? data.pubDate : new Date(),
-            image_url: data.image_url
-              ? data.image_url
-              : "https://res.cloudinary.com/de2ymful4/image/upload/v1657237129/crypto-exchange/assets/stock_crypto_empbv9.png",
-            dateAdded: new Date(),
-          });
-          await article.save();
-        });
-
-        return res.json({ message: "News articles added" });
+      if (minutesElapsed > 15) {
+        await replaceNewsArticles();
       }
+
+      next();
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ error, message: "Error updating news articles" });
+    }
+  },
+  async (req, res, next) => {
+    try {
+      const articles = await NewsArticle.find({});
+
+      return res.json({ articles });
     } catch (error) {
       return res
         .status(500)
