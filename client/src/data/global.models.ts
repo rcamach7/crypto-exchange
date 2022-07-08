@@ -28,6 +28,17 @@ export interface Crypto {
   };
 }
 
+export interface NewsArticle {
+  title: string;
+  link: string;
+  creator: [];
+  description: string;
+  content: string;
+  pubDate: Date;
+  image_url: string;
+  dateAdded: Date;
+}
+
 export interface Account {
   username: string;
   password: string;

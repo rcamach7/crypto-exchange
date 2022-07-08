@@ -7,6 +7,7 @@ import {
   GetCryptoFunction,
   UpdateNameFunction,
   UpdateUserImageFunction,
+  GetNewsArticlesFunction,
 } from "./api.models";
 import axios from "axios";
 import config from "./config.json";
@@ -129,6 +130,16 @@ export const bookmarkCrypto: bookmarkCryptoFunction = async (name) => {
     return Promise.resolve(response.data.user);
   } catch (error) {
     console.log(error);
+    return Promise.reject(error);
+  }
+};
+
+export const getNewsArticles: GetNewsArticlesFunction = async () => {
+  try {
+    const response = await axios.get(`${config.api}/news/`);
+
+    return Promise.resolve(response.data.articles);
+  } catch (error) {
     return Promise.reject(error);
   }
 };

@@ -1,4 +1,4 @@
-import { User, Account, Crypto } from "./global.models";
+import { User, Account, Crypto, NewsArticle } from "./global.models";
 
 export type UserPromiseFunction = () => Promise<User>;
 
@@ -11,6 +11,8 @@ export type UpdateUserImageFunction = (
 export type AccessAccountFunction = (account: Account) => Promise<string>;
 
 export type GetCryptoFunction = (name?: string) => Promise<Crypto[]>;
+
+export type GetNewsArticlesFunction = () => Promise<NewsArticle[]>;
 
 export type UpdateCryptoFunction = (name?: string) => Promise<Crypto>;
 

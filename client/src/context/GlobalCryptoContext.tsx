@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { PopupBanner } from "../components/PopupBanner";
 import { LoadingUx } from "../components/LoadingUx";
 import {
@@ -9,6 +9,7 @@ import {
 } from "./context.models";
 import { useUserAuth } from "../hooks/useUserAuth";
 import { useFetchPosts } from "../hooks/useFetchPosts";
+import { useFetchNews } from "../hooks/useFetchNews";
 
 // Create context, and export custom hook that can extract our context values in different components.
 const CryptoContext = createContext<ContextInterface | null>(null);
@@ -26,6 +27,8 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
 }) => {
   const [user, setUser, token, setToken] = useUserAuth();
   const [cryptos, setCryptos, serverOffline] = useFetchPosts();
+  const newsArticles = useFetchNews();
+
   const [pageLoading, setPageLoading] = useState<boolean>(false);
   const [showPopupBanner, setShowPopupBanner] = useState<BannerMessage>({
     show: false,
@@ -40,6 +43,10 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
       setShowPopupBanner({ show: false, message: "" });
     }, 5000);
   };
+
+  useEffect(() => {
+    console.log(newsArticles);
+  }, [newsArticles]);
 
   return (
     <CryptoContext.Provider
