@@ -47,7 +47,7 @@ npm start
 
 API server would need the following environments and variables provided to run successfully:
 
-- MONGO_DB, SECRET_STRING, CLOUDINARY_CLOUD, CLOUDINARY_API, CLOUDINARY_SECRET
+- MONGO_DB, SECRET_STRING, CLOUDINARY_CLOUD, CLOUDINARY_API, CLOUDINARY_SECRET, NEWSDATA_TOKEN
 
 #### To-Do's
 
@@ -59,3 +59,4 @@ API server would need the following environments and variables provided to run s
 > Bugs
 
 - Fix open spacing on bottom of page when cryptos are loading.
+- Have API respond with newsArticles from news endpoint, instead of articles, so we align close to the naming conventions used in our client and server

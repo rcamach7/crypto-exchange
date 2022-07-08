@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { PopupBanner } from "../components/PopupBanner";
 import { LoadingUx } from "../components/LoadingUx";
 import {
@@ -9,6 +9,7 @@ import {
 } from "./context.models";
 import { useUserAuth } from "../hooks/useUserAuth";
 import { useFetchPosts } from "../hooks/useFetchPosts";
+import { useFetchNews } from "../hooks/useFetchNews";
 
 // Create context, and export custom hook that can extract our context values in different components.
 const CryptoContext = createContext<ContextInterface | null>(null);
@@ -24,8 +25,11 @@ export const useGlobalContext = () => {
 export const GlobalCryptoProvider: ContextProviderComponent = ({
   children,
 }) => {
+  // Utilizes our custom hooks that fetch our application data
   const [user, setUser, token, setToken] = useUserAuth();
   const [cryptos, setCryptos, serverOffline] = useFetchPosts();
+  const newsArticles = useFetchNews();
+
   const [pageLoading, setPageLoading] = useState<boolean>(false);
   const [showPopupBanner, setShowPopupBanner] = useState<BannerMessage>({
     show: false,
@@ -52,6 +56,7 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
         setToken,
         togglePageLoading,
         handleBannerMessage,
+        newsArticles,
       }}
     >
       {/* Will populate all nested children components */}

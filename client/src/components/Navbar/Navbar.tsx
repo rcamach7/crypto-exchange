@@ -110,6 +110,12 @@ export const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              {user && (
+                <MenuItem onClick={handleCloseUserMenu} sx={style}>
+                  <ProfileDrawer />
+                </MenuItem>
+              )}
+
               {/* Dynamically Rendered Navbar Options */}
               {curLocation === "home" ? null : (
                 <Link to="/crypto-exchange/home">
@@ -119,10 +125,12 @@ export const Navbar = () => {
                 </Link>
               )}
 
-              {user && (
-                <MenuItem onClick={handleCloseUserMenu} sx={style}>
-                  <ProfileDrawer />
-                </MenuItem>
+              {curLocation === "news" ? null : (
+                <Link to="/crypto-exchange/news">
+                  <MenuItem onClick={handleCloseUserMenu} sx={style}>
+                    News
+                  </MenuItem>
+                </Link>
               )}
 
               {curLocation === "" ? null : (
