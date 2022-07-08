@@ -11,6 +11,7 @@ import { useTheme } from "@mui/material/styles";
 import Pagination from "@mui/material/Pagination";
 import { ToolBar } from "../components/Home/ToolBar/ToolBar";
 import styled from "styled-components";
+import { NewsArticleCard } from "../components/Home/NewsArticleCard";
 
 const HomeWrapper = styled.div`
   min-height: calc(100vh - 64px);
@@ -25,7 +26,6 @@ const HomeWrapper = styled.div`
 `;
 const CryptosWrapper = styled.div`
   flex: 1;
-  outline: auto;
 
   display: flex;
   flex-direction: column;
@@ -43,8 +43,15 @@ const CryptosWrapper = styled.div`
 const NewsArticlesWrapper = styled.div`
   display: none;
   @media (min-width: 1000px) {
-    display: block;
-    width: clamp(100px, 300px, 100vw);
+    width: 300px;
+    height: 90vh;
+    overflow: scroll;
+
+    /* outline: auto; */
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 `;
 
@@ -134,8 +141,11 @@ export const Home = () => {
       </CryptosWrapper>
 
       <NewsArticlesWrapper>
+        <p style={{ textAlign: "center", paddingTop: "25px" }}>
+          {newsArticles.length ? "Trending News" : ""}
+        </p>
         {newsArticles.map((article, i) => {
-          return <li key={i}>{article.title}</li>;
+          return <NewsArticleCard key={i} article={article} />;
         })}
       </NewsArticlesWrapper>
     </HomeWrapper>
