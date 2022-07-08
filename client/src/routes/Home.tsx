@@ -12,6 +12,8 @@ import Pagination from "@mui/material/Pagination";
 import { ToolBar } from "../components/Home/ToolBar/ToolBar";
 import styled from "styled-components";
 import { NewsArticleCard } from "../components/Home/NewsArticleCard";
+import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
+import { Typography } from "@mui/material";
 
 const HomeWrapper = styled.div`
   min-height: calc(100vh - 64px);
@@ -45,9 +47,11 @@ const NewsArticlesWrapper = styled.div`
   @media (min-width: 1000px) {
     width: 300px;
     height: 90vh;
-    overflow: scroll;
 
+    overflow: scroll;
     /* outline: auto; */
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-right: 5px;
 
     display: flex;
     flex-direction: column;
@@ -68,10 +72,14 @@ export const Home = () => {
 
   const [page, setPage] = useState(1);
   let ranges = [
-    [0, 9],
-    [9, 18],
-    [18, 27],
-    [27, 36],
+    [0, 4],
+    [4, 8],
+    [8, 12],
+    [12, 16],
+    [16, 20],
+    [20, 24],
+    [24, 28],
+    [28, 32],
   ];
   const theme = useTheme();
 
@@ -133,7 +141,7 @@ export const Home = () => {
             })}
         </div>
         <Pagination
-          count={Math.ceil(organizedCryptos.length / 9)}
+          count={Math.ceil(organizedCryptos.length / 4)}
           page={page}
           onChange={(e, value) => setPage(value)}
           sx={{ flex: 1, padding: "10px 0" }}
@@ -141,9 +149,31 @@ export const Home = () => {
       </CryptosWrapper>
 
       <NewsArticlesWrapper>
-        <p style={{ textAlign: "center", paddingTop: "25px" }}>
-          {newsArticles.length ? "Trending News" : ""}
-        </p>
+        <span style={{ textAlign: "center", paddingTop: "25px" }}>
+          {newsArticles.length ? (
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "10px",
+                color: theme.palette.mode === "light" ? "black" : "white",
+              }}
+            >
+              <OnlinePredictionIcon
+                color="success"
+                className="animate__animated animate__fadeIn animate__infinite animate__slower"
+              />
+              Trending News
+              <OnlinePredictionIcon
+                color="success"
+                className="animate__animated animate__fadeIn animate__infinite animate__slower"
+              />
+            </span>
+          ) : (
+            ""
+          )}
+        </span>
         {newsArticles.map((article, i) => {
           return <NewsArticleCard key={i} article={article} />;
         })}
