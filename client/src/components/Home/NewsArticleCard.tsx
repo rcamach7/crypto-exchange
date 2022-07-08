@@ -14,10 +14,12 @@ interface Props {
 }
 
 const style = {
+  width: "300px",
   height: "250px",
   display: "flex",
   flexDirection: "column",
   overflow: "unset",
+  boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
 };
 
 export const NewsArticleCard: React.FC<Props> = ({ article }) => {

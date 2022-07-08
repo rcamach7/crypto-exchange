@@ -43,13 +43,14 @@ const CryptosWrapper = styled.div`
 `;
 const NewsArticlesWrapper = styled.div`
   display: none;
+  padding: 0 5px;
   @media (min-width: 1000px) {
     width: 300px;
     height: 90vh;
 
     overflow: scroll;
     /* outline: auto; */
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
     margin-right: 5px;
 
     display: flex;

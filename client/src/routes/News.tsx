@@ -8,6 +8,14 @@ import styled from "styled-components";
 const NewsArticleWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  .newsArticlesContainer {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 `;
 
 export const News = () => {
@@ -16,7 +24,7 @@ export const News = () => {
 
   return (
     <NewsArticleWrapper>
-      <span style={{ textAlign: "center", paddingTop: "25px" }}>
+      <span style={{ textAlign: "center", padding: "25px 0" }}>
         {newsArticles.length ? (
           <span
             style={{
@@ -41,9 +49,11 @@ export const News = () => {
           ""
         )}
       </span>
-      {newsArticles.map((article, i) => {
-        return <NewsArticleCard key={i} article={article} />;
-      })}
+      <div className="newsArticlesContainer">
+        {newsArticles.map((article, i) => {
+          return <NewsArticleCard key={i} article={article} />;
+        })}
+      </div>
     </NewsArticleWrapper>
   );
 };
