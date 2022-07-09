@@ -20,7 +20,6 @@ export interface ContextInterface {
   setToken: React.Dispatch<React.SetStateAction<string | null>>;
   togglePageLoading: () => void;
   handleBannerMessage: (type: "success" | "error", message: string) => void;
-  newsArticles: NewsArticle[];
 }
 
 export interface BannerMessage {

@@ -6,8 +6,11 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Welcome } from "./routes/Welcome";
 import { ThemeContext } from "./context/ThemeContext";
 import { News } from "./routes/News";
+import { useFetchNewsArticles } from "./hooks/useFetchNewsArticles";
 
 export const RouteSwitch = () => {
+  useFetchNewsArticles();
+
   return (
     <ThemeContext>
       <HashRouter>

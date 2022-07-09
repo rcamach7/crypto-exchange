@@ -1,9 +1,8 @@
-import React from "react";
-import { useGlobalContext } from "../context/GlobalCryptoContext";
 import { NewsArticleCard } from "../components/Home/NewsArticleCard";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import { useTheme } from "@mui/material";
 import styled from "styled-components";
+import { useAppSelector } from "../features/hooks";
 
 const NewsArticleWrapper = styled.div`
   padding-bottom: 15px;
@@ -22,7 +21,7 @@ const NewsArticleWrapper = styled.div`
 `;
 
 export const News = () => {
-  const { newsArticles } = useGlobalContext();
+  const newsArticles = useAppSelector((state) => state.newsArticles.value);
   const theme = useTheme();
 
   return (

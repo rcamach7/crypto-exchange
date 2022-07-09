@@ -1,10 +1,10 @@
-import { useGlobalContext } from "../context/GlobalCryptoContext";
 import { determineThemeBackground } from "../utilities/helpers";
 import { useTheme } from "@mui/material/styles";
 import styled from "styled-components";
 import { NewsArticleCard } from "../components/Home/NewsArticleCard";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import { CryptosContainer } from "../components/Home/CryptoContainer/CryptosContainer";
+import { useAppSelector } from "../features/hooks";
 
 const HomeWrapper = styled.div`
   min-height: calc(100vh - 60px);
@@ -35,7 +35,7 @@ const NewsArticlesWrapper = styled.div`
 `;
 
 export const Home = () => {
-  const { newsArticles } = useGlobalContext();
+  const newsArticles = useAppSelector((state) => state.newsArticles.value);
   const theme = useTheme();
 
   return (
