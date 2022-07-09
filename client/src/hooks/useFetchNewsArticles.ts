@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { getNewsArticles } from "../data/api";
 import { NewsArticle } from "../data/global.models";
-import { useAppDispatch } from "../features/hooks";
+import { useAppDispatch, useAppSelector } from "../features/hooks";
 import { setNewsArticles } from "../features/newsArticles/newsArticlesSlice";
 
 export const useFetchNewsArticles = () => {
   const dispatch = useAppDispatch();
+  const newsArticles = useAppSelector((state) => state.newsArticles.value);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -17,6 +18,8 @@ export const useFetchNewsArticles = () => {
       }
     };
 
-    fetchNews();
-  }, [dispatch]);
+    if (!newsArticles.length) {
+      fetchNews();
+    }
+  }, [dispatch, newsArticles]);
 };

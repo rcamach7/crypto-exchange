@@ -58,3 +58,4 @@ API server would need the following environments and variables provided to run s
 > Bugs
 
 - Fix dark theme not filling up entire page on News route, leaving a partial white background.
+- Re implement server status UI since we had to remove the custom hook for cryptos that managed that

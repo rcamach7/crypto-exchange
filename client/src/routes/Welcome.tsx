@@ -1,11 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import GrainIcon from "@mui/icons-material/Grain";
 import an from "../assets/ans.webp";
 import "animate.css";
 import { useTheme } from "@mui/material/styles";
-import { useGlobalContext } from "../context/GlobalCryptoContext";
+import { useAppSelector } from "../features/hooks";
 
 const IntroCardWrapper = styled.div`
   flex: 1.5;
@@ -115,7 +114,7 @@ const FeaturesWrapper = styled.div`
 
 export const Welcome: React.FC = () => {
   const theme = useTheme();
-  const { cryptos } = useGlobalContext();
+  const cryptos = useAppSelector((state) => state.cryptos.value);
 
   return (
     <div className="Welcome">

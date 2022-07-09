@@ -8,7 +8,6 @@ import {
   ContextProviderComponent,
 } from "./context.models";
 import { useUserAuth } from "../hooks/useUserAuth";
-import { useFetchPosts } from "../hooks/useFetchPosts";
 
 // Create context, and export custom hook that can extract our context values in different components.
 const CryptoContext = createContext<ContextInterface | null>(null);
@@ -26,7 +25,6 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
 }) => {
   // Utilizes our custom hooks that fetch our application data
   const [user, setUser, token, setToken] = useUserAuth();
-  const [cryptos, setCryptos, serverOffline] = useFetchPosts();
 
   const [pageLoading, setPageLoading] = useState<boolean>(false);
   const [showPopupBanner, setShowPopupBanner] = useState<BannerMessage>({
@@ -48,8 +46,6 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
       value={{
         user,
         setUser,
-        cryptos,
-        setCryptos,
         token,
         setToken,
         togglePageLoading,
@@ -66,12 +62,12 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
           type={showPopupBanner.type}
         />
       )}
-      {serverOffline && (
+      {/* {serverOffline && (
         <PopupBanner
           message={"Unable to connect to server - try again later."}
           type={"error"}
         />
-      )}
+      )} */}
     </CryptoContext.Provider>
   );
 };

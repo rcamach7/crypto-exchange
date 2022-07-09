@@ -7,9 +7,11 @@ import { Welcome } from "./routes/Welcome";
 import { ThemeContext } from "./context/ThemeContext";
 import { News } from "./routes/News";
 import { useFetchNewsArticles } from "./hooks/useFetchNewsArticles";
+import { useFetchCryptos } from "./hooks/useFetchCryptos";
 
 export const RouteSwitch = () => {
   useFetchNewsArticles();
+  useFetchCryptos();
 
   return (
     <ThemeContext>

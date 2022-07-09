@@ -7,6 +7,7 @@ import { CryptoCard } from "./CryptoCard";
 import { replaceUpdatedCrypto } from "../../../utilities/helpers";
 import { updateSingleCrypto } from "../../../data/api";
 import { Pagination } from "@mui/material";
+import { useAppSelector } from "../../../features/hooks";
 
 const CryptosWrapper = styled.div`
   flex: 1;
@@ -26,8 +27,9 @@ const CryptosWrapper = styled.div`
 `;
 
 export const CryptosContainer = () => {
-  const { cryptos, user, setUser, togglePageLoading, handleBannerMessage } =
+  const { user, setUser, togglePageLoading, handleBannerMessage } =
     useGlobalContext();
+  const cryptos = useAppSelector((state) => state.cryptos.value);
   const [organizedCryptos, setOrganizedCryptos] = useState<Crypto[]>([]);
 
   const [page, setPage] = useState(1);

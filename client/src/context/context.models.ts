@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Crypto, NewsArticle, User } from "../data/global.models";
+import { User } from "../data/global.models";
 
 // Theme Context
 export type ThemeProviderInterface = ({
@@ -12,8 +12,6 @@ export type PaletteMode = "light" | "dark";
 
 // Global Context
 export interface ContextInterface {
-  cryptos: Crypto[];
-  setCryptos: React.Dispatch<React.SetStateAction<Crypto[]>>;
   user: User | null;
   setUser: React.Dispatch<React.SetStateAction<User | null>>;
   token: string | null;
