@@ -6,6 +6,8 @@ import { useTheme } from "@mui/material";
 import styled from "styled-components";
 
 const NewsArticleWrapper = styled.div`
+  padding-bottom: 15px;
+
   display: flex;
   flex-direction: column;
   .newsArticlesContainer {

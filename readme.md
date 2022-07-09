@@ -54,7 +54,6 @@ API server would need the following environments and variables provided to run s
 > Features
 
 - Add fourth statistic on price history on crypto card.
-- Incorporate some type of news bar on the home page whenever the screen is large enough.
 
 > Bugs
 
