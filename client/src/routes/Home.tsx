@@ -4,10 +4,10 @@ import { useTheme } from "@mui/material/styles";
 import styled from "styled-components";
 import { NewsArticleCard } from "../components/Home/NewsArticleCard";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
-import { CryptosContainer } from "../components/Home/CryptosContainer";
+import { CryptosContainer } from "../components/Home/CryptoContainer/CryptosContainer";
 
 const HomeWrapper = styled.div`
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 60px);
 
   display: flex;
   flex-direction: column;
@@ -26,8 +26,6 @@ const NewsArticlesWrapper = styled.div`
     height: 90vh;
 
     overflow: scroll;
-    /* outline: auto; */
-    /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
     margin-right: 5px;
 
     display: flex;
@@ -49,7 +47,7 @@ export const Home = () => {
       <CryptosContainer />
 
       <NewsArticlesWrapper>
-        <span style={{ textAlign: "center", paddingTop: "25px" }}>
+        <span style={{ textAlign: "center", padding: "25px 0 15px 0" }}>
           {newsArticles.length ? (
             <span
               style={{

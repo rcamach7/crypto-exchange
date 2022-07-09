@@ -56,6 +56,3 @@ API server would need the following environments and variables provided to run s
 - Add fourth statistic on price history on crypto card.
 
 > Bugs
-
-- Fix open spacing on bottom of page when cryptos are loading.
-- Have API respond with newsArticles from news endpoint, instead of articles, so we align close to the naming conventions used in our client and server

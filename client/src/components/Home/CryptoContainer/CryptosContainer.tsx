@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { Crypto } from "../../data/global.models";
+import { Crypto } from "../../../data/global.models";
 import styled from "styled-components";
-import { useGlobalContext } from "../../context/GlobalCryptoContext";
-import { ToolBar } from "./ToolBar/ToolBar";
+import { useGlobalContext } from "../../../context/GlobalCryptoContext";
+import { ToolBar } from "../ToolBar/ToolBar";
 import { CryptoCard } from "./CryptoCard";
-import { replaceUpdatedCrypto } from "../../utilities/helpers";
-import { updateSingleCrypto } from "../../data/api";
+import { replaceUpdatedCrypto } from "../../../utilities/helpers";
+import { updateSingleCrypto } from "../../../data/api";
 import { Pagination } from "@mui/material";
 
 const CryptosWrapper = styled.div`

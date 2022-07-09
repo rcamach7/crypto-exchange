@@ -7,6 +7,7 @@ import styled from "styled-components";
 
 const NewsArticleWrapper = styled.div`
   padding-bottom: 15px;
+  background-color: ${(props) => (props.theme === "light" ? "white" : "black")};
 
   display: flex;
   flex-direction: column;
@@ -25,7 +26,7 @@ export const News = () => {
   const theme = useTheme();
 
   return (
-    <NewsArticleWrapper>
+    <NewsArticleWrapper theme={theme.palette.mode}>
       <span style={{ textAlign: "center", padding: "25px 0" }}>
         {newsArticles.length ? (
           <span
