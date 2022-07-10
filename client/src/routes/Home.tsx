@@ -21,7 +21,7 @@ const HomeWrapper = styled.div`
 
 const NewsArticlesWrapper = styled.div`
   display: none;
-  padding: 0 5px;
+
   @media (min-width: 1000px) {
     width: 300px;
     height: 90vh;

@@ -6,6 +6,7 @@ import { useAppSelector } from "../features/hooks";
 import { LoadingUx } from "../components/LoadingUx";
 
 const NewsArticleWrapper = styled.div`
+  min-height: calc(100vh - 60px);
   padding-bottom: 15px;
   background-color: ${(props) => (props.theme === "light" ? "white" : "black")};
 

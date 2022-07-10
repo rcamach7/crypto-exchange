@@ -14,7 +14,7 @@ interface Props {
 
 const style = {
   width: "300px",
-  height: "200px",
+  maxHeight: "200px",
   display: "flex",
   flexDirection: "column",
   overflow: "unset",
@@ -38,8 +38,14 @@ export const NewsArticleCard: React.FC<Props> = ({ article }) => {
           size="small"
           onClick={() => window.open(`${article.link}`, "_blank")}
         >
-          Visit Source
+          Read full article
         </Button>
+        <Typography
+          color="text.secondary"
+          sx={{ fontSize: "12px", marginLeft: "auto" }}
+        >
+          {new Date(article.pubDate).toDateString()}
+        </Typography>
       </CardActions>
     </Card>
   );

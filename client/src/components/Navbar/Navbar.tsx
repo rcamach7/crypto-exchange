@@ -60,7 +60,6 @@ export const Navbar = () => {
     dispatch(removeToken());
     dispatch(removeUser());
     handleCloseUserMenu();
-    window.location.reload();
   };
 
   return (
