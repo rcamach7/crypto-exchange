@@ -7,7 +7,6 @@ import {
   BannerMessageFunction,
   ContextProviderComponent,
 } from "./context.models";
-import { useUserAuth } from "../hooks/useUserAuth";
 
 // Create context, and export custom hook that can extract our context values in different components.
 const CryptoContext = createContext<ContextInterface | null>(null);
@@ -23,13 +22,11 @@ export const useGlobalContext = () => {
 export const GlobalCryptoProvider: ContextProviderComponent = ({
   children,
 }) => {
-  // Utilizes our custom hooks that fetch our application data
-  const [user, setUser, token, setToken] = useUserAuth();
-
   const [pageLoading, setPageLoading] = useState<boolean>(false);
   const [showPopupBanner, setShowPopupBanner] = useState<BannerMessage>({
     show: false,
   });
+  const [serverOffline, setServerOffline] = useState<boolean>(false);
 
   const togglePageLoading = () => setPageLoading((prevState) => !prevState);
 
@@ -44,12 +41,9 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
   return (
     <CryptoContext.Provider
       value={{
-        user,
-        setUser,
-        token,
-        setToken,
         togglePageLoading,
         handleBannerMessage,
+        setServerOffline,
       }}
     >
       {/* Will populate all nested children components */}
@@ -62,12 +56,12 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
           type={showPopupBanner.type}
         />
       )}
-      {/* {serverOffline && (
+      {serverOffline && (
         <PopupBanner
-          message={"Unable to connect to server - try again later."}
+          message={"Unable to connect to server - please try again later."}
           type={"error"}
         />
-      )} */}
+      )}
     </CryptoContext.Provider>
   );
 };
