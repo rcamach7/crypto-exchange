@@ -1,4 +1,4 @@
-import { useContext, createContext, useState, useEffect } from "react";
+import { useContext, createContext, useState } from "react";
 import { PopupBanner } from "../components/PopupBanner";
 import { LoadingUx } from "../components/LoadingUx";
 import {
@@ -7,9 +7,6 @@ import {
   BannerMessageFunction,
   ContextProviderComponent,
 } from "./context.models";
-import { useUserAuth } from "../hooks/useUserAuth";
-import { useFetchPosts } from "../hooks/useFetchPosts";
-import { useFetchNews } from "../hooks/useFetchNews";
 
 // Create context, and export custom hook that can extract our context values in different components.
 const CryptoContext = createContext<ContextInterface | null>(null);
@@ -25,15 +22,11 @@ export const useGlobalContext = () => {
 export const GlobalCryptoProvider: ContextProviderComponent = ({
   children,
 }) => {
-  // Utilizes our custom hooks that fetch our application data
-  const [user, setUser, token, setToken] = useUserAuth();
-  const [cryptos, setCryptos, serverOffline] = useFetchPosts();
-  const newsArticles = useFetchNews();
-
   const [pageLoading, setPageLoading] = useState<boolean>(false);
   const [showPopupBanner, setShowPopupBanner] = useState<BannerMessage>({
     show: false,
   });
+  const [serverOffline, setServerOffline] = useState<boolean>(false);
 
   const togglePageLoading = () => setPageLoading((prevState) => !prevState);
 
@@ -48,15 +41,9 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
   return (
     <CryptoContext.Provider
       value={{
-        user,
-        setUser,
-        cryptos,
-        setCryptos,
-        token,
-        setToken,
         togglePageLoading,
         handleBannerMessage,
-        newsArticles,
+        setServerOffline,
       }}
     >
       {/* Will populate all nested children components */}
@@ -71,7 +58,7 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
       )}
       {serverOffline && (
         <PopupBanner
-          message={"Unable to connect to server - try again later."}
+          message={"Unable to connect to server - please try again later."}
           type={"error"}
         />
       )}

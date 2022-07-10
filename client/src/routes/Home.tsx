@@ -1,10 +1,11 @@
-import { useGlobalContext } from "../context/GlobalCryptoContext";
 import { determineThemeBackground } from "../utilities/helpers";
 import { useTheme } from "@mui/material/styles";
 import styled from "styled-components";
 import { NewsArticleCard } from "../components/Home/NewsArticleCard";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import { CryptosContainer } from "../components/Home/CryptoContainer/CryptosContainer";
+import { useAppSelector } from "../features/hooks";
+import { LoadingUx } from "../components/LoadingUx";
 
 const HomeWrapper = styled.div`
   min-height: calc(100vh - 60px);
@@ -35,7 +36,9 @@ const NewsArticlesWrapper = styled.div`
 `;
 
 export const Home = () => {
-  const { newsArticles } = useGlobalContext();
+  const newsArticles = useAppSelector((state) => state.newsArticles.value);
+  const cryptos = useAppSelector((state) => state.cryptos.value);
+
   const theme = useTheme();
 
   return (
@@ -44,7 +47,7 @@ export const Home = () => {
         backgroundColor: `${determineThemeBackground(theme.palette.mode)}`,
       }}
     >
-      <CryptosContainer />
+      <CryptosContainer cryptos={cryptos} />
 
       <NewsArticlesWrapper>
         <span style={{ textAlign: "center", padding: "25px 0 15px 0" }}>
@@ -76,6 +79,9 @@ export const Home = () => {
           return <NewsArticleCard key={i} article={article} />;
         })}
       </NewsArticlesWrapper>
+
+      {/* Will provide a loading icon while app is fetching cryptos and news from server */}
+      {(!cryptos.length || !newsArticles.length) && <LoadingUx />}
     </HomeWrapper>
   );
 };

@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { Crypto, NewsArticle, User } from "../data/global.models";
 
 // Theme Context
 export type ThemeProviderInterface = ({
@@ -12,15 +11,9 @@ export type PaletteMode = "light" | "dark";
 
 // Global Context
 export interface ContextInterface {
-  cryptos: Crypto[];
-  setCryptos: React.Dispatch<React.SetStateAction<Crypto[]>>;
-  user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
-  token: string | null;
-  setToken: React.Dispatch<React.SetStateAction<string | null>>;
   togglePageLoading: () => void;
   handleBannerMessage: (type: "success" | "error", message: string) => void;
-  newsArticles: NewsArticle[];
+  setServerOffline: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface BannerMessage {

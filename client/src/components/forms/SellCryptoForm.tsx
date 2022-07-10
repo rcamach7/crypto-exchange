@@ -17,6 +17,8 @@ import {
 import { Crypto, Error, User } from "../../data/global.models";
 import { sellCrypto } from "../../data/api";
 import { useTheme } from "@mui/material/styles";
+import { useAppDispatch } from "../../features/hooks";
+import { setUser } from "../../features/user/userSlice";
 
 interface Props {
   crypto: Crypto;
@@ -29,8 +31,9 @@ export const SellCryptoForm: React.FC<Props> = ({
   handleClose,
   walletQuantity,
 }) => {
-  const { setUser, togglePageLoading, handleBannerMessage } =
-    useGlobalContext();
+  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
+  const dispatch = useAppDispatch();
+
   const [checked, setChecked] = React.useState<boolean>(false);
   const [quantity, setQuantity] = React.useState<number>(0);
   const [error, setError] = React.useState<Error>({ exists: false });
@@ -46,7 +49,7 @@ export const SellCryptoForm: React.FC<Props> = ({
     } else {
       try {
         const user: User = await sellCrypto(crypto.name, quantity);
-        setUser(user);
+        dispatch(setUser(user));
 
         togglePageLoading();
         handleBannerMessage(

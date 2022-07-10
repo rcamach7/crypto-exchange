@@ -6,8 +6,16 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { Welcome } from "./routes/Welcome";
 import { ThemeContext } from "./context/ThemeContext";
 import { News } from "./routes/News";
+import { useFetchNewsArticles } from "./hooks/useFetchNewsArticles";
+import { useFetchCryptos } from "./hooks/useFetchCryptos";
+import { useManageUser } from "./hooks/useManageUser";
 
 export const RouteSwitch = () => {
+  // Custom hooks that will manage the values of our redux store by fetching data from our backend.
+  useFetchNewsArticles();
+  useFetchCryptos();
+  useManageUser();
+
   return (
     <ThemeContext>
       <HashRouter>

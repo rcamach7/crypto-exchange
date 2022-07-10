@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { Crypto } from "../../../data/global.models";
 import styled from "styled-components";
 import { useGlobalContext } from "../../../context/GlobalCryptoContext";
@@ -7,6 +7,7 @@ import { CryptoCard } from "./CryptoCard";
 import { replaceUpdatedCrypto } from "../../../utilities/helpers";
 import { updateSingleCrypto } from "../../../data/api";
 import { Pagination } from "@mui/material";
+import { useAppSelector } from "../../../features/hooks";
 
 const CryptosWrapper = styled.div`
   flex: 1;
@@ -25,9 +26,14 @@ const CryptosWrapper = styled.div`
   }
 `;
 
-export const CryptosContainer = () => {
-  const { cryptos, user, setUser, togglePageLoading, handleBannerMessage } =
-    useGlobalContext();
+interface Props {
+  cryptos: Crypto[];
+}
+
+export const CryptosContainer: FC<Props> = ({ cryptos }) => {
+  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
+  const user = useAppSelector((state) => state.user.value);
+
   const [organizedCryptos, setOrganizedCryptos] = useState<Crypto[]>([]);
 
   const [page, setPage] = useState(1);
@@ -80,7 +86,6 @@ export const CryptosContainer = () => {
                 crypto={crypto}
                 user={user}
                 handleUpdateSingleCrypto={handleUpdateSingleCrypto}
-                setUser={setUser}
                 togglePageLoading={togglePageLoading}
                 bookmarks={user ? user.bookmarks : []}
               />

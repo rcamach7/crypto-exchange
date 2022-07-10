@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, TextField, Button } from "@mui/material/";
 import { SubmissionError, Account } from "../../data/global.models";
 import { login } from "../../data/api";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../features/hooks";
+import { setToken } from "../../features/jwtToken/jwtTokenSlice";
 
 interface Props {
   setShowCreateAccount: React.Dispatch<React.SetStateAction<Boolean>>;
 }
 
 export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
-  const { togglePageLoading, setToken, handleBannerMessage } =
-    useGlobalContext();
+  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
+  const dispatch = useAppDispatch();
   const [account, setAccount] = useState<Account>({
     username: "",
     password: "",
@@ -39,21 +41,13 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
       const token: string = await login(
         test ? { username: "odin", password: "odin" } : account
       );
-      localStorage.setItem("token", token);
-      setToken(token);
-      navigate("/crypto-exchange/home");
+      dispatch(setToken(token));
       togglePageLoading();
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        if (error.message.includes("404")) {
-          handleBannerMessage("error", "Error communicating with server");
-        } else {
-          setPopulateErrors({
-            error: true,
-            helperText: "Incorrect email or password",
-          });
-        }
-      }
+    } catch (error) {
+      setPopulateErrors({
+        error: true,
+        helperText: "Incorrect email or password",
+      });
       togglePageLoading();
     }
   };

@@ -3,7 +3,6 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardMedia,
   Button,
   Typography,
 } from "@mui/material/";
@@ -15,7 +14,7 @@ interface Props {
 
 const style = {
   width: "300px",
-  height: "250px",
+  height: "200px",
   display: "flex",
   flexDirection: "column",
   overflow: "unset",
@@ -25,17 +24,6 @@ const style = {
 export const NewsArticleCard: React.FC<Props> = ({ article }) => {
   return (
     <Card sx={style} className="animate__animated animate__zoomIn">
-      <CardMedia
-        component="img"
-        alt="article"
-        image={article.image_url}
-        sx={{
-          maxHeight: "100px",
-          overflow: "hidden",
-          objectPosition: "0 -60px",
-        }}
-      />
-
       <CardContent sx={{ overflow: "scroll", padding: "8px" }}>
         <Typography gutterBottom variant="body1" component="div">
           {article.title}

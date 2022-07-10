@@ -2,14 +2,16 @@ import { Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import { updateUserImage } from "../../data/api";
+import { useAppDispatch } from "../../features/hooks";
+import { setUser } from "../../features/user/userSlice";
 
 interface Props {
   currentProfilePicture: string;
 }
 
 export const UpdateProfileImageForm = ({ currentProfilePicture }: Props) => {
-  const { togglePageLoading, handleBannerMessage, setUser } =
-    useGlobalContext();
+  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
+  const dispatch = useAppDispatch();
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ export const UpdateProfileImageForm = ({ currentProfilePicture }: Props) => {
       togglePageLoading();
       try {
         const user = await updateUserImage(profilePicture);
-        setUser(user);
+        dispatch(setUser(user));
         togglePageLoading();
         handleBannerMessage("success", "Successfully updated profile image");
       } catch (error) {

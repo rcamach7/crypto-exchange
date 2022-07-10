@@ -8,7 +8,6 @@ import {
   Chip,
   Typography,
 } from "@mui/material/";
-import { useGlobalContext } from "../../../context/GlobalCryptoContext";
 import { CryptoWallet } from "./CryptoWallet";
 import {
   formatPrice,
@@ -24,11 +23,14 @@ import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { UpdateNameForm } from "../../forms/UpdateNameForm";
 import { UpdateProfileImageForm } from "../../forms/UpdateProfileImageForm";
+import { useAppSelector } from "../../../features/hooks";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export const ProfileDrawer = () => {
-  const { user, cryptos } = useGlobalContext();
+  const cryptos = useAppSelector((state) => state.cryptos.value);
+  const user = useAppSelector((state) => state.user.value);
+
   const [state, setState] = React.useState({
     top: false,
     left: false,
