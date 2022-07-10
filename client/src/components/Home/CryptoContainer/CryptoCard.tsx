@@ -21,12 +21,13 @@ import { numberWithCommas } from "../../../utilities/helpers";
 import { bookmarkCrypto } from "../../../data/api";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import "animate.css";
+import { setUser } from "../../../features/user/userSlice";
+import { useAppDispatch } from "../../../features/hooks";
 
 interface Props {
   crypto: Crypto;
   user: User | null;
   handleUpdateSingleCrypto: (name: string) => void;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
   togglePageLoading: () => void;
   bookmarks: [];
 }
@@ -35,10 +36,11 @@ export const CryptoCard: React.FC<Props> = ({
   crypto,
   user,
   handleUpdateSingleCrypto,
-  setUser,
   togglePageLoading,
   bookmarks,
 }) => {
+  const dispatch = useAppDispatch();
+
   // Destructure values for cleaner access
   const {
     name,
@@ -66,7 +68,7 @@ export const CryptoCard: React.FC<Props> = ({
     togglePageLoading();
     try {
       const user = await bookmarkCrypto(name);
-      setUser(user);
+      dispatch(setUser(user));
       togglePageLoading();
     } catch (error) {
       alert("Error bookmarking crypto");

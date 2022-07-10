@@ -12,14 +12,20 @@ import { purchaseCrypto } from "../../data/api";
 import { User, Error } from "../../data/global.models";
 import { useTheme } from "@mui/material/styles";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import { useAppDispatch, useAppSelector } from "../../features/hooks";
+import { setUser } from "../../features/user/userSlice";
+
 interface Props {
   crypto: Crypto;
   handleClose: () => void;
 }
 
 export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
-  const { user, setUser, togglePageLoading, handleBannerMessage } =
-    useGlobalContext();
+  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
+
+  const user = useAppSelector((state) => state.user.value);
+  const dispatch = useAppDispatch();
+
   const [quantity, setQuantity] = useState<number>(0);
   const [error, setError] = useState<Error>({ exists: false });
   const theme = useTheme();
@@ -40,7 +46,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
     } else {
       try {
         const user: User = await purchaseCrypto(crypto.name, quantity);
-        setUser(user);
+        dispatch(setUser(user));
 
         togglePageLoading();
         handleBannerMessage(

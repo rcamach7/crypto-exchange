@@ -11,7 +11,6 @@ import {
   Tooltip,
   MenuItem,
 } from "@mui/material/";
-import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import { Link } from "react-router-dom";
 import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
 import logo from "../../assets/logo.png";
@@ -20,13 +19,18 @@ import { useThemeContext } from "../../context/ThemeContext";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useTheme } from "@mui/material/styles";
+import { useAppDispatch, useAppSelector } from "../../features/hooks";
+import { removeUser } from "../../features/user/userSlice";
+import { removeToken } from "../../features/jwtToken/jwtTokenSlice";
 
 const style = {
   justifyContent: "center",
 };
 
 export const Navbar = () => {
-  const { user, setUser, setToken } = useGlobalContext();
+  const user = useAppSelector((state) => state.user.value);
+  const dispatch = useAppDispatch();
+
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const setTheme = useThemeContext();
   const theme = useTheme();
@@ -53,9 +57,8 @@ export const Navbar = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    setToken(null);
-    setUser(null);
+    dispatch(removeToken());
+    dispatch(removeUser());
     handleCloseUserMenu();
     window.location.reload();
   };

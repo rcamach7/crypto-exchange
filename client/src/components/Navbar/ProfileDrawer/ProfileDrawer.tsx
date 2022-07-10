@@ -8,7 +8,6 @@ import {
   Chip,
   Typography,
 } from "@mui/material/";
-import { useGlobalContext } from "../../../context/GlobalCryptoContext";
 import { CryptoWallet } from "./CryptoWallet";
 import {
   formatPrice,
@@ -29,8 +28,8 @@ import { useAppSelector } from "../../../features/hooks";
 type Anchor = "top" | "left" | "bottom" | "right";
 
 export const ProfileDrawer = () => {
-  const { user } = useGlobalContext();
   const cryptos = useAppSelector((state) => state.cryptos.value);
+  const user = useAppSelector((state) => state.user.value);
 
   const [state, setState] = React.useState({
     top: false,

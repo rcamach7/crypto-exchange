@@ -27,9 +27,10 @@ const CryptosWrapper = styled.div`
 `;
 
 export const CryptosContainer = () => {
-  const { user, setUser, togglePageLoading, handleBannerMessage } =
-    useGlobalContext();
+  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
+  const user = useAppSelector((state) => state.user.value);
   const cryptos = useAppSelector((state) => state.cryptos.value);
+
   const [organizedCryptos, setOrganizedCryptos] = useState<Crypto[]>([]);
 
   const [page, setPage] = useState(1);
@@ -82,7 +83,6 @@ export const CryptosContainer = () => {
                 crypto={crypto}
                 user={user}
                 handleUpdateSingleCrypto={handleUpdateSingleCrypto}
-                setUser={setUser}
                 togglePageLoading={togglePageLoading}
                 bookmarks={user ? user.bookmarks : []}
               />

@@ -4,14 +4,16 @@ import { SubmissionError, Account } from "../../data/global.models";
 import { login } from "../../data/api";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../features/hooks";
+import { setToken } from "../../features/jwtToken/jwtTokenSlice";
 
 interface Props {
   setShowCreateAccount: React.Dispatch<React.SetStateAction<Boolean>>;
 }
 
 export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
-  const { togglePageLoading, setToken, handleBannerMessage } =
-    useGlobalContext();
+  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
+  const dispatch = useAppDispatch();
   const [account, setAccount] = useState<Account>({
     username: "",
     password: "",
@@ -39,8 +41,7 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
       const token: string = await login(
         test ? { username: "odin", password: "odin" } : account
       );
-      localStorage.setItem("token", token);
-      setToken(token);
+      dispatch(setToken(token));
       navigate("/crypto-exchange/home");
       togglePageLoading();
     } catch (error: unknown) {

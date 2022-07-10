@@ -5,7 +5,7 @@ interface JwtTokenState {
 }
 
 const initialState: JwtTokenState = {
-  value: null,
+  value: localStorage.getItem("token"),
 };
 
 export const jwtTokenSlice = createSlice({
@@ -16,6 +16,7 @@ export const jwtTokenSlice = createSlice({
       state.value = action.payload;
     },
     removeToken: (state) => {
+      localStorage.removeItem("token");
       state.value = null;
     },
   },

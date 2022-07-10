@@ -4,6 +4,8 @@ import { capitalizeFirstLetter } from "../../utilities/helpers";
 import EditIcon from "@mui/icons-material/Edit";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import { updateName } from "../../data/api";
+import { setUser } from "../../features/user/userSlice";
+import { useAppDispatch } from "../../features/hooks";
 
 const FormWrapper = styled.span`
   form {
@@ -15,8 +17,8 @@ interface Props {
 }
 
 export const UpdateNameForm = ({ name }: Props) => {
-  const { togglePageLoading, handleBannerMessage, setUser } =
-    useGlobalContext();
+  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
+  const dispatch = useAppDispatch();
   const [showForm, setShowForm] = useState(false);
   const [updatedName, setUpdatedName] = useState<string>(name);
 
@@ -29,7 +31,7 @@ export const UpdateNameForm = ({ name }: Props) => {
     try {
       const user = await updateName(updatedName);
 
-      setUser(user);
+      dispatch(setUser(user));
       setShowForm(false);
       handleBannerMessage("success", "Name has been updated");
       togglePageLoading();
