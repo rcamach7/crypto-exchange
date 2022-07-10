@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, TextField, Button } from "@mui/material/";
 import { SubmissionError, Account } from "../../data/global.models";
 import { login } from "../../data/api";
@@ -42,19 +42,12 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
         test ? { username: "odin", password: "odin" } : account
       );
       dispatch(setToken(token));
-      navigate("/crypto-exchange/home");
       togglePageLoading();
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        if (error.message.includes("404")) {
-          handleBannerMessage("error", "Error communicating with server");
-        } else {
-          setPopulateErrors({
-            error: true,
-            helperText: "Incorrect email or password",
-          });
-        }
-      }
+    } catch (error) {
+      setPopulateErrors({
+        error: true,
+        helperText: "Incorrect email or password",
+      });
       togglePageLoading();
     }
   };

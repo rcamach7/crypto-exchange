@@ -10,7 +10,7 @@ export const OnlyUnauthenticated = ({ children }: Props) => {
   const jwtToken = useAppSelector((state) => state.jwtToken.value);
 
   if (jwtToken) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/crypto-exchange/home" />;
   }
   return children;
 };

@@ -128,7 +128,7 @@ export const Welcome: React.FC = () => {
           className="actionButton animate__animated animate__fadeInDown animate__slow"
           to="home"
         >
-          <p>Start Browsing</p>
+          <p>Browse Cryptos</p>
         </Link>
       </IntroCardWrapper>
 
