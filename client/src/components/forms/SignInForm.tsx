@@ -3,7 +3,6 @@ import { Box, TextField, Button } from "@mui/material/";
 import { SubmissionError, Account } from "../../data/global.models";
 import { login } from "../../data/api";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
-import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../features/hooks";
 import { setToken } from "../../features/jwtToken/jwtTokenSlice";
 
@@ -12,13 +11,12 @@ interface Props {
 }
 
 export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
-  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
+  const { togglePageLoading } = useGlobalContext();
   const dispatch = useAppDispatch();
   const [account, setAccount] = useState<Account>({
     username: "",
     password: "",
   });
-  let navigate = useNavigate();
 
   const [populateErrors, setPopulateErrors] = useState<SubmissionError>({});
 

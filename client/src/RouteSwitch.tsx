@@ -11,7 +11,7 @@ import { useFetchCryptos } from "./hooks/useFetchCryptos";
 import { useManageUser } from "./hooks/useManageUser";
 
 export const RouteSwitch = () => {
-  // Custom hooks that will manage the values of our redux store by fetching data from our backend.
+  // Hooks that will manage redux store values based on app changes.
   useFetchNewsArticles();
   useFetchCryptos();
   useManageUser();
