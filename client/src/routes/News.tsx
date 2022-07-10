@@ -3,6 +3,7 @@ import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import { useTheme } from "@mui/material";
 import styled from "styled-components";
 import { useAppSelector } from "../features/hooks";
+import { LoadingUx } from "../components/LoadingUx";
 
 const NewsArticleWrapper = styled.div`
   padding-bottom: 15px;
@@ -56,6 +57,8 @@ export const News = () => {
           return <NewsArticleCard key={i} article={article} />;
         })}
       </div>
+
+      {!newsArticles.length && <LoadingUx />}
     </NewsArticleWrapper>
   );
 };

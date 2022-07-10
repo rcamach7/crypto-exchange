@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { Crypto } from "../../../data/global.models";
 import styled from "styled-components";
 import { useGlobalContext } from "../../../context/GlobalCryptoContext";
@@ -26,10 +26,13 @@ const CryptosWrapper = styled.div`
   }
 `;
 
-export const CryptosContainer = () => {
+interface Props {
+  cryptos: Crypto[];
+}
+
+export const CryptosContainer: FC<Props> = ({ cryptos }) => {
   const { togglePageLoading, handleBannerMessage } = useGlobalContext();
   const user = useAppSelector((state) => state.user.value);
-  const cryptos = useAppSelector((state) => state.cryptos.value);
 
   const [organizedCryptos, setOrganizedCryptos] = useState<Crypto[]>([]);
 
