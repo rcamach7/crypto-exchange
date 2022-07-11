@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import { TextField, useTheme } from "@mui/material";
 import { SortFilterBar } from "./SortFilterBar";
-import { SortFilterOptions, Crypto, User } from "../../../data/global.models";
+import { SortFilterOptions, Crypto, User } from "../../../global.models";
 import { processFilterSortOptions } from "../../../utilities/helpers";
 import styled from "styled-components";
 

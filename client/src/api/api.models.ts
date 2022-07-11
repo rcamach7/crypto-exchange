@@ -1,4 +1,4 @@
-import { User, Account, Crypto, NewsArticle } from "./global.models";
+import { User, Account, Crypto, NewsArticle } from "../global.models";
 
 export type UserPromiseFunction = () => Promise<User>;
 

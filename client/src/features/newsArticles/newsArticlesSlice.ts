@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { NewsArticle } from "../../data/global.models";
+import { NewsArticle } from "../../global.models";
 import { RootState } from "../store";
 
 // Define a type for the slice state

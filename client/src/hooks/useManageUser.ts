@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
-import { User } from "../data/global.models";
-import { getUser } from "../data/api";
+import { User } from "../global.models";
+import { getUser } from "../api/api";
 import { useAppDispatch, useAppSelector } from "../features/hooks";
 import { setUser, removeUser } from "../features/user/userSlice";
 import { removeToken } from "../features/jwtToken/jwtTokenSlice";

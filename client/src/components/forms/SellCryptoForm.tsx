@@ -14,8 +14,8 @@ import {
   capitalizeFirstLetter,
   numberWithCommas,
 } from "../../utilities/helpers";
-import { Crypto, Error, User } from "../../data/global.models";
-import { sellCrypto } from "../../data/api";
+import { Crypto, Error, User } from "../../global.models";
+import { sellCrypto } from "../../api/api";
 import { useTheme } from "@mui/material/styles";
 import { useAppDispatch } from "../../features/hooks";
 import { setUser } from "../../features/user/userSlice";

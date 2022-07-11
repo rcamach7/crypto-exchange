@@ -1,6 +1,6 @@
 import { useState, SyntheticEvent, FC } from "react";
 import { Button, TextField, Avatar, Alert, Typography } from "@mui/material/";
-import { Crypto } from "../../data/global.models";
+import { Crypto } from "../../global.models";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
 import {
   capitalizeFirstLetter,
@@ -8,8 +8,8 @@ import {
   numberWithCommas,
   getUserQuantityOwned,
 } from "../../utilities/helpers";
-import { purchaseCrypto } from "../../data/api";
-import { User, Error } from "../../data/global.models";
+import { purchaseCrypto } from "../../api/api";
+import { User, Error } from "../../global.models";
 import { useTheme } from "@mui/material/styles";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import { useAppDispatch, useAppSelector } from "../../features/hooks";

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { getNewsArticles } from "../data/api";
-import { NewsArticle } from "../data/global.models";
+import { getNewsArticles } from "../api/api";
+import { NewsArticle } from "../global.models";
 import { useAppDispatch, useAppSelector } from "../features/hooks";
 import { setNewsArticles } from "../features/newsArticles/newsArticlesSlice";
 

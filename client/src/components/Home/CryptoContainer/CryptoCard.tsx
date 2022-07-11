@@ -1,5 +1,5 @@
 import React from "react";
-import { Crypto, User } from "../../../data/global.models";
+import { Crypto, User } from "../../../global.models";
 import {
   Box,
   Card,
@@ -18,7 +18,7 @@ import { PurchaseModal } from "./PurchaseModal";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { numberWithCommas } from "../../../utilities/helpers";
-import { bookmarkCrypto } from "../../../data/api";
+import { bookmarkCrypto } from "../../../api/api";
 import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import "animate.css";
 import { setUser } from "../../../features/user/userSlice";

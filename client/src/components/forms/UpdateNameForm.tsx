@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { capitalizeFirstLetter } from "../../utilities/helpers";
 import EditIcon from "@mui/icons-material/Edit";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
-import { updateName } from "../../data/api";
+import { updateName } from "../../api/api";
 import { setUser } from "../../features/user/userSlice";
 import { useAppDispatch } from "../../features/hooks";
 

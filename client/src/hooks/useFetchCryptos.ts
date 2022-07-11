@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { getCryptos } from "../data/api";
-import { Crypto } from "../data/global.models";
+import { getCryptos } from "../api/api";
+import { Crypto } from "../global.models";
 import { useAppDispatch, useAppSelector } from "../features/hooks";
 import { setCryptos } from "../features/cryptos/cryptosSlice";
 import { useGlobalContext } from "../context/GlobalCryptoContext";

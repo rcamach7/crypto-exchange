@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, TextField, Button } from "@mui/material/";
-import { Account } from "../../data/global.models";
-import { createAccount } from "../../data/api";
+import { Account } from "../../global.models";
+import { createAccount } from "../../api/api";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
-import { SubmissionError } from "../../data/global.models";
+import { SubmissionError } from "../../global.models";
 
 interface Props {
   setShowCreateAccount: React.Dispatch<React.SetStateAction<Boolean>>;

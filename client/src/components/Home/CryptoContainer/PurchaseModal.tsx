@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { Box, Button, Modal, useTheme } from "@mui/material/";
-import { Crypto } from "../../../data/global.models";
+import { Crypto } from "../../../global.models";
 import { PurchaseCryptoForm } from "../../forms/PurchaseCryptoForm";
 
 const style = {

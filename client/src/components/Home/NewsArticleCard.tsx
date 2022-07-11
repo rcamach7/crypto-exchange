@@ -6,7 +6,7 @@ import {
   Button,
   Typography,
 } from "@mui/material/";
-import { NewsArticle } from "../../data/global.models";
+import { NewsArticle } from "../../global.models";
 
 interface Props {
   article: NewsArticle;
