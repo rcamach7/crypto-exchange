@@ -1,26 +1,9 @@
 import { NewsArticleCard } from "../components/Home/NewsArticleCard";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import { useTheme } from "@mui/material";
-import styled from "styled-components";
 import { useAppSelector } from "../features/hooks";
 import { LoadingUx } from "../components/LoadingUx";
-
-const NewsArticleWrapper = styled.div`
-  min-height: calc(100vh - 60px);
-  padding-bottom: 15px;
-  background-color: ${(props) => (props.theme === "light" ? "white" : "black")};
-
-  display: flex;
-  flex-direction: column;
-  .newsArticlesContainer {
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-`;
+import { NewsArticleWrapper } from "../components/styled/News.styled";
 
 export const News = () => {
   const newsArticles = useAppSelector((state) => state.newsArticles.value);

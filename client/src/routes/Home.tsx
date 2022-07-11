@@ -1,39 +1,14 @@
 import { determineThemeBackground } from "../utilities/helpers";
 import { useTheme } from "@mui/material/styles";
-import styled from "styled-components";
 import { NewsArticleCard } from "../components/Home/NewsArticleCard";
 import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import { CryptosContainer } from "../components/Home/CryptoContainer/CryptosContainer";
 import { useAppSelector } from "../features/hooks";
 import { LoadingUx } from "../components/LoadingUx";
-
-const HomeWrapper = styled.div`
-  min-height: calc(100vh - 60px);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  @media (min-width: 1000px) {
-    flex-direction: row;
-    align-items: stretch;
-  }
-`;
-
-const NewsArticlesWrapper = styled.div`
-  display: none;
-
-  @media (min-width: 1000px) {
-    width: 300px;
-    height: 90vh;
-
-    overflow: scroll;
-    margin-right: 5px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-`;
+import {
+  HomeWrapper,
+  NewsArticlesWrapper,
+} from "../components/styled/Home.styled";
 
 export const Home = () => {
   const newsArticles = useAppSelector((state) => state.newsArticles.value);

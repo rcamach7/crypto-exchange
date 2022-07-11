@@ -1,6 +1,5 @@
 import { useState, useEffect, FC } from "react";
 import { Crypto } from "../../../global.models";
-import styled from "styled-components";
 import { useGlobalContext } from "../../../context/GlobalCryptoContext";
 import { ToolBar } from "../ToolBar/ToolBar";
 import { CryptoCard } from "./CryptoCard";
@@ -8,23 +7,7 @@ import { replaceUpdatedCrypto } from "../../../utilities/helpers";
 import { updateSingleCrypto } from "../../../api/api";
 import { Pagination } from "@mui/material";
 import { useAppSelector } from "../../../features/hooks";
-
-const CryptosWrapper = styled.div`
-  flex: 1;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .cryptosContainer {
-    flex: 8;
-
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: 10px;
-  }
-`;
+import { CryptosWrapper } from "../../styled/Home.styled";
 
 interface Props {
   cryptos: Crypto[];
