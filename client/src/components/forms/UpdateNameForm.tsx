@@ -19,6 +19,7 @@ interface Props {
 export const UpdateNameForm = ({ name }: Props) => {
   const { togglePageLoading, handleBannerMessage } = useGlobalContext();
   const dispatch = useAppDispatch();
+
   const [showForm, setShowForm] = useState(false);
   const [updatedName, setUpdatedName] = useState<string>(name);
 

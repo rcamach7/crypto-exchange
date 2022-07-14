@@ -12,6 +12,7 @@ interface Props {
 export const UpdateProfileImageForm = ({ currentProfilePicture }: Props) => {
   const { togglePageLoading, handleBannerMessage } = useGlobalContext();
   const dispatch = useAppDispatch();
+
   const [profilePicture, setProfilePicture] = useState<File | null>(null);
 
   useEffect(() => {
@@ -45,6 +46,8 @@ export const UpdateProfileImageForm = ({ currentProfilePicture }: Props) => {
           src={currentProfilePicture}
         />
       </label>
+
+      {/* Input not displayed, as out fileUpload icon above will trigger the form */}
       <input
         style={{ display: "none" }}
         id="fileUpload"

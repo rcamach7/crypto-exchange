@@ -8,10 +8,6 @@ import {
 } from "@mui/material/";
 import { NewsArticle } from "../../global.models";
 
-interface Props {
-  article: NewsArticle;
-}
-
 const style = {
   width: "300px",
   maxHeight: "200px",
@@ -20,6 +16,10 @@ const style = {
   overflow: "unset",
   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
 };
+
+interface Props {
+  article: NewsArticle;
+}
 
 export const NewsArticleCard: React.FC<Props> = ({ article }) => {
   return (

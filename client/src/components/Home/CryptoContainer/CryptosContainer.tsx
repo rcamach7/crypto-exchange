@@ -14,10 +14,10 @@ interface Props {
 }
 
 export const CryptosContainer: FC<Props> = ({ cryptos }) => {
-  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
   const user = useAppSelector((state) => state.user.value);
-
   const [organizedCryptos, setOrganizedCryptos] = useState<Crypto[]>([]);
+
+  const { togglePageLoading, handleBannerMessage } = useGlobalContext();
 
   const [page, setPage] = useState(1);
   let ranges = [
@@ -75,6 +75,7 @@ export const CryptosContainer: FC<Props> = ({ cryptos }) => {
             );
           })}
       </div>
+
       <Pagination
         count={Math.ceil(organizedCryptos.length / 4)}
         page={page}

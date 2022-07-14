@@ -13,6 +13,7 @@ interface Props {
 export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
   const { togglePageLoading } = useGlobalContext();
   const dispatch = useAppDispatch();
+
   const [account, setAccount] = useState<Account>({
     username: "",
     password: "",
@@ -77,15 +78,18 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
         onChange={handleInputChange}
         {...populateErrors}
       />
+
       <Button className="btn" variant="contained" type="submit">
         Sign In
       </Button>
+
       <Button
         className="btn"
         onClick={() => setShowCreateAccount((prevState) => !prevState)}
       >
         Create Account
       </Button>
+
       <Button className="btn" onClick={(e) => handleSignIn(e, true)}>
         Test Account
       </Button>

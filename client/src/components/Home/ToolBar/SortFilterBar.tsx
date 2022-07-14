@@ -24,6 +24,7 @@ export const SortFilterBar: React.FC<Props> = ({
   loggedIn,
   theme,
 }) => {
+  // Used to disable certain options that are only applicable if user is logged in (owned/bookmarked, etc).
   let disableIfNotLoggedIn = loggedIn ? {} : { disabled: true };
 
   const handleFilterOption = (event: SelectChangeEvent<string>) => {
@@ -90,6 +91,7 @@ export const SortFilterBar: React.FC<Props> = ({
           </option>
         </Select>
       </FormControl>
+
       <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
         <InputLabel htmlFor="grouped-native-select">Sort By:</InputLabel>
         <Select

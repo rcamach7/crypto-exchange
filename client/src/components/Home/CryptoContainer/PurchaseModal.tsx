@@ -39,9 +39,11 @@ export const PurchaseModal: FC<Props> = ({
 
   return (
     <div>
+      {/* Triggers the model below to be rendered */}
       <Button size="small" variant="outlined" onClick={handleOpenModal}>
         Purchase {crypto.ticker}
       </Button>
+
       <Modal
         open={open}
         onClose={handleClose}

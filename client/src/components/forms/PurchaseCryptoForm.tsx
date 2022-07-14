@@ -22,13 +22,14 @@ interface Props {
 
 export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
   const { togglePageLoading, handleBannerMessage } = useGlobalContext();
+  const theme = useTheme();
 
   const user = useAppSelector((state) => state.user.value);
   const dispatch = useAppDispatch();
 
   const [quantity, setQuantity] = useState<number>(0);
   const [error, setError] = useState<Error>({ exists: false });
-  const theme = useTheme();
+
   let ownedQuantity = getUserQuantityOwned(
     user ? user.portfolio : [],
     crypto.name
@@ -37,6 +38,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
   const handlePurchase = async (event: SyntheticEvent) => {
     event.preventDefault();
     togglePageLoading();
+
     if (quantity === 0) {
       setError({
         exists: true,
@@ -72,6 +74,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
         position: "relative",
       }}
     >
+      {/* Form title */}
       <Typography
         id="modal-modal-title"
         variant="h6"
@@ -80,6 +83,8 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
       >
         Purchase {capitalizeFirstLetter(crypto.name)}
       </Typography>
+
+      {/* Overview of crypto price details, along with the account balance of user. */}
       <div className="priceOverview">
         <div className="cryptoDetails">
           <Avatar
@@ -112,6 +117,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
         </div>
       </div>
 
+      {/* Displays currently owned cryptos, if any. */}
       <div className="currentlyOwnedInfo">
         {ownedQuantity > 0 ? (
           <p>
@@ -125,6 +131,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
         )}
       </div>
 
+      {/* Quantity input along with estimated value of purchase. */}
       <div className="checkoutDetails">
         <TextField
           className="quantityInput"
@@ -148,6 +155,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
           {isNaN(quantity) ? 0 : numberWithCommas(quantity * crypto.price)}
         </p>
       </div>
+
       <Button type="submit" className="purchaseBtn" variant="contained">
         Confirm Purchase
       </Button>

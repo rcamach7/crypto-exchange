@@ -32,12 +32,12 @@ export const SellCryptoForm: React.FC<Props> = ({
   walletQuantity,
 }) => {
   const { togglePageLoading, handleBannerMessage } = useGlobalContext();
+  const theme = useTheme();
   const dispatch = useAppDispatch();
 
-  const [checked, setChecked] = React.useState<boolean>(false);
   const [quantity, setQuantity] = React.useState<number>(0);
+  const [checked, setChecked] = React.useState<boolean>(false);
   const [error, setError] = React.useState<Error>({ exists: false });
-  const theme = useTheme();
 
   const handleSell = async (event: React.SyntheticEvent) => {
     event.preventDefault();
@@ -82,6 +82,7 @@ export const SellCryptoForm: React.FC<Props> = ({
         color: theme.palette.mode === "light" ? "black" : "white",
       }}
     >
+      {/* Form title */}
       <Typography
         id="modal-modal-title"
         variant="h6"
@@ -91,6 +92,7 @@ export const SellCryptoForm: React.FC<Props> = ({
         Sell {capitalizeFirstLetter(crypto.name)}
       </Typography>
 
+      {/* Price of crypto user is selling, and information on their account balance. */}
       <div className="priceOverview">
         <div className="cryptoDetails">
           <Avatar
@@ -121,6 +123,8 @@ export const SellCryptoForm: React.FC<Props> = ({
           </div>
         </div>
       </div>
+
+      {/* Input field allowing users to select quantity to sell */}
       <div className="checkoutDetails">
         <div className="quantitySelectors">
           <TextField
@@ -149,6 +153,8 @@ export const SellCryptoForm: React.FC<Props> = ({
           Total: ${numberWithCommas(quantity * crypto.price)}
         </p>
       </div>
+
+      {/* Action buttons to process sell request. */}
       <Button type="submit" className="purchaseBtn" variant="contained">
         Confirm Sell Order
       </Button>
@@ -156,6 +162,7 @@ export const SellCryptoForm: React.FC<Props> = ({
         transactions are made with real-time prices, above values are estimated
         and not final
       </p>
+
       {/* Error Reporting UI */}
       {error.exists && (
         <Alert severity="error" sx={{ marginTop: "10px", padding: "0 5px" }}>

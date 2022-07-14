@@ -53,9 +53,7 @@ export const ToolBar: FC<Props> = ({
         user ? user.bookmarks : []
       )
     );
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sortFilterOptions]);
+  }, [sortFilterOptions, cryptos, user, setOrganizedCryptos]);
 
   return (
     <ToolBarWrapper>
@@ -64,14 +62,15 @@ export const ToolBar: FC<Props> = ({
         loggedIn={user ? true : false}
         theme={theme.palette.mode}
       />
+
       <Autocomplete
         id="free-solo-demo"
-        freeSolo
         options={organizedCryptos.map((crypto) => crypto.name)}
         renderInput={(params) => <TextField {...params} label="Search..." />}
         sx={{ minWidth: "200px" }}
         size="small"
         onChange={(e, value) => handleSearch(value)}
+        freeSolo
       />
     </ToolBarWrapper>
   );

@@ -38,7 +38,9 @@ export const CreateAccountForm: React.FC<Props> = ({
   ) => {
     event.preventDefault();
     togglePageLoading();
+
     try {
+      // Validate passwords match before creating account.
       if (account.password !== account.confirmedPassword) {
         setShowPasswordError({
           helperText: "Passwords don't match!",
@@ -110,6 +112,7 @@ export const CreateAccountForm: React.FC<Props> = ({
         onChange={handleInputChange}
         {...showPasswordError}
       />
+
       <Button className="btn" variant="contained" type="submit">
         Create Account
       </Button>
