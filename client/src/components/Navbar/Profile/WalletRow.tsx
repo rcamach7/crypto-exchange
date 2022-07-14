@@ -1,4 +1,5 @@
-import React from "react";
+import { useState, Fragment } from "react";
+import styled from "styled-components";
 import {
   Collapse,
   IconButton,
@@ -21,7 +22,6 @@ import {
   calculateAveragePurchasePrice,
 } from "../../../utilities/helpers";
 import { SellCryptoModal } from "./SellCryptoModal";
-import styled from "styled-components";
 
 interface RowType {
   row: {
@@ -39,8 +39,8 @@ const SubText = styled.span`
 `;
 
 export const WalletRow = ({ row, cryptoInfo }: RowType) => {
-  const [open, setOpen] = React.useState(false);
   const { quantity, crypto, principle, transactions } = row;
+  const [open, setOpen] = useState(false);
 
   // Placeholder for formatted values
   const formattedPrices = {
@@ -53,7 +53,7 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell sx={{ padding: "0" }}>
           <IconButton
@@ -158,6 +158,6 @@ export const WalletRow = ({ row, cryptoInfo }: RowType) => {
           </Collapse>
         </TableCell>
       </TableRow>
-    </React.Fragment>
+    </Fragment>
   );
 };

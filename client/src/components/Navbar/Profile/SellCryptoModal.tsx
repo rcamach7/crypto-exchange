@@ -29,14 +29,17 @@ export const SellCryptoModal: React.FC<Props> = ({
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(true);
+
   const handleClose = () => setOpen(false);
+
   return (
     <div>
+      {/* Button will trigger the model below to be displayed */}
       <Button size="small" variant="outlined" onClick={handleOpen}>
         Sell {crypto.ticker}
       </Button>
 
-      {/* Modal will render once action is triggered */}
+      {/* Rendered once triggered by button. */}
       <Modal
         open={open}
         onClose={handleClose}

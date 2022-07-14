@@ -27,7 +27,7 @@ import { useAppSelector } from "../../../features/hooks";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 
-export const ProfileDrawer = () => {
+export const Profile = () => {
   const cryptos = useAppSelector((state) => state.cryptos.value);
   const user = useAppSelector((state) => state.user.value);
 
@@ -37,9 +37,11 @@ export const ProfileDrawer = () => {
     bottom: false,
     right: false,
   });
+
   let accountTotalValue = user
     ? calculateTotalValue(user.portfolio, cryptos, user.balance)
     : 0;
+
   let totalInvestmentReturn = calculateTotalInvestmentReturn(
     accountTotalValue,
     user ? user.deposits : []
@@ -59,6 +61,7 @@ export const ProfileDrawer = () => {
       setState({ ...state, [anchor]: open });
     };
 
+  // Component that will display all the users profile contents such as user name, balance, and investments.
   const list = (anchor: Anchor) => (
     <Box
       className="ProfileBox"
@@ -143,12 +146,15 @@ export const ProfileDrawer = () => {
 
   return (
     <div className="profileButton" style={{ width: "100%" }}>
+      {/* Navbar option button, that will trigger profile section to popup. */}
       <Typography
         onClick={toggleDrawer("right", true)}
         sx={{ padding: "6px 16px", textAlign: "center" }}
       >
         Profile
       </Typography>
+
+      {/* Profile information that will display once triggered by user. */}
       <Drawer
         className="ProfileDrawer"
         anchor="right"

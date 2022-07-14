@@ -12,7 +12,7 @@ import {
   MenuItem,
 } from "@mui/material/";
 import { Link } from "react-router-dom";
-import { ProfileDrawer } from "./ProfileDrawer/ProfileDrawer";
+import { Profile } from "./Profile/Profile";
 import logo from "../../assets/logo.png";
 import { useLocation } from "react-router-dom";
 import { useThemeContext } from "../../context/ThemeContext";
@@ -31,11 +31,12 @@ export const Navbar = () => {
   const user = useAppSelector((state) => state.user.value);
   const dispatch = useAppDispatch();
 
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const setTheme = useThemeContext();
   const theme = useTheme();
 
-  // Will manage which navigation options to show user based on current page.
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  // Manages which navigation options to show user based on current page.
   const { pathname } = useLocation();
   const [curLocation, setCurLocation] = useState<string>("");
 
@@ -76,13 +77,14 @@ export const Navbar = () => {
     >
       <Container maxWidth="xl" className="navbarContainer">
         <Toolbar disableGutters>
+          {/* Website logo that links to welcome page. */}
           <Link to="crypto-exchange/" className="logoContainer">
             <img src={logo} alt="logo" className="logoImg" />
             <Typography className="title">CryptoExchange</Typography>
           </Link>
 
-          {/* Profile Icon with sub-menu */}
           <Box sx={{ flexGrow: 0, marginLeft: "auto" }}>
+            {/* Profile Icon that triggers menu to open and populate options */}
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}>
                 <Avatar
@@ -96,6 +98,7 @@ export const Navbar = () => {
                 />
               </IconButton>
             </Tooltip>
+
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
@@ -112,13 +115,13 @@ export const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+              {/* Dynamically Rendered Navbar Options */}
               {user && (
                 <MenuItem onClick={handleCloseUserMenu} sx={style}>
-                  <ProfileDrawer />
+                  <Profile />
                 </MenuItem>
               )}
 
-              {/* Dynamically Rendered Navbar Options */}
               {curLocation === "home" ? null : (
                 <Link to="/crypto-exchange/home">
                   <MenuItem onClick={handleCloseUserMenu} sx={style}>
