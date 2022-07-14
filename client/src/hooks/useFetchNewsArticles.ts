@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from "../features/hooks";
 import { setNewsArticles } from "../features/newsArticles/newsArticlesSlice";
 
 export const useFetchNewsArticles = () => {
-  const dispatch = useAppDispatch();
   const newsArticles = useAppSelector((state) => state.newsArticles.value);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const fetchNews = async () => {

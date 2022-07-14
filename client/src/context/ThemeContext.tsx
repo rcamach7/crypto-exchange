@@ -11,6 +11,7 @@ export const useThemeContext = () => {
   return themeContext;
 };
 
+// Custom theme properties for MUI components
 const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
     mode,
@@ -37,12 +38,14 @@ export const ThemeContext: ThemeProviderInterface = ({ children }) => {
     if (savedTheme === "light" || savedTheme === "dark") {
       return savedTheme;
     } else {
+      // Set default light theme for first-time users.
       localStorage.setItem("theme", "light");
       return "light";
     }
   };
 
   const [mode, setMode] = useState<PaletteMode>(determineTheme());
+
   const setTheme = useMemo(
     () => ({
       toggleSiteTheme: () => {
@@ -52,6 +55,7 @@ export const ThemeContext: ThemeProviderInterface = ({ children }) => {
     []
   );
 
+  // Anytime we change our theme via UI, save to localStorage for future reference.
   useEffect(() => {
     localStorage.setItem("theme", mode);
   }, [mode]);

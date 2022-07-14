@@ -11,6 +11,7 @@ export const NewsSectionTitle: React.FC<Props> = ({ count, theme }) => {
   return (
     <span style={{ textAlign: "center", padding: "25px 0 15px 0" }}>
       {count && (
+        // Title will be non-existent if news articles have yet to be loaded.
         <span
           style={{
             display: "flex",

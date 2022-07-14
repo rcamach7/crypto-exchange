@@ -13,6 +13,6 @@ export const store = configureStore({
   },
 });
 
-// Needed for typing our state and dispatch functions anytime they're used in out application.
+// Needed for typing our state and dispatch functions anytime they're used in our application.
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

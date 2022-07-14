@@ -26,6 +26,7 @@ export const Home = () => {
       <NewsArticlesWrapper>
         <NewsSectionTitle count={newsArticles.length} theme={theme} />
 
+        {/* Populates all individual news article cards */}
         {newsArticles.map((article, i) => {
           return <NewsArticleCard key={i} article={article} />;
         })}

@@ -33,6 +33,7 @@ export const useManageUser = () => {
         const user: User = await getUser();
         dispatch(setUser(user));
       } catch (error) {
+        // Will remove user and token due to expired token or error communicating with server.
         localStorage.removeItem("token");
         dispatch(removeToken());
         dispatch(removeUser());

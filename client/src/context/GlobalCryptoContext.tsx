@@ -22,14 +22,16 @@ export const useGlobalContext = () => {
 export const GlobalCryptoProvider: ContextProviderComponent = ({
   children,
 }) => {
-  const [pageLoading, setPageLoading] = useState<boolean>(false);
   const [showPopupBanner, setShowPopupBanner] = useState<BannerMessage>({
     show: false,
   });
+
+  const [pageLoading, setPageLoading] = useState<boolean>(false);
   const [serverOffline, setServerOffline] = useState<boolean>(false);
 
   const togglePageLoading = () => setPageLoading((prevState) => !prevState);
 
+  // Will temporarily populate a custom banner message triggered by user actions within app.
   const handleBannerMessage: BannerMessageFunction = (type, message) => {
     setShowPopupBanner({ show: true, message, type });
 
@@ -46,9 +48,10 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
         setServerOffline,
       }}
     >
-      {/* Will populate all nested children components */}
+      {/* Will render all nested children components */}
       {children}
-      {/* Used to overlay site with a loading UI, or a confirmation banner.*/}
+
+      {/* Used to overlay site with a loading UI, or a confirmation banner. Both components overlap all page.*/}
       {pageLoading && <LoadingUx />}
       {showPopupBanner.show && (
         <PopupBanner

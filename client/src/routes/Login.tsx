@@ -20,6 +20,7 @@ export const Login = () => {
         className="logo"
         style={{ height: showCreateAccount ? "175px" : "200px" }}
       />
+
       {showCreateAccount ? (
         <CreateAccountForm setShowCreateAccount={setShowCreateAccount} />
       ) : (

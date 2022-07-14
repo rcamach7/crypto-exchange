@@ -8,6 +8,8 @@ import { useGlobalContext } from "../context/GlobalCryptoContext";
 export const useFetchCryptos = () => {
   const dispatch = useAppDispatch();
   const cryptos = useAppSelector((state) => state.cryptos.value);
+
+  // Will catch any errors communicating with server and let user know via a popup banner.
   const { setServerOffline } = useGlobalContext();
 
   useEffect(() => {
