@@ -56,7 +56,7 @@ export const capitalizeFirstLetter: CapitalizeFirstLetter = (word) => {
 };
 
 /**
- * SORTING / FILTERING HELPER FUNCTIONS
+ * SORTING and FILTERING HELPER FUNCTIONS
  */
 export const sortByPriceAscending: SortFunction = (cryptos) => {
   const sortedByPrice = [...cryptos];
@@ -175,7 +175,7 @@ export const replaceUpdatedCrypto: ReplaceUpdatedCrypto = (cryptos, crypto) => {
 };
 
 /**
- *  PORTFOLIO CALCULATIONS
+ *  CRYPTO PORTFOLIO CALCULATIONS
  */
 
 export const calculatePortfolioValue: CalculatePortfolioValue = (
@@ -234,7 +234,9 @@ export const calculateAveragePurchasePrice: CalculateAveragePurchasePrice = (
   return totalPrice / totalQuantity;
 };
 
-// Miscellaneous Helpers
+/**
+ *  Miscellaneous helper functions
+ */
 
 export const determineThemeBackground = (mode: "light" | "dark") => {
   return mode === "light" ? "white" : "black";

@@ -9,7 +9,9 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
+  // Provides access to our redux store to all nested children components.
   <Provider store={store}>
+    {/* Context API that manages page overlapping UI components */}
     <GlobalCryptoProvider>
       <RouteSwitch />
     </GlobalCryptoProvider>

@@ -27,11 +27,13 @@ export const RouteSwitch = () => {
           <Route
             path="/crypto-exchange/login"
             element={
+              // Prevent users that are logged in to access this route.
               <OnlyUnauthenticated>
                 <Login />
               </OnlyUnauthenticated>
             }
           />
+          {/* Redirect all users navigating to invalid pages, back into our welcome page. */}
           <Route path="*" element={<Navigate to="/crypto-exchange/" />} />
         </Routes>
       </HashRouter>
