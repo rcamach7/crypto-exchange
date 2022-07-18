@@ -12,7 +12,8 @@ export const jwtTokenSlice = createSlice({
   name: "jwtToken",
   initialState,
   reducers: {
-    setToken: (state, action: PayloadAction<String>) => {
+    setToken: (state, action: PayloadAction<string>) => {
+      localStorage.setItem("token", action.payload);
       state.value = action.payload;
     },
     removeToken: (state) => {
