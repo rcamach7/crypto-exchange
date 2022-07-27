@@ -13,17 +13,7 @@ export const useManageUser = () => {
 
   // Will update the token that's being sent as a header to validate user anytime its value changes.
   useEffect(() => {
-    axios.interceptors.request.use(
-      (config: any) => {
-        if (token) {
-          config.headers.authorization = `Bearer ${token}`;
-        }
-        return config;
-      },
-      (error: any) => {
-        return Promise.reject(error);
-      }
-    );
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }, [token]);
 
   // Will fetch user anytime we hold a token but user hasn't been fetched.

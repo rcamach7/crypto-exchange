@@ -12,6 +12,8 @@ import {
 import axios from "axios";
 import config from "./config.json";
 
+// axios.defaults.baseURL = config.api;
+
 export const getUser: UserPromiseFunction = async () => {
   try {
     const response = await axios.get(`${config.api}/user/`);

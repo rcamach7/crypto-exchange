@@ -63,6 +63,7 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
     >
       <TextField
         required
+        value={account.username}
         name="username"
         id="outlined-required"
         label="Username"
@@ -70,6 +71,7 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
       />
       <TextField
         required
+        value={account.password}
         name="password"
         id="outlined-password-input"
         label="Password"
