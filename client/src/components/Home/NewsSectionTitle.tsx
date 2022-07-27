@@ -10,7 +10,7 @@ interface Props {
 export const NewsSectionTitle: React.FC<Props> = ({ count, theme }) => {
   return (
     <span style={{ textAlign: "center", padding: "25px 0 15px 0" }}>
-      {count && (
+      {count ? (
         // Title will be non-existent if news articles have yet to be loaded.
         <span
           style={{
@@ -31,7 +31,7 @@ export const NewsSectionTitle: React.FC<Props> = ({ count, theme }) => {
             className="animate__animated animate__fadeIn animate__infinite animate__slower"
           />
         </span>
-      )}
+      ) : null}
     </span>
   );
 };
