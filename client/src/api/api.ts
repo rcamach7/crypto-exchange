@@ -12,11 +12,12 @@ import {
 import axios from "axios";
 import config from "./config.json";
 
-// axios.defaults.baseURL = config.api;
+// Set default url pointing to our server address.
+axios.defaults.baseURL = config.api;
 
 export const getUser: UserPromiseFunction = async () => {
   try {
-    const response = await axios.get(`${config.api}/user/`);
+    const response = await axios.get(`/user/`);
 
     return Promise.resolve(response.data.user);
   } catch (error) {
@@ -26,7 +27,7 @@ export const getUser: UserPromiseFunction = async () => {
 
 export const updateName: UpdateNameFunction = async (name) => {
   try {
-    const response = await axios.put(`${config.api}/user/`, { fullName: name });
+    const response = await axios.put(`/user/`, { fullName: name });
 
     return Promise.resolve(response.data.user);
   } catch (error) {
@@ -46,7 +47,7 @@ export const updateUserImage: UpdateUserImageFunction = async (
 
     const response = await axios({
       method: "put",
-      url: `${config.api}/user/`,
+      url: `/user/`,
       data: formData,
       headers: { "Content-Type": "multipart/form-data" },
     });
@@ -59,7 +60,7 @@ export const updateUserImage: UpdateUserImageFunction = async (
 
 export const createAccount: AccessAccountFunction = async (account) => {
   try {
-    const { data: token } = await axios.post(`${config.api}/user/`, {
+    const { data: token } = await axios.post(`/user/`, {
       fullName: account.fullName?.toLowerCase(),
       username: account.username.toLowerCase(),
       password: account.password,
@@ -73,7 +74,7 @@ export const createAccount: AccessAccountFunction = async (account) => {
 
 export const login: AccessAccountFunction = async (account) => {
   try {
-    const { data: token } = await axios.post(`${config.api}/login/`, {
+    const { data: token } = await axios.post(`/login/`, {
       username: account.username.toLowerCase(),
       password: account.password,
     });
@@ -85,7 +86,7 @@ export const login: AccessAccountFunction = async (account) => {
 
 export const getCryptos: GetCryptoFunction = async () => {
   try {
-    const response = await axios.get(`${config.api}/cryptos/`);
+    const response = await axios.get(`/cryptos/`);
 
     return Promise.resolve(response.data.cryptos);
   } catch (error) {
@@ -95,7 +96,7 @@ export const getCryptos: GetCryptoFunction = async () => {
 
 export const updateSingleCrypto: UpdateCryptoFunction = async (name) => {
   try {
-    const response = await axios.get(`${config.api}/cryptos/${name}`);
+    const response = await axios.get(`/cryptos/${name}`);
     return Promise.resolve(response.data.crypto);
   } catch (error) {
     return Promise.reject(error);
@@ -104,9 +105,7 @@ export const updateSingleCrypto: UpdateCryptoFunction = async (name) => {
 
 export const purchaseCrypto: ModifyCryptoFunction = async (name, quantity) => {
   try {
-    const response = await axios.post(
-      `${config.api}/transactions/buy/${name}&${quantity}`
-    );
+    const response = await axios.post(`/transactions/buy/${name}&${quantity}`);
 
     return Promise.resolve(response.data.user);
   } catch (error) {
@@ -116,9 +115,7 @@ export const purchaseCrypto: ModifyCryptoFunction = async (name, quantity) => {
 
 export const sellCrypto: ModifyCryptoFunction = async (name, quantity) => {
   try {
-    const response = await axios.post(
-      `${config.api}/transactions/sell/${name}&${quantity}`
-    );
+    const response = await axios.post(`/transactions/sell/${name}&${quantity}`);
     return Promise.resolve(response.data.user);
   } catch (error) {
     return Promise.reject(error);
@@ -127,7 +124,7 @@ export const sellCrypto: ModifyCryptoFunction = async (name, quantity) => {
 
 export const bookmarkCrypto: bookmarkCryptoFunction = async (name) => {
   try {
-    const response = await axios.put(`${config.api}/user/bookmark/${name}`);
+    const response = await axios.put(`/user/bookmark/${name}`);
 
     return Promise.resolve(response.data.user);
   } catch (error) {
@@ -138,7 +135,7 @@ export const bookmarkCrypto: bookmarkCryptoFunction = async (name) => {
 
 export const getNewsArticles: GetNewsArticlesFunction = async () => {
   try {
-    const response = await axios.get(`${config.api}/news/`);
+    const response = await axios.get(`/news/`);
 
     return Promise.resolve(response.data.articles);
   } catch (error) {
