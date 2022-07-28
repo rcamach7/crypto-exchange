@@ -59,5 +59,3 @@ API server would need the following environments and variables provided to run s
 - Add fourth statistic on price history on crypto card.
 
 > Bugs
-
-- Sometimes selecting test account will redirect user to home page, but will NOT actually log the user in.
