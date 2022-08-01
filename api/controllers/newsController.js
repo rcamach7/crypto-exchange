@@ -6,10 +6,12 @@ exports.getNews = [
   async (req, res, next) => {
     try {
       const article = await NewsArticle.findOne();
-      const minutesElapsed =
-        (new Date() - new Date(article.dateAdded)) / 1000 / 60;
 
-      if (minutesElapsed > 15) {
+      const minutesElapsed = article
+        ? (new Date() - new Date(article.dateAdded)) / 1000 / 60
+        : null;
+
+      if (!article || minutesElapsed > 15) {
         await replaceNewsArticles();
       }
 
