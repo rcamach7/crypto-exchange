@@ -2,7 +2,13 @@ import { FC, useState, useEffect } from "react";
 import Autocomplete from "@mui/material/Autocomplete";
 import { TextField, useTheme } from "@mui/material";
 import { SortFilterBar } from "./SortFilterBar";
-import { SortFilterOptions, Crypto, User } from "../../../global.models";
+import {
+  SortFilterOptions,
+  Crypto,
+  User,
+  SortBy,
+  FilterBy,
+} from "../../../global.models";
 import { processFilterSortOptions } from "../../../utilities/helpers";
 import styled from "styled-components";
 
@@ -30,7 +36,7 @@ export const ToolBar: FC<Props> = ({
   setOrganizedCryptos,
 }) => {
   const [sortFilterOptions, setSortFilterOptions] = useState<SortFilterOptions>(
-    { sort: "popular", filter: "none" }
+    { sort: SortBy.Popular, filter: FilterBy.None }
   );
   const theme = useTheme();
 

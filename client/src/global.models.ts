@@ -50,9 +50,21 @@ export interface CryptoWrapper {
   itemList: Crypto[];
 }
 
+export enum FilterBy {
+  None = "none",
+  Owned = "owned",
+  Bookmarked = "bookmarked",
+}
+
+export enum SortBy {
+  Popular = "popular",
+  PriceAscending = "price-ascending",
+  PriceDescending = "price-descending",
+}
+
 export interface SortFilterOptions {
-  sort: "popular" | "price-ascending" | "price-descending";
-  filter: "none" | "owned" | "bookmarked";
+  sort: SortBy;
+  filter: FilterBy;
 }
 
 // Error Handling

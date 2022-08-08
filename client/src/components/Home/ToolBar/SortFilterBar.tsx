@@ -2,7 +2,7 @@ import React from "react";
 import { FormControl, InputLabel } from "@mui/material";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import styled from "styled-components";
-import { SortFilterOptions } from "../../../global.models";
+import { SortFilterOptions, SortBy, FilterBy } from "../../../global.models";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 const FilterWrapper = styled.div`
@@ -29,38 +29,38 @@ export const SortFilterBar: React.FC<Props> = ({
 
   const handleFilterOption = (event: SelectChangeEvent<string>) => {
     switch (event.target.value) {
-      case "owned":
+      case FilterBy.Owned:
         setSortFilterOptions((prevState) => {
-          return { ...prevState, filter: "owned" };
+          return { ...prevState, filter: FilterBy.Owned };
         });
         break;
-      case "bookmarked":
+      case FilterBy.Bookmarked:
         setSortFilterOptions((prevState) => {
-          return { ...prevState, filter: "bookmarked" };
+          return { ...prevState, filter: FilterBy.Bookmarked };
         });
         break;
       default:
         setSortFilterOptions((prevState) => {
-          return { ...prevState, filter: "none" };
+          return { ...prevState, filter: FilterBy.None };
         });
     }
   };
 
   const handleSortOption = (event: SelectChangeEvent<string>) => {
     switch (event.target.value) {
-      case "price-ascending":
+      case SortBy.PriceAscending:
         setSortFilterOptions((prevState) => {
-          return { ...prevState, sort: "price-ascending" };
+          return { ...prevState, sort: SortBy.PriceAscending };
         });
         break;
-      case "price-descending":
+      case SortBy.PriceDescending:
         setSortFilterOptions((prevState) => {
-          return { ...prevState, sort: "price-descending" };
+          return { ...prevState, sort: SortBy.PriceDescending };
         });
         break;
       default:
         setSortFilterOptions((prevState) => {
-          return { ...prevState, sort: "popular" };
+          return { ...prevState, sort: SortBy.Popular };
         });
     }
   };
