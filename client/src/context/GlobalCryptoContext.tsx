@@ -62,7 +62,7 @@ export const GlobalCryptoProvider: ContextProviderComponent = ({
       {serverOffline && (
         <PopupBanner
           message={"Unable to connect to server - please try again later."}
-          type={"error"}
+          type="error"
         />
       )}
     </CryptoContext.Provider>

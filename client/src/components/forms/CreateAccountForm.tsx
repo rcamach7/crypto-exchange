@@ -3,6 +3,7 @@ import { Box, TextField, Button } from "@mui/material/";
 import { Account } from "../../global.models";
 import { createAccount } from "../../api/api";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
+import { ResponseType } from "../../context/context.models";
 import { SubmissionError } from "../../global.models";
 
 interface Props {
@@ -55,7 +56,10 @@ export const CreateAccountForm: React.FC<Props> = ({
     } catch (error) {
       if (error instanceof Error) {
         if (error.message.includes("404")) {
-          handleBannerMessage("error", "Error communicating with server!");
+          handleBannerMessage(
+            ResponseType.Error,
+            "Error communicating with server!"
+          );
         } else {
           setTakenUsername({
             helperText: "Username taken already",

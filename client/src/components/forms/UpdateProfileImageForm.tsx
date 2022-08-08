@@ -1,6 +1,7 @@
 import { Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
+import { ResponseType } from "../../context/context.models";
 import { updateUserImage } from "../../api/api";
 import { useAppDispatch } from "../../features/hooks";
 import { setUser } from "../../features/user/userSlice";
@@ -22,10 +23,13 @@ export const UpdateProfileImageForm = ({ currentProfilePicture }: Props) => {
         const user = await updateUserImage(profilePicture);
         dispatch(setUser(user));
         togglePageLoading();
-        handleBannerMessage("success", "Successfully updated profile image");
+        handleBannerMessage(
+          ResponseType.Success,
+          "Successfully updated profile image"
+        );
       } catch (error) {
         togglePageLoading();
-        handleBannerMessage("error", "Unable to update image");
+        handleBannerMessage(ResponseType.Error, "Unable to update image");
       }
     };
 

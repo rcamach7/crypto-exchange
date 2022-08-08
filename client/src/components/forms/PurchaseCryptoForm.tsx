@@ -2,6 +2,7 @@ import { useState, SyntheticEvent, FC } from "react";
 import { Button, TextField, Avatar, Alert, Typography } from "@mui/material/";
 import { Crypto } from "../../global.models";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
+import { ResponseType } from "../../context/context.models";
 import {
   capitalizeFirstLetter,
   formatPrice,
@@ -52,7 +53,7 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
 
         togglePageLoading();
         handleBannerMessage(
-          "success",
+          ResponseType.Success,
           `Purchased ${numberWithCommas(
             quantity
           )} ${crypto.ticker.toUpperCase()} coin${quantity > 1 ? "s" : ""}`

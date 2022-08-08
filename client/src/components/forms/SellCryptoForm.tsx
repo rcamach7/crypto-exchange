@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
+import { ResponseType } from "../../context/context.models";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import {
   capitalizeFirstLetter,
@@ -53,7 +54,7 @@ export const SellCryptoForm: React.FC<Props> = ({
 
         togglePageLoading();
         handleBannerMessage(
-          "success",
+          ResponseType.Success,
           `Sold ${numberWithCommas(
             quantity
           )} ${crypto.ticker.toUpperCase()} coin${quantity > 1 ? "s" : ""}`

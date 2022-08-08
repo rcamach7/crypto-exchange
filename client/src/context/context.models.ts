@@ -10,20 +10,25 @@ export type ThemeProviderInterface = ({
 export type PaletteMode = "light" | "dark";
 
 // Global Context
+export enum ResponseType {
+  Success = "success",
+  Error = "error",
+}
+
 export interface ContextInterface {
   togglePageLoading: () => void;
-  handleBannerMessage: (type: "success" | "error", message: string) => void;
+  handleBannerMessage: (type: ResponseType, message: string) => void;
   setServerOffline: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface BannerMessage {
-  type?: "success" | "error";
+  type?: ResponseType;
   show: boolean;
   message?: string;
 }
 
 export type BannerMessageFunction = (
-  type: "success" | "error",
+  type: ResponseType,
   message: string
 ) => void;
 

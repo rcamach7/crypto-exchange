@@ -1,5 +1,6 @@
 import { useState, useEffect, FC } from "react";
 import { Crypto } from "../../../global.models";
+import { ResponseType } from "../../../context/context.models";
 import { useGlobalContext } from "../../../context/GlobalCryptoContext";
 import { ToolBar } from "../ToolBar/ToolBar";
 import { CryptoCard } from "./CryptoCard";
@@ -41,7 +42,10 @@ export const CryptosContainer: FC<Props> = ({ cryptos }) => {
       togglePageLoading();
     } catch (error) {
       togglePageLoading();
-      handleBannerMessage("error", "Error updating crypto information");
+      handleBannerMessage(
+        ResponseType.Error,
+        "Error updating crypto information"
+      );
     }
   };
 
