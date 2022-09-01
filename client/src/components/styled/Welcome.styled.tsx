@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import an from "../../assets/ans.webp";
 
+export const WelcomePageWrapper = styled.div`
+  height: calc(100vh - 60px);
+  max-height: -webkit-fill-available;
+
+  display: flex;
+  flex-direction: column;
+`;
+
 export const IntroCardWrapper = styled.div`
   flex: 1.5;
 
