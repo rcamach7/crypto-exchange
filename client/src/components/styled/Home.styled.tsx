@@ -44,3 +44,20 @@ export const CryptosWrapper = styled.div`
     gap: 10px;
   }
 `;
+
+export const CryptoCardWrapper = styled.div`
+  min-width: 310px;
+  .priceHistoryChips {
+    padding-top: 5px;
+
+    display: flex;
+    max-width: 300px;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .cryptoName {
+    max-width: 140px;
+    overflow: scroll;
+    white-space: nowrap;
+  }
+`;
