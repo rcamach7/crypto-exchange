@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import an from "../../assets/ans.webp";
+import hero from "../../assets/hero.webp";
 
 export const WelcomePageWrapper = styled.div`
   height: calc(100vh - 60px);
@@ -12,7 +12,7 @@ export const WelcomePageWrapper = styled.div`
 export const IntroCardWrapper = styled.div`
   flex: 1.5;
 
-  background-image: url(${an});
+  background-image: url(${hero});
   @media (min-width: 700px) {
     background-size: auto;
   }
