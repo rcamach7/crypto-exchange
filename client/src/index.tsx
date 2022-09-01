@@ -1,4 +1,4 @@
-import "./styles/index.scss";
+import "./styles/index.css";
 import ReactDOM from "react-dom/client";
 import { RouteSwitch } from "./RouteSwitch";
 import { GlobalCryptoProvider } from "./context/GlobalCryptoContext";
