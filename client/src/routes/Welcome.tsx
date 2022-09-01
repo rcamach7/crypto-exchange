@@ -4,6 +4,7 @@ import "animate.css";
 import { useTheme } from "@mui/material/styles";
 import { useAppSelector } from "../features/hooks";
 import {
+  WelcomePageWrapper,
   IntroCardWrapper,
   FeaturesWrapper,
 } from "../components/styled/Welcome.styled";
@@ -13,7 +14,7 @@ export const Welcome: React.FC = () => {
   const cryptos = useAppSelector((state) => state.cryptos.value);
 
   return (
-    <div className="Welcome">
+    <WelcomePageWrapper>
       <IntroCardWrapper>
         <p className="subIntroText">Are you a first time crypto investor?</p>
         <h1>Practice cryptocurrency trading with virtual money!</h1>
@@ -70,6 +71,6 @@ export const Welcome: React.FC = () => {
           </ul>
         </div>
       </FeaturesWrapper>
-    </div>
+    </WelcomePageWrapper>
   );
 };

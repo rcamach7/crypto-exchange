@@ -4,15 +4,15 @@ import { useState } from "react";
 import logo from "../assets/logo.png";
 import { useTheme } from "@mui/material/styles";
 import { determineThemeBackground } from "../utilities/helpers";
+import { LoginWrapper } from "../components/styled/Login.styled";
 
 export const Login = () => {
   const [showCreateAccount, setShowCreateAccount] = useState<Boolean>(false);
   const theme = useTheme();
 
   return (
-    <div
-      className="Login"
-      style={{ backgroundColor: determineThemeBackground(theme.palette.mode) }}
+    <LoginWrapper
+      backgroundColor={determineThemeBackground(theme.palette.mode)}
     >
       <img
         src={logo}
@@ -26,6 +26,6 @@ export const Login = () => {
       ) : (
         <SignInForm setShowCreateAccount={setShowCreateAccount} />
       )}
-    </div>
+    </LoginWrapper>
   );
 };

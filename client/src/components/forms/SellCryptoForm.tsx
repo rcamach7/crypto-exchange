@@ -20,6 +20,7 @@ import { sellCrypto } from "../../api/api";
 import { useTheme } from "@mui/material/styles";
 import { useAppDispatch } from "../../features/hooks";
 import { setUser } from "../../features/user/userSlice";
+import { SellCryptoFormWrapper } from "../styled/Forms.styled";
 
 interface Props {
   crypto: Crypto;
@@ -76,100 +77,101 @@ export const SellCryptoForm: React.FC<Props> = ({
   }, [checked, walletQuantity]);
 
   return (
-    <form
-      onSubmit={handleSell}
-      className="SellCryptoForm"
-      style={{
-        color: theme.palette.mode === "light" ? "black" : "white",
-      }}
-    >
-      {/* Form title */}
-      <Typography
-        id="modal-modal-title"
-        variant="h6"
-        component="h2"
-        sx={{ textAlign: "center" }}
+    <SellCryptoFormWrapper>
+      <form
+        onSubmit={handleSell}
+        style={{
+          color: theme.palette.mode === "light" ? "black" : "white",
+        }}
       >
-        Sell {capitalizeFirstLetter(crypto.name)}
-      </Typography>
+        {/* Form title */}
+        <Typography
+          id="modal-modal-title"
+          variant="h6"
+          component="h2"
+          sx={{ textAlign: "center" }}
+        >
+          Sell {capitalizeFirstLetter(crypto.name)}
+        </Typography>
 
-      {/* Price of crypto user is selling, and information on their account balance. */}
-      <div className="priceOverview">
-        <div className="cryptoDetails">
-          <Avatar
-            sx={{ border: "solid black 1px" }}
-            aria-label="crypto"
-            src={crypto.image}
-          />
-          <div className="buyPrice">
-            <p className="buyPrice">Current Price</p>
-            <p>${numberWithCommas(crypto.price)}</p>
+        {/* Price of crypto user is selling, and information on their account balance. */}
+        <div className="priceOverview">
+          <div className="cryptoDetails">
+            <Avatar
+              sx={{ border: "solid black 1px" }}
+              aria-label="crypto"
+              src={crypto.image}
+            />
+            <div className="buyPrice">
+              <p className="buyPrice">Current Price</p>
+              <p>${numberWithCommas(crypto.price)}</p>
+            </div>
+          </div>
+
+          <div className="balanceDetails">
+            <Avatar
+              sx={{
+                border: "solid black 1px",
+                backgroundColor:
+                  theme.palette.mode === "dark" ? "white" : "black",
+              }}
+              aria-label="balance"
+            >
+              <AccountBalanceWalletIcon />
+            </Avatar>
+            <div className="balance">
+              <p className="balance">Coin(s)</p>
+              <p>{numberWithCommas(walletQuantity)}</p>
+            </div>
           </div>
         </div>
 
-        <div className="balanceDetails">
-          <Avatar
-            sx={{
-              border: "solid black 1px",
-              backgroundColor:
-                theme.palette.mode === "dark" ? "white" : "black",
-            }}
-            aria-label="balance"
-          >
-            <AccountBalanceWalletIcon />
-          </Avatar>
-          <div className="balance">
-            <p className="balance">Coin(s)</p>
-            <p>{numberWithCommas(walletQuantity)}</p>
+        {/* Input field allowing users to select quantity to sell */}
+        <div className="checkoutDetails">
+          <div className="quantitySelectors">
+            <TextField
+              className="quantityInput"
+              id="outlined-number"
+              label="Enter Quantity"
+              type="number"
+              size="small"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              InputProps={{
+                inputProps: { min: 0, max: walletQuantity },
+              }}
+              value={quantity}
+              onChange={(e) => setQuantity(Number.parseInt(e.target.value))}
+            />
+            <FormControlLabel
+              className="checkBox"
+              control={<Checkbox onChange={handleChecked} value={checked} />}
+              label="sell max"
+            />
           </div>
-        </div>
-      </div>
 
-      {/* Input field allowing users to select quantity to sell */}
-      <div className="checkoutDetails">
-        <div className="quantitySelectors">
-          <TextField
-            className="quantityInput"
-            id="outlined-number"
-            label="Enter Quantity"
-            type="number"
-            size="small"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            InputProps={{
-              inputProps: { min: 0, max: walletQuantity },
-            }}
-            value={quantity}
-            onChange={(e) => setQuantity(Number.parseInt(e.target.value))}
-          />
-          <FormControlLabel
-            className="checkBox"
-            control={<Checkbox onChange={handleChecked} value={checked} />}
-            label="sell max"
-          />
+          <p className="totalCalculation">
+            Total: ${numberWithCommas(quantity * crypto.price)}
+          </p>
         </div>
 
-        <p className="totalCalculation">
-          Total: ${numberWithCommas(quantity * crypto.price)}
+        {/* Action buttons to process sell request. */}
+        <Button type="submit" className="purchaseBtn" variant="contained">
+          Confirm Sell Order
+        </Button>
+        <p style={{ fontSize: "10px", paddingTop: "2.5px" }}>
+          transactions are made with real-time prices, above values are
+          estimated and not final
         </p>
-      </div>
 
-      {/* Action buttons to process sell request. */}
-      <Button type="submit" className="purchaseBtn" variant="contained">
-        Confirm Sell Order
-      </Button>
-      <p style={{ fontSize: "10px", paddingTop: "2.5px" }}>
-        transactions are made with real-time prices, above values are estimated
-        and not final
-      </p>
-
-      {/* Error Reporting UI */}
-      {error.exists && (
-        <Alert severity="error" sx={{ marginTop: "10px", padding: "0 5px" }}>
-          {error.message}
-        </Alert>
-      )}
-    </form>
+        {/* Error Reporting UI */}
+        {error.exists && (
+          <Alert severity="error" sx={{ marginTop: "10px", padding: "0 5px" }}>
+            {error.message}
+          </Alert>
+        )}
+      </form>
+    </SellCryptoFormWrapper>
   );
 };

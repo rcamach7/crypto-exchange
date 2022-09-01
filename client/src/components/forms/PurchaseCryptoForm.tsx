@@ -15,6 +15,7 @@ import { useTheme } from "@mui/material/styles";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import { useAppDispatch, useAppSelector } from "../../features/hooks";
 import { setUser } from "../../features/user/userSlice";
+import { PurchaseCryptoFormWrapper } from "../styled/Forms.styled";
 
 interface Props {
   crypto: Crypto;
@@ -67,110 +68,111 @@ export const PurchaseCryptoForm: FC<Props> = ({ crypto, handleClose }) => {
   };
 
   return (
-    <form
-      className="PurchaseCryptoForm"
-      onSubmit={handlePurchase}
-      style={{
-        color: theme.palette.mode === "light" ? "black" : "white",
-        position: "relative",
-      }}
-    >
-      {/* Form title */}
-      <Typography
-        id="modal-modal-title"
-        variant="h6"
-        component="h2"
-        sx={{ textAlign: "center" }}
+    <PurchaseCryptoFormWrapper>
+      <form
+        onSubmit={handlePurchase}
+        style={{
+          color: theme.palette.mode === "light" ? "black" : "white",
+          position: "relative",
+        }}
       >
-        Purchase {capitalizeFirstLetter(crypto.name)}
-      </Typography>
+        {/* Form title */}
+        <Typography
+          id="modal-modal-title"
+          variant="h6"
+          component="h2"
+          sx={{ textAlign: "center" }}
+        >
+          Purchase {capitalizeFirstLetter(crypto.name)}
+        </Typography>
 
-      {/* Overview of crypto price details, along with the account balance of user. */}
-      <div className="priceOverview">
-        <div className="cryptoDetails">
-          <Avatar
-            sx={{ border: "solid black 1px" }}
-            aria-label="crypto"
-            src={crypto.image}
-          />
-          <div className="buyPrice">
-            <p className="buyPrice">Buy Price</p>
-            <p>${numberWithCommas(crypto.price)}</p>
+        {/* Overview of crypto price details, along with the account balance of user. */}
+        <div className="priceOverview">
+          <div className="cryptoDetails">
+            <Avatar
+              sx={{ border: "solid black 1px" }}
+              aria-label="crypto"
+              src={crypto.image}
+            />
+            <div className="buyPrice">
+              <p className="buyPrice">Buy Price</p>
+              <p>${numberWithCommas(crypto.price)}</p>
+            </div>
+          </div>
+          <div className="balanceDetails">
+            <Avatar
+              sx={{
+                border: "solid black 1px",
+                backgroundColor:
+                  theme.palette.mode === "dark" ? "white" : "black",
+              }}
+              aria-label="balance"
+            >
+              <AccountBalanceIcon />
+            </Avatar>
+            <div className="balance">
+              <p className="balance">Cash Balance</p>
+              <p>
+                ${user?.balance && numberWithCommas(formatPrice(user?.balance))}
+              </p>
+            </div>
           </div>
         </div>
-        <div className="balanceDetails">
-          <Avatar
-            sx={{
-              border: "solid black 1px",
-              backgroundColor:
-                theme.palette.mode === "dark" ? "white" : "black",
-            }}
-            aria-label="balance"
-          >
-            <AccountBalanceIcon />
-          </Avatar>
-          <div className="balance">
-            <p className="balance">Cash Balance</p>
+
+        {/* Displays currently owned cryptos, if any. */}
+        <div className="currentlyOwnedInfo">
+          {ownedQuantity > 0 ? (
             <p>
-              ${user?.balance && numberWithCommas(formatPrice(user?.balance))}
+              You currently own
+              {` ${ownedQuantity} ${crypto.name}${
+                ownedQuantity > 1 ? "s" : ""
+              } coin${ownedQuantity > 1 ? "s" : ""}.`}
             </p>
-          </div>
+          ) : (
+            <p>You don't currently own any {crypto.name}</p>
+          )}
         </div>
-      </div>
 
-      {/* Displays currently owned cryptos, if any. */}
-      <div className="currentlyOwnedInfo">
-        {ownedQuantity > 0 ? (
-          <p>
-            You currently own
-            {` ${ownedQuantity} ${crypto.name}${
-              ownedQuantity > 1 ? "s" : ""
-            } coin${ownedQuantity > 1 ? "s" : ""}.`}
+        {/* Quantity input along with estimated value of purchase. */}
+        <div className="checkoutDetails">
+          <TextField
+            className="quantityInput"
+            id="outlined-number"
+            label="Enter Quantity"
+            type="number"
+            size="small"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            InputProps={{
+              inputProps: { min: 0 },
+            }}
+            value={isNaN(quantity) ? "" : quantity}
+            onChange={(e) => setQuantity(Number.parseInt(e.target.value))}
+            required
+          />
+
+          <p className="totalCalculation">
+            Total: $
+            {isNaN(quantity) ? 0 : numberWithCommas(quantity * crypto.price)}
           </p>
-        ) : (
-          <p>You don't currently own any {crypto.name}</p>
-        )}
-      </div>
+        </div>
 
-      {/* Quantity input along with estimated value of purchase. */}
-      <div className="checkoutDetails">
-        <TextField
-          className="quantityInput"
-          id="outlined-number"
-          label="Enter Quantity"
-          type="number"
-          size="small"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          InputProps={{
-            inputProps: { min: 0 },
-          }}
-          value={isNaN(quantity) ? "" : quantity}
-          onChange={(e) => setQuantity(Number.parseInt(e.target.value))}
-          required
-        />
-
-        <p className="totalCalculation">
-          Total: $
-          {isNaN(quantity) ? 0 : numberWithCommas(quantity * crypto.price)}
+        <Button type="submit" className="purchaseBtn" variant="contained">
+          Confirm Purchase
+        </Button>
+        <p style={{ fontSize: "10px", paddingTop: "2.5px" }}>
+          transactions are made with real-time prices, above values are
+          estimated and not final
         </p>
-      </div>
 
-      <Button type="submit" className="purchaseBtn" variant="contained">
-        Confirm Purchase
-      </Button>
-      <p style={{ fontSize: "10px", paddingTop: "2.5px" }}>
-        transactions are made with real-time prices, above values are estimated
-        and not final
-      </p>
-
-      {/* Error feedback */}
-      {error.exists && (
-        <Alert severity="error" sx={{ marginTop: "10px", padding: "0 5px" }}>
-          {error.message}
-        </Alert>
-      )}
-    </form>
+        {/* Error feedback */}
+        {error.exists && (
+          <Alert severity="error" sx={{ marginTop: "10px", padding: "0 5px" }}>
+            {error.message}
+          </Alert>
+        )}
+      </form>
+    </PurchaseCryptoFormWrapper>
   );
 };

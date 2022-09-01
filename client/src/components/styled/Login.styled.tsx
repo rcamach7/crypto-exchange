@@ -1,7 +1,9 @@
-// Manages styles for all Login page components
+import styled from "styled-components";
 
-.Login {
+export const LoginWrapper = styled.div<{ backgroundColor: string }>`
   min-height: calc(100vh - 60px);
+
+  background-color: ${(props) => props.backgroundColor};
 
   display: flex;
   flex-direction: column;
@@ -48,4 +50,4 @@
       margin-bottom: 2.5px;
     }
   }
-}
+`;
