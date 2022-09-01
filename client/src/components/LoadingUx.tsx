@@ -11,11 +11,7 @@ const BackDropContainer = styled.div`
 
 export const LoadingUx = () => {
   return (
-    <Modal
-      open={true}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
-    >
+    <Modal open={true}>
       <BackDropContainer>
         <CircularProgress sx={{ maxHeight: "100%", color: "white" }} />
       </BackDropContainer>

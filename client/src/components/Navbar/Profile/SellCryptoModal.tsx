@@ -40,12 +40,7 @@ export const SellCryptoModal: React.FC<Props> = ({
       </Button>
 
       {/* Rendered once triggered by button. */}
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
           <SellCryptoForm
             crypto={crypto}
