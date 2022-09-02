@@ -8,6 +8,7 @@ import {
   IntroCardWrapper,
   FeaturesWrapper,
 } from "../components/styled/Welcome.styled";
+import { featuresData } from "../assets/staticData";
 
 export const Welcome: React.FC = () => {
   const theme = useTheme();
@@ -31,21 +32,12 @@ export const Welcome: React.FC = () => {
 
       <FeaturesWrapper theme={theme.palette.mode}>
         <ul className="featuresList">
-          <li className="animate__animated animate__fadeIn animate__fast">
-            <GrainIcon className="icon" />
-            Crypto Exchange will help you gain confidence before risking your
-            own money!
-          </li>
-          <li className="animate__animated animate__fadeIn animate__delay-1s animate__fast">
-            <GrainIcon className="icon" />
-            Get started with $1,000,000 USD to start making big money moves!
-            Registration is free!
-          </li>
-          <li className="animate__animated animate__fadeIn animate__delay-2s animate__fast">
-            <GrainIcon className="icon" />
-            All transactions are made at real time prices. Get updated
-            information on your investment performances!
-          </li>
+          {featuresData.map((feature, index) => (
+            <li key={index} className={feature.animation}>
+              <GrainIcon className="icon" />
+              {feature.text}
+            </li>
+          ))}
         </ul>
 
         <div className="expandedInfo animate__animated animate__fadeIn">
