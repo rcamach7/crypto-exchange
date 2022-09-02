@@ -42,7 +42,6 @@ export const CryptoCard: React.FC<Props> = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  // Destructure values for cleaner access
   const {
     name,
     image,
@@ -57,12 +56,7 @@ export const CryptoCard: React.FC<Props> = ({
 
   const amBookmarked: () => boolean = () => {
     const bookmarked: string[] = bookmarks.map(({ name }) => name);
-    let foundIndex = bookmarked.indexOf(name);
-    if (foundIndex > -1) {
-      return true;
-    } else {
-      return false;
-    }
+    return bookmarked.indexOf(name) > -1 ? true : false;
   };
 
   const handleBookmark: (name: string) => void = async (name) => {
