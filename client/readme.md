@@ -9,3 +9,6 @@
 - [ ] Create semantic element types for styled-components.
 - [ ] Clean up, and organize imports.
 - [ ] Create more re-usable components.
+- [ ] Convert API key to .env variable. (Currently hardcoded)
+- [ ] Pass in shallow copy of any generated component, instead of individual props, for cleaner code.
+- [ ] Use MUI Breakpoints for cleaner, responsive design.
