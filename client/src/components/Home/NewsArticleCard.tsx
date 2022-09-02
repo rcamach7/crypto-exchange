@@ -22,29 +22,27 @@ interface Props {
 }
 
 export const NewsArticleCard: React.FC<Props> = ({ article }) => {
+  const { title, description, link, pubDate } = article;
   return (
     <Card sx={style} className="animate__animated animate__zoomIn">
       <CardContent sx={{ overflow: "scroll", padding: "8px" }}>
         <Typography gutterBottom variant="body1" component="div">
-          {article.title}
+          {title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {article.description}
+          {description}
         </Typography>
       </CardContent>
 
       <CardActions sx={{ padding: "0 10px" }}>
-        <Button
-          size="small"
-          onClick={() => window.open(`${article.link}`, "_blank")}
-        >
+        <Button size="small" onClick={() => window.open(`${link}`, "_blank")}>
           Read full article
         </Button>
         <Typography
           color="text.secondary"
           sx={{ fontSize: "12px", marginLeft: "auto" }}
         >
-          {new Date(article.pubDate).toDateString()}
+          {new Date(pubDate).toDateString()}
         </Typography>
       </CardActions>
     </Card>

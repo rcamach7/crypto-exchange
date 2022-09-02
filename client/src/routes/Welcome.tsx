@@ -32,10 +32,10 @@ export const Welcome: React.FC = () => {
 
       <FeaturesWrapper theme={theme.palette.mode}>
         <ul className="featuresList">
-          {featuresData.map((feature, index) => (
-            <li key={index} className={feature.animation}>
+          {featuresData.map(({ text, animation }, index) => (
+            <li key={index} className={animation}>
               <GrainIcon className="icon" />
-              {feature.text}
+              {text}
             </li>
           ))}
         </ul>
@@ -48,15 +48,11 @@ export const Welcome: React.FC = () => {
             </p>
           )}
           <ul>
-            {cryptos.slice(0, 10).map((crypto) => {
+            {cryptos.slice(0, 10).map(({ ticker, image, name }) => {
               return (
-                <li key={crypto.ticker}>
-                  <img
-                    src={crypto.image}
-                    alt={crypto.name}
-                    className="cryptoImage"
-                  />
-                  <p>{crypto.ticker}</p>
+                <li key={ticker}>
+                  <img src={image} alt={name} className="cryptoImage" />
+                  <p>{ticker}</p>
                 </li>
               );
             })}
