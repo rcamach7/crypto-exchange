@@ -9,7 +9,8 @@
   "scripts": {
     "start": "node ./bin/www",
     "devstart": "nodemon ./bin/www",
-    "serverstart": "DEBUG=api:* npm run devstart"
+    "serverstart": "DEBUG=api:* npm run devstart",
+    "local-server": "API_SERVER_URL=http://localhost:2000 npm run serverstart"
   },
   "repository": {
     "type": "git",

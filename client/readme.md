@@ -9,5 +9,4 @@
 - [ ] Create semantic element types for styled-components.
 - [ ] Clean up, and organize imports.
 - [ ] Create more re-usable components.
-- [ ] Convert API key to .env variable. (Currently hardcoded)
 - [ ] Use MUI Breakpoints for cleaner, responsive design.
