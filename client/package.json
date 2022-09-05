@@ -34,7 +34,8 @@
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "local-server": "REACT_APP_SERVER_URL=http://localhost:2000 npm start"
   },
   "eslintConfig": {
     "extends": [
