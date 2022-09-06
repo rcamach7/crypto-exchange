@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { newsArticlesReducer } from "./newsArticles/newsArticlesSlice";
-import { cryptosReducer } from "./cryptos/cryptosSlice";
-import { jwtTokenReducer } from "./jwtToken/jwtTokenSlice";
-import { userReducer } from "./user/userSlice";
+import {
+  newsArticlesReducer,
+  cryptosReducer,
+  jwtTokenReducer,
+  userReducer,
+} from "./index";
 
 export const store = configureStore({
   reducer: {

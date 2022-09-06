@@ -1,6 +1,6 @@
 import { useContext, createContext, useMemo, useState, useEffect } from "react";
 import { ThemeProvider as Provider, createTheme } from "@mui/material/styles";
-import { ThemeProviderInterface, PaletteMode } from "./context.models";
+import { ThemeProviderInterface, PaletteMode } from "./index";
 
 const SiteThemeContext = createContext({ toggleSiteTheme: () => {} });
 export const useThemeContext = () => {
