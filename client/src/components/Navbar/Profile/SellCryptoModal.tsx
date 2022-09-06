@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Button, Modal } from "@mui/material/";
 import { Crypto } from "../../../global.models";
-import { SellCryptoForm } from "../../forms/SellCryptoForm";
+import { SellCryptoForm } from "../../forms/";
 
 const style = {
   position: "absolute" as "absolute",

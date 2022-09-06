@@ -1,14 +1,9 @@
 import { Routes, Route, Navigate, HashRouter } from "react-router-dom";
-import { Login } from "./routes/Login";
-import { OnlyUnauthenticated } from "./components/ProtectedRouting";
-import { Home } from "./routes/Home";
-import { Navbar } from "./components/Navbar/Navbar";
-import { Welcome } from "./routes/Welcome";
-import { ThemeContext } from "./context/ThemeContext";
-import { News } from "./routes/News";
-import { useFetchNewsArticles } from "./hooks/useFetchNewsArticles";
-import { useFetchCryptos } from "./hooks/useFetchCryptos";
-import { useManageUser } from "./hooks/useManageUser";
+import { Home, Login, Welcome, News } from "./routes/";
+import { OnlyUnauthenticated } from "./components/";
+import { Navbar } from "./components/Navbar/";
+import { ThemeContext } from "./context/";
+import { useFetchNewsArticles, useFetchCryptos, useManageUser } from "./hooks/";
 
 export const RouteSwitch = () => {
   // Hooks that will manage redux store values based on app changes.

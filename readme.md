@@ -48,14 +48,6 @@ npm install
 npm start
 ```
 
-API server would need the following environments and variables provided to run successfully:
+Server would need the following environments and variables provided to run successfully:
 
-- MONGO_DB, SECRET_STRING, CLOUDINARY_CLOUD, CLOUDINARY_API, CLOUDINARY_SECRET, NEWSDATA_TOKEN
-
-#### To-Do's
-
-> Features
-
-- Add fourth statistic on price history on crypto card.
-
-> Bugs
+- MONGO_DB, SECRET_STRING, CLOUDINARY_CLOUD, CLOUDINARY_API, CLOUDINARY_SECRET, NEWSDATA_TOKEN, API_SERVER_URL

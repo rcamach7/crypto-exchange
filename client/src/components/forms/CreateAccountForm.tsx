@@ -3,7 +3,7 @@ import { Box, TextField, Button } from "@mui/material/";
 import { Account } from "../../global.models";
 import { createAccount } from "../../api/api";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
-import { ResponseType } from "../../context/context.models";
+import { ResponseType } from "../../context/";
 import { SubmissionError } from "../../global.models";
 
 interface Props {
@@ -86,6 +86,7 @@ export const CreateAccountForm: React.FC<Props> = ({
         id="outlined-required"
         label="Name"
         name="fullName"
+        autoComplete="name"
         onChange={handleInputChange}
       />
       <TextField
@@ -93,6 +94,7 @@ export const CreateAccountForm: React.FC<Props> = ({
         id="outlined-required2"
         label="Username"
         name="username"
+        autoComplete="username"
         onChange={handleInputChange}
         {...showTakenUsername}
       />
@@ -102,7 +104,7 @@ export const CreateAccountForm: React.FC<Props> = ({
         id="outlined-password-input"
         label="Password"
         type="password"
-        autoComplete="current-password"
+        autoComplete="password"
         onChange={handleInputChange}
         {...showPasswordError}
       />
@@ -112,7 +114,7 @@ export const CreateAccountForm: React.FC<Props> = ({
         id="outlined-password-input2"
         label="Confirm password"
         type="password"
-        autoComplete="current-password"
+        autoComplete="confirm-password"
         onChange={handleInputChange}
         {...showPasswordError}
       />

@@ -1,14 +1,13 @@
 import { useState, useEffect, FC } from "react";
 import { Crypto } from "../../../global.models";
-import { ResponseType } from "../../../context/context.models";
-import { useGlobalContext } from "../../../context/GlobalCryptoContext";
-import { ToolBar } from "../ToolBar/ToolBar";
+import { ResponseType, useGlobalContext } from "../../../context/";
+import { ToolBar } from "../";
 import { CryptoCard } from "./CryptoCard";
 import { replaceUpdatedCrypto } from "../../../utilities/helpers";
 import { updateSingleCrypto } from "../../../api/api";
 import { Pagination } from "@mui/material";
 import { useAppSelector } from "../../../features/hooks";
-import { CryptosWrapper } from "../../styled/Home.styled";
+import { CryptosWrapper } from "../../styled/";
 
 interface Props {
   cryptos: Crypto[];

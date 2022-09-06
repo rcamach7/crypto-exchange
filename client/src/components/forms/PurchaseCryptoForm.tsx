@@ -1,8 +1,7 @@
 import { useState, SyntheticEvent, FC } from "react";
 import { Button, TextField, Avatar, Alert, Typography } from "@mui/material/";
 import { Crypto } from "../../global.models";
-import { useGlobalContext } from "../../context/GlobalCryptoContext";
-import { ResponseType } from "../../context/context.models";
+import { useGlobalContext, ResponseType } from "../../context/";
 import {
   capitalizeFirstLetter,
   formatPrice,
@@ -15,7 +14,7 @@ import { useTheme } from "@mui/material/styles";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import { useAppDispatch, useAppSelector } from "../../features/hooks";
 import { setUser } from "../../features/user/userSlice";
-import { PurchaseCryptoFormWrapper } from "../styled/Forms.styled";
+import { PurchaseCryptoFormWrapper } from "../styled/";
 
 interface Props {
   crypto: Crypto;

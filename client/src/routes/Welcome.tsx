@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import GrainIcon from "@mui/icons-material/Grain";
-import "animate.css";
 import { useTheme } from "@mui/material/styles";
 import { useAppSelector } from "../features/hooks";
 import {
   WelcomePageWrapper,
   IntroCardWrapper,
   FeaturesWrapper,
-} from "../components/styled/Welcome.styled";
+} from "../components/styled/";
 import { featuresData } from "../assets/staticData";
 
 export const Welcome: React.FC = () => {

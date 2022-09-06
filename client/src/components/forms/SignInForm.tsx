@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, TextField, Button } from "@mui/material/";
 import { SubmissionError, Account } from "../../global.models";
 import { login } from "../../api/api";
-import { useGlobalContext } from "../../context/GlobalCryptoContext";
+import { useGlobalContext } from "../../context/";
 import { useAppDispatch } from "../../features/hooks";
 import { setToken } from "../../features/jwtToken/jwtTokenSlice";
 
@@ -67,6 +67,7 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
         name="username"
         id="outlined-required"
         label="Username"
+        autoComplete="username"
         onChange={handleInputChange}
       />
       <TextField
@@ -76,7 +77,7 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
         id="outlined-password-input"
         label="Password"
         type="password"
-        autoComplete="current-password"
+        autoComplete="password"
         onChange={handleInputChange}
         {...populateErrors}
       />
