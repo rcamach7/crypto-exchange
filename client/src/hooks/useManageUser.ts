@@ -2,9 +2,13 @@ import { useEffect } from "react";
 import axios from "axios";
 import { User } from "../global.models";
 import { getUser } from "../api/api";
-import { useAppDispatch, useAppSelector } from "../features/hooks";
-import { setUser, removeUser } from "../features/user/userSlice";
-import { removeToken } from "../features/jwtToken/jwtTokenSlice";
+import {
+  useAppDispatch,
+  useAppSelector,
+  setUser,
+  removeUser,
+  removeToken,
+} from "../features/";
 
 export const useManageUser = () => {
   const token = useAppSelector((state) => state.jwtToken.value);

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { getNewsArticles } from "../api/api";
 import { NewsArticle } from "../global.models";
-import { useAppDispatch, useAppSelector } from "../features/hooks";
-import { setNewsArticles } from "../features/newsArticles/newsArticlesSlice";
+import { useAppDispatch, useAppSelector, setNewsArticles } from "../features/";
 
 export const useFetchNewsArticles = () => {
   const newsArticles = useAppSelector((state) => state.newsArticles.value);
