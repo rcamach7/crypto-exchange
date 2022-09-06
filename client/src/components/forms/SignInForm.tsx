@@ -67,6 +67,7 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
         name="username"
         id="outlined-required"
         label="Username"
+        autoComplete="username"
         onChange={handleInputChange}
       />
       <TextField
@@ -76,7 +77,7 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
         id="outlined-password-input"
         label="Password"
         type="password"
-        autoComplete="current-password"
+        autoComplete="password"
         onChange={handleInputChange}
         {...populateErrors}
       />
