@@ -10,10 +10,8 @@ import {
   GetNewsArticlesFunction,
 } from "./api.models";
 import axios from "axios";
-import config from "./config.json";
 
-// Set default url pointing to our server address.
-axios.defaults.baseURL = config.api;
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
 
 export const getUser: UserPromiseFunction = async () => {
   try {

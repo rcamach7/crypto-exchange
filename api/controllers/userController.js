@@ -1,6 +1,5 @@
 const { check, validationResult } = require("express-validator");
 const middleware = require("../assets/middleware");
-const config = require("../config.json");
 const axios = require("axios");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
@@ -94,7 +93,10 @@ exports.createUser = [
       // Use our login endpoint to send user back a authentication token.
       const {
         data: { token },
-      } = await axios.post(`${config.apiUrl}/login`, res.locals.user);
+      } = await axios.post(
+        `${process.env.API_SERVER_URL}/login`,
+        res.locals.user
+      );
 
       return res.json({ token });
     } catch (errors) {
