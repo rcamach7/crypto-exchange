@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Crypto } from "../../global.models";
-import { RootState } from "../store";
+import { RootState } from "../index";
 
 interface CryptosState {
   value: Crypto[];

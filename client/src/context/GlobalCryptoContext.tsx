@@ -5,7 +5,7 @@ import {
   BannerMessage,
   BannerMessageFunction,
   ContextProviderComponent,
-} from "./";
+} from "./index";
 
 // Create context, and export custom hook that can extract our context values in different components.
 const CryptoContext = createContext<ContextInterface | null>(null);
