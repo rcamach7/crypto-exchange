@@ -20,7 +20,7 @@ import { sellCrypto } from "../../api/api";
 import { useTheme } from "@mui/material/styles";
 import { useAppDispatch } from "../../features/hooks";
 import { setUser } from "../../features/user/userSlice";
-import { SellCryptoFormWrapper } from "../styled/Forms.styled";
+import { SellCryptoFormWrapper } from "../styled/";
 
 interface Props {
   crypto: Crypto;

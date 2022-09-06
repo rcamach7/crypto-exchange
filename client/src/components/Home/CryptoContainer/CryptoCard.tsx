@@ -23,7 +23,7 @@ import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import "animate.css";
 import { setUser } from "../../../features/user/userSlice";
 import { useAppDispatch } from "../../../features/hooks";
-import { CryptoCardWrapper } from "../../styled/Home.styled";
+import { CryptoCardWrapper } from "../../styled/";
 
 interface Props {
   crypto: Crypto;

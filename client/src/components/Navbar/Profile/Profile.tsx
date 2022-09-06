@@ -21,10 +21,9 @@ import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import { UpdateNameForm } from "../../forms/UpdateNameForm";
-import { UpdateProfileImageForm } from "../../forms/UpdateProfileImageForm";
+import { UpdateNameForm, UpdateProfileImageForm } from "../../forms/";
 import { useAppSelector } from "../../../features/hooks";
-import { ProfileDrawerWrapper } from "../../styled/Navbar.styled";
+import { ProfileDrawerWrapper } from "../../styled/";
 
 type Anchor = "top" | "left" | "bottom" | "right";
 

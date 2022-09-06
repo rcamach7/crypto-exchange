@@ -22,7 +22,7 @@ import { useTheme } from "@mui/material/styles";
 import { useAppDispatch, useAppSelector } from "../../features/hooks";
 import { removeUser } from "../../features/user/userSlice";
 import { removeToken } from "../../features/jwtToken/jwtTokenSlice";
-import { NavbarWrapper } from "../styled/Navbar.styled";
+import { NavbarWrapper } from "../styled/";
 
 const justifyCenter = {
   justifyContent: "center",

@@ -15,7 +15,7 @@ import { useTheme } from "@mui/material/styles";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import { useAppDispatch, useAppSelector } from "../../features/hooks";
 import { setUser } from "../../features/user/userSlice";
-import { PurchaseCryptoFormWrapper } from "../styled/Forms.styled";
+import { PurchaseCryptoFormWrapper } from "../styled/";
 
 interface Props {
   crypto: Crypto;
