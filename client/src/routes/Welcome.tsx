@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import GrainIcon from "@mui/icons-material/Grain";
 import { useTheme } from "@mui/material/styles";
-import { useAppSelector } from "../features/hooks";
+import { useAppSelector } from "../features/";
 import {
   WelcomePageWrapper,
   IntroCardWrapper,

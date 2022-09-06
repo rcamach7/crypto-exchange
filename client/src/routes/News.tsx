@@ -2,7 +2,7 @@ import { NewsArticleCard, NewsSectionTitle } from "../components/Home/";
 import { LoadingUx } from "../components/";
 import { NewsArticleWrapper } from "../components/styled";
 import { useTheme } from "@mui/material";
-import { useAppSelector } from "../features/hooks";
+import { useAppSelector } from "../features/";
 
 export const News = () => {
   const newsArticles = useAppSelector((state) => state.newsArticles.value);
