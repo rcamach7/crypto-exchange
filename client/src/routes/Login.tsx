@@ -1,10 +1,9 @@
-import { SignInForm } from "../components/forms/SignInForm";
-import { CreateAccountForm } from "../components/forms/CreateAccountForm";
+import { SignInForm, CreateAccountForm } from "../components/forms/";
+import { LoginWrapper } from "../components/styled/";
 import { useState } from "react";
 import logo from "../assets/logo.png";
 import { useTheme } from "@mui/material/styles";
 import { determineThemeBackground } from "../utilities/helpers";
-import { LoginWrapper } from "../components/styled/Login.styled";
 
 export const Login = () => {
   const [showCreateAccount, setShowCreateAccount] = useState<Boolean>(false);

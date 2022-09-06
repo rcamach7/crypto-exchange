@@ -10,3 +10,4 @@
 - [ ] Create more re-usable components.
 - [ ] Use MUI Breakpoints for cleaner, responsive design.
 - [ ] Refactor NewsArticle component, for a cleaner display.
+- [ ] Convert all default exports to named exports.
