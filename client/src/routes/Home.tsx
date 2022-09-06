@@ -1,14 +1,13 @@
 import { determineThemeBackground } from "../utilities/helpers";
-import { useTheme } from "@mui/material/styles";
-import { NewsArticleCard } from "../components/Home/NewsArticleCard";
-import { CryptosContainer } from "../components/Home/CryptoContainer/CryptosContainer";
 import { useAppSelector } from "../features/hooks";
-import { LoadingUx } from "../components/LoadingUx";
+import { useTheme } from "@mui/material/styles";
 import {
-  HomeWrapper,
-  NewsArticlesWrapper,
-} from "../components/styled/Home.styled";
-import { NewsSectionTitle } from "../components/Home/NewsSectionTitle";
+  CryptosContainer,
+  NewsArticleCard,
+  NewsSectionTitle,
+} from "../components/Home";
+import { LoadingUx } from "../components/";
+import { HomeWrapper, NewsArticlesWrapper } from "../components/styled";
 
 export const Home = () => {
   const newsArticles = useAppSelector((state) => state.newsArticles.value);
