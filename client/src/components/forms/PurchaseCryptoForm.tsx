@@ -12,8 +12,7 @@ import { purchaseCrypto } from "../../api/api";
 import { User, Error } from "../../global.models";
 import { useTheme } from "@mui/material/styles";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import { useAppDispatch, useAppSelector } from "../../features/hooks";
-import { setUser } from "../../features/user/userSlice";
+import { useAppDispatch, useAppSelector, setUser } from "../../features/";
 import { PurchaseCryptoFormWrapper } from "../styled/";
 
 interface Props {

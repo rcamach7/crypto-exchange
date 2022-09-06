@@ -19,8 +19,7 @@ import { PurchaseModal } from "./PurchaseModal";
 import { Link } from "react-router-dom";
 import { numberWithCommas } from "../../../utilities/helpers";
 import { bookmarkCrypto } from "../../../api/api";
-import { setUser } from "../../../features/user/userSlice";
-import { useAppDispatch } from "../../../features/hooks";
+import { useAppDispatch, setUser } from "../../../features/";
 import { CryptoCardWrapper } from "../../styled/";
 
 interface Props {

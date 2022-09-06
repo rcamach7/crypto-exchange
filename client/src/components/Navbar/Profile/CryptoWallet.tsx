@@ -9,7 +9,7 @@ import {
 } from "@mui/material/";
 import { WalletRow } from "./WalletRow";
 import { getCrypto } from "../../../utilities/helpers";
-import { useAppSelector } from "../../../features/hooks";
+import { useAppSelector } from "../../../features/";
 
 export const CryptoWallet = () => {
   const cryptos = useAppSelector((state) => state.cryptos.value);

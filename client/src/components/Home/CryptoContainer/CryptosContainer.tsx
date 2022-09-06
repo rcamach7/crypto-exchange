@@ -6,7 +6,7 @@ import { CryptoCard } from "./CryptoCard";
 import { replaceUpdatedCrypto } from "../../../utilities/helpers";
 import { updateSingleCrypto } from "../../../api/api";
 import { Pagination } from "@mui/material";
-import { useAppSelector } from "../../../features/hooks";
+import { useAppSelector } from "../../../features/";
 import { CryptosWrapper } from "../../styled/";
 
 interface Props {

@@ -3,8 +3,7 @@ import { Box, TextField, Button } from "@mui/material/";
 import { SubmissionError, Account } from "../../global.models";
 import { login } from "../../api/api";
 import { useGlobalContext } from "../../context/";
-import { useAppDispatch } from "../../features/hooks";
-import { setToken } from "../../features/jwtToken/jwtTokenSlice";
+import { setToken, useAppDispatch } from "../../features/";
 
 interface Props {
   setShowCreateAccount: React.Dispatch<React.SetStateAction<Boolean>>;

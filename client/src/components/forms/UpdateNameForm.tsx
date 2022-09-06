@@ -4,8 +4,7 @@ import { capitalizeFirstLetter } from "../../utilities/helpers";
 import EditIcon from "@mui/icons-material/Edit";
 import { ResponseType, useGlobalContext } from "../../context/";
 import { updateName } from "../../api/api";
-import { setUser } from "../../features/user/userSlice";
-import { useAppDispatch } from "../../features/hooks";
+import { useAppDispatch, setUser } from "../../features/";
 
 const FormWrapper = styled.span`
   form {
