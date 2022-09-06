@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useAppSelector } from "../features/hooks";
+import { useAppSelector } from "../features/";
 
 interface Props {
   token?: String | null;

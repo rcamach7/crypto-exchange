@@ -17,8 +17,7 @@ import {
 } from "../../utilities/helpers";
 import { Crypto, Error, User } from "../../global.models";
 import { sellCrypto } from "../../api/api";
-import { useAppDispatch } from "../../features/hooks";
-import { setUser } from "../../features/user/userSlice";
+import { useAppDispatch, setUser } from "../../features/";
 import { SellCryptoFormWrapper } from "../styled/";
 
 interface Props {

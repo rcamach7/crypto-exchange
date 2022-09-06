@@ -2,8 +2,7 @@ import { Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useGlobalContext, ResponseType } from "../../context/";
 import { updateUserImage } from "../../api/api";
-import { useAppDispatch } from "../../features/hooks";
-import { setUser } from "../../features/user/userSlice";
+import { setUser, useAppDispatch } from "../../features/";
 
 interface Props {
   currentProfilePicture: string;

@@ -22,7 +22,7 @@ import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import { UpdateNameForm, UpdateProfileImageForm } from "../../forms/";
-import { useAppSelector } from "../../../features/hooks";
+import { useAppSelector } from "../../../features/";
 import { ProfileDrawerWrapper } from "../../styled/";
 
 type Anchor = "top" | "left" | "bottom" | "right";

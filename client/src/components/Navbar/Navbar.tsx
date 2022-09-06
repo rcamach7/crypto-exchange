@@ -19,9 +19,12 @@ import { useThemeContext } from "../../context/";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useTheme } from "@mui/material/styles";
-import { useAppDispatch, useAppSelector } from "../../features/hooks";
-import { removeUser } from "../../features/user/userSlice";
-import { removeToken } from "../../features/jwtToken/jwtTokenSlice";
+import {
+  useAppDispatch,
+  useAppSelector,
+  removeUser,
+  removeToken,
+} from "../../features/";
 import { NavbarWrapper } from "../styled/";
 
 const justifyCenter = {
