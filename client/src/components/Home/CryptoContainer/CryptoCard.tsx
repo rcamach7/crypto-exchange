@@ -1,4 +1,4 @@
-import React from "react";
+import moment from "moment";
 import { Crypto, User } from "../../../global.models";
 import {
   Box,
@@ -14,13 +14,11 @@ import {
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
 import { PurchaseModal } from "./PurchaseModal";
-import moment from "moment";
 import { Link } from "react-router-dom";
 import { numberWithCommas } from "../../../utilities/helpers";
 import { bookmarkCrypto } from "../../../api/api";
-import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
-import "animate.css";
 import { setUser } from "../../../features/user/userSlice";
 import { useAppDispatch } from "../../../features/hooks";
 import { CryptoCardWrapper } from "../../styled/";

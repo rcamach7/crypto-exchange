@@ -7,17 +7,16 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
-import { useGlobalContext } from "../../context/GlobalCryptoContext";
-import { ResponseType } from "../../context/context.models";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import { useTheme } from "@mui/material/styles";
+import React from "react";
+import { ResponseType, useGlobalContext } from "../../context/";
 import {
   capitalizeFirstLetter,
   numberWithCommas,
 } from "../../utilities/helpers";
 import { Crypto, Error, User } from "../../global.models";
 import { sellCrypto } from "../../api/api";
-import { useTheme } from "@mui/material/styles";
 import { useAppDispatch } from "../../features/hooks";
 import { setUser } from "../../features/user/userSlice";
 import { SellCryptoFormWrapper } from "../styled/";

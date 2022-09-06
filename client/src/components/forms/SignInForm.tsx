@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Box, TextField, Button } from "@mui/material/";
 import { SubmissionError, Account } from "../../global.models";
 import { login } from "../../api/api";
-import { useGlobalContext } from "../../context/GlobalCryptoContext";
+import { useGlobalContext } from "../../context/";
 import { useAppDispatch } from "../../features/hooks";
 import { setToken } from "../../features/jwtToken/jwtTokenSlice";
 

@@ -1,12 +1,11 @@
 import { useContext, createContext, useState } from "react";
-import { PopupBanner } from "../components/PopupBanner";
-import { LoadingUx } from "../components/LoadingUx";
+import { PopupBanner, LoadingUx } from "../components/";
 import {
   ContextInterface,
   BannerMessage,
   BannerMessageFunction,
   ContextProviderComponent,
-} from "./context.models";
+} from "./";
 
 // Create context, and export custom hook that can extract our context values in different components.
 const CryptoContext = createContext<ContextInterface | null>(null);

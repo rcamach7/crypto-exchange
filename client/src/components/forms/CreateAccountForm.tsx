@@ -3,7 +3,7 @@ import { Box, TextField, Button } from "@mui/material/";
 import { Account } from "../../global.models";
 import { createAccount } from "../../api/api";
 import { useGlobalContext } from "../../context/GlobalCryptoContext";
-import { ResponseType } from "../../context/context.models";
+import { ResponseType } from "../../context/";
 import { SubmissionError } from "../../global.models";
 
 interface Props {

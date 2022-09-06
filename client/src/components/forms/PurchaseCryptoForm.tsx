@@ -1,8 +1,7 @@
 import { useState, SyntheticEvent, FC } from "react";
 import { Button, TextField, Avatar, Alert, Typography } from "@mui/material/";
 import { Crypto } from "../../global.models";
-import { useGlobalContext } from "../../context/GlobalCryptoContext";
-import { ResponseType } from "../../context/context.models";
+import { useGlobalContext, ResponseType } from "../../context/";
 import {
   capitalizeFirstLetter,
   formatPrice,

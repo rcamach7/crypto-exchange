@@ -1,7 +1,6 @@
 import { useState, useEffect, FC } from "react";
 import { Crypto } from "../../../global.models";
-import { ResponseType } from "../../../context/context.models";
-import { useGlobalContext } from "../../../context/GlobalCryptoContext";
+import { ResponseType, useGlobalContext } from "../../../context/";
 import { ToolBar } from "../";
 import { CryptoCard } from "./CryptoCard";
 import { replaceUpdatedCrypto } from "../../../utilities/helpers";

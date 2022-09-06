@@ -1,7 +1,6 @@
 import { Avatar } from "@mui/material";
 import { useState, useEffect } from "react";
-import { useGlobalContext } from "../../context/GlobalCryptoContext";
-import { ResponseType } from "../../context/context.models";
+import { useGlobalContext, ResponseType } from "../../context/";
 import { updateUserImage } from "../../api/api";
 import { useAppDispatch } from "../../features/hooks";
 import { setUser } from "../../features/user/userSlice";
