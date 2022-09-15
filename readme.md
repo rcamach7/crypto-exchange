@@ -10,15 +10,6 @@ Full stack Crypto Exchange that lets you practice cryptocurrency trading with fa
 
 ![project_demo](crypto_demo.gif)
 
-<p align="center">
-  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1652491477/main-portfolio/tech-skills/typescript_v3ztli.png" width="40" height="40" alt="Typescript" />
-  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1648514838/main-portfolio/animated-logos/react-anim_jqtsxo.gif" width="40" height="40" alt="React" />
-  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1656116643/main-portfolio/tech-skills/redux_rbbutz.png" width="40" height="40" alt="Redux" />
-  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1646101318/main-portfolio/tech-skills/node_lzpvq6.png" width="40" height="40" alt="Node" />
-  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1647634998/main-portfolio/tech-skills/express_ibtfvl.png" width="40" height="40" alt="Express" />
-  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1646101239/main-portfolio/tech-skills/mongodb_r1xhyn.png" width="40" height="40" alt="MongoDB" />
-</p>
-
 ## Key Features
 
 - Users can view, purchase and sell crypto coins at real-time market prices. Crypto data can be filtered, sorted, and searched by user.
@@ -29,11 +20,21 @@ Full stack Crypto Exchange that lets you practice cryptocurrency trading with fa
 
 #### Built Using:
 
-- react, typescript, redux, mongoose, MUI components, styled-components, cloudinary, animate.css, axios interceptors, react-router-dom, sass, useEffect, useState, Context API, custom hooks, hash router, promise based functions, async/await, custom API, moment etc...
+<p align="center">
+  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1652491477/main-portfolio/tech-skills/typescript_v3ztli.png" width="40" height="40" alt="Typescript" />
+  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1648514838/main-portfolio/animated-logos/react-anim_jqtsxo.gif" width="40" height="40" alt="React" />
+  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1656116643/main-portfolio/tech-skills/redux_rbbutz.png" width="40" height="40" alt="Redux" />
+  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1646101318/main-portfolio/tech-skills/node_lzpvq6.png" width="40" height="40" alt="Node" />
+  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1647634998/main-portfolio/tech-skills/express_ibtfvl.png" width="40" height="40" alt="Express" />
+  <img src="https://res.cloudinary.com/de2ymful4/image/upload/v1646101239/main-portfolio/tech-skills/mongodb_r1xhyn.png" width="40" height="40" alt="MongoDB" />
+</p>
+
+react, typescript, redux, mongoose, MUI components, styled-components, cloudinary, animate.css, axios interceptors, react-router-dom, sass, useEffect, useState, Context API, custom hooks, hash router, promise based functions, async/await, custom API, moment etc...
 
 #### How to install and run?
 
 ```bash
+# Clone this repository
  git clone https://github.com/rcamach7/crypto-exchange
  cd crypto-exchange
 
@@ -42,10 +43,10 @@ Full stack Crypto Exchange that lets you practice cryptocurrency trading with fa
  npm install
  npm run serverstart
 
-#  Run client
+#  Run client using local server
 cd ../client
 npm install
-npm start
+npm run use-local-server
 ```
 
 Server would need the following environments and variables provided to run successfully:
