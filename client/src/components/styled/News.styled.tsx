@@ -6,6 +6,7 @@ export const NewsArticleWrapper = styled.div`
   background-color: ${(props) => (props.theme === "light" ? "white" : "black")};
 
   display: flex;
+  align-items: center;
   flex-direction: column;
   .newsArticlesContainer {
     width: 100%;

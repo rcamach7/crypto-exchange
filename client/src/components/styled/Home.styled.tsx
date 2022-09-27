@@ -16,11 +16,12 @@ export const NewsArticlesWrapper = styled.div`
   display: none;
 
   @media (min-width: 1000px) {
-    width: 300px;
+    flex: 0.8;
+    /* width: 300px; */
     height: 90vh;
 
     overflow: scroll;
-    margin-right: 5px;
+    margin-right: 10px;
 
     display: flex;
     flex-direction: column;
@@ -29,7 +30,7 @@ export const NewsArticlesWrapper = styled.div`
 `;
 
 export const CryptosWrapper = styled.div`
-  flex: 1;
+  flex: 2;
 
   display: flex;
   flex-direction: column;

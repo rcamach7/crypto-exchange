@@ -8,15 +8,6 @@ import {
 } from "@mui/material/";
 import { NewsArticle } from "../../global.models";
 
-const style = {
-  width: "300px",
-  maxHeight: "200px",
-  display: "flex",
-  flexDirection: "column",
-  overflow: "unset",
-  boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
-};
-
 interface Props {
   article: NewsArticle;
 }
@@ -24,7 +15,18 @@ interface Props {
 export const NewsArticleCard: React.FC<Props> = ({ article }) => {
   const { title, description, link, pubDate } = article;
   return (
-    <Card sx={style} className="animate__animated animate__zoomIn">
+    <Card
+      sx={{
+        width: "300px",
+        maxHeight: "200px",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "unset",
+        boxShadow: "none",
+        border: "1px solid #e0e0e0",
+      }}
+      className="animate__animated animate__zoomIn"
+    >
       <CardContent sx={{ overflow: "scroll", padding: "8px" }}>
         <Typography gutterBottom variant="body1" component="div">
           {title}
