@@ -41,17 +41,7 @@ export const CryptoCard: React.FC<Props> = ({
 }) => {
   const dispatch = useAppDispatch();
 
-  const {
-    name,
-    image,
-    lastUpdated,
-    price,
-    marketHistory: {
-      priceChangePercentage24h,
-      priceChangePercentage7d,
-      priceChangePercentage14d,
-    },
-  } = crypto;
+  const { name, image, lastUpdated, price, marketHistory } = crypto;
 
   const amBookmarked: () => boolean = () => {
     const bookmarked: string[] = bookmarks.map(({ name }) => name);
@@ -102,7 +92,11 @@ export const CryptoCard: React.FC<Props> = ({
               <Chip
                 sx={{ marginLeft: "auto" }}
                 label={numberWithCommas(price)}
-                color={priceChangePercentage24h > 0 ? "success" : "error"}
+                color={
+                  marketHistory.priceChangePercentage24h > 0
+                    ? "success"
+                    : "error"
+                }
                 icon={<AttachMoneyIcon fontSize="small" />}
               />
             </Typography>
@@ -114,36 +108,29 @@ export const CryptoCard: React.FC<Props> = ({
               Price History
               <br />
               <div className="priceHistoryChips">
-                <Chip
-                  sx={{ paddingLeft: "2px" }}
-                  color={priceChangePercentage24h > 0 ? "success" : "error"}
-                  variant="outlined"
-                  size="small"
-                  label={`${priceChangePercentage24h}%`}
-                  avatar={
-                    <Avatar sx={{ backgroundColor: "transparent" }}>24h</Avatar>
-                  }
-                />
-                <Chip
-                  sx={{ paddingLeft: "2px" }}
-                  color={priceChangePercentage7d > 0 ? "success" : "error"}
-                  variant="outlined"
-                  size="small"
-                  label={`${priceChangePercentage7d}%`}
-                  avatar={
-                    <Avatar sx={{ backgroundColor: "transparent" }}>7d</Avatar>
-                  }
-                />
-                <Chip
-                  sx={{ paddingLeft: "2px" }}
-                  color={priceChangePercentage14d > 0 ? "success" : "error"}
-                  variant="outlined"
-                  size="small"
-                  label={`${priceChangePercentage14d}%`}
-                  avatar={
-                    <Avatar sx={{ backgroundColor: "transparent" }}>14d</Avatar>
-                  }
-                />
+                {Object.keys(marketHistory).map((key) => {
+                  return (
+                    <Chip
+                      key={key}
+                      sx={{ paddingLeft: "2px" }}
+                      color={
+                        marketHistory[key as keyof typeof marketHistory] > 0
+                          ? "success"
+                          : "error"
+                      }
+                      variant="outlined"
+                      size="small"
+                      label={`${
+                        marketHistory[key as keyof typeof marketHistory]
+                      }%`}
+                      avatar={
+                        <Avatar sx={{ backgroundColor: "transparent" }}>
+                          {key.replace("priceChangePercentage", "")}
+                        </Avatar>
+                      }
+                    />
+                  );
+                })}
               </div>
             </Typography>
           </CardContent>
