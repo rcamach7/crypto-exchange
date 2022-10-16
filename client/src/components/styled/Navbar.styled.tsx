@@ -27,12 +27,6 @@ export const NavbarWrapper = styled.div`
 `;
 
 export const ProfileDrawerWrapper = styled.div`
-  .walletIcon {
-    padding-top: 10px;
-
-    display: flex;
-    justify-content: center;
-  }
   .tableHeaders {
     padding-top: 5px;
   }
@@ -41,24 +35,30 @@ export const ProfileDrawerWrapper = styled.div`
     padding: 10px 0;
     border-bottom: solid black 1px;
 
-    // display: flex;
     gap: 5px;
     .portfolioDetails {
-      padding-bottom: 5px;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 5px;
+
+      padding: 0 16px;
       .valueTitle {
         font-size: 12px;
       }
     }
     .portfolioBreakdown {
+      padding: 0 16px;
       p {
         display: flex;
         align-items: center;
         font-size: 12px;
       }
     }
+  }
+  .walletIcon {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
   }
 `;

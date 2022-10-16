@@ -8,7 +8,6 @@ import {
   Chip,
   Typography,
 } from "@mui/material/";
-import { CryptoWallet } from "./CryptoWallet";
 import {
   formatPrice,
   calculatePortfolioValue,
@@ -16,11 +15,15 @@ import {
   calculateTotalInvestmentReturn,
   numberWithCommas,
 } from "../../../utilities/helpers";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
-import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
-import ArrowCircleDownIcon from "@mui/icons-material/ArrowCircleDown";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import { CryptoWallet } from "./CryptoWallet";
+import {
+  AccountBalanceWallet as AccountBalanceWalletIcon,
+  CurrencyExchange as CurrencyExchangeIcon,
+  ArrowCircleUp as ArrowCircleUpIcon,
+  ArrowCircleDown as ArrowCircleDownIcon,
+  ArrowRight as ArrowRightIcon,
+} from "@mui/icons-material/";
+
 import { UpdateNameForm, UpdateProfileImageForm } from "../../forms/";
 import { useAppSelector } from "../../../features/";
 import { ProfileDrawerWrapper } from "../../styled/";
@@ -66,7 +69,9 @@ export const Profile = () => {
     <ProfileDrawerWrapper>
       <Box
         className="ProfileBox"
-        sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 300 }}
+        sx={{
+          width: "clamp(300px, 40vw, 400px)",
+        }}
         role="presentation"
       >
         <Card variant="outlined">
@@ -102,7 +107,7 @@ export const Profile = () => {
                 <p>${numberWithCommas(accountTotalValue)}</p>
               </div>
               <Chip
-                sx={{ paddingLeft: "2px" }}
+                sx={{ marginLeft: "auto" }}
                 color={totalInvestmentReturn >= 0 ? "success" : "error"}
                 variant="outlined"
                 size="small"
