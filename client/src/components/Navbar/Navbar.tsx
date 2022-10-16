@@ -11,13 +11,15 @@ import {
   Tooltip,
   MenuItem,
 } from "@mui/material/";
+import {
+  Brightness4 as Brightness4Icon,
+  Brightness7 as Brightness7Icon,
+} from "@mui/icons-material/";
 import { Link } from "react-router-dom";
 import { Profile } from "./Profile/Profile";
 import logo from "../../assets/logo.png";
 import { useLocation } from "react-router-dom";
 import { useThemeContext } from "../../context/";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { useTheme } from "@mui/material/styles";
 import {
   useAppDispatch,

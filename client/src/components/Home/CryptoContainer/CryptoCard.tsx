@@ -11,10 +11,12 @@ import {
   IconButton,
   Button,
 } from "@mui/material/";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import RefreshIcon from "@mui/icons-material/Refresh";
-import BookmarkAddedIcon from "@mui/icons-material/BookmarkAdded";
+import {
+  AttachMoney as AttachMoneyIcon,
+  BookmarkBorder as BookmarkBorderIcon,
+  Refresh as RefreshIcon,
+  BookmarkAdded as BookmarkAddedIcon,
+} from "@mui/icons-material/";
 import { PurchaseModal } from "./PurchaseModal";
 import { Link } from "react-router-dom";
 import { numberWithCommas } from "../../../utilities/helpers";
