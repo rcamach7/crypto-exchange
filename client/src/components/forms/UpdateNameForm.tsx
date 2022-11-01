@@ -1,21 +1,16 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { useState, FC } from "react";
 import { capitalizeFirstLetter } from "../../utilities/helpers";
-import EditIcon from "@mui/icons-material/Edit";
+import { Edit as EditIcon, Cancel as CancelIcon } from "@mui/icons-material/";
 import { ResponseType, useGlobalContext } from "../../context/";
 import { updateName } from "../../api/api";
 import { useAppDispatch, setUser } from "../../features/";
+import { Box, IconButton } from "@mui/material";
 
-const FormWrapper = styled.span`
-  form {
-    display: inline;
-  }
-`;
 interface Props {
   name: string;
 }
 
-export const UpdateNameForm = ({ name }: Props) => {
+export const UpdateNameForm: FC<Props> = ({ name }) => {
   const { togglePageLoading, handleBannerMessage } = useGlobalContext();
   const dispatch = useAppDispatch();
 
@@ -26,7 +21,7 @@ export const UpdateNameForm = ({ name }: Props) => {
     e.preventDefault();
     togglePageLoading();
 
-    if (!isValidName(updatedName)) return;
+    if (!isNameValid(updatedName)) return;
 
     try {
       const user = await updateName(updatedName);
@@ -41,7 +36,7 @@ export const UpdateNameForm = ({ name }: Props) => {
     }
   };
 
-  const isValidName: (name: string) => boolean = (name) => {
+  const isNameValid: (name: string) => boolean = (name) => {
     if (name.length === 0 || name.length < 4) {
       togglePageLoading();
       handleBannerMessage(
@@ -49,35 +44,34 @@ export const UpdateNameForm = ({ name }: Props) => {
         "Name must be at least 4 characters long!"
       );
       return false;
-    } else return true;
-  };
-
-  const renderForm = () => {
-    return (
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="text"
-          value={updatedName}
-          onChange={(e) => setUpdatedName(e.target.value)}
-        />
-      </form>
-    );
+    }
+    return true;
   };
 
   return (
-    <FormWrapper>
+    <Box component="span">
       {showForm ? (
-        renderForm()
+        <>
+          <form style={{ display: "inline" }} onSubmit={(e) => handleSubmit(e)}>
+            <input
+              type="text"
+              value={updatedName}
+              onChange={(e) => setUpdatedName(e.target.value)}
+              style={{ width: "10em" }}
+            />
+          </form>
+          <IconButton onClick={() => setShowForm((SF) => !SF)}>
+            <CancelIcon fontSize="small" />
+          </IconButton>
+        </>
       ) : (
-        <span>
+        <>
           {capitalizeFirstLetter(name)}{" "}
-          <EditIcon
-            fontSize="small"
-            onClick={() => setShowForm(true)}
-            sx={{ position: "relative", top: "5px" }}
-          />
-        </span>
+          <IconButton onClick={() => setShowForm((SF) => !SF)}>
+            <EditIcon fontSize="small" />
+          </IconButton>
+        </>
       )}
-    </FormWrapper>
+    </Box>
   );
 };
