@@ -1,5 +1,5 @@
 import { Avatar } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import { useGlobalContext, ResponseType } from "../../context/";
 import { updateUserImage } from "../../api/api";
 import { setUser, useAppDispatch } from "../../features/";
@@ -8,7 +8,9 @@ interface Props {
   currentProfilePicture: string;
 }
 
-export const UpdateProfileImageForm = ({ currentProfilePicture }: Props) => {
+export const UpdateProfileImageForm: FC<Props> = ({
+  currentProfilePicture,
+}) => {
   const { togglePageLoading, handleBannerMessage } = useGlobalContext();
   const dispatch = useAppDispatch();
 
@@ -49,7 +51,7 @@ export const UpdateProfileImageForm = ({ currentProfilePicture }: Props) => {
         />
       </label>
 
-      {/* Input not displayed, as out fileUpload icon above will trigger the form */}
+      {/* input element not displayed as our fileUpload icon will be used instead */}
       <input
         style={{ display: "none" }}
         id="fileUpload"

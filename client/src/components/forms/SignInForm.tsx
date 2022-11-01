@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FC } from "react";
 import { Box, TextField, Button } from "@mui/material/";
 import { SubmissionError, Account } from "../../global.models";
 import { login } from "../../api/api";
@@ -9,7 +9,7 @@ interface Props {
   setShowCreateAccount: React.Dispatch<React.SetStateAction<Boolean>>;
 }
 
-export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
+export const SignInForm: FC<Props> = ({ setShowCreateAccount }) => {
   const { togglePageLoading } = useGlobalContext();
   const dispatch = useAppDispatch();
 
@@ -87,7 +87,7 @@ export const SignInForm: React.FC<Props> = ({ setShowCreateAccount }) => {
 
       <Button
         className="btn"
-        onClick={() => setShowCreateAccount((prevState) => !prevState)}
+        onClick={() => setShowCreateAccount((SCA) => !SCA)}
       >
         Create Account
       </Button>
