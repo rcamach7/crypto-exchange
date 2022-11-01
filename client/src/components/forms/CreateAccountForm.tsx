@@ -1,4 +1,11 @@
-import React from "react";
+import {
+  Dispatch,
+  FC,
+  useState,
+  SetStateAction,
+  ChangeEvent,
+  FormEvent,
+} from "react";
 import { Box, TextField, Button } from "@mui/material/";
 import { Account } from "../../global.models";
 import { createAccount } from "../../api/api";
@@ -7,14 +14,12 @@ import { ResponseType } from "../../context/";
 import { SubmissionError } from "../../global.models";
 
 interface Props {
-  setShowCreateAccount: React.Dispatch<React.SetStateAction<Boolean>>;
+  setShowCreateAccount: Dispatch<SetStateAction<Boolean>>;
 }
 
-export const CreateAccountForm: React.FC<Props> = ({
-  setShowCreateAccount,
-}) => {
+export const CreateAccountForm: FC<Props> = ({ setShowCreateAccount }) => {
   const { togglePageLoading, handleBannerMessage } = useGlobalContext();
-  const [account, setAccount] = React.useState<Account>({
+  const [account, setAccount] = useState<Account>({
     username: "",
     password: "",
     fullName: "",
@@ -22,21 +27,18 @@ export const CreateAccountForm: React.FC<Props> = ({
   });
 
   // Error Handling
-  const [showPasswordError, setShowPasswordError] =
-    React.useState<SubmissionError>({});
-  const [showTakenUsername, setTakenUsername] = React.useState<SubmissionError>(
+  const [showPasswordError, setShowPasswordError] = useState<SubmissionError>(
     {}
   );
+  const [showTakenUsername, setTakenUsername] = useState<SubmissionError>({});
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setAccount((prevState) => {
       return { ...prevState, [event.target.name]: event.target.value };
     });
   };
 
-  const handleCreateAccount = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
+  const handleCreateAccount = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     togglePageLoading();
 

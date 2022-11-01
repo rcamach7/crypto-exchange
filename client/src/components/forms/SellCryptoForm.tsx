@@ -1,3 +1,4 @@
+import { useEffect, useState, FC, SyntheticEvent, ChangeEvent } from "react";
 import {
   Alert,
   Avatar,
@@ -9,7 +10,6 @@ import {
 } from "@mui/material";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { useTheme } from "@mui/material/styles";
-import React from "react";
 import { ResponseType, useGlobalContext } from "../../context/";
 import {
   capitalizeFirstLetter,
@@ -26,7 +26,7 @@ interface Props {
   walletQuantity: number;
 }
 
-export const SellCryptoForm: React.FC<Props> = ({
+export const SellCryptoForm: FC<Props> = ({
   crypto,
   handleClose,
   walletQuantity,
@@ -35,11 +35,11 @@ export const SellCryptoForm: React.FC<Props> = ({
   const theme = useTheme();
   const dispatch = useAppDispatch();
 
-  const [quantity, setQuantity] = React.useState<number>(0);
-  const [checked, setChecked] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<Error>({ exists: false });
+  const [quantity, setQuantity] = useState<number>(0);
+  const [checked, setChecked] = useState<boolean>(false);
+  const [error, setError] = useState<Error>({ exists: false });
 
-  const handleSell = async (event: React.SyntheticEvent) => {
+  const handleSell = async (event: SyntheticEvent) => {
     event.preventDefault();
     togglePageLoading();
 
@@ -66,11 +66,11 @@ export const SellCryptoForm: React.FC<Props> = ({
     }
   };
 
-  const handleChecked = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChecked = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     checked ? setQuantity(walletQuantity) : setQuantity(0);
   }, [checked, walletQuantity]);
 
