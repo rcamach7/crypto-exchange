@@ -26,9 +26,7 @@ export const NewsSectionTitle: React.FC<Props> = ({ count, theme }) => {
             color="success"
             className="animate__animated animate__fadeIn animate__infinite animate__slower"
           />
-          <Typography sx={{ textDecoration: "underline" }}>
-            Trending News
-          </Typography>
+          <Typography>Trending News</Typography>
           <OnlinePredictionIcon
             color="success"
             className="animate__animated animate__fadeIn animate__infinite animate__slower"
