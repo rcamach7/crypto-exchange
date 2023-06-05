@@ -1,7 +1,7 @@
 const Crypto = require("../models/Crypto");
 const NewsArticle = require("../models/NewsArticle");
 const axios = require("axios");
-const GeckoAPI = require("./coinGecko");
+const GeckoAPI = require("./CoinGeckoClient");
 
 exports.updateCryptos = async (cryptos) => {
   try {
