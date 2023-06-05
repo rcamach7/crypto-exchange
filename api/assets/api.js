@@ -1,26 +1,24 @@
-const CoinGecko = require("coingecko-api");
-const CoinGeckoClient = new CoinGecko();
 const Crypto = require("../models/Crypto");
 const NewsArticle = require("../models/NewsArticle");
 const axios = require("axios");
+const GeckoAPI = require("./coinGecko");
 
 exports.updateCryptos = async (cryptos) => {
   try {
-    const { data } = await CoinGeckoClient.coins.all({
-      order: CoinGecko.ORDER.MARKET_CAP_DESC,
-    });
+    const GeckoAPIClient = new GeckoAPI();
+    const data = await GeckoAPIClient.getAllCoins();
 
     const tickerMap = new Map();
     for (let index = 0; index < data.length; index++) {
       tickerMap.set(data[index].id, {
-        price: data[index].market_data.current_price.usd,
+        price: data[index].current_price,
         marketHistory: {
           priceChangePercentage24h:
-            data[index].market_data.price_change_percentage_24h,
+            data[index].price_change_percentage_24h_in_currency,
           priceChangePercentage7d:
-            data[index].market_data.price_change_percentage_7d,
+            data[index].price_change_percentage_7d_in_currency,
           priceChangePercentage14d:
-            data[index].market_data.price_change_percentage_14d,
+            data[index].price_change_percentage_14d_in_currency,
         },
       });
     }
@@ -47,31 +45,18 @@ exports.updateCryptos = async (cryptos) => {
 
 exports.updateOneCrypto = async (cryptoName) => {
   try {
-    let {
-      data: {
-        market_data: {
-          current_price,
-          price_change_percentage_24h,
-          price_change_percentage_7d,
-          price_change_percentage_14d,
-        },
-      },
-    } = await CoinGeckoClient.coins.fetch(cryptoName, {
-      developer_data: false,
-      localization: false,
-      sparkline: false,
-      community_data: false,
-    });
+    const GeckoAPIClient = new GeckoAPI();
+    const data = await GeckoAPIClient.getOneCoin(cryptoName);
 
     const result = await Crypto.findOneAndUpdate(
       { name: cryptoName },
       {
-        price: current_price.usd,
+        price: data.current_price,
         lastUpdated: new Date(),
         marketHistory: {
-          priceChangePercentage24h: price_change_percentage_24h,
-          priceChangePercentage7d: price_change_percentage_7d,
-          priceChangePercentage14d: price_change_percentage_14d,
+          priceChangePercentage24h: data.priceChangePercentage24h,
+          priceChangePercentage7d: data.priceChangePercentage7d,
+          priceChangePercentage14d: data.priceChangePercentage14d,
         },
       },
       { new: true }
