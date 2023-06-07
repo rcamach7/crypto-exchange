@@ -1,11 +1,11 @@
 const {
   verifyTokenAndStoreCredentials,
   verifyTransactionParameters,
-} = require("../assets/middleware");
+} = require("../lib/middleware");
 const {
   processPortfolioPurchase,
   processPortfolioSell,
-} = require("../assets/helpers");
+} = require("../lib/helpers");
 const { updateOneCrypto } = require("../services/cryptoService");
 const User = require("../models/User");
 

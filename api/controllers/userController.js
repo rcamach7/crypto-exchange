@@ -1,5 +1,5 @@
 const { check, validationResult } = require("express-validator");
-const middleware = require("../assets/middleware");
+const middleware = require("../lib/middleware");
 const axios = require("axios");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
