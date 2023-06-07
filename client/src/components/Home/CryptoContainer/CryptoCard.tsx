@@ -19,7 +19,7 @@ import {
 } from "@mui/icons-material/";
 import { PurchaseModal } from "./PurchaseModal";
 import { Link } from "react-router-dom";
-import { numberWithCommas } from "../../../utilities/helpers";
+import { numberWithCommas, roundToDecimals } from "../../../utilities/helpers";
 import { bookmarkCrypto } from "../../../api/api";
 import { useAppDispatch, setUser } from "../../../features/";
 import { CryptoCardWrapper } from "../../styled/";
@@ -120,9 +120,10 @@ export const CryptoCard: React.FC<Props> = ({
                       }
                       variant="outlined"
                       size="small"
-                      label={`${
-                        marketHistory[key as keyof typeof marketHistory]
-                      }%`}
+                      label={`${roundToDecimals(
+                        marketHistory[key as keyof typeof marketHistory],
+                        5
+                      )}%`}
                       avatar={
                         <Avatar sx={{ backgroundColor: "transparent" }}>
                           {key.replace("priceChangePercentage", "")}

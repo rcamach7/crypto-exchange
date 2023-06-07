@@ -254,3 +254,8 @@ export const getUserQuantityOwned: GetUserQuantityOwned = (
   });
   return quantity;
 };
+
+export function roundToDecimals(num: number, decimalPlaces: number): number {
+  const factor = Math.pow(10, decimalPlaces);
+  return Math.round((num + Number.EPSILON) * factor) / factor;
+}
