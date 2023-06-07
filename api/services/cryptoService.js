@@ -4,33 +4,18 @@ const GeckoAPI = require("./CoinGeckoClient");
 exports.updateCryptos = async (cryptos) => {
   try {
     const GeckoAPIClient = new GeckoAPI();
-    const data = await GeckoAPIClient.getAllCoins();
-
-    const tickerMap = new Map();
-    for (let index = 0; index < data.length; index++) {
-      tickerMap.set(data[index].id, {
-        price: data[index].current_price,
-        marketHistory: {
-          priceChangePercentage24h:
-            data[index].price_change_percentage_24h_in_currency,
-          priceChangePercentage7d:
-            data[index].price_change_percentage_7d_in_currency,
-          priceChangePercentage14d:
-            data[index].price_change_percentage_14d_in_currency,
-        },
-      });
-    }
+    const coins = await GeckoAPIClient.getAllCoins();
 
     cryptos.forEach(async (cryptoName) => {
-      const data = tickerMap.get(cryptoName);
-      if (data === undefined) return;
+      const coinData = coins.get(cryptoName);
+      if (cryptoData === undefined) return;
 
       await Crypto.findOneAndUpdate(
         { name: cryptoName },
         {
-          price: data.price,
+          price: coinData.price,
           lastUpdated: new Date(),
-          marketHistory: data.marketHistory,
+          marketHistory: coinData.marketHistory,
         }
       );
     });
