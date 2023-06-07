@@ -6,7 +6,7 @@ const {
   processPortfolioPurchase,
   processPortfolioSell,
 } = require("../assets/helpers");
-const { updateOneCrypto } = require("../assets/api");
+const { updateOneCrypto } = require("../services/cryptoService");
 const User = require("../models/User");
 
 exports.buyCryptos = [

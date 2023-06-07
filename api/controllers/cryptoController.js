@@ -1,4 +1,4 @@
-const { updateCryptos, updateOneCrypto } = require("../assets/api");
+const { updateCryptos, updateOneCrypto } = require("../services/cryptoService");
 const Crypto = require("../models/Crypto");
 
 exports.getCryptos = [

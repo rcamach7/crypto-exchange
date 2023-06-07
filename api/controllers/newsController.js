@@ -1,5 +1,5 @@
 const NewsArticle = require("../models/NewsArticle");
-const { replaceNewsArticles } = require("../assets/api");
+const { replaceNewsArticles } = require("../services/newsService");
 
 exports.getNews = [
   // Check to see if X time has elapsed, for us to refresh out news articles from a 3P API.
