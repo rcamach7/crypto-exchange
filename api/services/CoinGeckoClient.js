@@ -36,7 +36,7 @@ class GeckoAPI {
       if (coins.length === 0) return Promise.reject("No coins found");
 
       const structuredData = new Map();
-      for (let index = 0; coins.length; index++) {
+      for (let index = 0; index < coins.length; index++) {
         structuredData.set(coins[index].id, {
           price: coins[index].current_price,
           marketHistory: {

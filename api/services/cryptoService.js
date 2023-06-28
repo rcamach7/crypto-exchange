@@ -8,7 +8,7 @@ exports.updateCryptos = async (cryptos) => {
 
     cryptos.forEach(async (cryptoName) => {
       const coinData = coins.get(cryptoName);
-      if (cryptoData === undefined) return;
+      if (coinData === undefined) return;
 
       await Crypto.findOneAndUpdate(
         { name: cryptoName },
